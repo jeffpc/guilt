@@ -1,0 +1,18 @@
+#!/bin/bash
+
+source "`dirname $0`/gq.lib"
+
+export GIT_DIR=`find_git_dir`
+GQ_DIR="$GIT_DIR/patches"
+
+branch=`git branch | awk 'BEGIN{}/*/{print $2}END{}'`
+
+if [ -d "$GQ_DIR/$branch" ]; then
+	echo "Branch $branch appears to be already initialized (GIT_DIR=$GIT_DIR)"
+	exit 1
+fi
+
+[ ! -d "$GQ_DIR" ] && mkdir $GQ_DIR
+mkdir $GQ_DIR/$branch
+touch $GQ_DIR/$branch/series
+

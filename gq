@@ -1,11 +1,5 @@
 #!/bin/bash
 
-source "`dirname $0`/gq.lib"
-
-GIT_DIR=`find_git_dir`
-
-echo "GIT_DIR=$GIT_DIR"
-
 for x in `dirname $0`/gq*; do
 	[ -x $x ] && echo -e "\t$x"
 done
