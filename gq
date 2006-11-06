@@ -1,30 +1,12 @@
 #!/bin/bash
 
-function find_git_dir
-{
-	# let the user override
-	if [ ! -z "$GIT_DIR" ]; then
-		echo "$GIT_DIR"
-		return
-	fi
+source "`dirname $0`/gq.lib"
 
-	DIR=`pwd`
-	while true; do
-		if [ -d "$DIR/.git" ]; then
-			echo "$DIR/.git"
-			return
-		fi
+GIT_DIR=`find_git_dir`
 
-		DIR2=`dirname $DIR`
-		if [ "$DIR" = "$DIR2" ]; then
-			echo "Could not find .git"
-			exit 1
-		fi
-		DIR="$DIR2"
-	done
-}
+echo "GIT_DIR=$GIT_DIR"
 
-DIR=`find_git_dir`
-
-echo "Dir at: $DIR"
+for x in `dirname $0`/gq*; do
+	[ -x $x ] && echo -e "\t$x"
+done
 
