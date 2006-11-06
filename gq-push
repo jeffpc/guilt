@@ -1,0 +1,69 @@
+#!/bin/bash
+
+source "`dirname $0`/gq.lib"
+
+export GIT_DIR=`find_git_dir`
+GQ_DIR="$GIT_DIR/patches"
+
+branch=`get_branch_verify`
+series="$GQ_DIR/$branch/series"
+applied="$GQ_DIR/$branch/applied"
+
+patch="$1"
+
+if [ -z "$patch" ] ; then
+	echo "Usage:"
+	echo "   $0 patchname|--all|-a"
+	exit 0
+fi
+
+if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
+	# we are supposed to push all patches, get the last one out of
+	# series
+
+	patch=`cat $series | tail -1`
+	if [ -z "$patch" ]; then
+		echo "There are no patches to push"
+		exit 1
+	fi
+else
+	# we're supposed to push only up to a patch, make sure the patch is
+	# in the series
+
+	sp=`cat $series | grep -e "^$patch\$"`
+	if [ -z "$sp" ]; then
+		echo "Patch $patch is not in the series"
+		exit 1
+	fi
+fi
+
+# now, find the starting patch
+tmp=`cat $applied | tail -1`
+if [ -z "$tmp" ]; then
+	# there are no applied patches, grab the first out of series
+	spidx=1
+else
+	# there are some patches applied
+	spidx=`wc -l $applied | awk '{print $1}'`
+	spidx=`expr $spidx + 1`
+fi
+
+idx=0
+for p in `cat $series`; do
+	idx=`expr $idx + 1`
+	[ $idx -lt $spidx ] && continue
+
+	echo "Applying patch..$p"
+	if [ ! -f "$GQ_DIR/$branch/$p" ]; then
+		echo "Patch $patch does not exist. Aborting."
+		exit 1
+	fi
+
+	git-apply --whitespace=warn $GQ_DIR/$branch/$p
+	echo "Fix up anything you need..."
+	bash
+
+	git-commit
+	echo $p >> $applied
+done
+
