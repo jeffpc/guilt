@@ -44,7 +44,7 @@ if [ -z "$tmp" ]; then
 	spidx=1
 else
 	# there are some patches applied
-	spidx=`wc -l $applied | awk '{print $1}'`
+	spidx=`wc -l < $applied`
 	spidx=`expr $spidx + 1`
 fi
 
