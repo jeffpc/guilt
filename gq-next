@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source "`dirname $0`/gq.lib"
+
+export GIT_DIR=`find_git_dir`
+GQ_DIR="$GIT_DIR/patches"
+
+branch=`get_branch_verify`
+
+n=`wc -l < $GQ_DIR/$branch/applied`
+n=`expr $n + 1`
+
+awk "{ if (NR == $n) print \$0}" < $GQ_DIR/$branch/series
+
