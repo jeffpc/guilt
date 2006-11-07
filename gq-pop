@@ -1,0 +1,30 @@
+#!/bin/bash
+
+source "`dirname $0`/gq.lib"
+
+export GIT_DIR=`find_git_dir`
+GQ_DIR="$GIT_DIR/patches"
+
+branch=`get_branch_verify`
+series="$GQ_DIR/$branch/series"
+applied="$GQ_DIR/$branch/applied"
+
+# FIXME: ...
+[ $# -ne 0 ] && echo "Poping only top most patch..arguments ignored"
+
+git-status > /dev/null
+
+if [ $? -ne 1 ]; then
+	echo "Uncommited changes, refresh first"
+	exit 1
+fi
+
+git reset --hard HEAD^
+
+echo "Poping `tail -1 $applied`..."
+
+head -n -1 < $applied > $applied.tmp
+mv $applied{.tmp,}
+
+echo "Now at `tail -1 $applied`."
+
