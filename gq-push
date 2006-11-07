@@ -11,12 +11,6 @@ applied="$GQ_DIR/$branch/applied"
 
 patch="$1"
 
-if [ -z "$patch" ] ; then
-	echo "Usage:"
-	echo "   $0 patchname|--all|-a"
-	exit 0
-fi
-
 if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
 	# we are supposed to push all patches, get the last one out of
 	# series
@@ -26,6 +20,11 @@ if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
 		echo "There are no patches to push"
 		exit 1
 	fi
+elif [ -z "$patch" ]; then
+	# we are supposed to push only the next patch onto the stack
+
+	eidx=`wc -l < $applied`
+	eidx=`expr $eidx + 1`
 else
 	# we're supposed to push only up to a patch, make sure the patch is
 	# in the series
@@ -38,15 +37,8 @@ else
 fi
 
 # now, find the starting patch
-tmp=`cat $applied | tail -1`
-if [ -z "$tmp" ]; then
-	# there are no applied patches, grab the first out of series
-	sidx=1
-else
-	# there are some patches applied
-	sidx=`wc -l < $applied`
-	sidx=`expr $sidx + 1`
-fi
+sidx=`wc -l < $applied`
+sidx=`expr $sidx + 1`
 
 echo "$sidx..$eidx"
 
