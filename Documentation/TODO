@@ -1,0 +1,33 @@
+Commands:
+=========
+
+These are some of the commands I can think of being useful. Some of the,
+e.g., email may not be necessary as git can do that for us.
+
+	applied		done		list applied patches
+	delete				delete a patch from queue
+	email				patchbomb
+	fold				fold named patches into current
+	header				print the header for a patch
+	import				import a patch
+	init		done		initialize patch queue
+	new				create a new patch
+	next		done		display next patch on the stack
+	pop		partial		pop one or more patches
+	prev				display previous patch on the stack
+	push		partial		push one of more patches
+	rebase				rebase the current patches
+	rename				rename a patch
+	refresh				refresh the current patch
+	series		done		list all patches
+	top		done		display current patch name
+	unapplied	done		display unapplied patches
+
+
+Misc Bugs/Enhancements:
+=======================
+
+Here are some things I want to do one of these days...
+
+(none yet)
+
