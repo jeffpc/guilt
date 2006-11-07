@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source "`dirname $0`/gq.lib"
+
+export GIT_DIR=`find_git_dir`
+GQ_DIR="$GIT_DIR/patches"
+
+branch=`get_branch_verify`
+
+tail -1 $GQ_DIR/$branch/applied
