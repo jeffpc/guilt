@@ -55,7 +55,10 @@ for p in `cat $series`; do
 	git-apply --whitespace=warn $GQ_DIR/$branch/$p
 	echo -e "\nFix up anything you need..."
 	echo "Quit the shell to continue."
+	GD="$GIT_DIR"
+	unset GIT_DIR
 	bash
+	export GIT_DIR="$GD"
 
 	# add any new files
 	git-add `git-rev-parse --show-cdup`
@@ -69,6 +72,9 @@ for p in `cat $series`; do
 	# commit
 	git-commit -a -F /tmp/gq.msg.$$
 	rm -f /tmp/gq.msg.$$
+
+	# refresh the patch
+	refresh_patch HEAD "$p"
 
 	# mark patch as applied
 	echo $p >> $applied
