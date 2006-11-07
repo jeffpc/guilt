@@ -19,13 +19,14 @@ if [ $? -ne 1 ]; then
 	exit 1
 fi
 
+refresh_patch HEAD `get_top`
 git reset --hard HEAD^
 
-echo "Poping `tail -1 $applied`..."
+echo "Poping `get_top`..."
 
 head -n -1 < $applied > $applied.tmp
 mv $applied{.tmp,}
 
-p=`tail -1 $applied`
+p=`get_top`
 [ ! -z "$p" ] && echo "Now at $p." || echo "All patches popped."
 

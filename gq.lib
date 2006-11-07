@@ -30,3 +30,32 @@ function get_branch_verify
 	echo "$b"
 }
 
+function get_top
+{
+	tail -1 $GQ_DIR/$branch/applied
+}
+
+function refresh_patch
+{
+	rev="$1"
+	fname="$GQ_DIR/$branch/$2"
+
+	# grab the commit message
+	git-cat-file -p $rev | awk 'BEGIN{ok=0}{if (ok==1) print $0}/^$/{ok=1}' > "$fname.tmp"
+
+	lines=`wc -l < "$fname.tmp"`
+	tline=`cat "$fname.tmp"`
+	if [ $lines -eq 1 -a "$tline" = "patch $2" ]; then
+		# no real commit message
+		echo -n "" > "$fname.tmp"
+	else
+		# real commit message, separate by an empty line
+		echo "" >> "$fname.tmp"
+	fi
+
+	# get the diff
+	git-diff $rev^ $rev >> "$fname.tmp"
+
+	mv "$fname.tmp" "$fname"
+}
+
