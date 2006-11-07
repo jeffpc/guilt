@@ -32,7 +32,7 @@ function get_branch_verify
 
 function get_top
 {
-	tail -1 $GQ_DIR/$branch/applied
+	tail -1 $GQ_DIR/$branch/status
 }
 
 function refresh_patch

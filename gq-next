@@ -7,7 +7,7 @@ GQ_DIR="$GIT_DIR/patches"
 
 branch=`get_branch_verify`
 
-n=`wc -l < $GQ_DIR/$branch/applied`
+n=`wc -l < $GQ_DIR/$branch/status`
 n=`expr $n + 1`
 
 awk "{ if (NR == $n) print \$0}" < $GQ_DIR/$branch/series

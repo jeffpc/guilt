@@ -7,7 +7,7 @@ GQ_DIR="$GIT_DIR/patches"
 
 branch=`get_branch_verify`
 series="$GQ_DIR/$branch/series"
-applied="$GQ_DIR/$branch/applied"
+applied="$GQ_DIR/$branch/status"
 
 patch="$1"
 

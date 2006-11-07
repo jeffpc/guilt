@@ -15,5 +15,5 @@ fi
 [ ! -d "$GQ_DIR" ] && mkdir $GQ_DIR
 mkdir $GQ_DIR/$branch
 touch $GQ_DIR/$branch/series
-touch $GQ_DIR/$branch/applied
+touch $GQ_DIR/$branch/status
 
