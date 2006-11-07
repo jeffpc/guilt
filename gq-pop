@@ -26,5 +26,6 @@ echo "Poping `tail -1 $applied`..."
 head -n -1 < $applied > $applied.tmp
 mv $applied{.tmp,}
 
-echo "Now at `tail -1 $applied`."
+p=`tail -1 $applied`
+[ ! -z "$p" ] && echo "Now at $p." || echo "All patches popped."
 
