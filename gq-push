@@ -21,8 +21,8 @@ if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
 	# we are supposed to push all patches, get the last one out of
 	# series
 
-	patch=`cat $series | tail -1`
-	if [ -z "$patch" ]; then
+	eidx=`wc -l < $series`
+	if [ $eidx -eq 0 ]; then
 		echo "There are no patches to push"
 		exit 1
 	fi
@@ -30,8 +30,8 @@ else
 	# we're supposed to push only up to a patch, make sure the patch is
 	# in the series
 
-	sp=`cat $series | grep -e "^$patch\$"`
-	if [ -z "$sp" ]; then
+	eidx=`cat $series | grep -ne "^$patch\$" | cut -d: -f1`
+	if [ $eidx -eq 0 ]; then
 		echo "Patch $patch is not in the series"
 		exit 1
 	fi
@@ -41,17 +41,20 @@ fi
 tmp=`cat $applied | tail -1`
 if [ -z "$tmp" ]; then
 	# there are no applied patches, grab the first out of series
-	spidx=1
+	sidx=1
 else
 	# there are some patches applied
-	spidx=`wc -l < $applied`
-	spidx=`expr $spidx + 1`
+	sidx=`wc -l < $applied`
+	sidx=`expr $sidx + 1`
 fi
+
+echo "$sidx..$eidx"
 
 idx=0
 for p in `cat $series`; do
 	idx=`expr $idx + 1`
-	[ $idx -lt $spidx ] && continue
+	[ $idx -lt $sidx ] && continue
+	[ $idx -gt $eidx ] && break
 
 	echo "Applying patch..$p"
 	if [ ! -f "$GQ_DIR/$branch/$p" ]; then
@@ -60,10 +63,24 @@ for p in `cat $series`; do
 	fi
 
 	git-apply --whitespace=warn $GQ_DIR/$branch/$p
-	echo "Fix up anything you need..."
+	echo -e "\nFix up anything you need..."
+	echo "Quit the shell to continue."
 	bash
 
-	git-commit
+	# add any new files
+	git-add `git-rev-parse --show-cdup`
+
+	# grab a commit message out of the patch
+	cat $GQ_DIR/$branch/$p | awk 'BEGIN{ok=1}/^(diff|---)/{ok=0}{if (ok==1) print $0}' > /tmp/gq.msg.$$
+
+	# make a default commit message if patch doesn't contain one
+	[ ! -s /tmp/gq.msg.$$ ] && echo "patch $p" > /tmp/gq.msg.$$
+
+	# commit
+	git-commit -a -F /tmp/gq.msg.$$
+	rm -f /tmp/gq.msg.$$
+
+	# mark patch as applied
 	echo $p >> $applied
 done
 
