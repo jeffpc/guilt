@@ -35,6 +35,21 @@ function get_top
 	tail -1 $GQ_DIR/$branch/status
 }
 
+function get_prev
+{
+	n=`wc -l < $GQ_DIR/$branch/status`
+	n=`expr $n - 1`
+
+	idx=0
+	for p in `cat $GQ_DIR/$branch/status`; do
+		idx=`expr $idx + 1`
+		[ $idx -lt $n ] && continue
+		[ $idx -gt $n ] && break
+
+		echo $p
+	done
+}
+
 function refresh_patch
 {
 	rev="$1"
