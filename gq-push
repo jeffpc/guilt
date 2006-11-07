@@ -40,8 +40,6 @@ fi
 sidx=`wc -l < $applied`
 sidx=`expr $sidx + 1`
 
-echo "$sidx..$eidx"
-
 idx=0
 for p in `cat $series`; do
 	idx=`expr $idx + 1`
@@ -74,5 +72,7 @@ for p in `cat $series`; do
 
 	# mark patch as applied
 	echo $p >> $applied
+
+	echo "Patch applied."
 done
 
