@@ -29,5 +29,5 @@ Misc Bugs/Enhancements:
 
 Here are some things I want to do one of these days...
 
-(none yet)
-
+- Allow 'gq foo' in addition to 'gq-foo'
+- Grab the From: line out of the patch and use that as author string
