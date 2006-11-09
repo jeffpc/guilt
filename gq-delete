@@ -1,0 +1,23 @@
+#!/bin/bash
+
+source "`dirname $0`/gq.lib"
+
+export GIT_DIR=`find_git_dir`
+GQ_DIR="$GIT_DIR/patches"
+
+branch=`get_branch_verify`
+
+patch="$1"
+
+if [ -z "$patch" ]; then
+	echo "You must specify a patch to delete"
+	exit 1
+fi
+
+p=`cat "$GQ_DIR/$branch/status" | grep -e "^$patch\$"`
+if [ ! -z "$p" ] ; then
+	echo "Cannot delete an applied patch"
+	exit 1
+fi
+
+ex -s -c ":%g/^foobar$/d|:wq" "$GQ_DIR/$branch/series"
