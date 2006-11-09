@@ -1,0 +1,7 @@
+The following software is needed to run gq:
+
+awk
+bash
+coreutils
+ex
+git
