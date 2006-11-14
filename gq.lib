@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2006
+#
 
 function find_git_dir_nice
 {
