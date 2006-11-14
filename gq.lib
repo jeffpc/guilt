@@ -22,10 +22,11 @@ function get_branch
 function get_branch_verify
 {
 	b=`get_branch`
-	if [ ! -d "$GIT_DIR/patches/$branch" ]; then
-		echo "Branch $branch is not initialized, try gq-init"
-		exit 1
-	fi
+
+	[ ! -d "$GIT_DIR/patches/$b" ] && echo "Branch $b is not initialized, try gq-init" >&2 && exit 1
+	[ ! -f "$GIT_DIR/patches/$b/series" ] && echo "Branch $b does not have a series file" >&2 && exit 1
+	[ ! -f "$GIT_DIR/patches/$b/status" ] && echo "Branch $b does not have a status file" >&2 && exit 1
+	[ -f "$GIT_DIR/patches/$b/applied" ] && echo "Warning: Branch $b has 'applied' file - gq is not compatible with stgit" >&2
 
 	echo "$b"
 }
