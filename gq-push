@@ -39,6 +39,12 @@ else
 	fi
 fi
 
+# make sure that there are no unapplied changes
+if ! must_commit_first; then
+	echo "Uncommited changes detected. Refresh first."
+	exit 1
+fi
+
 # now, find the starting patch
 sidx=`wc -l < $applied`
 sidx=`expr $sidx + 1`

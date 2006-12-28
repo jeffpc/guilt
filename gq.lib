@@ -117,3 +117,8 @@ function push_patch
 	return $bail
 }
 
+function must_commit_first
+{
+	[ `git-diff-files | wc -l` -eq 0 ]
+	return $?
+}

@@ -15,14 +15,12 @@ applied="$GQ_DIR/$branch/status"
 # FIXME: ...
 [ $# -ne 0 ] && echo "Poping only top most patch..arguments ignored"
 
-git-status > /dev/null
-
-if [ $? -ne 1 ]; then
-	echo "Uncommited changes, refresh first"
+# make sure that there are no unapplied changes
+if ! must_commit_first; then
+	echo "Uncommited changes detected. Refresh first."
 	exit 1
 fi
 
-refresh_patch HEAD `get_top`
 git reset --hard HEAD^
 
 echo "Poping `get_top`..."
