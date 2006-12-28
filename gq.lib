@@ -78,3 +78,42 @@ function refresh_patch
 	mv "$fname.tmp" "$fname"
 }
 
+function index_update_magic
+{
+	while read l; do
+		fil=`echo $l | cut -d: -f 2`
+		git-update-index --add --remove "$fil"
+	done
+}
+
+# usage: push_patch patch
+function push_patch
+{
+	local p="$GQ_DIR/$branch/$1"
+	local pname="$1"
+
+	git-apply --reject $p
+	local bail=$?
+
+	( git-apply --numstat $p | awk '{print "changed:" $3}';
+	#git-apply --summary $p | awk '
+	#	/^ (create|delete)/{print $1 ":" $4}
+	#	/^ mode change/{print "mode:" $6}'
+	)| index_update_magic
+
+	# grab a commit message out of the patch
+	cat $p | awk 'BEGIN{ok=1}/^(diff|---)/{ok=0}{if (ok==1) print $0}' > /tmp/gq.msg.$$
+
+	# make a default commit message if patch doesn't contain one
+	[ ! -s /tmp/gq.msg.$$ ] && echo "patch $pname" > /tmp/gq.msg.$$
+
+	# commit
+	local treeish=`git-write-tree`
+	local commitish=`git-commit-tree $treeish -p HEAD < /tmp/gq.msg.$$`
+	echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
+
+	rm -f /tmp/gq.msg.$$
+
+	return $bail
+}
+
