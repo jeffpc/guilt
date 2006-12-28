@@ -38,7 +38,7 @@ f ./.git/patches/master/status
 DONE
 }
 
-# empty repo
+# the test itself
 empty_repo
 cd $REPODIR
 gq-init
