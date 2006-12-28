@@ -14,6 +14,22 @@ applied="$GQ_DIR/$branch/status"
 
 patch="$1"
 
+TOP=`git-rev-parse --show-cdup`
+if [ -z "$TOP" ]; then
+	TOP="./"
+fi
+#cd $TOP
+
+function index_update_magic
+{
+	while read l; do
+		act=`echo $l | cut -d: -f 1`
+		fil=`echo $l | cut -d: -f 2`
+		echo "$fil change detected..$act"
+		git-update-index --add --remove "$fil"
+	done
+}
+
 if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
 	# we are supposed to push all patches, get the last one out of
 	# series
@@ -43,6 +59,7 @@ fi
 sidx=`wc -l < $applied`
 sidx=`expr $sidx + 1`
 
+bail=0
 idx=0
 for p in `cat $series`; do
 	idx=`expr $idx + 1`
@@ -55,16 +72,14 @@ for p in `cat $series`; do
 		exit 1
 	fi
 
-	git-apply --whitespace=warn $GQ_DIR/$branch/$p
-	echo -e "\nFix up anything you need..."
-	echo "Quit the shell to continue."
-	GD="$GIT_DIR"
-	unset GIT_DIR
-	bash
-	export GIT_DIR="$GD"
+	git-apply --reject $GQ_DIR/$branch/$p
+	bail=$?
 
-	# add any new files
-	git-add `git-rev-parse --show-cdup`
+	( git-apply --numstat $GQ_DIR/$branch/$p | awk '{print "changed:" $3}';
+	#git-apply --summary $GQ_DIR/$branch/$p | awk '
+	#	/^ (create|delete)/{print $1 ":" $4}
+	#	/^ mode change/{print "mode:" $6}'
+	)| index_update_magic
 
 	# grab a commit message out of the patch
 	cat $GQ_DIR/$branch/$p | awk 'BEGIN{ok=1}/^(diff|---)/{ok=0}{if (ok==1) print $0}' > /tmp/gq.msg.$$
@@ -73,15 +88,23 @@ for p in `cat $series`; do
 	[ ! -s /tmp/gq.msg.$$ ] && echo "patch $p" > /tmp/gq.msg.$$
 
 	# commit
-	git-commit -a -F /tmp/gq.msg.$$
-	rm -f /tmp/gq.msg.$$
+	treeish=`git-write-tree`
+	echo "Tree: $treeish"
+	commitish=`git-commit-tree $treeish -p HEAD < /tmp/gq.msg.$$`
+	echo "Commit: $commitish"
+	echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
 
-	# refresh the patch
-	refresh_patch HEAD "$p"
+	rm -f /tmp/gq.msg.$$
 
 	# mark patch as applied
 	echo $p >> $applied
 
-	echo "Patch applied."
+	# bail if necessary
+	if [ $bail -eq 0 ]; then
+		echo "Patch applied."
+	else
+		echo "Patch applied with rejects. Fix it up, and refresh."
+		break
+	fi
 done
 
