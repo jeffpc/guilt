@@ -62,7 +62,13 @@ function index_update_magic
 	done
 }
 
-# usage: push_patch patch
+# usage: do_get_header patchfile
+function do_get_header
+{
+	cat $1 | awk 'BEGIN{ok=1}/^(diff|---)/{ok=0}{if (ok==1) print $0}'
+}
+
+# usage: push_patch patchname
 function push_patch
 {
 	local p="$GQ_DIR/$branch/$1"
@@ -78,7 +84,7 @@ function push_patch
 	)| index_update_magic
 
 	# grab a commit message out of the patch
-	cat $p | awk 'BEGIN{ok=1}/^(diff|---)/{ok=0}{if (ok==1) print $0}' > /tmp/gq.msg.$$
+	do_get_header $p > /tmp/gq.msg.$$
 
 	# make a default commit message if patch doesn't contain one
 	[ ! -s /tmp/gq.msg.$$ ] && echo "patch $pname" > /tmp/gq.msg.$$

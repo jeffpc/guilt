@@ -8,7 +8,7 @@ e.g., email may not be necessary as git can do that for us.
 	delete		done		delete a patch from queue
 	email				patchbomb
 	fold				fold named patches into current
-	header				print the header for a patch
+	header		done		print the header for a patch
 	help				display help
 	import				import a patch
 	init		done		initialize patch queue
@@ -16,7 +16,7 @@ e.g., email may not be necessary as git can do that for us.
 	next		done		display next patch on the stack
 	pop		partial		pop one or more patches
 	prev		done		display previous patch on the stack
-	push		partial		push one of more patches
+	push		done		push one of more patches
 	rebase				rebase the current patches
 	rename				rename a patch
 	refresh				refresh the current patch

@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2006
+#
+
+source "`dirname $0`/gq.lib"
+
+export GIT_DIR=`find_git_dir`
+GQ_DIR="$GIT_DIR/patches"
+
+branch=`get_branch_verify`
+series="$GQ_DIR/$branch/series"
+applied="$GQ_DIR/$branch/status"
+
+patch="$1"
+
+if [ -z "$patch" ]; then
+	# use the patch that's on the top of the stack
+
+	eidx=`wc -l < $applied`
+	if [ $eidx -eq 0 ]; then
+		echo "Status file is empty"
+		exit 1
+	fi
+else
+	# use the specified patch
+
+	eidx=`cat $series | grep -ne "^$patch\$" | cut -d: -f1`
+	if [ $eidx -eq 0 ]; then
+		echo "Patch $patch is not in the series"
+		exit 1
+	fi
+fi
+
+idx=0
+for p in `cat $series`; do
+	idx=`expr $idx + 1`
+	[ $idx -lt $eidx ] && continue
+	[ $idx -gt $eidx ] && break
+
+	do_get_header $GQ_DIR/$branch/$p
+done
+
