@@ -19,7 +19,7 @@ e.g., email may not be necessary as git can do that for us.
 	push		done		push one of more patches
 	rebase				rebase the current patches
 	rename				rename a patch
-	refresh				refresh the current patch
+	refresh		done		refresh the current patch
 	series		done		list all patches
 	top		done		display current patch name
 	unapplied	done		display unapplied patches
