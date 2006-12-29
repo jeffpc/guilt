@@ -87,7 +87,7 @@ tests="modify add remove mode"
 
 for t in $tests
 do
-	gq-push $t > /dev/null 2> /dev/null
+	gq-push $t > /dev/null
 
 	expected_files | verify_repo .git/patches
 

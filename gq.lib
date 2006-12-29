@@ -75,8 +75,9 @@ function push_patch
 	local p="$GQ_DIR/$branch/$1"
 	local pname="$1"
 
-	git-apply --reject $p
+	git-apply --reject $p > /dev/null 2> /tmp/gq.log.$$
 	local bail=$?
+	[ $bail -ne 0 ] && cat /tmp/gq.log.$$
 
 	( git-apply --numstat $p | awk '{print "changed:" $3}';
 	#git-apply --summary $p | awk '
@@ -95,7 +96,7 @@ function push_patch
 	local commitish=`git-commit-tree $treeish -p HEAD < /tmp/gq.msg.$$`
 	echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
 
-	rm -f /tmp/gq.msg.$$
+	rm -f /tmp/gq.msg.$$ /tmp/gq.log.$$
 
 	return $bail
 }
