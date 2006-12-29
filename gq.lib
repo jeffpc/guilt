@@ -86,6 +86,7 @@ function push_patch
 
 	git-apply --reject $p > /dev/null 2> /tmp/gq.log.$$
 	local bail=$?
+	[ $bail -ne 0 ] && cat /tmp/gq.log.$$
 
 	[ $bail -ne 0 ] && cat /tmp/gq.log.$$ >&2
 
