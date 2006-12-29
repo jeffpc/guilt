@@ -1,5 +1,5 @@
 #
-# Test the push code
+# Test the pop code
 #
 
 source scaffold
@@ -82,19 +82,21 @@ gq-init
 
 prepare_for_tests
 
-# NOTE: this has to be in the same order as the series file
-tests="modify add remove mode"
+gq-push --all > /dev/null
+
+# NOTE: this has to be in the reverse order as the series file
+tests="mode remove add modify"
 
 for t in $tests
 do
-	gq-push > /dev/null
+	gq-pop > /dev/null
 
 	expected_files | verify_repo .git/patches
 
 	echo -n "[$t] "
 done
 
-# FIXME: make sure --all and multiple patch push works
+# FIXME: make sure --all and multiple patch pop works
 
 complete_test
 

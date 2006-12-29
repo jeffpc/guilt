@@ -12,8 +12,34 @@ branch=`get_branch_verify`
 series="$GQ_DIR/$branch/series"
 applied="$GQ_DIR/$branch/status"
 
-# FIXME: ...
-[ $# -ne 0 ] && echo "Poping only top most patch..arguments ignored"
+patch="$1"
+
+if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
+	# we are supposed to pop all patches
+
+	sidx=`wc -l < $applied`
+	sidx=`expr $sidx - 1`
+	eidx=0
+elif [ -z "$patch" ]; then
+	# we are supposed to pop only the current patch on the stack
+
+	sidx=`wc -l < $applied`
+	sidx=`expr $sidx - 1`
+	eidx=$sidx
+else
+	# we're supposed to pop only up to a patch, make sure the patch is
+	# in the series
+
+	eidx=`cat $applied | grep -ne "^$patch\$" | cut -d: -f1`
+	if [ -z "$eidx" ]; then
+		echo "Patch $patch is not in the series/is not applied"
+		exit 1
+	fi
+
+	eidx=`expr $eidx - 1`
+	sidx=`wc -l < $applied`
+	sidx=`expr $sidx - 1`
+fi
 
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
@@ -21,12 +47,16 @@ if ! must_commit_first; then
 	exit 1
 fi
 
-git reset --hard HEAD^
+idx=`wc -l < $series`
+for p in `cat $series | tac`; do
+	idx=`expr $idx - 1`
+	[ $idx -gt $sidx ] && continue
+	[ $idx -lt $eidx ] && break
 
-echo "Poping `get_top`..."
+	echo "Popping patch...$p"
 
-head -n -1 < $applied > $applied.tmp
-mv $applied{.tmp,}
+	pop_patch
+done
 
 p=`get_top`
 [ ! -z "$p" ] && echo "Now at $p." || echo "All patches popped."
