@@ -84,17 +84,22 @@ function push_patch
 	local p="$GQ_DIR/$branch/$1"
 	local pname="$1"
 
-	git-apply --reject $p > /dev/null 2> /tmp/gq.log.$$
-	local bail=$?
-	[ $bail -ne 0 ] && cat /tmp/gq.log.$$
+	local bail=0
 
-	[ $bail -ne 0 ] && cat /tmp/gq.log.$$ >&2
+	# apply the patch if and only if there is something to apply
+	if [ `wc -l < $p` -gt 0 ]; then
+		git-apply --reject $p > /dev/null 2> /tmp/gq.log.$$
+		bail=$?
+		[ $bail -ne 0 ] && cat /tmp/gq.log.$$
 
-	( git-apply --numstat $p | awk '{print "changed:" $3}';
-	#git-apply --summary $p | awk '
-	#	/^ (create|delete)/{print $1 ":" $4}
-	#	/^ mode change/{print "mode:" $6}'
-	)| index_update_magic
+		[ $bail -ne 0 ] && cat /tmp/gq.log.$$ >&2
+
+		( git-apply --numstat $p | awk '{print "changed:" $3}';
+		#git-apply --summary $p | awk '
+		#	/^ (create|delete)/{print $1 ":" $4}
+		#	/^ mode change/{print "mode:" $6}'
+		)| index_update_magic
+	fi
 
 	# grab a commit message out of the patch
 	do_get_header $p > /tmp/gq.msg.$$
