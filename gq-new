@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2006
+#
+
+source "`dirname $0`/gq.lib"
+
+export GIT_DIR=`find_git_dir`
+GQ_DIR="$GIT_DIR/patches"
+
+branch=`get_branch_verify`
+series="$GQ_DIR/$branch/series"
+applied="$GQ_DIR/$branch/status"
+
+patch="$1"
+
+if [ -z "$patch" ]; then
+	echo "You must specify a patch name"
+	exit 1
+else
+	iidx=`wc -l < $applied`
+fi
+
+# make sure that there are no unapplied changes
+if ! must_commit_first; then
+	echo "Uncommited changes detected. Refresh first."
+	exit 1
+fi
+
+# create the empty patch file
+touch $GQ_DIR/$branch/$patch
+
+top=`get_top`
+
+sed -i -e "s,^$top\$,$top\n$patch," $series
+
+# apply the patch
+push_patch $patch
+echo $patch >> $applied
