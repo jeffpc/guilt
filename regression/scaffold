@@ -28,3 +28,4 @@ function complete_test
 }
 
 echo -n "`basename $0`: "
+
