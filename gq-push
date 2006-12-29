@@ -73,7 +73,7 @@ for p in `cat $series`; do
 		echo "Patch applied."
 	else
 		echo "Patch applied with rejects. Fix it up, and refresh."
-		break
+		exit 1
 	fi
 done
 
