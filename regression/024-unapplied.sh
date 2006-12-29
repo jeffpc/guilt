@@ -1,5 +1,5 @@
 #
-# Test the applied code
+# Test the unapplied code
 #
 
 source scaffold
@@ -62,28 +62,25 @@ DONE
 
 function expected_status_modify
 {
-	echo "modify"
+	echo "add"
+	echo "remove"
+	echo "mode"
 }
 
 function expected_status_add
 {
-	echo "modify"
-	echo "add"
+	echo "remove"
+	echo "mode"
 }
 
 function expected_status_remove
 {
-	echo "modify"
-	echo "add"
-	echo "remove"
+	echo "mode"
 }
 
 function expected_status_mode
 {
-	echo "modify"
-	echo "add"
-	echo "remove"
-	echo "mode"
+	return 0
 }
 
 # the test itself
@@ -100,15 +97,12 @@ for t in $tests
 do
 	gq-push > /dev/null
 
-	gq-applied > /tmp/reg.$$
+	gq-unapplied > /tmp/reg.$$
 
 	expected_status_$t | diff -u - /tmp/reg.$$
-	expected_status_$t | diff -u - $REPODIR/.git/patches/master/status
 
 	echo -n "[$t] "
 done
-
-rm -f /tmp/reg.$$
 
 complete_test
 

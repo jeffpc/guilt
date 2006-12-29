@@ -60,32 +60,6 @@ mode
 DONE
 }
 
-function expected_status_modify
-{
-	echo "modify"
-}
-
-function expected_status_add
-{
-	echo "modify"
-	echo "add"
-}
-
-function expected_status_remove
-{
-	echo "modify"
-	echo "add"
-	echo "remove"
-}
-
-function expected_status_mode
-{
-	echo "modify"
-	echo "add"
-	echo "remove"
-	echo "mode"
-}
-
 # the test itself
 empty_repo
 cd $REPODIR
@@ -100,15 +74,10 @@ for t in $tests
 do
 	gq-push > /dev/null
 
-	gq-applied > /tmp/reg.$$
-
-	expected_status_$t | diff -u - /tmp/reg.$$
-	expected_status_$t | diff -u - $REPODIR/.git/patches/master/status
+	[ "`gq-top`" = "$t" ]
 
 	echo -n "[$t] "
 done
-
-rm -f /tmp/reg.$$
 
 complete_test
 
