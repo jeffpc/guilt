@@ -3,12 +3,9 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006
 #
 
+DO_NOT_CHECK_BRANCH_EXISTENCE=1
+
 source "`dirname $0`/gq.lib"
-
-export GIT_DIR=`find_git_dir`
-GQ_DIR="$GIT_DIR/patches"
-
-branch=`get_branch`
 
 if [ -d "$GQ_DIR/$branch" ]; then
 	echo "Branch $branch appears to be already initialized (GIT_DIR=$GIT_DIR)"

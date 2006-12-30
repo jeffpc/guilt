@@ -21,6 +21,17 @@ function verify_repo
         return $ERR
 }
 
+function shouldfail
+{
+	if $* 2>/tmp/saveout-$$ ; then
+		echo "UNWANTED SUCCESS: " $*
+		cat /tmp/saveout-$$
+		return 1
+	fi
+	rm -f /tmp/saveout-$$
+	return 0
+}
+
 function complete_test
 {
 	echo "OK"

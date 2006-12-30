@@ -5,16 +5,11 @@
 
 source "`dirname $0`/gq.lib"
 
-export GIT_DIR=`find_git_dir`
-GQ_DIR="$GIT_DIR/patches"
-
-branch=`get_branch_verify`
-
-n=`wc -l < $GQ_DIR/$branch/status`
+n=`wc -l < $applied`
 n=`expr $n + 1`
 
 idx=0
-for p in `cat $GQ_DIR/$branch/series`; do
+for p in `cat $series`; do
 	idx=`expr $idx + 1`
 	[ $idx -lt $n ] && continue
 

@@ -5,11 +5,6 @@
 
 source "`dirname $0`/gq.lib"
 
-export GIT_DIR=`find_git_dir`
-GQ_DIR="$GIT_DIR/patches"
-
-branch=`get_branch_verify`
-
 TOP=`get_top`
 
 refresh_patch "$TOP"

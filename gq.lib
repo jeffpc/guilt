@@ -3,16 +3,14 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006
 #
 
-function find_git_dir_nice
-{
-	git-rev-parse --git-dir
-}
-
 function find_git_dir
 {
-	local d=`find_git_dir_nice`
+	local d=`git-rev-parse --git-dir`
 
-	[ $? -ne 0 -o -z "$d" ] && exit 1
+	if [ $? -ne 0 -o -z "$d" ]; then
+		echo "Not a git repository" >&2
+		return 1
+	fi
 
 	echo "$d"
 }
@@ -22,16 +20,27 @@ function get_branch
 	git-symbolic-ref HEAD | sed -e 's,^refs/heads/,,'
 }
 
-function get_branch_verify
+function verify_branch
 {
-	local b=`get_branch`
+	local b=$branch
 
-	[ ! -d "$GIT_DIR/patches/$b" ] && echo "Branch $b is not initialized, try gq-init" >&2 && exit 1
-	[ ! -f "$GIT_DIR/patches/$b/series" ] && echo "Branch $b does not have a series file" >&2 && exit 1
-	[ ! -f "$GIT_DIR/patches/$b/status" ] && echo "Branch $b does not have a status file" >&2 && exit 1
-	[ -f "$GIT_DIR/patches/$b/applied" ] && echo "Warning: Branch $b has 'applied' file - gq is not compatible with stgit" >&2
+	[ ! -d "$GIT_DIR/patches" ] &&
+		echo "Patches directory doesn't exist, try gq-init" >&2 &&
+		return 1
+	[ ! -d "$GIT_DIR/patches/$b" ] &&
+		echo "Branch $b is not initialized, try gq-init" >&2 &&
+		return 1
+	[ ! -f "$GIT_DIR/patches/$b/series" ] &&
+		echo "Branch $b does not have a series file" >&2 &&
+		return 1
+	[ ! -f "$GIT_DIR/patches/$b/status" ] &&
+		echo "Branch $b does not have a status file" >&2 &&
+		return 1
+	[ -f "$GIT_DIR/patches/$b/applied" ] &&
+		echo "Warning: Branch $b has 'applied' file - gq is not compatible with stgit" >&2 &&
+		return 1
 
-	echo "$b"
+	return 0
 }
 
 function get_top
@@ -146,4 +155,26 @@ function refresh_patch
 
 	push_patch $1
 }
+
+#
+# The following gets run every time this file is source'd
+#
+
+export GIT_DIR=`find_git_dir`
+[ $? -ne 0 ] && exit 1
+
+GQ_DIR="$GIT_DIR/patches"
+
+branch=`get_branch`
+
+# most of the time we want to verify that the repo's branch has been
+# initialized, but every once in a blue moon (e.g., we want to run gq-init),
+# we must avoid the checks
+if [ -z "$DO_NOT_CHECK_BRANCH_EXISTENCE" ]; then
+	verify_branch || exit 1
+fi
+
+# very useful files
+series="$GQ_DIR/$branch/series"
+applied="$GQ_DIR/$branch/status"
 
