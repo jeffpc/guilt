@@ -5,4 +5,4 @@
 
 source "`dirname $0`/gq.lib"
 
-cat $series
+get_series

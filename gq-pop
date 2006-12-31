@@ -40,8 +40,8 @@ if ! must_commit_first; then
 	exit 1
 fi
 
-idx=`wc -l < $series`
-for p in `cat $series | tac`; do
+idx=`get_series | wc -l`
+for p in `get_series | tac`; do
 	idx=`expr $idx - 1`
 	[ $idx -gt $sidx ] && continue
 	[ $idx -lt $eidx ] && break

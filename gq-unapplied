@@ -9,7 +9,7 @@ n=`wc -l < $applied`
 n=`expr $n + 1`
 
 idx=0
-for p in `cat $series`; do
+for p in `get_series`; do
 	idx=`expr $idx + 1`
 	[ $idx -lt $n ] && continue
 

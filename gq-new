@@ -28,7 +28,9 @@ top=`get_top`
 if [ ! -z "$top" ]; then
 	sed -i -e "s,^$top\$,$top\n$patch," $series
 else
-	echo $patch >> $series
+	echo "$patch" > $series.tmp
+	cat $series >> $series.tmp
+	mv $series.tmp $series
 fi
 
 # apply the patch

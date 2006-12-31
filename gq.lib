@@ -63,6 +63,16 @@ function get_prev
 	done
 }
 
+function get_series
+{
+	# ignore all lines matching:
+	#	- empty lines
+	#	- whitespace only
+	#	- optional whitespace followed by '#' followed by more
+	#	  optional whitespace
+	grep -ve '^[[:space:]]*\(#.*\)*$' < $series
+}
+
 # usage: index_update_magic
 function index_update_magic
 {

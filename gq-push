@@ -11,7 +11,7 @@ if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
 	# we are supposed to push all patches, get the last one out of
 	# series
 
-	eidx=`wc -l < $series`
+	eidx=`get_series | wc -l`
 	if [ $eidx -eq 0 ]; then
 		echo "There are no patches to push"
 		exit 1
@@ -25,7 +25,7 @@ else
 	# we're supposed to push only up to a patch, make sure the patch is
 	# in the series
 
-	eidx=`cat $series | grep -ne "^$patch\$" | cut -d: -f1`
+	eidx=`get_series | grep -ne "^$patch\$" | cut -d: -f1`
 	if [ $eidx -eq 0 ]; then
 		echo "Patch $patch is not in the series"
 		exit 1
@@ -44,7 +44,7 @@ sidx=`expr $sidx + 1`
 
 bail=0
 idx=0
-for p in `cat $series`; do
+for p in `get_series`; do
 	idx=`expr $idx + 1`
 	[ $idx -lt $sidx ] && continue
 	[ $idx -gt $eidx ] && break

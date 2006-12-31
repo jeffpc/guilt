@@ -5,8 +5,8 @@
 
 source "`dirname $0`/gq.lib"
 
-n=`wc -l < $GQ_DIR/$branch/status`
+n=`wc -l < $applied`
 n=`expr $n + 1`
 
-awk "{ if (NR == $n) print \$0}" < $GQ_DIR/$branch/series
+get_series | awk "{ if (NR == $n) print \$0}"
 

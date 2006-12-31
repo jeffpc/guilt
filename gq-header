@@ -18,7 +18,7 @@ if [ -z "$patch" ]; then
 else
 	# use the specified patch
 
-	eidx=`cat $series | grep -ne "^$patch\$" | cut -d: -f1`
+	eidx=`get_series | grep -ne "^$patch\$" | cut -d: -f1`
 	if [ $eidx -eq 0 ]; then
 		echo "Patch $patch is not in the series"
 		exit 1
@@ -26,7 +26,7 @@ else
 fi
 
 idx=0
-for p in `cat $series`; do
+for p in `get_series`; do
 	idx=`expr $idx + 1`
 	[ $idx -lt $eidx ] && continue
 	[ $idx -gt $eidx ] && break

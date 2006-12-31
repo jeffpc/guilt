@@ -12,10 +12,10 @@ if [ -z "$patch" ]; then
 	exit 1
 fi
 
-p=`cat "$applied" | grep -e "^$patch\$"`
+p=`grep -e "^$patch\$" < "$applied"`
 if [ ! -z "$p" ] ; then
 	echo "Cannot delete an applied patch"
 	exit 1
 fi
 
-ex -s -c ":%g/^foobar$/d|:wq" "$series"
+ex -s -c ":%g/^$patch\$/d|:wq" "$series"
