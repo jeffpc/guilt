@@ -25,7 +25,11 @@ touch $GQ_DIR/$branch/$patch
 
 top=`get_top`
 
-sed -i -e "s,^$top\$,$top\n$patch," $series
+if [ ! -z "$top" ]; then
+	sed -i -e "s,^$top\$,$top\n$patch," $series
+else
+	echo $patch >> $series
+fi
 
 # apply the patch
 push_patch $patch
