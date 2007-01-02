@@ -104,5 +104,7 @@ do
 	echo -n "[$t] "
 done
 
+rm -f /tmp/reg.$$
+
 complete_test
 
