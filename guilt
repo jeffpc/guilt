@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+#
+
+for x in `dirname $0`/guilt*; do
+	[ -x $x ] && echo -e "\t$x"
+done
+

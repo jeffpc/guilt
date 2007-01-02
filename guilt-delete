@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006
+# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-source "`dirname $0`/gq.lib"
+source "`dirname $0`/guilt.lib"
 
 patch="$1"
 

@@ -6,7 +6,7 @@ source scaffold
 
 function prepare_for_tests
 {
-	# set up the repo so we have something interesting to run gq on
+	# set up the repo so we have something interesting to run guilt on
 	echo "abc" > def
 	git-add def
 	git-commit -s -m "initial" 2> /dev/null > /dev/null
@@ -83,7 +83,7 @@ function expected_series
 # the test itself
 empty_repo
 cd $REPODIR
-gq-init
+guilt-init
 
 prepare_for_tests
 
@@ -92,9 +92,9 @@ tests="empty modify add remove mode"
 
 for t in $tests
 do
-	[ "$t" != "empty" ] && gq-push > /dev/null
+	[ "$t" != "empty" ] && guilt-push > /dev/null
 
-	gq-series > /tmp/reg.$$
+	guilt-series > /tmp/reg.$$
 
 	expected_series | diff -u - /tmp/reg.$$
 

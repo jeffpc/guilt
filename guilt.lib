@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006
+# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 function find_git_dir
@@ -25,10 +25,10 @@ function verify_branch
 	local b=$branch
 
 	[ ! -d "$GIT_DIR/patches" ] &&
-		echo "Patches directory doesn't exist, try gq-init" >&2 &&
+		echo "Patches directory doesn't exist, try guilt-init" >&2 &&
 		return 1
 	[ ! -d "$GIT_DIR/patches/$b" ] &&
-		echo "Branch $b is not initialized, try gq-init" >&2 &&
+		echo "Branch $b is not initialized, try guilt-init" >&2 &&
 		return 1
 	[ ! -f "$GIT_DIR/patches/$b/series" ] &&
 		echo "Branch $b does not have a series file" >&2 &&
@@ -37,7 +37,7 @@ function verify_branch
 		echo "Branch $b does not have a status file" >&2 &&
 		return 1
 	[ -f "$GIT_DIR/patches/$b/applied" ] &&
-		echo "Warning: Branch $b has 'applied' file - gq is not compatible with stgit" >&2 &&
+		echo "Warning: Branch $b has 'applied' file - guilt is not compatible with stgit" >&2 &&
 		return 1
 
 	return 0
@@ -45,16 +45,16 @@ function verify_branch
 
 function get_top
 {
-	tail -1 $GQ_DIR/$branch/status
+	tail -1 $GUILT_DIR/$branch/status
 }
 
 function get_prev
 {
-	local n=`wc -l < $GQ_DIR/$branch/status`
+	local n=`wc -l < $GUILT_DIR/$branch/status`
 	local n=`expr $n - 1`
 
 	local idx=0
-	for p in `cat $GQ_DIR/$branch/status`; do
+	for p in `cat $GUILT_DIR/$branch/status`; do
 		idx=`expr $idx + 1`
 		[ $idx -lt $n ] && continue
 		[ $idx -gt $n ] && break
@@ -100,18 +100,18 @@ function pop_patch
 # usage: push_patch patchname
 function push_patch
 {
-	local p="$GQ_DIR/$branch/$1"
+	local p="$GUILT_DIR/$branch/$1"
 	local pname="$1"
 
 	local bail=0
 
 	# apply the patch if and only if there is something to apply
 	if [ `wc -l < $p` -gt 0 ]; then
-		git-apply --reject $p > /dev/null 2> /tmp/gq.log.$$
+		git-apply --reject $p > /dev/null 2> /tmp/guilt.log.$$
 		bail=$?
-		[ $bail -ne 0 ] && cat /tmp/gq.log.$$
+		[ $bail -ne 0 ] && cat /tmp/guilt.log.$$
 
-		[ $bail -ne 0 ] && cat /tmp/gq.log.$$ >&2
+		[ $bail -ne 0 ] && cat /tmp/guilt.log.$$ >&2
 
 		( git-apply --numstat $p | awk '{print "changed:" $3}';
 		#git-apply --summary $p | awk '
@@ -121,17 +121,17 @@ function push_patch
 	fi
 
 	# grab a commit message out of the patch
-	do_get_header $p > /tmp/gq.msg.$$
+	do_get_header $p > /tmp/guilt.msg.$$
 
 	# make a default commit message if patch doesn't contain one
-	[ ! -s /tmp/gq.msg.$$ ] && echo "patch $pname" > /tmp/gq.msg.$$
+	[ ! -s /tmp/guilt.msg.$$ ] && echo "patch $pname" > /tmp/guilt.msg.$$
 
 	# commit
 	local treeish=`git-write-tree`
-	local commitish=`git-commit-tree $treeish -p HEAD < /tmp/gq.msg.$$`
+	local commitish=`git-commit-tree $treeish -p HEAD < /tmp/guilt.msg.$$`
 	echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
 
-	rm -f /tmp/gq.msg.$$ /tmp/gq.log.$$
+	rm -f /tmp/guilt.msg.$$ /tmp/guilt.log.$$
 
 	return $bail
 }
@@ -146,22 +146,22 @@ function must_commit_first
 # usage: refresh_patch patchname
 function refresh_patch
 {
-	local p="$GQ_DIR/$branch/$1"
+	local p="$GUILT_DIR/$branch/$1"
 
 	git-diff-files --name-only | (while read n; do git-update-index $n ; done)
 
 	# get the patch header
-	do_get_header $p > /tmp/gq.diff.$$
+	do_get_header $p > /tmp/guilt.diff.$$
 
 	# get the new patch
-	git-diff HEAD^ >> /tmp/gq.diff.$$
+	git-diff HEAD^ >> /tmp/guilt.diff.$$
 
 	# drop the current commit
 	git-reset --hard HEAD^
 
 	# move the new patch in
 	mv $p $p.prev
-	mv /tmp/gq.diff.$$ $p
+	mv /tmp/guilt.diff.$$ $p
 
 	push_patch $1
 }
@@ -173,18 +173,18 @@ function refresh_patch
 export GIT_DIR=`find_git_dir`
 [ $? -ne 0 ] && exit 1
 
-GQ_DIR="$GIT_DIR/patches"
+GUILT_DIR="$GIT_DIR/patches"
 
 branch=`get_branch`
 
 # most of the time we want to verify that the repo's branch has been
-# initialized, but every once in a blue moon (e.g., we want to run gq-init),
+# initialized, but every once in a blue moon (e.g., we want to run guilt-init),
 # we must avoid the checks
 if [ -z "$DO_NOT_CHECK_BRANCH_EXISTENCE" ]; then
 	verify_branch || exit 1
 fi
 
 # very useful files
-series="$GQ_DIR/$branch/series"
-applied="$GQ_DIR/$branch/status"
+series="$GUILT_DIR/$branch/series"
+applied="$GUILT_DIR/$branch/status"
 

@@ -17,7 +17,7 @@ DONE
 # the test itself
 empty_repo
 cd $REPODIR
-gq-init
+guilt-init
 expected_files | verify_repo .git/patches
 
 complete_test

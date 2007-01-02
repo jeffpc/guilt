@@ -6,7 +6,7 @@ source scaffold
 
 function prepare_for_tests
 {
-	# set up the repo so we have something interesting to run gq on
+	# set up the repo so we have something interesting to run guilt on
 	echo "abc" > def
 	git-add def
 	git-commit -s -m "initial" 2> /dev/null > /dev/null
@@ -86,7 +86,7 @@ function expected_status_mode
 # the test itself
 empty_repo
 cd $REPODIR
-gq-init
+guilt-init
 
 prepare_for_tests
 
@@ -95,9 +95,9 @@ tests="modify add remove mode"
 
 for t in $tests
 do
-	gq-push > /dev/null
+	guilt-push > /dev/null
 
-	gq-unapplied > /tmp/reg.$$
+	guilt-unapplied > /tmp/reg.$$
 
 	expected_status_$t | diff -u - /tmp/reg.$$
 

@@ -8,7 +8,7 @@ source scaffold
 empty_repo
 cd $REPODIR
 
-tests="gq-applied gq-delete gq-header gq-new gq-next gq-pop gq-prev gq-push gq-refresh gq-series gq-top gq-unapplied"
+tests="guilt-applied guilt-delete guilt-header guilt-new guilt-next guilt-pop guilt-prev guilt-push guilt-refresh guilt-series guilt-top guilt-unapplied"
 for t in $tests; do
 	shouldfail $t
 

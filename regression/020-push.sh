@@ -21,7 +21,7 @@ DONE
 
 function prepare_for_tests
 {
-	# set up the repo so we have something interesting to run gq on
+	# set up the repo so we have something interesting to run guilt on
 	echo "abc" > def
 	git-add def
 	git-commit -s -m "initial" 2> /dev/null > /dev/null
@@ -78,7 +78,7 @@ DONE
 # the test itself
 empty_repo
 cd $REPODIR
-gq-init
+guilt-init
 
 prepare_for_tests
 
@@ -87,7 +87,7 @@ tests="modify add remove mode"
 
 for t in $tests
 do
-	gq-push > /dev/null
+	guilt-push > /dev/null
 
 	expected_files | verify_repo .git/patches
 

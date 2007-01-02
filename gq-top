@@ -1,8 +1,0 @@
-#!/bin/bash
-#
-# Copyright (c) Josef "Jeff" Sipek, 2006
-#
-
-source "`dirname $0`/gq.lib"
-
-get_top
