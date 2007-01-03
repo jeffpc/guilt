@@ -3,7 +3,46 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-for x in `dirname $0`/guilt*; do
-	[ -x $x ] && echo -e "\t$x"
-done
+if [ `basename $0` = "guilt" ]; then
+	# being run as standalone
+
+	# by default, we shouldn't fail
+	fail=0
+
+	if [ $# -ne 0 ]; then
+		# take first arg, and try to execute it
+
+		cmd="$1"
+		dir=`dirname $0`
+
+		if [ ! -x "$dir/guilt-$cmd" ]; then
+			echo "Command $cmd not found" >&2
+			echo "" >&2
+			fail=1
+		else
+			shift
+			exec "$dir/guilt-$cmd" "$@"
+
+			# this is not reached because of the exec
+			echo "Exec failed! Something is terribly wrong!" >&2
+			exit 1
+		fi
+	fi
+
+	# no args passed or invalid command entered, just output help summary
+
+	echo "Pick a command:"
+	for x in `dirname $0`/guilt-*; do
+		[ -x $x ] && echo -e "\t`basename $x`"
+	done
+
+	echo ""
+	echo "Example:"
+	echo -e "\tguilt-push"
+	echo "or"
+	echo -e "\tguilt push"
+
+	# now, let's exit
+	exit $fail
+fi
 
