@@ -138,7 +138,21 @@ function index_update_magic
 # usage: do_get_header patchfile
 function do_get_header
 {
-	cat $1 | awk 'BEGIN{ok=1}/^(diff|---)/{ok=0}{if (ok==1) print $0}'
+	# Most of the complexity arises from the fact that we want to ignore
+	# the From line and the empty line after it if it exists
+
+	# 2nd line skips the From line
+	# 3rd line skips the empty line right after a From line
+	# 4th line checks for the begining of a patch
+	# 5th line outputs the line if it didn't get pruned by the above rules
+	cat $1 | awk '
+BEGIN{ok=1; skip=0}
+/^From:/{skip=1; next}
+/^[ \t\f\n\r\v]*$/ && (skip==1){skip=0; next}
+/^(diff|---)/{ok=0}
+(ok==1){print $0}
+END{}
+'
 }
 
 # usage: pop_patch
@@ -178,10 +192,35 @@ function push_patch
 	# make a default commit message if patch doesn't contain one
 	[ ! -s /tmp/guilt.msg.$$ ] && echo "patch $pname" > /tmp/guilt.msg.$$
 
+	# extract a From line from the patch header, and set
+	# GIT_AUTHOR_{NAME,EMAIL}
+	local author_str=`cat $p | grep -e '^From: ' | sed -e 's/^From: //'`
+	if [ ! -z "$author_str" ]; then
+		local backup_author_name="$GIT_AUTHOR_NAME"
+		local backup_author_email="$GIT_AUTHOR_EMAIL"
+		export GIT_AUTHOR_NAME=`echo $author_str | sed -e 's/ *<.*$//'`
+		export GIT_AUTHOR_EMAIL=`echo $author_str | sed -e 's/[^<]*//'`
+	fi
+
 	# commit
 	local treeish=`git-write-tree`
 	local commitish=`git-commit-tree $treeish -p HEAD < /tmp/guilt.msg.$$`
 	echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
+
+	# restore original GIT_AUTHOR_{NAME,EMAIL}
+	if [ ! -z "$author_str" ]; then
+		if [ ! -z "$backup_author_name" ]; then
+			export GIT_AUTHOR_NAME="$backup_author_name"
+		else
+			unset GIT_AUTHOR_NAME
+		fi
+
+		if [ ! -z "$backup_author_name" ]; then
+			export GIT_AUTHOR_EMAIL="$backup_author_email"
+		else
+			unset GIT_AUTHOR_EMAIL
+		fi
+	fi
 
 	rm -f /tmp/guilt.msg.$$ /tmp/guilt.log.$$
 

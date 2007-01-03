@@ -12,15 +12,19 @@ e.g., email may not be necessary as git can do that for us.
 	help				display help
 	import				import a patch
 	init		done		initialize patch queue
+	merge
 	new		done		create a new patch
 	next		done		display next patch on the stack
 	pop		done		pop one or more patches
 	prev		done		display previous patch on the stack
 	push		done		push one of more patches
 	rebase				rebase the current patches
+	remote-pull
+	remote-push
 	rename				rename a patch
 	refresh		done		refresh the current patch
 	series		done		list all patches
+	status
 	top		done		display current patch name
 	unapplied	done		display unapplied patches
 
@@ -32,7 +36,6 @@ Here are some things I want to do one of these days...
 
 - Fix push/pop regression tests to cover --all/multi-patch cases
 - Add more regression tests
-- Allow 'guilt foo' in addition to 'guilt-foo'
-- Grab the From: line out of the patch and use that as author string
 - guilt-delete should allow the user to delete the patch file as well
 - Make sh a requirement, not bash
+- Make things as portable as git
