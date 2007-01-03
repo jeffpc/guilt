@@ -5,7 +5,7 @@
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
-source "`dirname $0`/guilt.lib"
+source "`dirname $0`/guilt"
 
 if [ -d "$GUILT_DIR/$branch" ]; then
 	echo "Branch $branch appears to be already initialized (GIT_DIR=$GIT_DIR)"

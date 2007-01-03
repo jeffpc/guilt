@@ -3,6 +3,6 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-source "`dirname $0`/guilt.lib"
+source "`dirname $0`/guilt"
 
 cat $applied
