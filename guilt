@@ -3,6 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
+export GUILT_VERSION="0.15"
+
 if [ `basename $0` = "guilt" ]; then
 	# being run as standalone
 
@@ -31,6 +33,8 @@ if [ `basename $0` = "guilt" ]; then
 
 	# no args passed or invalid command entered, just output help summary
 
+	echo "Guilt v$GUILT_VERSION"
+	echo ""
 	echo "Pick a command:"
 	for x in `dirname $0`/guilt-*; do
 		[ -x $x ] && echo -e "\t`basename $x`"
