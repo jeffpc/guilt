@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-export GUILT_VERSION="0.15"
+GUILT_VERSION="0.15"
 
 if [ `basename $0` = "guilt" ]; then
 	# being run as standalone
