@@ -168,10 +168,14 @@ END{}
 # usage: pop_patch
 function pop_patch
 {
+	cd $TOP_DIR
+
 	git reset --hard HEAD^
 
 	head -n -1 < $applied > $applied.tmp
 	mv $applied{.tmp,}
+
+	cd - 2> /dev/null
 }
 
 # usage: push_patch patchname
@@ -271,8 +275,13 @@ function refresh_patch
 # The following gets run every time this file is source'd
 #
 
-export GIT_DIR=`find_git_dir`
+GIT_DIR=`find_git_dir`
 [ $? -ne 0 ] && exit 1
+
+TOP_DIR=`git-rev-parse --show-cdup`
+if [ -z "$TOP_DIR" ]; then
+	TOP_DIR="./"
+fi
 
 GUILT_DIR="$GIT_DIR/patches"
 
