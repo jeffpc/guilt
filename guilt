@@ -138,17 +138,27 @@ function index_update_magic
 # usage: do_get_header patchfile
 function do_get_header
 {
-	# Most of the complexity arises from the fact that we want to ignore
-	# the From line and the empty line after it if it exists
+	# The complexity arises from the fact that we want to ignore the
+	# From line and the empty line after it if it exists
 
 	# 2nd line skips the From line
 	# 3rd line skips the empty line right after a From line
-	# 4th line checks for the begining of a patch
-	# 5th line outputs the line if it didn't get pruned by the above rules
-	cat $1 | awk '
-BEGIN{ok=1; skip=0}
+	do_get_full_header $1 | awk '
+BEGIN{skip=0}
 /^From:/{skip=1; next}
 /^[ \t\f\n\r\v]*$/ && (skip==1){skip=0; next}
+{print $0}
+END{}
+'
+}
+
+# usage: do_get_full_header patchfile
+function do_get_full_header
+{
+	# 2nd line checks for the begining of a patch
+	# 3rd line outputs the line if it didn't get pruned by the above rules
+	cat $1 | awk '
+BEGIN{ok=1}
 /^(diff|---)/{ok=0}
 (ok==1){print $0}
 END{}
@@ -242,7 +252,7 @@ function refresh_patch
 	git-diff-files --name-only | (while read n; do git-update-index $n ; done)
 
 	# get the patch header
-	do_get_header $p > /tmp/guilt.diff.$$
+	do_get_full_header $p > /tmp/guilt.diff.$$
 
 	# get the new patch
 	git-diff HEAD^ >> /tmp/guilt.diff.$$
