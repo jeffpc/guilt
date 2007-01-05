@@ -175,7 +175,7 @@ function pop_patch
 	head -n -1 < $applied > $applied.tmp
 	mv $applied{.tmp,}
 
-	cd - 2> /dev/null
+	cd - 2>&1 >/dev/null
 }
 
 # usage: push_patch patchname
@@ -240,7 +240,7 @@ function push_patch
 
 	rm -f /tmp/guilt.msg.$$ /tmp/guilt.log.$$
 
-	cd - 2> /dev/null
+	cd - 2>&1 >/dev/null
 
 	return $bail
 }
@@ -257,6 +257,8 @@ function refresh_patch
 {
 	local p="$GUILT_DIR/$branch/$1"
 
+	cd $TOP_DIR
+
 	git-diff-files --name-only | (while read n; do git-update-index $n ; done)
 
 	# get the patch header
@@ -272,6 +274,9 @@ function refresh_patch
 	mv $p $p.prev
 	mv /tmp/guilt.diff.$$ $p
 
+	cd - 2>&1 >/dev/null
+
+	# push_patch does it's own cd $TOP_DIR
 	push_patch $1
 }
 

@@ -9,7 +9,9 @@ TOP=`get_top`
 
 refresh_patch "$TOP"
 
+cd $TOP_DIR
 git-reset --hard HEAD^
+cd - 2>&1 > /dev/null
 
 push_patch "$TOP"
 
