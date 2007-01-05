@@ -186,6 +186,8 @@ function push_patch
 
 	local bail=0
 
+	cd $TOP_DIR
+
 	# apply the patch if and only if there is something to apply
 	if [ `wc -l < $p` -gt 0 ]; then
 		git-apply --reject $p > /dev/null 2> /tmp/guilt.log.$$
@@ -237,6 +239,8 @@ function push_patch
 	fi
 
 	rm -f /tmp/guilt.msg.$$ /tmp/guilt.log.$$
+
+	cd - 2> /dev/null
 
 	return $bail
 }
