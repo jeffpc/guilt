@@ -42,7 +42,6 @@ fi
 sidx=`wc -l < $applied`
 sidx=`expr $sidx + 1`
 
-bail=0
 idx=0
 for p in `get_series`; do
 	idx=`expr $idx + 1`
@@ -56,13 +55,9 @@ for p in `get_series`; do
 	fi
 
 	push_patch $p
-	bail=$?
-
-	# mark patch as applied
-	echo $p >> $applied
 
 	# bail if necessary
-	if [ $bail -eq 0 ]; then
+	if [ $? -eq 0 ]; then
 		echo "Patch applied."
 	else
 		echo "Patch applied with rejects. Fix it up, and refresh."

@@ -5,4 +5,4 @@
 
 source "`dirname $0`/guilt"
 
-cat $applied
+cat $applied | cut -d: -f 2-

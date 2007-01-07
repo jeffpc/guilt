@@ -37,5 +37,6 @@ Here are some things I want to do one of these days...
 - Fix push/pop regression tests to cover --all/multi-patch cases
 - Add more regression tests
 - guilt-delete should allow the user to delete the patch file as well
+- Do stronger checking to make sure user didn't commit random things by hand
 - Make sh a requirement, not bash
 - Make things as portable as git
