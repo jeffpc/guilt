@@ -267,14 +267,15 @@ function refresh_patch
 	# get the new patch
 	git-diff HEAD^ >> /tmp/guilt.diff.$$
 
-	# drop the current commit
-	git-reset --hard HEAD^
-
 	# move the new patch in
 	mv $p $p.prev
 	mv /tmp/guilt.diff.$$ $p
 
 	cd - 2>&1 >/dev/null
+
+	# drop the currently applied patch, pop_patch does it's own cd
+	# $TOP_DIR
+	pop_patch
 
 	# push_patch does it's own cd $TOP_DIR
 	push_patch $1
