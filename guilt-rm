@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+#
+
+source "`dirname $0`/guilt"
+
+USAGE="$USAGE <file>..."
+
+if [ $# -lt 1 ]; then
+	echo "$USAGE" >&2
+	exit 1
+fi
+
+git-rm -- "$@"
+

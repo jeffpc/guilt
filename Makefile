@@ -1,6 +1,6 @@
 PREFIX=/usr/local
 
-SCRIPTS = guilt guilt-applied guilt-delete guilt-header guilt-init guilt-new guilt-next guilt-pop guilt-prev guilt-push guilt-refresh guilt-series guilt-top guilt-unapplied
+SCRIPTS = guilt guilt-applied guilt-delete guilt-header guilt-init guilt-new guilt-next guilt-pop guilt-prev guilt-push guilt-refresh guilt-rm guilt-series guilt-top guilt-unapplied
 
 .PHONY: all 
 all:
