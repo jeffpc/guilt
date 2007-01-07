@@ -10,4 +10,4 @@ if [ $# -ne 0 ]; then
 	exit 1
 fi
 
-cat $applied
+cat $applied | cut -d: -f 2-

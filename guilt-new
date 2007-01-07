@@ -43,4 +43,3 @@ fi
 
 # apply the patch
 push_patch $patch
-echo $patch >> $applied

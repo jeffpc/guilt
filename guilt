@@ -103,7 +103,7 @@ function verify_branch
 
 function get_top
 {
-	tail -1 $GUILT_DIR/$branch/status
+	tail -1 $GUILT_DIR/$branch/status | cut -d: -f 2-
 }
 
 function get_prev
@@ -227,6 +227,9 @@ function push_patch
 	local treeish=`git-write-tree`
 	local commitish=`git-commit-tree $treeish -p HEAD < /tmp/guilt.msg.$$`
 	echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
+
+	# mark patch as applied
+	echo "$commitish:$pname" >> $applied
 
 	# restore original GIT_AUTHOR_{NAME,EMAIL}
 	if [ ! -z "$author_str" ]; then

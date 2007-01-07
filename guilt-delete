@@ -20,7 +20,7 @@ if [ -z "$patch" ]; then
 	exit 1
 fi
 
-p=`grep -e "^$patch\$" < "$applied"`
+p=`grep -e "^[0-9a-f]\{40\}:$patch\$" < "$applied"`
 if [ ! -z "$p" ] ; then
 	echo "Cannot delete an applied patch"
 	exit 1
