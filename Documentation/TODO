@@ -4,6 +4,7 @@ Commands:
 These are some of the commands I can think of being useful. Some of the,
 e.g., email may not be necessary as git can do that for us.
 
+	add		done		add a file
 	applied		done		list applied patches
 	delete		done		delete a patch from queue
 	email				patchbomb
@@ -23,8 +24,9 @@ e.g., email may not be necessary as git can do that for us.
 	remote-push
 	rename				rename a patch
 	refresh		done		refresh the current patch
+	rm				remove a file
 	series		done		list all patches
-	status
+	status		done		display current working dir status
 	top		done		display current patch name
 	unapplied	done		display unapplied patches
 
@@ -38,5 +40,7 @@ Here are some things I want to do one of these days...
 - Add more regression tests
 - guilt-delete should allow the user to delete the patch file as well
 - Do stronger checking to make sure user didn't commit random things by hand
+- Add -m & -s options to guilt-new
+- Make guilt-* work from any dir
 - Make sh a requirement, not bash
 - Make things as portable as git
