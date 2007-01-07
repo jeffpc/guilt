@@ -13,7 +13,7 @@ if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
 
 	eidx=`get_series | wc -l`
 	if [ $eidx -eq 0 ]; then
-		echo "There are no patches to push"
+		echo "There are no patches to push" >&2
 		exit 1
 	fi
 elif [ -z "$patch" ]; then
@@ -27,14 +27,14 @@ else
 
 	eidx=`get_series | grep -ne "^$patch\$" | cut -d: -f1`
 	if [ $eidx -eq 0 ]; then
-		echo "Patch $patch is not in the series"
+		echo "Patch $patch is not in the series" >&2
 		exit 1
 	fi
 fi
 
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
-	echo "Uncommited changes detected. Refresh first."
+	echo "Uncommited changes detected. Refresh first." >&2
 	exit 1
 fi
 
@@ -51,7 +51,7 @@ for p in `get_series`; do
 
 	echo "Applying patch..$p"
 	if [ ! -f "$GUILT_DIR/$branch/$p" ]; then
-		echo "Patch $patch does not exist. Aborting."
+		echo "Patch $patch does not exist. Aborting." >&2
 		exit 1
 	fi
 
@@ -65,7 +65,7 @@ for p in `get_series`; do
 	if [ $bail -eq 0 ]; then
 		echo "Patch applied."
 	else
-		echo "Patch applied with rejects. Fix it up, and refresh."
+		echo "Patch applied with rejects. Fix it up, and refresh." >&2
 		exit 1
 	fi
 done
