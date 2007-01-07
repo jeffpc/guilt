@@ -23,7 +23,7 @@ else
 	# we're supposed to pop only up to a patch, make sure the patch is
 	# in the series
 
-	eidx=`cat $applied | grep -ne "^[0-9a-f]{40}:$patch\$" | cut -d: -f 3-`
+	eidx=`cat $applied | grep -ne "^[0-9a-f]\{40\}:$patch\$" | cut -d: -f 3-`
 	if [ -z "$eidx" ]; then
 		echo "Patch $patch is not in the series/is not applied"
 		exit 1

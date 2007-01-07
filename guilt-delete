@@ -12,10 +12,10 @@ if [ -z "$patch" ]; then
 	exit 1
 fi
 
-p=`grep -e "^[0-9a-f]{40}:$patch\$" < "$applied"`
+p=`grep -e "^[0-9a-f]\{40\}:$patch\$" < "$applied"`
 if [ ! -z "$p" ] ; then
 	echo "Cannot delete an applied patch"
 	exit 1
 fi
 
-ex -s -c ":%g/^[0-9a-f]{40}:$patch\$/d|:wq" "$series"
+ex -s -c ":%g/^$patch\$/d|:wq" "$series"
