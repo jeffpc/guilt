@@ -3,6 +3,7 @@
 set -e
 
 export REPODIR=/tmp/$RANDOM
+export PATH=$PWD/..:$PATH
 
 function empty_repo
 {
