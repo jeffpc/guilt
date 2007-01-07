@@ -5,6 +5,8 @@
 
 source "`dirname $0`/guilt"
 
+USAGE=""
+
 TOP=`get_top`
 
 refresh_patch "$TOP"
