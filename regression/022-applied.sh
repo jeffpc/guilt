@@ -7,43 +7,43 @@ source generic_test_data
 
 function expected_status_modify
 {
-	[ ! -z "$1" ] && echo -n "f502869692c06d8b437f325925d5f24109cbf128:"
+	[ ! -z "$1" ] && echo -n "291b0c3f4133842943d568e25f3a27ac0cc3a1f0:"
 	echo "modify"
 }
 
 function expected_status_add
 {
-	[ ! -z "$1" ] && echo -n "f502869692c06d8b437f325925d5f24109cbf128:"
+	[ ! -z "$1" ] && echo -n "291b0c3f4133842943d568e25f3a27ac0cc3a1f0:"
 	echo "modify"
 
-	[ ! -z "$1" ] && echo -n "cda870c14a121e8c504d12015acf695a9601fd44:"
+	[ ! -z "$1" ] && echo -n "82f68f92022dc51bed0a4099c89068d778754aad:"
 	echo "add"
 }
 
 function expected_status_remove
 {
-	[ ! -z "$1" ] && echo -n "f502869692c06d8b437f325925d5f24109cbf128:"
+	[ ! -z "$1" ] && echo -n "291b0c3f4133842943d568e25f3a27ac0cc3a1f0:"
 	echo "modify"
 
-	[ ! -z "$1" ] && echo -n "cda870c14a121e8c504d12015acf695a9601fd44:"
+	[ ! -z "$1" ] && echo -n "82f68f92022dc51bed0a4099c89068d778754aad:"
 	echo "add"
 
-	[ ! -z "$1" ] && echo -n "a12f2dcfda499dc2bd77f7ad62c7611263c54b9e:"
+	[ ! -z "$1" ] && echo -n "393c0de5a289e1319cee588a7890971e5b039f46:"
 	echo "remove"
 }
 
 function expected_status_mode
 {
-	[ ! -z "$1" ] && echo -n "f502869692c06d8b437f325925d5f24109cbf128:"
+	[ ! -z "$1" ] && echo -n "291b0c3f4133842943d568e25f3a27ac0cc3a1f0:"
 	echo "modify"
 
-	[ ! -z "$1" ] && echo -n "cda870c14a121e8c504d12015acf695a9601fd44:"
+	[ ! -z "$1" ] && echo -n "82f68f92022dc51bed0a4099c89068d778754aad:"
 	echo "add"
 
-	[ ! -z "$1" ] && echo -n "a12f2dcfda499dc2bd77f7ad62c7611263c54b9e:"
+	[ ! -z "$1" ] && echo -n "393c0de5a289e1319cee588a7890971e5b039f46:"
 	echo "remove"
 
-	[ ! -z "$1" ] && echo -n "e5622521a39ab44f7a27b1fdb4dba01d60f2c8e5:"
+	[ ! -z "$1" ] && echo -n "5470ce3a3aea43c5fd75db78d32ba449b93df4ee:"
 	echo "mode"
 }
 
