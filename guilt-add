@@ -5,5 +5,5 @@
 
 source "`dirname $0`/guilt"
 
-git-add "$@"
+git-add -- "$@"
 
