@@ -5,7 +5,10 @@
 
 source "`dirname $0`/guilt"
 
-USAGE=""
+if [ $# -ne 0 ]; then
+	print_usage
+	exit 1
+fi
 
 n=`wc -l < $applied`
 n=`expr $n + 1`

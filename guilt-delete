@@ -5,11 +5,17 @@
 
 source "`dirname $0`/guilt"
 
-USAGE="<patchname>"
+USAGE="$USAGE <patchname>"
+
+if [ $# -ne 1 ]; then
+	print_usage
+	exit 1
+fi
 
 patch="$1"
 
 if [ -z "$patch" ]; then
+	print_usage
 	echo "You must specify a patch to delete"
 	exit 1
 fi

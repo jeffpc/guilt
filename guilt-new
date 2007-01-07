@@ -5,16 +5,22 @@
 
 source "`dirname $0`/guilt"
 
-USAGE="<patchname>"
+USAGE="$USAGE <patchname>"
+
+if [ $# -ne 1 ]; then
+	print_usage
+	exit 1
+fi
 
 patch="$1"
 
 if [ -z "$patch" ]; then
+	print_usage
 	echo "You must specify a patch name"
 	exit 1
-else
-	iidx=`wc -l < $applied`
 fi
+
+iidx=`wc -l < $applied`
 
 # make sure that there are no unapplied changes
 if ! must_commit_first; then

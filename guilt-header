@@ -5,7 +5,12 @@
 
 source "`dirname $0`/guilt"
 
-USAGE="<patchname>"
+USAGE="$USAGE [<patchname>]"
+
+if [ $# -gt 1 ]; then
+	print_usage
+	exit 1
+fi
 
 patch="$1"
 

@@ -5,7 +5,10 @@
 
 source "`dirname $0`/guilt"
 
-USAGE=""
+if [ $# -ne 0 ]; then
+	print_usage
+	exit 1
+fi
 
 git-rev-parse --verify HEAD >/dev/null 2>&1 || IS_INITIAL=t
 

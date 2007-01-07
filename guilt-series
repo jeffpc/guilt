@@ -5,6 +5,9 @@
 
 source "`dirname $0`/guilt"
 
-USAGE=""
+if [ $# -ne 0 ]; then
+	print_usage
+	exit 1
+fi
 
 get_series
