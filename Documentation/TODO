@@ -24,7 +24,7 @@ e.g., email may not be necessary as git can do that for us.
 	remote-push
 	rename				rename a patch
 	refresh		done		refresh the current patch
-	rm				remove a file
+	rm		done		remove a file
 	series		done		list all patches
 	status		done		display current working dir status
 	top		done		display current patch name
