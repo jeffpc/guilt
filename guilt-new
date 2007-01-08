@@ -28,6 +28,9 @@ if ! must_commit_first; then
 	exit 1
 fi
 
+# create any directories as needed
+[ "`dirname $patch`" != "." ] && mkdir -p `dirname $GUILT_DIR/$branch/$patch`
+
 # create the empty patch file
 touch $GUILT_DIR/$branch/$patch
 
