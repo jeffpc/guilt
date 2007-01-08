@@ -1,6 +1,22 @@
 PREFIX=/usr/local
 
-SCRIPTS = guilt guilt-applied guilt-delete guilt-header guilt-init guilt-new guilt-next guilt-pop guilt-prev guilt-push guilt-refresh guilt-rm guilt-series guilt-top guilt-unapplied
+SCRIPTS = guilt \
+	  guilt-add \
+	  guilt-applied \
+	  guilt-delete \
+	  guilt-header \
+	  guilt-init \
+	  guilt-new \
+	  guilt-next \
+	  guilt-pop \
+	  guilt-prev \
+	  guilt-push \
+	  guilt-refresh \
+	  guilt-rm \
+	  guilt-series \
+	  guilt-status \
+	  guilt-top \
+	  guilt-unapplied
 
 .PHONY: all 
 all:
@@ -9,6 +25,7 @@ all:
 
 .PHONY: install
 install:
+	install -d $(PREFIX)/bin/
 	install -m 755 $(SCRIPTS) $(PREFIX)/bin/
 
 .PHONY: test
