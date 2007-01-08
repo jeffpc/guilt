@@ -53,7 +53,7 @@ for p in `get_series | tac`; do
 	[ $idx -gt $sidx ] && continue
 	[ $idx -lt $eidx ] && break
 
-	echo "Popping patch...$p"
+	echo "Popping patch...`tail -1 < $applied | cut -d: -f 2-`"
 
 	pop_patch
 done
