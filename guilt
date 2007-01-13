@@ -200,7 +200,7 @@ function push_patch
 	cd $TOP_DIR
 
 	# apply the patch if and only if there is something to apply
-	if [ `wc -l < $p` -gt 0 ]; then
+	if [ `git-apply --numstat $p | wc -l` -gt 0 ]; then
 		git-apply -C$guilt_push_diff_context \
 			--reject $p > /dev/null 2> /tmp/guilt.log.$$
 		bail=$?
