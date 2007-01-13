@@ -171,6 +171,25 @@ END{}
 '
 }
 
+# usage: assert_head_check
+function assert_head_check
+{
+	# make sure we're not doing funky things to commits that don't
+	# belong to us
+	local ch=`cat $GIT_DIR/refs/heads/$branch`
+	local eh=`tail -1 < $applied | cut -d: -f 1`
+
+	# if there are no patches pushed, there can be no mis-matches
+	[ -z "$eh" ] && return 0
+
+	if [ "$ch" != "$eh" ]; then
+		echo "Expected HEAD commit $eh" >&2
+		echo "                 got $ch" >&2
+		echo "aborting..." >&2
+		exit 1
+	fi
+}
+
 # usage: pop_patch
 function pop_patch
 {
@@ -180,6 +199,8 @@ function pop_patch
 # usage: pop_many_patches <commitish> <number of patches>
 function pop_many_patches
 {
+	assert_head_check
+
 	cd $TOP_DIR
 
 	git-reset --hard $1 > /dev/null
@@ -196,6 +217,8 @@ function push_patch
 	local pname="$1"
 
 	local bail=0
+
+	assert_head_check
 
 	cd $TOP_DIR
 
@@ -277,6 +300,8 @@ function must_commit_first
 function refresh_patch
 {
 	local p="$GUILT_DIR/$branch/$1"
+
+	assert_head_check
 
 	cd $TOP_DIR
 
