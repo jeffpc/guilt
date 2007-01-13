@@ -5,14 +5,32 @@
 
 source "`dirname $0`/guilt"
 
-USAGE="$USAGE <patchname>"
+USAGE="$USAGE [-s] [-m message] <patchname>"
 
-if [ $# -ne 1 ]; then
+if [ $# -lt 1 -o $# -gt 4 ]; then
 	print_usage
 	exit 1
 fi
 
-patch="$1"
+while [ $# -gt 0 ] ; do
+	case "$1" in
+		-s)
+			signoff=t
+			;;
+		-m)
+			msg="$2"
+			shift
+			;;
+		*)
+			if [ ! -z "$patch" ]; then
+				print_usage
+				exit 1
+			fi
+			patch="$1"
+			;;
+	esac
+	shift
+done
 
 if [ -z "$patch" ]; then
 	print_usage
@@ -33,6 +51,10 @@ fi
 
 # create the empty patch file
 touch $GUILT_DIR/$branch/$patch
+
+[ ! -z "$msg" ] && echo "$msg" > $GUILT_DIR/$branch/$patch
+
+[ "$signoff" == "t" ] && echo -e "\nSigned-off-by: `git-var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`" >> $GUILT_DIR/$branch/$patch
 
 top=`get_top`
 
