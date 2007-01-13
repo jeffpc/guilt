@@ -174,11 +174,16 @@ END{}
 # usage: pop_patch
 function pop_patch
 {
+	pop_many_patches HEAD^ 1
+}
+
+# usage: pop_many_patches <commitish> <number of patches>
+function pop_many_patches
+{
 	cd $TOP_DIR
 
-	git-reset --hard HEAD^ > /dev/null
-
-	head -n -1 < $applied > $applied.tmp
+	git-reset --hard $1 > /dev/null
+	head -n -$2 < $applied > $applied.tmp
 	mv $applied{.tmp,}
 
 	cd - 2>&1 >/dev/null

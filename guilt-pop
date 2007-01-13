@@ -18,14 +18,12 @@ if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
 	# we are supposed to pop all patches
 
 	sidx=`wc -l < $applied`
-	sidx=`expr $sidx - 1`
 	eidx=0
 elif [ -z "$patch" ]; then
 	# we are supposed to pop only the current patch on the stack
 
 	sidx=`wc -l < $applied`
-	sidx=`expr $sidx - 1`
-	eidx=$sidx
+	eidx=`expr $sidx - 1`
 else
 	# we're supposed to pop only up to a patch, make sure the patch is
 	# in the series
@@ -38,7 +36,6 @@ else
 
 	eidx=`expr $eidx - 1`
 	sidx=`wc -l < $applied`
-	sidx=`expr $sidx - 1`
 fi
 
 # make sure that there are no unapplied changes
@@ -47,16 +44,9 @@ if ! must_commit_first; then
 	exit 1
 fi
 
-idx=`get_series | wc -l`
-for p in `get_series | tac`; do
-	idx=`expr $idx - 1`
-	[ $idx -gt $sidx ] && continue
-	[ $idx -lt $eidx ] && break
+l=`awk "BEGIN{n=0}(n==$eidx){print \\$0; exit}{n=n+1}END{}" < $applied`
 
-	echo "Popping patch...`tail -1 < $applied | cut -d: -f 2-`"
-
-	pop_patch
-done
+pop_many_patches `echo $l | cut -d: -f1`^ `expr $sidx - $eidx`
 
 p=`get_top`
 [ ! -z "$p" ] && echo "Now at $p." || echo "All patches popped."
