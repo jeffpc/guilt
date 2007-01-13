@@ -176,7 +176,7 @@ function pop_patch
 {
 	cd $TOP_DIR
 
-	git reset --hard HEAD^
+	git-reset --hard HEAD^ > /dev/null
 
 	head -n -1 < $applied > $applied.tmp
 	mv $applied{.tmp,}
