@@ -200,8 +200,6 @@ function push_patch
 			--reject $p > /dev/null 2> /tmp/guilt.log.$$
 		bail=$?
 
-		echo "bail=$bail"
-
 		[ $bail -ne 0 ] && cat /tmp/guilt.log.$$ >&2
 
 		( git-apply --numstat $p | awk '{print "changed:" $3}';
