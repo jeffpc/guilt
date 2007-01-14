@@ -132,15 +132,6 @@ function get_series
 	grep -ve '^[[:space:]]*\(#.*\)*$' < $series
 }
 
-# usage: index_update_magic
-function index_update_magic
-{
-	while read l; do
-		fil=`echo $l | cut -d: -f 2`
-		git-update-index --add --remove "$fil"
-	done
-}
-
 # usage: do_get_header patchfile
 function do_get_header
 {
@@ -230,11 +221,10 @@ function push_patch
 
 		[ $bail -ne 0 ] && cat /tmp/guilt.log.$$ >&2
 
-		( git-apply --numstat $p | awk '{print "changed:" $3}';
-		#git-apply --summary $p | awk '
-		#	/^ (create|delete)/{print $1 ":" $4}
-		#	/^ mode change/{print "mode:" $6}'
-		)| index_update_magic
+		# FIXME: Path munging is being done, we need to convince
+		# git-apply to just give us list of files with \0 as a
+		# delimiter, and pass -z to git-update-index
+		git-apply --numstat $p | cut -f 3- | git-update-index --add --remove --stdin
 	fi
 
 	# grab a commit message out of the patch
