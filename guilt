@@ -132,15 +132,6 @@ function get_series
 	grep -ve '^[[:space:]]*\(#.*\)*$' < $series
 }
 
-# usage: index_update_magic
-function index_update_magic
-{
-	while read l; do
-		fil=`echo $l | cut -d: -f 2`
-		git-update-index --add --remove "$fil"
-	done
-}
-
 # usage: do_get_header patchfile
 function do_get_header
 {
@@ -171,6 +162,25 @@ END{}
 '
 }
 
+# usage: assert_head_check
+function assert_head_check
+{
+	# make sure we're not doing funky things to commits that don't
+	# belong to us
+	local ch=`cat $GIT_DIR/refs/heads/$branch`
+	local eh=`tail -1 < $applied | cut -d: -f 1`
+
+	# if there are no patches pushed, there can be no mis-matches
+	[ -z "$eh" ] && return 0
+
+	if [ "$ch" != "$eh" ]; then
+		echo "Expected HEAD commit $eh" >&2
+		echo "                 got $ch" >&2
+		echo "aborting..." >&2
+		exit 1
+	fi
+}
+
 # usage: pop_patch
 function pop_patch
 {
@@ -180,6 +190,8 @@ function pop_patch
 # usage: pop_many_patches <commitish> <number of patches>
 function pop_many_patches
 {
+	assert_head_check
+
 	cd $TOP_DIR
 
 	git-reset --hard $1 > /dev/null
@@ -197,6 +209,8 @@ function push_patch
 
 	local bail=0
 
+	assert_head_check
+
 	cd $TOP_DIR
 
 	# apply the patch if and only if there is something to apply
@@ -207,11 +221,10 @@ function push_patch
 
 		[ $bail -ne 0 ] && cat /tmp/guilt.log.$$ >&2
 
-		( git-apply --numstat $p | awk '{print "changed:" $3}';
-		#git-apply --summary $p | awk '
-		#	/^ (create|delete)/{print $1 ":" $4}
-		#	/^ mode change/{print "mode:" $6}'
-		)| index_update_magic
+		# FIXME: Path munging is being done, we need to convince
+		# git-apply to just give us list of files with \0 as a
+		# delimiter, and pass -z to git-update-index
+		git-apply --numstat $p | cut -f 3- | git-update-index --add --remove --stdin
 	fi
 
 	# grab a commit message out of the patch
@@ -277,6 +290,8 @@ function must_commit_first
 function refresh_patch
 {
 	local p="$GUILT_DIR/$branch/$1"
+
+	assert_head_check
 
 	cd $TOP_DIR
 
