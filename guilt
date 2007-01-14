@@ -3,8 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-GUILT_VERSION="0.17"
-GUILT_NAME="Strange Brew"
+GUILT_VERSION="0.18"
+GUILT_NAME="Two Step"
 
 if [ `basename $0` = "guilt" ]; then
 	# being run as standalone
