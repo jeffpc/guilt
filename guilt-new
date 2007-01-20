@@ -54,7 +54,7 @@ touch $GUILT_DIR/$branch/$patch
 
 [ ! -z "$msg" ] && echo "$msg" > $GUILT_DIR/$branch/$patch
 
-[ "$signoff" == "t" ] && echo -e "\nSigned-off-by: `git-var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`" >> $GUILT_DIR/$branch/$patch
+[ "$signoff" = "t" ] && echo -e "\nSigned-off-by: `git-var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`" >> $GUILT_DIR/$branch/$patch
 
 top=`get_top`
 
