@@ -3,5 +3,4 @@ The following software is needed to run guilt:
 awk
 bash
 coreutils
-ex
 git
