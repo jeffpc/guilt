@@ -58,15 +58,15 @@ f .git/patches/master/foo/bar/patch
 DONE
 }
 
-function expected_files_insert
+function expected_files_append
 {
 	expected_files_subsubdir
-	echo "f .git/patches/master/insert"
+	echo "f .git/patches/master/append"
 }
 
 function expected_files_prepend
 {
-	expected_files_insert
+	expected_files_append
 	echo "f .git/patches/master/prepend"
 }
 
@@ -87,11 +87,11 @@ for t in $tests; do
 	echo -n "[$t] "
 done
 
-guilt-pop foo/bar/patch > /dev/null
+guilt-push --all > /dev/null
 
-guilt-new insert
-expected_files_insert | verify_repo .git/patches
-echo -n "[insert] "
+guilt-new append
+expected_files_append | verify_repo .git/patches
+echo -n "[append] "
 
 guilt-pop -a > /dev/null
 
