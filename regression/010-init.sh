@@ -19,6 +19,10 @@ empty_repo
 cd $REPODIR
 guilt-init
 expected_files | verify_repo .git/patches
+echo -n "[create] "
+
+shouldfail guilt-init
+echo -n "[exists] "
 
 complete_test
 
