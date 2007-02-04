@@ -37,7 +37,20 @@ do
 
 	expected_files | verify_repo .git/patches
 
+	echo -n "[unnamed-$t] "
+done
+
+guilt-push --all > /dev/null
+
+for t in $tests
+do
+	guilt-pop $t > /dev/null
+
+	expected_files | verify_repo .git/patches
+
 	echo -n "[$t] "
+
+	guilt-push --all > /dev/null
 done
 
 # FIXME: make sure --all and multiple patch pop works
