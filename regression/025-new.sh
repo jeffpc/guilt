@@ -1,5 +1,5 @@
 #
-# Test the push code
+# Test the new code
 #
 
 source scaffold

@@ -1,5 +1,5 @@
 #
-# Test the applied code
+# Test the top code
 #
 
 source scaffold
