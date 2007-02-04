@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-GUILT_VERSION="0.18"
+GUILT_VERSION="0.19-rc1"
 GUILT_NAME="Two Step"
 
 if [ `basename $0` = "guilt" ]; then
