@@ -58,6 +58,18 @@ f .git/patches/master/foo/bar/patch
 DONE
 }
 
+function expected_files_insert
+{
+	expected_files_subsubdir
+	echo "f .git/patches/master/insert"
+}
+
+function expected_files_prepend
+{
+	expected_files_insert
+	echo "f .git/patches/master/prepend"
+}
+
 # the test itself
 empty_repo
 cd $REPODIR
@@ -74,6 +86,18 @@ for t in $tests; do
 
 	echo -n "[$t] "
 done
+
+guilt-pop foo/bar/patch > /dev/null
+
+guilt-new insert
+expected_files_insert | verify_repo .git/patches
+echo -n "[insert] "
+
+guilt-pop -a > /dev/null
+
+guilt-new prepend
+expected_files_prepend | verify_repo .git/patches
+echo -n "[prepend] "
 
 complete_test
 
