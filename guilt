@@ -351,3 +351,7 @@ applied="$GUILT_DIR/$branch/status"
 
 USAGE="Usage: `basename $0`"
 
+# determine an editor to use for anything interactive (fall back to vi)
+editor="vi"
+[ ! -z "$EDITOR" ] && editor="$EDITOR"
+
