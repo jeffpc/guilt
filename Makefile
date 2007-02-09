@@ -8,6 +8,7 @@ SCRIPTS = guilt \
 	  guilt-init \
 	  guilt-new \
 	  guilt-next \
+	  guilt-patchbomb \
 	  guilt-pop \
 	  guilt-prev \
 	  guilt-push \
