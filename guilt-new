@@ -5,7 +5,7 @@
 
 source "`dirname $0`/guilt"
 
-USAGE="$USAGE [-s] [-m message] <patchname>"
+USAGE="$USAGE [-s] [-e|-m message] <patchname>"
 
 if [ $# -lt 1 -o $# -gt 4 ]; then
 	print_usage
@@ -17,9 +17,22 @@ while [ $# -gt 0 ] ; do
 		-s)
 			signoff=t
 			;;
+		-e)
+			edit=t
+
+			if [ ! -z "$msg" ]; then
+				print_usage
+				exit 1
+			fi
+			;;
 		-m)
 			msg="$2"
 			shift
+
+			if [ ! -z "$edit" ]; then
+				print_usage
+				exit 1
+			fi
 			;;
 		*)
 			if [ ! -z "$patch" ]; then
@@ -49,12 +62,17 @@ fi
 # create any directories as needed
 [ "`dirname $patch`" != "." ] && mkdir -p `dirname $GUILT_DIR/$branch/$patch`
 
-# create the empty patch file
-touch $GUILT_DIR/$branch/$patch
+# create the file with the right contents
+(
+# did we get a message with -m ?
+[ ! -z "$msg" ] && echo "$msg"
 
-[ ! -z "$msg" ] && echo "$msg" > $GUILT_DIR/$branch/$patch
+# add a sign-off-by (-s)
+[ "$signoff" = "t" ] && echo -e "\nSigned-off-by: `git-var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`"
+) >> $GUILT_DIR/$branch/$patch
 
-[ "$signoff" = "t" ] && echo -e "\nSigned-off-by: `git-var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`" >> $GUILT_DIR/$branch/$patch
+# edit -e ?
+[ "$edit" = "t" ] && $editor $GUILT_DIR/$branch/$patch
 
 top=`get_top`
 
