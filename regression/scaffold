@@ -39,5 +39,12 @@ function complete_test
 	rm -rf $REPODIR
 }
 
+export GIT_AUTHOR_DATE="2007-01-01 00:00:00 UTC"
+export GIT_COMMITTER_DATE="2007-01-01 00:00:00 UTC"
+export GIT_AUTHOR_NAME="Author Name"
+export GIT_AUTHOR_EMAIL="author@email"
+export GIT_COMMITTER_NAME="Commiter Name"
+export GIT_COMMITTER_EMAIL="commiter@email"
+
 echo -n "`basename $0`: "
 
