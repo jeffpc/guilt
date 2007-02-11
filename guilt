@@ -248,6 +248,10 @@ function push_patch
 
 		export GIT_AUTHOR_NAME GIT_AUTHOR_EMAIL
 	fi
+	local backup_author_date="$GIT_AUTHOR_DATE"
+	local backup_committer_date="$GIT_COMMITTER_DATE"
+	export GIT_AUTHOR_DATE=`stat -c %y $p`
+	export GIT_COMMITTER_DATE=$GIT_AUTHOR_DATE
 
 	# commit
 	local treeish=`git-write-tree`
@@ -270,6 +274,16 @@ function push_patch
 		else
 			unset GIT_AUTHOR_EMAIL
 		fi
+	fi
+	if [ ! -z "$backup_author_date" ]; then
+		export GIT_AUTHOR_DATE="$backup_author_date"
+	else
+		unset GIT_AUTHOR_DATE
+	fi
+		if [ ! -z "$backup_committer_date" ]; then
+		export GIT_COMMITTER_DATE="$backup_committer_date"
+	else
+		unset GIT_COMMITTER_DATE
 	fi
 
 	rm -f /tmp/guilt.msg.$$ /tmp/guilt.log.$$
