@@ -6,16 +6,30 @@
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 source "`dirname $0`/guilt"
 
-USAGE="$USAGE <since>[..[<until>]]"
+USAGE="$USAGE [-n] <since>[..[<until>]]"
 # this means:
 #	<hash>			- one commit
 #	<hash>..		- hash until head
 #	<hash>..<hash>		- from hash to hash
 
-if [ $# -ne 1 ]; then
-	print_usage
-	exit 1
-fi
+case $# in
+	1)
+		r="$1"
+		;;
+	2)
+		r="$2"
+		do_not_send=t
+
+		if [ "$1" != "-n" ]; then
+			print_usage
+			exit 1
+		fi
+		;;
+	*)
+		print_usage
+		exit 1
+		;;
+esac
 
 r="$1"
 
@@ -79,7 +93,12 @@ if [ "$n" != "y" -a "$n" != "Y" ]; then
 fi
 
 # ...and off they go.
-git-send-email $opts $dir
+if [ -z "$do_not_send" ]; then
+	git-send-email $opts $dir
+else
+	echo "-n passed: not sending, command that would be executed:" >&2
+	echo git-send-email $opts $dir
+fi
 
 # cleanup?
 echo -n "Delete temporary directory? [Y/n] "
