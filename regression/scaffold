@@ -39,6 +39,7 @@ function complete_test
 	rm -rf $REPODIR
 }
 
+export TZ="UTC"
 export GIT_AUTHOR_DATE="2007-01-01 00:00:00 UTC"
 export GIT_COMMITTER_DATE="2007-01-01 00:00:00 UTC"
 export GIT_AUTHOR_NAME="Author Name"

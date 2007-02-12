@@ -54,5 +54,10 @@ add
 remove
 mode
 DONE
+
+	touch -d "$GIT_COMMITTER_DATE" .git/patches/master/modify
+	touch -d "$GIT_COMMITTER_DATE" .git/patches/master/add
+	touch -d "$GIT_COMMITTER_DATE" .git/patches/master/remove
+	touch -d "$GIT_COMMITTER_DATE" .git/patches/master/mode
 }
 
