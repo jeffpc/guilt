@@ -1,0 +1,71 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2007
+#
+
+source "`dirname $0`/guilt"
+
+USAGE="$USAGE <since>[..[<until>]]"
+
+if [ $# -ne 1 ]; then
+	print_usage
+	exit 1
+fi
+
+# FIXME, just like guilt-patchbomb, allow hash ranges
+rhash="$1"
+
+if [ -z "$rhash" ]; then
+	print_usage
+	echo "You must specify a range of commits"
+	exit 1
+fi
+
+# make sure that there are no unapplied changes
+if ! must_commit_first; then
+	echo "Uncommited changes detected. Refresh first."
+	exit 1
+fi
+
+echo "About to begin conversion..." >&2
+echo "Current head: `cat $GIT_DIR/refs/heads/$branch`" >&2
+
+for rev in `git-rev-list $rhash`; do
+	if ! head_check $rev; then
+		echo "aborting..." >&2
+		exit 1
+	fi
+
+	s=`git-log --pretty=oneline -1 $rev | cut -c 42-`
+
+	fname=`echo $s | sed -e "s/&/and/g" -e "s/[ :]/_/g" -e "s,[/\\],-,g" \
+			-e "s/['\\[{}]//g" -e 's/]//g' | tr A-Z a-z`
+
+	echo "Converting `echo $rev | cut -c 1-8` as $fname"
+
+	if [ -f "$GUILT_DIR/$branch/$fname" ]; then
+		echo "Oy, the file "$fname" already exists, what should we do? What should we do?"
+		echo "Aborting..."
+		exit 1
+	fi
+
+	(
+		do_make_header $rev
+		echo ""
+		git-diff $rev^..$rev
+	) > $GUILT_DIR/$branch/$fname
+
+	# FIXME: grab the GIT_AUTHOR_DATE from the commit object and set the
+	# timestamp on the patch
+
+	# insert the patch name into the series file
+	series_insert_patch $fname
+
+	# BEWARE: git-reset ahead! Is there a way to verify that we really
+	# created a patch? - We don't want to lose any history.
+	git-reset --hard $rev^ > /dev/null
+done
+
+echo "Done." >&2
+echo "Current head: `cat $GIT_DIR/refs/heads/$branch`" >&2
+

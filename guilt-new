@@ -74,15 +74,8 @@ fi
 # edit -e ?
 [ "$edit" = "t" ] && $editor $GUILT_DIR/$branch/$patch
 
-top=`get_top`
-
-if [ ! -z "$top" ]; then
-	sed -i -e "s,^$top\$,$top\n$patch," $series
-else
-	echo "$patch" > $series.tmp
-	cat $series >> $series.tmp
-	mv $series.tmp $series
-fi
+# insert the patch name into the series file
+series_insert_patch $patch
 
 # apply the patch
 push_patch $patch

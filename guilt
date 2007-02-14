@@ -132,6 +132,13 @@ function get_series
 	grep -ve '^[[:space:]]*\(#.*\)*$' < $series
 }
 
+# usage: do_make_header <hash>
+function do_make_header
+{
+	# FIXME: store the author string as "From: "
+	git-cat-file -p $rev | awk 'BEGIN{ok=0}(ok==1){print $0}/^$/{ok=1}'
+}
+
 # usage: do_get_header patchfile
 function do_get_header
 {
@@ -165,19 +172,45 @@ END{}
 # usage: assert_head_check
 function assert_head_check
 {
+	local eh=`tail -1 < $applied | cut -d: -f 1`
+
+	if ! head_check $eh; then
+		echo "aborting..." >&2
+		exit 1
+	fi
+
+	return 0
+}
+
+# usage: head_check <expected hash>
+function head_check
+{
 	# make sure we're not doing funky things to commits that don't
 	# belong to us
 	local ch=`cat $GIT_DIR/refs/heads/$branch`
-	local eh=`tail -1 < $applied | cut -d: -f 1`
 
-	# if there are no patches pushed, there can be no mis-matches
-	[ -z "$eh" ] && return 0
+	# if the expected hash is empty, just return
+	[ -z "$1" ] && return 0
 
-	if [ "$ch" != "$eh" ]; then
-		echo "Expected HEAD commit $eh" >&2
+	if [ "$ch" != "$1" ]; then
+		echo "Expected HEAD commit $1" >&2
 		echo "                 got $ch" >&2
-		echo "aborting..." >&2
-		exit 1
+		return 1
+	fi
+	return 0
+}
+
+# usage: series_insert_patch <patchname>
+function series_insert_patch
+{
+	local top=`get_top`
+
+	if [ ! -z "$top" ]; then
+		sed -i -e "s,^$top\$,$top\n$1," $series
+	else
+		echo "$1" > $series.tmp
+		cat $series >> $series.tmp
+		mv $series.tmp $series
 	fi
 }
 
