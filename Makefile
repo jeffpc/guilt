@@ -21,8 +21,8 @@ SCRIPTS = guilt \
 
 .PHONY: all 
 all:
-	echo "Nothing to build, it is all bash :)"
-	echo "Try make install"
+	@echo "Nothing to build, it is all bash :)"
+	@echo "Try make install"
 
 .PHONY: install
 install:
@@ -32,4 +32,3 @@ install:
 .PHONY: test
 test:
 	make -C regression all
-		
