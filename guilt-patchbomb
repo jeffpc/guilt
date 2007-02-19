@@ -6,11 +6,7 @@
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 source "`dirname $0`/guilt"
 
-USAGE="$USAGE [-n] <since>[..[<until>]]"
-# this means:
-#	<hash>			- one commit
-#	<hash>..		- hash until head
-#	<hash>..<hash>		- from hash to hash
+USAGE="$USAGE [-n] [<hash> | <since>..[<until>] | ..<until>]"
 
 case $# in
 	1)
@@ -31,9 +27,8 @@ case $# in
 		;;
 esac
 
-r="$1"
+r=`munge_hash_range $r`
 
-# FIXME: allow r="<hash>"
 # FIXME: allow in-reply-to
 
 # find a suitable pager (this might be a good candidate for putting it into
