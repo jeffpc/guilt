@@ -433,3 +433,6 @@ USAGE="Usage: `basename $0`"
 editor="vi"
 [ ! -z "$EDITOR" ] && editor="$EDITOR"
 
+# determine a pager to use for anything interactive (fall back to more)
+pager="more"
+[ -z "$pager" ] && pager="$PAGER"

@@ -31,13 +31,6 @@ r=`munge_hash_range $r`
 
 # FIXME: allow in-reply-to
 
-# find a suitable pager (this might be a good candidate for putting it into
-# the lib)
-pager="$PAGER"
-if [ -z "$pager" ]; then
-	pager="more"
-fi
-
 # display the list of commits to be sent as patches
 git-log --pretty=oneline "$r" | cut -c 1-8,41- | $pager
 
