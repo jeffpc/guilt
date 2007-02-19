@@ -73,9 +73,10 @@ for rc in $rawcc; do
 done
 
 opts=""
-# FIXME: if more than one patch:
+if [ `git-rev-list "$r" | wc -l` -gt 1 ]; then
+	# more than 1 commit
 	opts="--no-chain-reply-to --compose"
-# fi
+fi
 opts="$opts $to_opts"
 
 # last possible point to abort!
