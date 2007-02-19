@@ -5,21 +5,15 @@
 
 source "`dirname $0`/guilt"
 
-USAGE="$USAGE <since>[..[<until>]]"
+USAGE="$USAGE [<hash> | <since>..[<until>] | ..<until>]"
 
-if [ $# -ne 1 ]; then
-	print_usage
-	exit 1
-fi
-
-# FIXME, just like guilt-patchbomb, allow hash ranges
-rhash="$1"
-
-if [ -z "$rhash" ]; then
+if [ $# -ne 1 -o -z "$1" ]; then
 	print_usage
 	echo "You must specify a range of commits"
 	exit 1
 fi
+
+rhash=`munge_hash_range $1`
 
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
