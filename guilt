@@ -135,8 +135,28 @@ function get_series
 # usage: do_make_header <hash>
 function do_make_header
 {
-	# FIXME: store the author string as "From: "
-	git-cat-file -p $rev | awk 'BEGIN{ok=0}(ok==1){print $0}/^$/{ok=1}'
+	# which revision do we want to work with?
+	local rev=$1
+
+	# we should try to work with commit objects only
+	if [ `git-cat-file -t $rev` != "commit" ]; then
+		echo "Hash $rev is not a commit object" >&2
+		echo "Aborting..." >&2
+		exit 2
+	fi
+
+	# get the author line from the commit object
+	local author=`git-cat-file -p $rev | grep -e '^author ' | head -1`
+
+	# strip the timestamp & '^author ' string
+	author=`echo $author | sed -e 's/^author //' -e 's/ [0-9]* [+-]*[0-9][0-9]*$//'`
+
+	git-cat-file -p $rev | awk "
+BEGIN{ok=0}
+(ok==1){print \$0; print \"\nFrom: $author\"; ok=2; next}
+(ok==2){print \$0}
+/^\$/ && (ok==0){ok=1}
+"
 }
 
 # usage: do_get_header patchfile
