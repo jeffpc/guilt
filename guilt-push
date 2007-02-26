@@ -40,7 +40,7 @@ else
 	# in the series
 
 	eidx=`get_series | grep -ne "^$patch\$" | cut -d: -f1`
-	if [ $eidx -eq 0 ]; then
+	if [ -z "$eidx" ]; then
 		echo "Patch $patch is not in the series" >&2
 		exit 1
 	fi
