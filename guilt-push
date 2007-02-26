@@ -5,7 +5,14 @@
 
 source "`dirname $0`/guilt"
 
-USAGE="$USAGE [-a | --all | <patchname>]"
+abort_flag="abort"
+
+USAGE="$USAGE [ -f ] [-a | --all | <patchname>]"
+
+if [ "$1" == "-f" ]; then
+	abort_flag=""
+	shift
+fi
 
 if [ $# -gt 1 ]; then
 	print_usage
@@ -61,13 +68,16 @@ for p in `get_series`; do
 		exit 1
 	fi
 
-	push_patch $p
+	push_patch $p $abort_flag
 
 	# bail if necessary
 	if [ $? -eq 0 ]; then
 		echo "Patch applied."
-	else
+	elif [ -z "$abort_flag" ]; then
 		echo "Patch applied with rejects. Fix it up, and refresh." >&2
+		exit 1
+	else
+		echo "To force apply this patch, use 'guilt push -f'" >&2
 		exit 1
 	fi
 done

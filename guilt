@@ -259,8 +259,10 @@ function push_patch
 {
 	local p="$GUILT_DIR/$branch/$1"
 	local pname="$1"
+	local bail_action="$2"
 
 	local bail=0
+	local reject="--reject"
 
 	assert_head_check
 
@@ -268,11 +270,19 @@ function push_patch
 
 	# apply the patch if and only if there is something to apply
 	if [ `git-apply --numstat $p | wc -l` -gt 0 ]; then
+		if [ "$bail_action" = abort ]; then
+		    reject=""
+		fi
 		git-apply -C$guilt_push_diff_context \
-			--reject $p > /dev/null 2> /tmp/guilt.log.$$
+			$reject $p > /dev/null 2> /tmp/guilt.log.$$
 		bail=$?
 
-		[ $bail -ne 0 ] && cat /tmp/guilt.log.$$ >&2
+		if [ $bail -ne 0 ]; then
+			cat /tmp/guilt.log.$$ >&2
+			if [ "$bail_action" = abort ]; then
+				return $bail
+			fi
+		fi
 
 		# FIXME: Path munging is being done, we need to convince
 		# git-apply to just give us list of files with \0 as a
