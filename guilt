@@ -6,29 +6,54 @@
 GUILT_VERSION="0.20"
 GUILT_NAME="Buddy Holly"
 
+function guilt_commands
+{
+	local command
+	for command in $0-*
+	do
+		if [ -f "$command" -a -x "$command" ]
+		then
+			echo ${command##$0-}
+		fi
+	done
+}
+
 if [ `basename $0` = "guilt" ]; then
 	# being run as standalone
 
 	# by default, we shouldn't fail
-	fail=0
+	cmd=
 
 	if [ $# -ne 0 ]; then
 		# take first arg, and try to execute it
 
-		cmd="$1"
+		arg="$1"
 		dir=`dirname $0`
 
-		if [ ! -x "$dir/guilt-$cmd" ]; then
-			echo "Command $cmd not found" >&2
-			echo "" >&2
-			fail=1
+		if [ -x "$dir/guilt-$arg" ]; then
+			cmd=$arg
 		else
+			# might be a short handed
+			for command in $(guilt_commands); do
+				case $command in
+				$arg*)
+					if [ -x "$dir/guilt-$command" ]; then
+						cmd=$command
+					fi
+					;;
+				esac
+			done
+		fi
+		if [ $cmd ]; then
 			shift
 			exec "$dir/guilt-$cmd" "$@"
 
 			# this is not reached because of the exec
 			echo "Exec failed! Something is terribly wrong!" >&2
 			exit 1
+		else
+			echo "Command $arg not found" >&2
+			echo "" >&2
 		fi
 	fi
 
@@ -48,7 +73,7 @@ if [ `basename $0` = "guilt" ]; then
 	echo -e "\tguilt push"
 
 	# now, let's exit
-	exit $fail
+	exit 1
 fi
 
 ########
