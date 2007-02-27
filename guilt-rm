@@ -8,7 +8,7 @@ source "`dirname $0`/guilt"
 USAGE="$USAGE <file>..."
 
 if [ $# -lt 1 ]; then
-	echo "$USAGE" >&2
+	print_usage
 	exit 1
 fi
 
