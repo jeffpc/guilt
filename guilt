@@ -63,8 +63,8 @@ if [ `basename $0` = "guilt" ]; then
 	echo ""
 	echo "Pick a command:"
 	for x in `dirname $0`/guilt-*; do
-		[ -x $x ] && echo -e "\t`basename $x`"
-	done
+		[ -x $x ] && echo -e ${x##$0-}
+	done | sort | column | column -t | sed -e $'s/^/\t/'
 
 	echo ""
 	echo "Example:"
