@@ -51,6 +51,11 @@ if [ -z "$patch" ]; then
 	exit 1
 fi
 
+if [ -f "$GUILT_DIR/$branch/$patch" ]; then
+	echo "patch '$patch' already exist" >&2
+	exit 1
+fi
+
 iidx=`wc -l < $applied`
 
 # make sure that there are no unapplied changes

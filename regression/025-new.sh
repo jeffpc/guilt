@@ -99,5 +99,10 @@ guilt-new prepend
 expected_files_prepend | verify_repo .git/patches
 echo -n "[prepend] "
 
+guilt-pop -a > /dev/null
+
+shouldfail guilt-new prepend
+echo -n "[dup] "
+
 complete_test
 
