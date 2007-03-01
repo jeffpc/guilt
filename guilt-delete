@@ -3,9 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-source "`dirname $0`/guilt"
-
-USAGE="$USAGE [-f] <patchname>"
+USAGE="[-f] <patchname>"
+. guilt
 
 case $# in
 	1)
@@ -15,31 +14,26 @@ case $# in
 	2)
 		# -f patchname
 		if [ "$1" != "-f" ]; then
-			print_usage
-			exit 2
+			usage
 		fi
 
 		force=t
 		shift
 		;;
 	*)
-		print_usage
-		exit 1
+		usage
 		;;
 esac
 
 patch="$1"
 
 if [ -z "$patch" ]; then
-	print_usage
-	echo "You must specify a patch to delete"
-	exit 1
+	die "You must specify a patch to delete"
 fi
 
 p=`grep -e "^[0-9a-f]\{40\}:$patch\$" < "$applied"`
 if [ ! -z "$p" ] ; then
-	echo "Cannot delete an applied patch"
-	exit 1
+	die "Cannot delete an applied patch"
 fi
 
 grep -v "^$patch\$" < "$series" > "$series.tmp"

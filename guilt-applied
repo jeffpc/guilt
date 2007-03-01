@@ -3,9 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-source "`dirname $0`/guilt"
-
-USAGE="$USAGE [-c]"
+USAGE="[-c]"
+. guilt
 
 case $# in
 	0)
@@ -15,15 +14,13 @@ case $# in
 
 	1)
 		if [ "$1" != "-c" ]; then
-			print_usage
-			exit 1
+			usage
 		fi
 
 		cat $applied | sed -e 's/:/ /'
 	;;
 	
 	*)
-		print_usage
-		exit 1
+		usage
 		;;
 esac

@@ -6,6 +6,8 @@
 GUILT_VERSION="0.20"
 GUILT_NAME="Buddy Holly"
 
+. git-sh-setup
+
 function guilt_commands
 {
 	local command
@@ -49,8 +51,7 @@ if [ `basename $0` = "guilt" ]; then
 			exec "$dir/guilt-$cmd" "$@"
 
 			# this is not reached because of the exec
-			echo "Exec failed! Something is terribly wrong!" >&2
-			exit 1
+			die "Exec failed! Something is terribly wrong!"
 		else
 			echo "Command $arg not found" >&2
 			echo "" >&2
@@ -220,8 +221,7 @@ function assert_head_check
 	local eh=`tail -1 < $applied | cut -d: -f 1`
 
 	if ! head_check $eh; then
-		echo "aborting..." >&2
-		exit 1
+		die "aborting..."
 	fi
 
 	return 0
@@ -481,8 +481,6 @@ fi
 # very useful files
 series="$GUILT_DIR/$branch/series"
 applied="$GUILT_DIR/$branch/status"
-
-USAGE="Usage: `basename $0`"
 
 # determine an editor to use for anything interactive (fall back to vi)
 editor="vi"

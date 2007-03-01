@@ -3,22 +3,18 @@
 # Copyright (c) Josef "Jeff" Sipek, 2007
 #
 
-source "`dirname $0`/guilt"
-
-USAGE="$USAGE [<hash> | <since>..[<until>] | ..<until>]"
+USAGE="[<hash> | <since>..[<until>] | ..<until>]"
+. guilt
 
 if [ $# -ne 1 -o -z "$1" ]; then
-	print_usage
-	echo "You must specify a range of commits"
-	exit 1
+	die "You must specify a range of commits"
 fi
 
 rhash=`munge_hash_range $1`
 
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
-	echo "Uncommited changes detected. Refresh first."
-	exit 1
+	die "Uncommited changes detected. Refresh first."
 fi
 
 echo "About to begin conversion..." >&2
@@ -26,8 +22,7 @@ echo "Current head: `cat $GIT_DIR/refs/heads/$branch`" >&2
 
 for rev in `git-rev-list $rhash`; do
 	if ! head_check $rev; then
-		echo "aborting..." >&2
-		exit 1
+		die "aborting..."
 	fi
 
 	s=`git-log --pretty=oneline -1 $rev | cut -c 42-`
@@ -38,9 +33,8 @@ for rev in `git-rev-list $rhash`; do
 	echo "Converting `echo $rev | cut -c 1-8` as $fname"
 
 	if [ -f "$GUILT_DIR/$branch/$fname" ]; then
-		echo "Oy, the file "$fname" already exists, what should we do? What should we do?"
-		echo "Aborting..."
-		exit 1
+		echo "Oy, the file "$fname" already exists, what should we do? What should we do?" >&2
+		die "Aborting..."
 	fi
 
 	(

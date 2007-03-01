@@ -3,13 +3,11 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-source "`dirname $0`/guilt"
-
-USAGE="$USAGE [<patchname>]"
+USAGE="[<patchname>]"
+. guilt
 
 if [ $# -gt 1 ]; then
-	print_usage
-	exit 1
+	usage
 fi
 
 patch="$1"
@@ -19,16 +17,14 @@ if [ -z "$patch" ]; then
 
 	eidx=`wc -l < $applied`
 	if [ $eidx -eq 0 ]; then
-		echo "Status file is empty"
-		exit 1
+		die "Status file is empty"
 	fi
 else
 	# use the specified patch
 
 	eidx=`get_series | grep -ne "^$patch\$" | cut -d: -f1`
 	if [ $eidx -eq 0 ]; then
-		echo "Patch $patch is not in the series"
-		exit 1
+		die "Patch $patch is not in the series"
 	fi
 fi
 

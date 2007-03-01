@@ -3,13 +3,11 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-source "`dirname $0`/guilt"
-
-USAGE="$USAGE <file>..."
+USAGE="<file>..."
+. guilt
 
 if [ $# -lt 1 ]; then
-	print_usage
-	exit 1
+	usage
 fi
 
 git-rm -- "$@"

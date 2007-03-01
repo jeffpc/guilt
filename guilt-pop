@@ -3,13 +3,11 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-source "`dirname $0`/guilt"
-
-USAGE="$USAGE [-a | --all | <patchname>]"
+USAGE="[-a | --all | <patchname>]"
+. guilt
 
 if [ $# -gt 1 ]; then
-	print_usage
-	exit 1
+	usage
 fi
 
 patch="$1"
@@ -30,8 +28,7 @@ else
 
 	eidx=`cat $applied | grep -ne "^[0-9a-f]\{40\}:$patch\$" | cut -d: -f 1`
 	if [ -z "$eidx" ]; then
-		echo "Patch $patch is not in the series/is not applied" >&2
-		exit 1
+		die "Patch $patch is not in the series/is not applied"
 	fi
 
 	eidx=`expr $eidx - 1`
@@ -40,8 +37,7 @@ fi
 
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
-	echo "Uncommited changes detected. Refresh first." >&2
-	exit 1
+	die "Uncommited changes detected. Refresh first."
 fi
 
 l=`awk "BEGIN{n=0}(n==$eidx){print \\$0; exit}{n=n+1}END{}" < $applied`

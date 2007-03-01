@@ -3,13 +3,11 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-source "`dirname $0`/guilt"
-
-USAGE="$USAGE [-s] [-e|-m message] <patchname>"
+USAGE="[-s] [-e|-m message] <patchname>"
+. guilt
 
 if [ $# -lt 1 -o $# -gt 4 ]; then
-	print_usage
-	exit 1
+	usage
 fi
 
 while [ $# -gt 0 ] ; do
@@ -21,8 +19,7 @@ while [ $# -gt 0 ] ; do
 			edit=t
 
 			if [ ! -z "$msg" ]; then
-				print_usage
-				exit 1
+				usage
 			fi
 			;;
 		-m)
@@ -30,14 +27,12 @@ while [ $# -gt 0 ] ; do
 			shift
 
 			if [ ! -z "$edit" ]; then
-				print_usage
-				exit 1
+				usage
 			fi
 			;;
 		*)
 			if [ ! -z "$patch" ]; then
-				print_usage
-				exit 1
+				usage
 			fi
 			patch="$1"
 			;;
@@ -46,22 +41,18 @@ while [ $# -gt 0 ] ; do
 done
 
 if [ -z "$patch" ]; then
-	print_usage
-	echo "You must specify a patch name"
-	exit 1
+	die "You must specify a patch name"
 fi
 
 if [ -f "$GUILT_DIR/$branch/$patch" ]; then
-	echo "patch '$patch' already exist" >&2
-	exit 1
+	die "patch '$patch' already exist"
 fi
 
 iidx=`wc -l < $applied`
 
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
-	echo "Uncommited changes detected. Refresh first."
-	exit 1
+	die "Uncommited changes detected. Refresh first."
 fi
 
 # create any directories as needed
