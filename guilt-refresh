@@ -12,5 +12,9 @@ fi
 
 TOP=`get_top`
 
+if [ -z "$TOP" ]; then
+	die "No patches applied; try guilt-push first"
+fi
+
 refresh_patch "$TOP"
 
