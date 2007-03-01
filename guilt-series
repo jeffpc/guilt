@@ -25,11 +25,15 @@ else
 
 	get_series |
 	while read patch; do
-		if [ $patch = $top ]; then
-			echo '=' $patch
-			prefix=' '
+		if [ -z $top ]; then
+			echo " " $patch
 		else
-			echo "$prefix" $patch
+			if [ $patch = $top ]; then
+				echo '=' $patch
+				prefix=' '
+			else
+				echo "$prefix" $patch
+			fi
 		fi
 	done
 fi

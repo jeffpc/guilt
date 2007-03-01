@@ -46,6 +46,14 @@ function expected_series_with_v
 	echo "  mode"
 }
 
+function expected_series_with_v_all_unapplied
+{
+	echo "  modify"
+	echo "  add"
+	echo "  remove"
+	echo "  mode"
+}
+
 # the test itself
 empty_repo
 cd $REPODIR
@@ -73,6 +81,11 @@ guilt-pop > /dev/null
 guilt-series -v > /tmp/reg.$$
 expected_series_with_v | diff -u - /tmp/reg.$$
 echo -n "[verbose] "
+
+guilt-pop -a > /dev/null
+guilt-series -v > /tmp/reg.$$
+expected_series_with_v_all_unapplied | diff -u - /tmp/reg.$$
+echo -n "[verbose none] "
 
 rm -f /tmp/reg.$$
 
