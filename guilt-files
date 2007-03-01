@@ -1,0 +1,68 @@
+#!/bin/bash
+#
+# Copyright (C) 2007 Yasushi SHOJI <yashi@atmark-techno.com>
+#
+
+USAGE="[-v] [-a] [-l]"
+. guilt
+
+opt_verbose=
+opt_all=
+opt_labels=
+
+while case "$#" in 0) break ;; esac
+do
+	case "$1" in
+	-v)
+		opt_verbose=t ;;
+	-a)
+		opt_all=t ;;
+	-l)
+		opt_labels=t ;;
+	*)
+		usage ;;
+	esac
+	shift
+done
+
+IFS=:
+if [ $opt_all ]; then
+	cat $applied
+else
+	tail -1 $applied
+fi | while read obj patch; do
+	# shamelessly taken from Quilt(quilt/quilt/files)
+	if [ -n "$opt_all" ] && [ -n "$opt_verbose" ] && [ -z "$opt_labels" ]; then
+		echo "$patch"
+	fi
+	if [ -n "$opt_verbose" ] && [ -z "$opt_labels" ]; then
+		use_status=yes
+	fi
+
+	IFS=' '
+	git diff-tree $obj^ $obj | tr '\t' ' '|
+	while read omode nmode osha1 nsha1 st file; do
+		if [ -n "$opt_labels" ]; then
+			if [ -n "$opt_verbose" ]; then
+				echo -n "[$patch] "
+			else
+				echo -n "$patch "
+			fi
+		fi
+
+		if [ -z "$use_status" ]; then
+			echo "$file"
+		else
+			status=" "
+			if [ $osha1 = "0000000000000000000000000000000000000000" ]; then
+				status="+"
+			fi
+			if [ $nsha1 = "0000000000000000000000000000000000000000" ]; then
+				status="-"
+			fi
+			echo "$status $file"
+		fi
+	done
+	IFS=:
+done
+
