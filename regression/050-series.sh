@@ -38,6 +38,14 @@ function expected_series
 	echo "mode"
 }
 
+function expected_series_with_v
+{
+	echo "+ modify"
+	echo "+ add"
+	echo "= remove"
+	echo "  mode"
+}
+
 # the test itself
 empty_repo
 cd $REPODIR
@@ -58,6 +66,13 @@ do
 
 	echo -n "[$t] "
 done
+
+# test for -v
+# pop the last patch for test
+guilt-pop > /dev/null
+guilt-series -v > /tmp/reg.$$
+expected_series_with_v | diff -u - /tmp/reg.$$
+echo -n "[verbose] "
 
 rm -f /tmp/reg.$$
 

@@ -3,11 +3,33 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE=""
+USAGE="[-v]"
 . guilt
 
-if [ $# -ne 0 ]; then
-	usage
-fi
+while case "$#" in 0) break ;; esac
+do
+	case "$1" in
+	-v)
+		verbose=t ;;
+	*)
+		usage ;;
+	esac
+	shift
+done
 
-get_series
+if ! [ $verbose ]; then
+	get_series
+else
+	prefix='+'
+	top=$(get_top)
+
+	get_series |
+	while read patch; do
+		if [ $patch = $top ]; then
+			echo '=' $patch
+			prefix=' '
+		else
+			echo "$prefix" $patch
+		fi
+	done
+fi
