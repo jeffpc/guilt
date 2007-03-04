@@ -37,7 +37,7 @@ doc:
 
 .PHONY: install-doc
 install-doc:
-	$(MAKE) -C Documentation install
+	$(MAKE) -C Documentation install PREFIX=$(PREFIX)
 
 .PHONY: test
 test:

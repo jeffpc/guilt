@@ -6,7 +6,7 @@ DOC_HTML=$(patsubst %.txt,%.html,$(MAN1_TXT) $(MAN7_TXT))
 DOC_MAN1=$(patsubst %.txt,%.1,$(MAN1_TXT))
 DOC_MAN7=$(patsubst %.txt,%.7,$(MAN7_TXT))
 
-prefix?=$(HOME)
+prefix?=$(PREFIX)
 bindir?=$(prefix)/bin
 mandir?=$(prefix)/man
 man1dir=$(mandir)/man1
