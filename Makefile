@@ -21,10 +21,16 @@ SCRIPTS = guilt \
 	  guilt-top \
 	  guilt-unapplied
 
+doc:
+	$(MAKE) -C Documentation all
+
 .PHONY: all 
-all:
+all: doc
 	@echo "Nothing to build, it is all bash :)"
 	@echo "Try make install"
+
+install-doc:
+	$(MAKE) -C Documentation install
 
 .PHONY: install
 install:
@@ -34,3 +40,6 @@ install:
 .PHONY: test
 test:
 	make -C regression all
+
+clean: 
+	$(MAKE) -C Documentation clean 
