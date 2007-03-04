@@ -21,21 +21,23 @@ SCRIPTS = guilt \
 	  guilt-top \
 	  guilt-unapplied
 
-doc:
-	$(MAKE) -C Documentation all
-
 .PHONY: all 
 all: doc
 	@echo "Nothing to build, it is all bash :)"
 	@echo "Try make install"
 
-install-doc:
-	$(MAKE) -C Documentation install
-
 .PHONY: install
 install:
 	install -d $(PREFIX)/bin/
 	install -m 755 $(SCRIPTS) $(PREFIX)/bin/
+
+.PHONY: doc
+doc:
+	$(MAKE) -C Documentation all
+
+.PHONY: install-doc
+install-doc:
+	$(MAKE) -C Documentation install
 
 .PHONY: test
 test:
