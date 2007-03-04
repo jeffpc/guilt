@@ -6,6 +6,7 @@ SCRIPTS = guilt \
 	  guilt-delete \
 	  guilt-files \
 	  guilt-header \
+	  guilt-help \
 	  guilt-import-commit \
 	  guilt-init \
 	  guilt-new \

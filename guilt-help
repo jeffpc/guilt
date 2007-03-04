@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2007
+#
+
+DO_NOT_CHECK_BRANCH_EXISTENCE=1
+
+USAGE="[<command> | <topic>]"
+. guilt
+
+case $# in
+	0)
+		page="guilt"
+		;;
+	1)
+		if [ "$1" != "guilt" ]; then
+			page="guilt-$1"
+		else
+			page="guilt"
+		fi
+		;;
+	*)
+		usage
+		;;
+esac
+
+man "$page"
