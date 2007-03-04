@@ -406,7 +406,7 @@ function refresh_patch
 	git-diff HEAD^ >> /tmp/guilt.diff.$$
 
 	# move the new patch in
-	mv $p $p.prev
+	mv $p $p~
 	mv /tmp/guilt.diff.$$ $p
 
 	cd - 2>&1 >/dev/null
