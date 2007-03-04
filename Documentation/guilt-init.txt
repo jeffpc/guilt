@@ -17,10 +17,13 @@ Initialize a git repository for use with guilt
 EXAMPLES
 --------
 First, get a repository to work on. Here's one that we'll use as an example:
+
 $ git-clone git://git.kernel.org/pub/scm/linux/kernel/jsipek/guilt-hello.git
 
 Now, it initialize the patches directory using guilt's init command:
+
 $ cd hello
+
 $ guilt-init
 
 Author
