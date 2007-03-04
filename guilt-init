@@ -8,8 +8,7 @@ DO_NOT_CHECK_BRANCH_EXISTENCE=1
 . guilt
 
 if [ $# -ne 0 ]; then
-	print_usage
-	exit 1
+	usage
 fi
 
 if [ -d "$GUILT_DIR/$branch" ]; then
