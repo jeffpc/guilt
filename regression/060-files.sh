@@ -12,6 +12,13 @@ guilt-init
 
 generic_prepare_for_tests
 
+# create a patch that contains a file in a subdirectory
+guilt-new subdir
+mkdir blah
+touch blah/sub
+guilt-add blah/sub
+guilt-refresh
+
 function expected_files
 {
 	echo "def"
@@ -29,6 +36,7 @@ function expected_files_verbose_label
 
 function expected_files_all
 {
+	echo "blah/sub"
 	echo "def"
 	echo "abd"
 	echo "abd"
@@ -37,6 +45,7 @@ function expected_files_all
 
 function expected_files_label_all
 {
+	echo "subdir blah/sub"
 	echo "modify def"
 	echo "add abd"
 	echo "remove abd"
@@ -45,6 +54,8 @@ function expected_files_label_all
 
 function expected_files_verbose_all
 {
+	echo "subdir"
+	echo "+ blah/sub"
 	echo "modify"
 	echo "  def"
 	echo "add"
@@ -57,6 +68,7 @@ function expected_files_verbose_all
 
 function expected_files_verbose_label_all
 {
+	echo "[subdir] blah/sub"
 	echo "[modify] def"
 	echo "[add] abd"
 	echo "[remove] abd"
