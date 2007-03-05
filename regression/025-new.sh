@@ -104,5 +104,29 @@ guilt-pop -a > /dev/null
 shouldfail guilt-new prepend
 echo -n "[dup] "
 
+shouldfail guilt-new /abc
+echo -n "[abs] "
+
+shouldfail guilt-new ./blah
+echo -n "[prefix-dot] "
+
+shouldfail guilt-new ../blah
+echo -n "[prefix-dotdot] "
+
+shouldfail guilt-new abc/./blah
+echo -n "[infix-dot] "
+
+shouldfail guilt-new abc/../blah
+echo -n "[infix-dotdot] "
+
+shouldfail guilt-new abc/.
+echo -n "[postfix-dot] "
+
+shouldfail guilt-new abc/..
+echo -n "[postfix-dotdot] "
+
+shouldfail guilt-new abc/
+echo -n "[postfix-slash] "
+
 complete_test
 

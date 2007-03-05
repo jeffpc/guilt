@@ -55,6 +55,11 @@ if ! must_commit_first; then
 	die "Uncommited changes detected. Refresh first."
 fi
 
+if ! valid_patchname "$patch"; then
+	echo "Patchname is invalid." >&2
+	die "it cannot begin with '/', './' or '../', or contain /./ or /../"
+fi
+
 # create any directories as needed
 [ "`dirname $patch`" != "." ] && mkdir -p `dirname $GUILT_DIR/$branch/$patch`
 
