@@ -6,6 +6,9 @@
 GUILT_VERSION="0.21"
 GUILT_NAME="Con Par Raison"
 
+# we change directories ourselves
+SUBDIRECTORY_OK=1
+
 . git-sh-setup
 
 function guilt_commands
