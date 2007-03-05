@@ -1,0 +1,28 @@
+guilt-refresh(1)
+================
+
+NAME
+----
+guilt-refresh - Refresh topmost applied patch
+
+
+SYNOPSIS
+--------
+'guilt-refresh'
+
+DESCRIPTION
+-----------
+Refresh topmost applied patch with changes in the working copy.
+
+Author
+------
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+Documentation
+-------------
+Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+GUILT
+-----
+Part of the guilt[7] suite
+
