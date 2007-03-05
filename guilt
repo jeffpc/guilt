@@ -142,21 +142,21 @@ function verify_branch
 
 function get_top
 {
-	tail -1 $GUILT_DIR/$branch/status | cut -d: -f 2-
+	tail -1 "$GUILT_DIR/$branch/status" | cut -d: -f 2-
 }
 
 function get_prev
 {
-	local n=`wc -l < $GUILT_DIR/$branch/status`
+	local n=`wc -l < "$GUILT_DIR/$branch/status"`
 	local n=`expr $n - 1`
 
 	local idx=0
-	for p in `cat $GUILT_DIR/$branch/status`; do
+	cat "$GUILT_DIR/$branch/status" | while read p; do
 		idx=`expr $idx + 1`
 		[ $idx -lt $n ] && continue
 		[ $idx -gt $n ] && break
 
-		echo $p
+		echo "$p"
 	done
 }
 
@@ -167,29 +167,29 @@ function get_series
 	#	- whitespace only
 	#	- optional whitespace followed by '#' followed by more
 	#	  optional whitespace
-	grep -ve '^[[:space:]]*\(#.*\)*$' < $series
+	grep -ve '^[[:space:]]*\(#.*\)*$' < "$series"
 }
 
 # usage: do_make_header <hash>
 function do_make_header
 {
 	# which revision do we want to work with?
-	local rev=$1
+	local rev="$1"
 
 	# we should try to work with commit objects only
-	if [ `git-cat-file -t $rev` != "commit" ]; then
+	if [ `git-cat-file -t "$rev"` != "commit" ]; then
 		echo "Hash $rev is not a commit object" >&2
 		echo "Aborting..." >&2
 		exit 2
 	fi
 
 	# get the author line from the commit object
-	local author=`git-cat-file -p $rev | grep -e '^author ' | head -1`
+	local author=`git-cat-file -p "$rev" | grep -e '^author ' | head -1`
 
 	# strip the timestamp & '^author ' string
-	author=`echo $author | sed -e 's/^author //' -e 's/ [0-9]* [+-]*[0-9][0-9]*$//'`
+	author=`echo "$author" | sed -e 's/^author //' -e 's/ [0-9]* [+-]*[0-9][0-9]*$//'`
 
-	git-cat-file -p $rev | awk "
+	git-cat-file -p "$rev" | awk "
 BEGIN{ok=0}
 (ok==1){print \$0; print \"\nFrom: $author\"; ok=2; next}
 (ok==2){print \$0}
@@ -205,7 +205,7 @@ function do_get_header
 
 	# 2nd line skips the From line
 	# 3rd line skips the empty line right after a From line
-	do_get_full_header $1 | awk '
+	do_get_full_header "$1" | awk '
 BEGIN{skip=0}
 /^From:/{skip=1; next}
 /^[ \t\f\n\r\v]*$/ && (skip==1){skip=0; next}
@@ -219,7 +219,7 @@ function do_get_full_header
 {
 	# 2nd line checks for the begining of a patch
 	# 3rd line outputs the line if it didn't get pruned by the above rules
-	cat $1 | awk '
+	cat "$1" | awk '
 BEGIN{ok=1}
 /^(diff|---)/{ok=0}
 (ok==1){print $0}
@@ -230,9 +230,9 @@ END{}
 # usage: assert_head_check
 function assert_head_check
 {
-	local eh=`tail -1 < $applied | cut -d: -f 1`
+	local eh=`tail -1 < "$applied" | cut -d: -f 1`
 
-	if ! head_check $eh; then
+	if ! head_check "$eh"; then
 		die "aborting..."
 	fi
 
@@ -244,7 +244,7 @@ function head_check
 {
 	# make sure we're not doing funky things to commits that don't
 	# belong to us
-	local ch=`cat $GIT_DIR/refs/heads/$branch`
+	local ch=`cat "$GIT_DIR/refs/heads/$branch"`
 
 	# if the expected hash is empty, just return
 	[ -z "$1" ] && return 0
@@ -263,11 +263,11 @@ function series_insert_patch
 	local top=`get_top`
 
 	if [ ! -z "$top" ]; then
-		sed -i -e "s,^$top\$,$top\n$1," $series
+		sed -i -e "s,^$top\$,$top\n$1," "$series"
 	else
-		echo "$1" > $series.tmp
-		cat $series >> $series.tmp
-		mv $series.tmp $series
+		echo "$1" > "$series.tmp"
+		cat "$series" >> "$series.tmp"
+		mv "$series.tmp" "$series"
 	fi
 }
 
@@ -282,11 +282,11 @@ function pop_many_patches
 {
 	assert_head_check
 
-	cd $TOP_DIR
+	cd "$TOP_DIR"
 
-	git-reset --hard $1 > /dev/null
-	head -n -$2 < $applied > $applied.tmp
-	mv $applied{.tmp,}
+	git-reset --hard "$1" > /dev/null
+	head -n "-$2" < "$applied" > "$applied.tmp"
+	mv "$applied.tmp" "$applied"
 
 	cd - 2>&1 >/dev/null
 }
@@ -303,15 +303,15 @@ function push_patch
 
 	assert_head_check
 
-	cd $TOP_DIR
+	cd "$TOP_DIR"
 
 	# apply the patch if and only if there is something to apply
-	if [ `git-apply --numstat $p | wc -l` -gt 0 ]; then
+	if [ `git-apply --numstat "$p" | wc -l` -gt 0 ]; then
 		if [ "$bail_action" = abort ]; then
 		    reject=""
 		fi
 		git-apply -C$guilt_push_diff_context \
-			$reject $p > /dev/null 2> /tmp/guilt.log.$$
+			$reject "$p" > /dev/null 2> /tmp/guilt.log.$$
 		bail=$?
 
 		if [ $bail -ne 0 ]; then
@@ -324,18 +324,18 @@ function push_patch
 		# FIXME: Path munging is being done, we need to convince
 		# git-apply to just give us list of files with \0 as a
 		# delimiter, and pass -z to git-update-index
-		git-apply --numstat $p | cut -f 3- | git-update-index --add --remove --stdin
+		git-apply --numstat "$p" | cut -f 3- | git-update-index --add --remove --stdin
 	fi
 
 	# grab a commit message out of the patch
-	do_get_header $p > /tmp/guilt.msg.$$
+	do_get_header "$p" > /tmp/guilt.msg.$$
 
 	# make a default commit message if patch doesn't contain one
 	[ ! -s /tmp/guilt.msg.$$ ] && echo "patch $pname" > /tmp/guilt.msg.$$
 
 	# extract a From line from the patch header, and set
 	# GIT_AUTHOR_{NAME,EMAIL}
-	local author_str=`cat $p | grep -e '^From: ' | sed -e 's/^From: //'`
+	local author_str=`cat "$p" | grep -e '^From: ' | sed -e 's/^From: //'`
 	if [ ! -z "$author_str" ]; then
 		local backup_author_name="$GIT_AUTHOR_NAME"
 		local backup_author_email="$GIT_AUTHOR_EMAIL"
@@ -350,7 +350,7 @@ function push_patch
 	fi
 	local backup_author_date="$GIT_AUTHOR_DATE"
 	local backup_committer_date="$GIT_COMMITTER_DATE"
-	export GIT_AUTHOR_DATE=`stat -c %y $p`
+	export GIT_AUTHOR_DATE=`stat -c %y "$p"`
 	export GIT_COMMITTER_DATE=$GIT_AUTHOR_DATE
 
 	# commit
@@ -407,18 +407,18 @@ function refresh_patch
 
 	assert_head_check
 
-	cd $TOP_DIR
+	cd "$TOP_DIR"
 
-	git-diff-files --name-only | (while read n; do git-update-index $n ; done)
+	git-diff-files --name-only | (while read n; do git-update-index "$n" ; done)
 
 	# get the patch header
-	do_get_full_header $p > /tmp/guilt.diff.$$
+	do_get_full_header "$p" > /tmp/guilt.diff.$$
 
 	# get the new patch
 	git-diff HEAD^ >> /tmp/guilt.diff.$$
 
 	# move the new patch in
-	mv $p $p~
+	mv "$p" "$p~"
 	mv /tmp/guilt.diff.$$ $p
 
 	cd - 2>&1 >/dev/null
@@ -428,7 +428,7 @@ function refresh_patch
 	pop_patch
 
 	# push_patch does it's own cd $TOP_DIR
-	push_patch $1
+	push_patch "$1"
 }
 
 # usage: munge_hash_range <hash range>

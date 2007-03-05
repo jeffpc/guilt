@@ -20,19 +20,19 @@ done
 if ! [ $verbose ]; then
 	get_series
 else
-	prefix='+'
+	prefix="+"
 	top=$(get_top)
 
 	get_series |
 	while read patch; do
-		if [ -z $top ]; then
-			echo " " $patch
+		if [ -z "$top" ]; then
+			echo "  $patch"
 		else
-			if [ $patch = $top ]; then
-				echo '=' $patch
-				prefix=' '
+			if [ "$patch" = "$top" ]; then
+				echo "= $patch"
+				prefix=" "
 			else
-				echo "$prefix" $patch
+				echo "$prefix $patch"
 			fi
 		fi
 	done

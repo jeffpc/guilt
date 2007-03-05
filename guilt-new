@@ -48,7 +48,7 @@ if [ -f "$GUILT_DIR/$branch/$patch" ]; then
 	die "patch '$patch' already exist"
 fi
 
-iidx=`wc -l < $applied`
+iidx=`wc -l < "$applied"`
 
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
@@ -61,7 +61,8 @@ if ! valid_patchname "$patch"; then
 fi
 
 # create any directories as needed
-[ "`dirname $patch`" != "." ] && mkdir -p `dirname $GUILT_DIR/$branch/$patch`
+mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
+[ "$mkdir_dir" != "$GUILT_DIR/$branch" ] && mkdir -p "$mkdir_dir"
 
 # create the file with the right contents
 (
@@ -70,13 +71,13 @@ fi
 
 # add a sign-off-by (-s)
 [ "$signoff" = "t" ] && echo -e "\nSigned-off-by: `git-var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`"
-) >> $GUILT_DIR/$branch/$patch
+) >> "$GUILT_DIR/$branch/$patch"
 
 # edit -e ?
-[ "$edit" = "t" ] && $editor $GUILT_DIR/$branch/$patch
+[ "$edit" = "t" ] && $editor "$GUILT_DIR/$branch/$patch"
 
 # insert the patch name into the series file
-series_insert_patch $patch
+series_insert_patch "$patch"
 
 # apply the patch
-push_patch $patch
+push_patch "$patch"

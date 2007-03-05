@@ -101,6 +101,9 @@ echo -n "[prepend] "
 
 guilt-pop -a > /dev/null
 
+guilt-new "white space"
+echo -n "[whitespace] "
+
 shouldfail guilt-new prepend
 echo -n "[dup] "
 
