@@ -44,5 +44,6 @@ install-doc:
 test:
 	make -C regression all
 
+.PHONY: clean
 clean: 
 	$(MAKE) -C Documentation clean 
