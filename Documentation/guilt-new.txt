@@ -1,5 +1,5 @@
 guilt-new(1)
-=============
+============
 
 NAME
 ----
@@ -55,7 +55,7 @@ Author
 Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 
 Documentation
---------------
+-------------
 Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 
 GUILT
