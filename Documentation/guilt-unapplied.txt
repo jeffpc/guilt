@@ -1,0 +1,28 @@
+guilt-upapplied(1)
+==================
+
+NAME
+----
+guilt-unapplied - List all unapplied patches
+
+
+SYNOPSIS
+--------
+'guilt-unapplied' 
+
+DESCRIPTION
+-----------
+List all unapplied patches.
+
+Author
+------
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+Documentation
+-------------
+Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+GUILT
+-----
+Part of the guilt[7] suite
+
