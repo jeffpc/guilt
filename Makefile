@@ -32,6 +32,10 @@ install:
 	install -d $(PREFIX)/bin/
 	install -m 755 $(SCRIPTS) $(PREFIX)/bin/
 
+.PHONY: uninstall
+uninstall:
+       ./uninstall $(PREFIX)/bin/ $(SCRIPTS)
+
 .PHONY: doc
 doc:
 	$(MAKE) -C Documentation all
