@@ -34,7 +34,7 @@ install:
 
 .PHONY: uninstall
 uninstall:
-       ./uninstall $(PREFIX)/bin/ $(SCRIPTS)
+	./uninstall $(PREFIX)/bin/ $(SCRIPTS)
 
 .PHONY: doc
 doc:
