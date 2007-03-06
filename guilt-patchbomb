@@ -88,5 +88,5 @@ fi
 echo -n "Delete temporary directory? [Y/n] "
 read n
 
-[ "$n" != "n" -a "$n" != "N" ] && exit 0
+[ "$n" = "n" -o "$n" = "N" ] && exit 0
 rm -rf $dir
