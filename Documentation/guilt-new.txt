@@ -39,16 +39,16 @@ EXAMPLES
 
 Create a new patch called 'foobar':
 
-$ git-new foobar
+$ guilt-new foobar
 
 Create a patch called 'foo' and supply a patch description interactively:
 
-$ git-new -e foo
+$ guilt-new -e foo
 
 Create a patch called 'bar' with a provided patch description and sign off
 on the patch:
 
-$ git-new -s -m patch-fu bar
+$ guilt-new -s -m patch-fu bar
 
 Author
 ------
