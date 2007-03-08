@@ -36,5 +36,5 @@ Documentation by Brandon Philips <brandon@ifup.org>
 
 GUILT
 -----
-Part of the guilt[7] suite
+Part of the guiltlink:guilt[7] suite
 
