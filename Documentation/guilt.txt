@@ -15,7 +15,7 @@ DESCRIPTION
 
 Andrew Morton originally developed a set of scripts for maintaining kernel
 patches outside of any SCM tool. Others extended these into a suite called
-quilt [2]. The basic idea behind quilt is to maintain patches instead of
+quilt. The basic idea behind quilt is to maintain patches instead of
 maintaining source files. Patches can be added, removed or reordered, and
 they can be refreshed as you fix bugs or update to a new base revision.
 quilt is very powerful, but it is not integrated with the underlying SCM
