@@ -1,26 +1,7 @@
 PREFIX=/usr/local
 
 SCRIPTS = guilt \
-	  guilt-add \
-	  guilt-applied \
-	  guilt-delete \
-	  guilt-files \
-	  guilt-header \
-	  guilt-help \
-	  guilt-import-commit \
-	  guilt-init \
-	  guilt-new \
-	  guilt-next \
-	  guilt-patchbomb \
-	  guilt-pop \
-	  guilt-prev \
-	  guilt-push \
-	  guilt-refresh \
-	  guilt-rm \
-	  guilt-series \
-	  guilt-status \
-	  guilt-top \
-	  guilt-unapplied
+	  $(wildcard guilt-*)
 
 .PHONY: all 
 all: doc
