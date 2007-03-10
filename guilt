@@ -277,6 +277,33 @@ function pop_many_patches
 	mv "$applied.tmp" "$applied"
 
 	cd - 2>&1 >/dev/null
+
+	# update references to top, bottom, and base
+	update_stack_tags
+}
+
+# usage: update_stack_tags
+function update_stack_tags
+{
+	if [ `wc -l < $applied` -gt 0 ]; then
+		# there are patches applied, therefore we must get the top,
+		# bottom and base hashes, and update the tags
+
+		local top_hash=`git-rev-parse HEAD`
+		local bottom_hash=`head -1 < $applied | cut -d: -f1`
+		local base_hash=`git-rev-parse $bottom_hash^`
+
+		echo $top_hash > "$GIT_DIR/refs/tags/${branch}_top"
+		echo $bottom_hash > "$GIT_DIR/refs/tags/${branch}_bottom"
+		echo $base_hash > "$GIT_DIR/refs/tags/${branch}_base"
+	else
+		# there are no patches applied, therefore we must remove the
+		# tags to old top, bottom, and base
+
+		rm -f "$GIT_DIR/refs/tags/${branch}_top"
+		rm -f "$GIT_DIR/refs/tags/${branch}_bottom"
+		rm -f "$GIT_DIR/refs/tags/${branch}_base"
+	fi
 }
 
 # usage: push_patch patchname [bail_action]
@@ -349,6 +376,11 @@ function push_patch
 	# mark patch as applied
 	echo "$commitish:$pname" >> $applied
 
+	cd - 2>&1 >/dev/null
+
+	# update references to top, bottom, and base of the stack
+	update_stack_tags
+
 	# restore original GIT_AUTHOR_{NAME,EMAIL}
 	if [ ! -z "$author_str" ]; then
 		if [ ! -z "$backup_author_name" ]; then
@@ -375,8 +407,6 @@ function push_patch
 	fi
 
 	rm -f /tmp/guilt.msg.$$ /tmp/guilt.log.$$
-
-	cd - 2>&1 >/dev/null
 
 	return $bail
 }
