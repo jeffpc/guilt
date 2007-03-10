@@ -1,0 +1,40 @@
+.\"     Title: guilt
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.71.0 <http://docbook.sf.net/>
+.\"      Date: 03/10/2007
+.\"    Manual: 
+.\"    Source: 
+.\"
+.TH "GUILT" "7" "03/10/2007" "" ""
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+guilt \- quilt on top of git
+.SH "SYNOPSIS"
+\fIguilt\fR COMMAND [ARGS]
+.SH "DESCRIPTION"
+Andrew Morton originally developed a set of scripts for maintaining kernel patches outside of any SCM tool. Others extended these into a suite called quilt [2]. The basic idea behind quilt is to maintain patches instead of maintaining source files. Patches can be added, removed or reordered, and they can be refreshed as you fix bugs or update to a new base revision. quilt is very powerful, but it is not integrated with the underlying SCM tools. This makes it difficult to visualize your changes.
+
+Guilt allows one to use quilt functionality on top of a Git repository. Changes are maintained as patches which are committed into Git. Commits can be removed or reordered, and the underlying patch can be refreshed based on changes made in the working directory. The patch directory can also be placed under revision control, so you can have a separate history of changes made to your patches.
+.SH "PATCHES DIRECTORY"
+In Guilt, all the patches are stored in .git/patches/$branch/, where $branch is the name of the branch being worked on. This means that one can have a independent series of patches for each branch present in the repository. Each of these per\-branch directories contains 2 special files:
+
+series: This file contains a list of all the patch filenames relative to the per\-branch patch directory. Empty and commented out lines are ignored.
+
+status: This file contains the state of the stack. What patches are applied.
+.SH "GUILT COMMANDS"
+All commands can be called with or without a dash. e.g. \fIquilt add\fR or \fIquilt\-add\fR
+.PP
+\fBguilt\-init\fR(1)
+.RS 3n
+Initialize guilt for use in a git repository.
+.RE
+.SH "AUTHOR"
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+.SH "DOCUMENTATION"
+Documentation by Brandon Philips <brandon@ifup.org> and Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+.SH "GUILT"
+Part of the guilt[7] suite
+
