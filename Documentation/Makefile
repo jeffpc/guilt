@@ -8,6 +8,7 @@ DOC_MAN7=$(patsubst %.txt,%.7,$(MAN7_TXT))
 
 prefix?=$(PREFIX)
 bindir?=$(prefix)/bin
+htmldir?=$(prefix)/html
 mandir?=$(prefix)/man
 man1dir=$(mandir)/man1
 man7dir=$(mandir)/man7
@@ -32,6 +33,9 @@ install: man
 	$(INSTALL) -d -m755 $(DESTDIR)$(man1dir) $(DESTDIR)$(man7dir)
 	$(INSTALL) -m644 $(DOC_MAN1) $(DESTDIR)$(man1dir)
 	$(INSTALL) -m644 $(DOC_MAN7) $(DESTDIR)$(man7dir)
+
+install-html: html
+	$(INSTALL) -m644 $(DOC_HTML) $(DESTDIR)$(htmldir)
 
 #
 # Determine "include::" file references in asciidoc files.
