@@ -285,6 +285,11 @@ function pop_many_patches
 # usage: update_stack_tags
 function update_stack_tags
 {
+	# bail if autotagging is not enabled
+	if [ $autotag -eq 0 ]; then
+		return 0
+	fi
+
 	if [ `wc -l < $applied` -gt 0 ]; then
 		# there are patches applied, therefore we must get the top,
 		# bottom and base hashes, and update the tags
@@ -480,10 +485,20 @@ function munge_hash_range
 	fi
 }
 
+#
 # Some constants
+#
 
 # used for: git-apply -C <val>
 guilt_push_diff_context=1
+
+#
+# Parse any part of .git/config that belongs to us
+#
+
+# autotag?
+autotag=`git-config guilt.autotag`
+[ -z "$autotag" ] && autotag=1
 
 #
 # The following gets run every time this file is source'd

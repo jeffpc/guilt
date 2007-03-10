@@ -5,11 +5,19 @@
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
+USAGE="[-n]"
 . guilt
 
-if [ $# -ne 0 ]; then
-	usage
-fi
+autotag=1
+
+while case $# in 0) break ;; esac; do
+	if [ "$1" = "-n" ]; then
+		autotag=0
+		shift
+	else
+		usage
+	fi
+done
 
 if [ -d "$GUILT_DIR/$branch" ]; then
 	die "Branch $branch appears to be already initialized (GIT_DIR=$GIT_DIR)"
@@ -20,3 +28,4 @@ mkdir $GUILT_DIR/$branch
 touch $GUILT_DIR/$branch/series
 touch $GUILT_DIR/$branch/status
 
+git-config --int --replace-all guilt.autotag $autotag
