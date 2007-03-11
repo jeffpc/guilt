@@ -8,11 +8,17 @@ guilt-init - Initialize guilt for use in a git repository
 
 SYNOPSIS
 --------
-'guilt-init' 
+'guilt-init [-n]' 
 
 DESCRIPTION
 -----------
 Initialize a git repository for use with guilt
+
+OPTIONS
+-------
+-n::
+	Do not automatically create stack top, bottom, and base tags (sets
+	guilt.autotag config variable to 0).
 
 EXAMPLES
 --------
