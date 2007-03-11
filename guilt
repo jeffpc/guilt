@@ -3,8 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-GUILT_VERSION="0.21"
-GUILT_NAME="Con Par Raison"
+GUILT_VERSION="0.22"
+GUILT_NAME="Missing Pieces"
 
 # we change directories ourselves
 SUBDIRECTORY_OK=1
