@@ -1,11 +1,11 @@
 .\"     Title: guilt
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.71.0 <http://docbook.sf.net/>
-.\"      Date: 03/10/2007
+.\"      Date: 03/11/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT" "7" "03/10/2007" "" ""
+.TH "GUILT" "7" "03/11/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -15,7 +15,7 @@ guilt \- quilt on top of git
 .SH "SYNOPSIS"
 \fIguilt\fR COMMAND [ARGS]
 .SH "DESCRIPTION"
-Andrew Morton originally developed a set of scripts for maintaining kernel patches outside of any SCM tool. Others extended these into a suite called quilt [2]. The basic idea behind quilt is to maintain patches instead of maintaining source files. Patches can be added, removed or reordered, and they can be refreshed as you fix bugs or update to a new base revision. quilt is very powerful, but it is not integrated with the underlying SCM tools. This makes it difficult to visualize your changes.
+Andrew Morton originally developed a set of scripts for maintaining kernel patches outside of any SCM tool. Others extended these into a suite called quilt. The basic idea behind quilt is to maintain patches instead of maintaining source files. Patches can be added, removed or reordered, and they can be refreshed as you fix bugs or update to a new base revision. quilt is very powerful, but it is not integrated with the underlying SCM tools. This makes it difficult to visualize your changes.
 
 Guilt allows one to use quilt functionality on top of a Git repository. Changes are maintained as patches which are committed into Git. Commits can be removed or reordered, and the underlying patch can be refreshed based on changes made in the working directory. The patch directory can also be placed under revision control, so you can have a separate history of changes made to your patches.
 .SH "PATCHES DIRECTORY"
@@ -27,14 +27,49 @@ status: This file contains the state of the stack. What patches are applied.
 .SH "GUILT COMMANDS"
 All commands can be called with or without a dash. e.g. \fIquilt add\fR or \fIquilt\-add\fR
 .PP
+\fBguilt\-files\fR(1)
+.RS 3n
+Print the list of files that the topmost patch changes.
+.RE
+.PP
 \fBguilt\-init\fR(1)
 .RS 3n
 Initialize guilt for use in a git repository.
+.RE
+.PP
+\fBguilt\-new\fR(1)
+.RS 3n
+Create a new patch.
+.RE
+.PP
+\fBguilt\-next\fR(1)
+.RS 3n
+Output name of next patch to be pushed.
+.RE
+.PP
+\fBguilt\-prev\fR(1)
+.RS 3n
+Output name of second topmost applied patch.
+.RE
+.PP
+\fBguilt\-refresh\fR(1)
+.RS 3n
+Refresh topmost applied patch.
+.RE
+.PP
+\fBguilt\-top\fR(1)
+.RS 3n
+Output name of topmost applied patch.
+.RE
+.PP
+\fBguilt\-unapplied\fR(1)
+.RS 3n
+List all unapplied patches.
 .RE
 .SH "AUTHOR"
 Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "DOCUMENTATION"
 Documentation by Brandon Philips <brandon@ifup.org> and Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "GUILT"
-Part of the guilt[7] suite
+Part of the \fBguilt\fR(7) suite
 
