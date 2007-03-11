@@ -264,120 +264,27 @@ div.exampleblock-content {
   padding-left: 0.5em;
 }
 </style>
-<title>guilt(7)</title>
+<title>guilt-top(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt(7) Manual Page
+guilt-top(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt -
-   quilt on top of git
+<p>guilt-top -
+   Output name of topmost applied patch
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt</em> COMMAND [ARGS]</p>
+<p><em>guilt-top</em></p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
-<p>Andrew Morton originally developed a set of scripts for maintaining kernel
-patches outside of any SCM tool. Others extended these into a suite called
-quilt. The basic idea behind quilt is to maintain patches instead of
-maintaining source files. Patches can be added, removed or reordered, and
-they can be refreshed as you fix bugs or update to a new base revision.
-quilt is very powerful, but it is not integrated with the underlying SCM
-tools. This makes it difficult to visualize your changes.</p>
-<p>Guilt allows one to use quilt functionality on top of a Git repository.
-Changes are maintained as patches which are committed into Git.  Commits can
-be removed or reordered, and the underlying patch can be refreshed based on
-changes made in the working directory. The patch directory can also be
-placed under revision control, so you can have a separate history of changes
-made to your patches.</p>
-</div>
-<h2>PATCHES DIRECTORY</h2>
-<div class="sectionbody">
-<p>In Guilt, all the patches are stored in .git/patches/$branch/, where $branch
-is the name of the branch being worked on. This means that one can have a
-independent series of patches for each branch present in the repository.
-Each of these per-branch directories contains 2 special files:</p>
-<p>series: This file contains a list of all the patch filenames relative to the
-per-branch patch directory. Empty and commented out lines are ignored.</p>
-<p>status: This file contains the state of the stack. What patches are applied.</p>
-</div>
-<h2>GUILT COMMANDS</h2>
-<div class="sectionbody">
-<p>All commands can be called with or without a dash. e.g. <em>quilt add</em> or
-<em>quilt-add</em></p>
-<dl>
-<dt>
-<a href="guilt-files.html">guilt-files(1)</a>
-</dt>
-<dd>
-<p>
-        Print the list of files that the topmost patch changes.
-</p>
-</dd>
-<dt>
-<a href="guilt-init.html">guilt-init(1)</a>
-</dt>
-<dd>
-<p>
-        Initialize guilt for use in a git repository.
-</p>
-</dd>
-<dt>
-<a href="guilt-new.html">guilt-new(1)</a>
-</dt>
-<dd>
-<p>
-        Create a new patch.
-</p>
-</dd>
-<dt>
-<a href="guilt-next.html">guilt-next(1)</a>
-</dt>
-<dd>
-<p>
-        Output name of next patch to be pushed.
-</p>
-</dd>
-<dt>
-<a href="guilt-prev.html">guilt-prev(1)</a>
-</dt>
-<dd>
-<p>
-        Output name of second topmost applied patch.
-</p>
-</dd>
-<dt>
-<a href="guilt-refresh.html">guilt-refresh(1)</a>
-</dt>
-<dd>
-<p>
-        Refresh topmost applied patch.
-</p>
-</dd>
-<dt>
-<a href="guilt-top.html">guilt-top(1)</a>
-</dt>
-<dd>
-<p>
-        Output name of topmost applied patch.
-</p>
-</dd>
-<dt>
-<a href="guilt-unapplied.html">guilt-unapplied(1)</a>
-</dt>
-<dd>
-<p>
-        List all unapplied patches.
-</p>
-</dd>
-</dl>
+<p>Output name of topmost applied patch.</p>
 </div>
 <h2>Author</h2>
 <div class="sectionbody">
@@ -385,8 +292,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </div>
 <h2>Documentation</h2>
 <div class="sectionbody">
-<p>Documentation by Brandon Philips &lt;brandon@ifup.org&gt; and Josef "Jeff" Sipek
-&lt;jsipek@cs.sunysb.edu&gt;</p>
+<p>Documentation by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p>
 </div>
 <h2>GUILT</h2>
 <div class="sectionbody">
@@ -394,7 +300,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 11-Mar-2007 15:25:44 EDT
+Last updated 08-Mar-2007 14:51:41 EDT
 </div>
 </div>
 </body>

@@ -280,11 +280,25 @@ guilt-init(1) Manual Page
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-init</em></p>
+<p><em>guilt-init [-n]</em></p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
 <p>Initialize a git repository for use with guilt</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+-n
+</dt>
+<dd>
+<p>
+        Do not automatically create stack top, bottom, and base tags (sets
+        guilt.autotag config variable to 0).
+</p>
+</dd>
+</dl>
 </div>
 <h2>EXAMPLES</h2>
 <div class="sectionbody">
@@ -304,11 +318,11 @@ guilt-init(1) Manual Page
 </div>
 <h2>GUILT</h2>
 <div class="sectionbody">
-<p>Part of the guilt[7] suite</p>
+<p>Part of the <a href="guilt.html">guilt(7)</a> suite</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 10-Mar-2007 01:08:45 EDT
+Last updated 11-Mar-2007 15:25:43 EDT
 </div>
 </div>
 </body>

@@ -264,120 +264,80 @@ div.exampleblock-content {
   padding-left: 0.5em;
 }
 </style>
-<title>guilt(7)</title>
+<title>guilt-new(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt(7) Manual Page
+guilt-new(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt -
-   quilt on top of git
+<p>guilt-new -
+   Create a new patch
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt</em> COMMAND [ARGS]</p>
+<p><em>guilt-new [-s] [-e|-m &lt;message&gt;] &lt;patchname&gt;</em></p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
-<p>Andrew Morton originally developed a set of scripts for maintaining kernel
-patches outside of any SCM tool. Others extended these into a suite called
-quilt. The basic idea behind quilt is to maintain patches instead of
-maintaining source files. Patches can be added, removed or reordered, and
-they can be refreshed as you fix bugs or update to a new base revision.
-quilt is very powerful, but it is not integrated with the underlying SCM
-tools. This makes it difficult to visualize your changes.</p>
-<p>Guilt allows one to use quilt functionality on top of a Git repository.
-Changes are maintained as patches which are committed into Git.  Commits can
-be removed or reordered, and the underlying patch can be refreshed based on
-changes made in the working directory. The patch directory can also be
-placed under revision control, so you can have a separate history of changes
-made to your patches.</p>
+<p>Create a new patch and push it on top of the stack. An optional patch
+description can be supplied either interactively on via the command line.</p>
 </div>
-<h2>PATCHES DIRECTORY</h2>
+<h2>OPTIONS</h2>
 <div class="sectionbody">
-<p>In Guilt, all the patches are stored in .git/patches/$branch/, where $branch
-is the name of the branch being worked on. This means that one can have a
-independent series of patches for each branch present in the repository.
-Each of these per-branch directories contains 2 special files:</p>
-<p>series: This file contains a list of all the patch filenames relative to the
-per-branch patch directory. Empty and commented out lines are ignored.</p>
-<p>status: This file contains the state of the stack. What patches are applied.</p>
-</div>
-<h2>GUILT COMMANDS</h2>
-<div class="sectionbody">
-<p>All commands can be called with or without a dash. e.g. <em>quilt add</em> or
-<em>quilt-add</em></p>
 <dl>
 <dt>
-<a href="guilt-files.html">guilt-files(1)</a>
+-s
 </dt>
 <dd>
 <p>
-        Print the list of files that the topmost patch changes.
+        Add a Signed-off-by with your committer identifier string to the
+        patch message.
 </p>
 </dd>
 <dt>
-<a href="guilt-init.html">guilt-init(1)</a>
+-e
 </dt>
 <dd>
 <p>
-        Initialize guilt for use in a git repository.
+        Edit the patch message interactively. This option can be combined
+        with -s to easily sign off on the patch.
 </p>
 </dd>
 <dt>
-<a href="guilt-new.html">guilt-new(1)</a>
+-m &lt;message&gt;
 </dt>
 <dd>
 <p>
-        Create a new patch.
+        The "&lt;message&gt;" string will used as the commit message. This option
+        can be combined with -s to easily sign off on the patch.
 </p>
 </dd>
 <dt>
-<a href="guilt-next.html">guilt-next(1)</a>
+&lt;patchname&gt;
 </dt>
 <dd>
 <p>
-        Output name of next patch to be pushed.
-</p>
-</dd>
-<dt>
-<a href="guilt-prev.html">guilt-prev(1)</a>
-</dt>
-<dd>
-<p>
-        Output name of second topmost applied patch.
-</p>
-</dd>
-<dt>
-<a href="guilt-refresh.html">guilt-refresh(1)</a>
-</dt>
-<dd>
-<p>
-        Refresh topmost applied patch.
-</p>
-</dd>
-<dt>
-<a href="guilt-top.html">guilt-top(1)</a>
-</dt>
-<dd>
-<p>
-        Output name of topmost applied patch.
-</p>
-</dd>
-<dt>
-<a href="guilt-unapplied.html">guilt-unapplied(1)</a>
-</dt>
-<dd>
-<p>
-        List all unapplied patches.
+        Name of the patch to create. This must be a legal relative pathname
+        string. For example, "foo", "foo/bar", and "foo/bar/foobar" are all
+        valid.
 </p>
 </dd>
 </dl>
+</div>
+<h2>EXAMPLES</h2>
+<div class="sectionbody">
+<p>Create a new patch called <em>foobar</em>:</p>
+<p>$ guilt-new foobar</p>
+<p>Create a patch called <em>foo</em> and supply a patch description interactively:</p>
+<p>$ guilt-new -e foo</p>
+<p>Create a patch called <em>bar</em> with a provided patch description and sign off
+on the patch:</p>
+<p>$ guilt-new -s -m patch-fu bar</p>
 </div>
 <h2>Author</h2>
 <div class="sectionbody">
@@ -385,8 +345,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </div>
 <h2>Documentation</h2>
 <div class="sectionbody">
-<p>Documentation by Brandon Philips &lt;brandon@ifup.org&gt; and Josef "Jeff" Sipek
-&lt;jsipek@cs.sunysb.edu&gt;</p>
+<p>Documentation by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p>
 </div>
 <h2>GUILT</h2>
 <div class="sectionbody">
@@ -394,7 +353,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 11-Mar-2007 15:25:44 EDT
+Last updated 08-Mar-2007 14:51:40 EDT
 </div>
 </div>
 </body>
