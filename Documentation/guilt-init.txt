@@ -5,7 +5,6 @@ NAME
 ----
 guilt-init - Initialize guilt for use in a git repository
 
-
 SYNOPSIS
 --------
 include::usage-guilt-init.txt[]

@@ -5,7 +5,6 @@ NAME
 ----
 guilt-top - Output name of topmost applied patch
 
-
 SYNOPSIS
 --------
 include::usage-guilt-top.txt[]

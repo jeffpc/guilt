@@ -5,10 +5,9 @@ NAME
 ----
 guilt-add - Add a file to git and guilt
 
-
 SYNOPSIS
 --------
-'guilt-add <files>' 
+include::usage-guilt-add.txt[]
 
 DESCRIPTION
 -----------

@@ -5,7 +5,6 @@ NAME
 ----
 guilt-files - Print the list of files that the topmost patch changes
 
-
 SYNOPSIS
 --------
 include::usage-guilt-files.txt[]

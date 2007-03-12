@@ -5,7 +5,6 @@ NAME
 ----
 guilt-new - Create a new patch
 
-
 SYNOPSIS
 --------
 include::usage-guilt-new.txt[]

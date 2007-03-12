@@ -5,7 +5,6 @@ NAME
 ----
 guilt-series - Print the stack of patches
 
-
 SYNOPSIS
 --------
 include::usage-guilt-series.txt[]

@@ -5,7 +5,6 @@ NAME
 ----
 guilt-next - Output the name of next patch to be pushed
 
-
 SYNOPSIS
 --------
 include::usage-guilt-next.txt[]

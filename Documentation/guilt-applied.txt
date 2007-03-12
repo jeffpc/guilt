@@ -7,7 +7,7 @@ guilt-applied - List applied patches
 
 SYNOPSIS
 --------
-'guilt-applied' 
+include::usage-guilt-applied.txt[]
 
 DESCRIPTION
 -----------

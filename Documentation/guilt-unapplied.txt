@@ -5,10 +5,9 @@ NAME
 ----
 guilt-unapplied - List all unapplied patches
 
-
 SYNOPSIS
 --------
-'guilt-unapplied' 
+include::usage-guilt-unapplied.txt[]
 
 DESCRIPTION
 -----------

@@ -5,7 +5,6 @@ NAME
 ----
 guilt - quilt on top of git
 
-
 SYNOPSIS
 --------
 'guilt' COMMAND [ARGS]
@@ -40,7 +39,6 @@ series: This file contains a list of all the patch filenames relative to the
 per-branch patch directory. Empty and commented out lines are ignored.
 
 status: This file contains the state of the stack. What patches are applied.
-
 
 GUILT COMMANDS
 --------------

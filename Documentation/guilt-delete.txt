@@ -5,7 +5,6 @@ NAME
 ----
 guilt-delete - Delete a patch
 
-
 SYNOPSIS
 --------
 include::usage-guilt-delete.txt[]
