@@ -5,10 +5,9 @@ NAME
 ----
 guilt-prev - Output name of second topmost applied patch
 
-
 SYNOPSIS
 --------
-'guilt-prev' 
+include::usage-guilt-prev.txt[]
 
 DESCRIPTION
 -----------

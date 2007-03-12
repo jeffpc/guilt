@@ -8,7 +8,7 @@ guilt-new - Create a new patch
 
 SYNOPSIS
 --------
-'guilt-new [-s] [-e|-m <message>] <patchname>' 
+include::usage-guilt-new.txt[]
 
 DESCRIPTION
 -----------

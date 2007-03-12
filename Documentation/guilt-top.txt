@@ -8,7 +8,7 @@ guilt-top - Output name of topmost applied patch
 
 SYNOPSIS
 --------
-'guilt-top' 
+include::usage-guilt-top.txt[]
 
 DESCRIPTION
 -----------

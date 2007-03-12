@@ -8,7 +8,7 @@ guilt-files - Print the list of files that the topmost patch changes
 
 SYNOPSIS
 --------
-'guilt-files [-v] [-a] [-l]' 
+include::usage-guilt-files.txt[]
 
 DESCRIPTION
 -----------

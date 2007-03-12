@@ -5,10 +5,9 @@ NAME
 ----
 guilt-refresh - Refresh topmost applied patch
 
-
 SYNOPSIS
 --------
-'guilt-refresh'
+include::usage-guilt-refresh.txt[]
 
 DESCRIPTION
 -----------

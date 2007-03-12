@@ -8,7 +8,7 @@ guilt-init - Initialize guilt for use in a git repository
 
 SYNOPSIS
 --------
-'guilt-init [-n]' 
+include::usage-guilt-init.txt[]
 
 DESCRIPTION
 -----------

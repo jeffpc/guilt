@@ -6,6 +6,8 @@ DOC_HTML=$(patsubst %.txt,%.html,$(MAN1_TXT) $(MAN7_TXT))
 DOC_MAN1=$(patsubst %.txt,%.1,$(MAN1_TXT))
 DOC_MAN7=$(patsubst %.txt,%.7,$(MAN7_TXT))
 
+USAGE=$(patsubst %.txt,usage-%.txt,$(MAN1_TXT))
+
 prefix?=$(PREFIX)
 bindir?=$(prefix)/bin
 htmldir?=$(prefix)/html
@@ -55,6 +57,10 @@ guilt.7 guilt.html: guilt.txt
 clean:
 	rm -f *.xml *.html *.1 *.7 doc.dep
 	rm -f cmds.txt
+	rm -f usage-*.txt
+
+usage-%.txt: $(MAN1_TXT) usage.sh
+	sh ./usage.sh
 
 %.html : %.txt
 	$(ASCIIDOC) -b xhtml11 -d manpage -f asciidoc.conf $(ASCIIDOC_EXTRA) $<
