@@ -1,5 +1,19 @@
-cmds.txt
-doc.dep
+#
+# Documentation/ ignore file
+#
+
+# Generated usage strings
+usage-*.txt
+
+# Generated man pages
 *.1
 *.7
+
+# Generated html man pages
 *.html
+
+# Generated list of commands
+cmds.txt
+
+# Generated file dependency list
+doc.dep
