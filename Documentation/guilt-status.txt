@@ -1,0 +1,36 @@
+guilt-status(1)
+===============
+
+NAME
+----
+guilt-status - Print the status of files since the last refresh
+
+SYNOPSIS
+--------
+include::usage-guilt-status.txt[]
+
+DESCRIPTION
+-----------
+Each file is printed with a prefix that describes it's status.
+
+ A   added
+ M   unmerged
+ D   deleted
+ R   removed/deleted
+ C   modified/changed
+ K   to be killed
+ ?   untracked
+
+
+Author
+------
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+Documentation
+-------------
+Documentation by Brandon Philips <brandon@ifup.org>
+
+GUILT
+-----
+Part of the guiltlink:guilt[7] suite
+

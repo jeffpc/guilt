@@ -1,14 +1,21 @@
-guilt-top(1)
-============
+guilt-series(1)
+===============
 
 NAME
 ----
-guilt-top - Output name of topmost applied patch
+guilt-series - Print the stack of patches
 
 
 SYNOPSIS
 --------
-include::usage-guilt-top.txt[]
+include::usage-guilt-series.txt[]
+
+DESCRIPTION
+-----------
+Print the stack of patches on this branch.
+
+-v::
+	Add a + next to the top most applied patch
 
 Author
 ------

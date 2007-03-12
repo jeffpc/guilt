@@ -1,0 +1,27 @@
+guilt-applied(1)
+================
+
+NAME
+----
+guilt-applied - List applied patches
+
+SYNOPSIS
+--------
+'guilt-applied' 
+
+DESCRIPTION
+-----------
+Prints a list of all applied patches.
+
+Author
+------
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+Documentation
+-------------
+Documentation by Brandon Philips <brandon@ifup.org>
+
+GUILT
+-----
+Part of the guiltlink:guilt[7] suite
+

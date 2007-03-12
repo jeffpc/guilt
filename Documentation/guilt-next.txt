@@ -3,16 +3,16 @@ guilt-next(1)
 
 NAME
 ----
-guilt-next - Output name of next patch to be pushed
+guilt-next - Output the name of next patch to be pushed
 
 
 SYNOPSIS
 --------
-'guilt-next' 
+include::usage-guilt-next.txt[]
 
 DESCRIPTION
 -----------
-Output name of next patch to be pushed. If guilt-push(1) is issued, this
+Output the name of next patch to be pushed. If guilt-push(1) is issued, this
 patch would be the topmost patch.
 
 Author

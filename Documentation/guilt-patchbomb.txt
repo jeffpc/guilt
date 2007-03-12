@@ -1,0 +1,30 @@
+guilt-patchbomb(1)
+==================
+
+NAME
+----
+guilt-patchbomb - Create an mbox 
+
+SYNOPSIS
+--------
+include::usage-guilt-patchbomb.txt[]
+
+DESCRIPTION
+-----------
+Interactive wrapper around git-send-email.
+
+-n::
+	Don't send
+
+Author
+------
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+Documentation
+-------------
+Documentation by Brandon Philips <brandon@ifup.org>
+
+GUILT
+-----
+Part of the guiltlink:guilt[7] suite
+

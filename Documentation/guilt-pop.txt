@@ -1,0 +1,31 @@
+guilt-pop(1)
+============
+
+NAME
+----
+guilt-pop - Pop patches from the tree
+
+SYNOPSIS
+--------
+include::usage-guilt-pop.txt[]
+
+OPTIONS
+-------
+--all::
+-a::
+	Pop all patches off the tree
+
+<patchname>::
+	Pop this patch off the tree
+
+Author
+------
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+Documentation
+-------------
+Documentation by Brandon Philips <brandon@ifup.org>
+
+GUILT
+-----
+Part of the guiltlink:guilt[7] suite

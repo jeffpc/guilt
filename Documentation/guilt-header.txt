@@ -1,0 +1,29 @@
+guilt-header(1)
+===============
+
+NAME
+----
+guilt-header - Print a patch header
+
+SYNOPSIS
+--------
+include::usage-guilt-header.txt[]
+
+DESCRIPTION
+-----------
+Prints either the topmost patches' header or the header of a specified patch.
+
+<patchname>::
+	Name of the patch. 
+
+Author
+------
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+Documentation
+-------------
+Documentation by Brandon Philips <brandon@ifup.org>
+
+GUILT
+-----
+Part of the guiltlink:guilt[7] suite
