@@ -49,8 +49,8 @@ doc.dep : $(wildcard *.txt) build-docdep.perl
 
 -include doc.dep
 
-cmds.txt: cmd-list.perl $(MAN1_TXT)
-	perl ./cmd-list.perl
+cmds.txt: cmd-list.sh $(MAN1_TXT)
+	sh ./cmd-list.sh
 
 guilt.7 guilt.html: guilt.txt 
 
