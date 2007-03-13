@@ -3,7 +3,7 @@ guilt-patchbomb(1)
 
 NAME
 ----
-guilt-patchbomb - Create an mbox 
+guilt-patchbomb - Email a series of commits interactively
 
 SYNOPSIS
 --------
@@ -11,10 +11,15 @@ include::usage-guilt-patchbomb.txt[]
 
 DESCRIPTION
 -----------
-Interactive wrapper around git-send-email.
+Send a series of commits via email asking for To, CC and other information
+interactively.
 
+OPTIONS
+-------
 -n::
 	Don't send
+
+include::hash-range.txt[]
 
 Author
 ------
