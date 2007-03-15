@@ -57,7 +57,4 @@ Documentation
 -------------
 Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 
-GUILT
------
-Part of the guiltlink:guilt[7] suite
-
+include::footer.txt[]

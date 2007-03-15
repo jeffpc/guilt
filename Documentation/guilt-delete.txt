@@ -35,7 +35,4 @@ Documentation
 -------------
 Documentation by Brandon Philips <brandon@ifup.org>
 
-GUILT
------
-Part of the guiltlink:guilt[7] suite
-
+include::footer.txt[]

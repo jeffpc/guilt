@@ -49,24 +49,28 @@ doc.dep : $(wildcard *.txt) build-docdep.perl
 
 -include doc.dep
 
+version.txt:
+	echo "(Generated for Guilt `git-describe`)" > version.txt
+
 cmds.txt: cmd-list.sh $(MAN1_TXT)
 	sh ./cmd-list.sh
 
-guilt.7 guilt.html: guilt.txt 
+guilt.7 guilt.html: guilt.txt footer.txt version.txt
 
 clean:
 	rm -f *.xml *.html *.1 *.7 doc.dep
 	rm -f cmds.txt
 	rm -f usage-*.txt
+	rm -f version.txt
 
 usage-%.txt: $(MAN1_TXT) usage.sh
 	sh ./usage.sh
 
-%.html : %.txt
+%.html : %.txt footer.txt version.txt
 	$(ASCIIDOC) -b xhtml11 -d manpage -f asciidoc.conf $(ASCIIDOC_EXTRA) $<
 
 %.1 %.7 : %.xml
 	xmlto -m callouts.xsl man $<
 
-%.xml : %.txt
+%.xml : %.txt footer.txt version.txt
 	$(ASCIIDOC) -b docbook -d manpage -f asciidoc.conf $<

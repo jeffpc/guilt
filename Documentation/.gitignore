@@ -12,8 +12,9 @@ usage-*.txt
 # Generated html man pages
 *.html
 
-# Generated list of commands
+# Generated list of commands & version string
 cmds.txt
+version.txt
 
 # Generated file dependency list
 doc.dep

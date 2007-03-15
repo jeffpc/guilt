@@ -1,0 +1,5 @@
+GUILT
+-----
+Part of the guiltlink:guilt[7] suite
+include::version.txt[]
+
