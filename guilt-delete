@@ -36,8 +36,7 @@ if [ ! -z "$p" ] ; then
 	die "Cannot delete an applied patch"
 fi
 
-grep -v "^$patch\$" < "$series" > "$series.tmp"
-mv "$series.tmp" "$series"
+series_remove_patch "$patch"
 
 [ ! -z "$force" ] && rm -f $GUILT_DIR/$branch/$patch
 
