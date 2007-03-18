@@ -248,11 +248,13 @@ function head_check
 # usage: series_insert_patch <patchname>
 function series_insert_patch
 {
-	local top=`get_top`
+	local top=`get_top | sed -e 's,/,\\\\/,g'`
+	local new=`echo "$1" | sed -e 's,/,\\\\/,g'` 
 
 	if [ ! -z "$top" ]; then
-		sed -i -e "s,^$top\$,$top\n$1," "$series"
+		sed -i -e "s/^$top\$/$top\n$new/" "$series"
 	else
+		# don't use $new here as it would only complicate things
 		echo "$1" > "$series.tmp"
 		cat "$series" >> "$series.tmp"
 		mv "$series.tmp" "$series"
