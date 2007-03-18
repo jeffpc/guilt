@@ -1,0 +1,27 @@
+guilt-fold(1)
+=============
+
+NAME
+----
+guilt-fold - Fold a specified patch into the topmost applied patch
+
+SYNOPSIS
+--------
+include::usage-guilt-fold.txt[]
+
+OPTIONS
+-------
+<patchname>::
+	Fold this patch into the topmost applied patch. 'patchname' is
+	removed from the series, as well as from the patches directory. (A
+	backup file is created.)
+
+Author
+------
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+Documentation
+-------------
+Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+include::footer.txt[]
