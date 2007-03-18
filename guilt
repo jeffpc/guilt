@@ -259,12 +259,6 @@ function series_insert_patch
 	fi
 }
 
-# usage: pop_patch
-function pop_patch
-{
-	pop_many_patches HEAD^ 1
-}
-
 # usage: pop_many_patches <commitish> <number of patches>
 function pop_many_patches
 {
@@ -426,6 +420,12 @@ function must_commit_first
 # usage: refresh_patch patchname
 function refresh_patch
 {
+	__refresh_patch "$1" HEAD^ 1
+}
+
+# usage: __refresh_patch patchname commitish number_of_commits
+function __refresh_patch
+{
 	local p="$GUILT_DIR/$branch/$1"
 
 	assert_head_check
@@ -446,9 +446,9 @@ function refresh_patch
 
 	cd - 2>&1 >/dev/null
 
-	# drop the currently applied patch, pop_patch does it's own cd
-	# $TOP_DIR
-	pop_patch
+	# drop the currently applied patch, pop_many_patches does it's own
+	# cd $TOP_DIR
+	pop_many_patches "$2" "$3"
 
 	# push_patch does it's own cd $TOP_DIR
 	push_patch "$1"
