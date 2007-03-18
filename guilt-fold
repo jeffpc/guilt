@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+#
+
+USAGE="<patchname>"
+. guilt
+
+if [ $# -ne 1 ]; then
+	usage
+fi
+
+patch="$1"
+if [ -z "$patch" ]; then
+	die "No patch name supplied."
+fi
+
+# make sure that there are no unapplied changes
+if ! must_commit_first; then
+	die "Uncommited changes detected. Refresh first."
+fi
+
+# make sure it is not applied
+pline=`cat $applied | grep -e "^[0-9a-f]\{40\}:$patch\$"`
+if [ ! -z "$pline" ]; then
+	die "Patch is applied. Pop the patch first."
+fi
+
+# make sure it is a file
+if [ ! -f "$GUILT_DIR/$branch/$patch" ]; then
+	die "Patch '$patch' is not a regular file."
+fi
+
+fold_patch "$patch"
+
+# back it up just in case :)
+mv "$1" "$1~"

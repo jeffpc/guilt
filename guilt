@@ -259,6 +259,13 @@ function series_insert_patch
 	fi
 }
 
+# usage: series_remove_patch <patchname>
+function series_remove_patch
+{
+	grep -v "^$1\$" < "$series" > "$series.tmp"
+	mv "$series.tmp" "$series"
+}
+
 # usage: pop_many_patches <commitish> <number of patches>
 function pop_many_patches
 {
@@ -417,6 +424,20 @@ function must_commit_first
 	return $?
 }
 
+# usage: fold_patch patchname
+function fold_patch
+{
+	local top_patch=`get_top`
+
+	assert_head_check
+
+	push_patch "$1"
+
+	__refresh_patch "$top_patch" HEAD^^ 2
+
+	series_remove_patch "$1"
+}
+
 # usage: refresh_patch patchname
 function refresh_patch
 {
@@ -438,7 +459,7 @@ function __refresh_patch
 	do_get_full_header "$p" > /tmp/guilt.diff.$$
 
 	# get the new patch
-	git-diff HEAD^ >> /tmp/guilt.diff.$$
+	git-diff "$2" >> /tmp/guilt.diff.$$
 
 	# move the new patch in
 	mv "$p" "$p~"
