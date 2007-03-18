@@ -34,4 +34,4 @@ fi
 fold_patch "$patch"
 
 # back it up just in case :)
-mv "$1" "$1~"
+mv "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$patch~"
