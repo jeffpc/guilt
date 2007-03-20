@@ -3,8 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-GUILT_VERSION="0.22"
-GUILT_NAME="Missing Pieces"
+GUILT_VERSION="0.23"
+GUILT_NAME="Space Rock"
 
 # we change directories ourselves
 SUBDIRECTORY_OK=1
