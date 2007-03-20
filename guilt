@@ -268,6 +268,27 @@ function series_remove_patch
 	mv "$series.tmp" "$series"
 }
 
+# usage: series_rename_patch <oldname> <newname>
+function series_rename_patch
+{
+	local old=`echo "$1" | sed -e 's,/,\\\\/,g'`
+	local new=`echo "$2" | sed -e 's,/,\\\\/,g'` 
+
+	sed -i -e "s/^$old\$/$new/" "$series"
+}
+
+# Beware! This is one of the few (only?) places where we modify the applied
+# file directly
+#
+# usage: applied_rename_patch <oldname> <newname>
+function applied_rename_patch
+{
+	local old=`echo "$1" | sed -e 's,/,\\\\/,g'`
+	local new=`echo "$2" | sed -e 's,/,\\\\/,g'` 
+
+	sed -i -e "s/^\\([0-9a-f]\\{40\\}\\):$old\$/\\1:$new/" "$applied"
+}
+
 # usage: pop_many_patches <commitish> <number of patches>
 function pop_many_patches
 {

@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2007
+#
+
+. guilt
+
+if [ $# -gt 0 ]; then
+	usage
+fi
+
+patch=`get_top`
+if [ -z "$patch" ]; then
+	die "No patches are applied."
+fi
+
+# make sure that there are no unapplied changes
+if ! must_commit_first; then
+	die "Uncommited changes detected. Refresh first."
+fi
+
+# FIXME: Be smarter about the new patchname (ala what quilt does)
+newpatch="$patch-2"
+
+# copy the patch
+cp "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$newpatch"
+
+# replace the series & applied file references
+series_rename_patch "$patch" "$newpatch"
+applied_rename_patch "$patch" "$newpatch"
