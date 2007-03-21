@@ -1,0 +1,41 @@
+.\"     Title: guilt\-import\-commit
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.71.0 <http://docbook.sf.net/>
+.\"      Date: 03/20/2007
+.\"    Manual: 
+.\"    Source: 
+.\"
+.TH "GUILT\-IMPORT\-COMMIT" "1" "03/20/2007" "" ""
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+guilt\-import\-commit \- Import one or more commits as patches
+.SH "SYNOPSIS"
+\fIguilt\-import\-commit\fR [<hash> | <since>..[<until>] | ..<until>]
+.SH "DESCRIPTION"
+Import one or more commits as individual patches.
+.SH "OPTIONS"
+.PP
+<hash>
+.RS 3n
+Only the specified revision.
+.RE
+.PP
+<since>..[<until>]
+.RS 3n
+Revisions starting from \fI<since>\fR until \fI<until>\fR. The \fI<since>\fR revision it self is NOT included, while \fI<until>\fR is. If \fI<until>\fR is not specified, it is assumed to be HEAD.
+.RE
+.PP
+..<until>
+.RS 3n
+All revisions until the \fI<until>\fR revision (inclusive).
+.RE
+.SH "AUTHOR"
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+.SH "DOCUMENTATION"
+Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+.SH "GUILT"
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.23)
+

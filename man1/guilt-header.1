@@ -1,25 +1,30 @@
-.\"     Title: guilt\-next
+.\"     Title: guilt\-header
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.71.0 <http://docbook.sf.net/>
 .\"      Date: 03/20/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-NEXT" "1" "03/20/2007" "" ""
+.TH "GUILT\-HEADER" "1" "03/20/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt\-next \- Output the name of next patch to be pushed
+guilt\-header \- Print a patch header
 .SH "SYNOPSIS"
-\fIguilt\-next\fR
+\fIguilt\-header\fR [<patchname>]
 .SH "DESCRIPTION"
-Output the name of next patch to be pushed. If guilt\-push(1) is issued, this patch would be the topmost patch.
+Prints either the topmost patches' header or the header of a specified patch.
+.PP
+<patchname>
+.RS 3n
+Name of the patch.
+.RE
 .SH "AUTHOR"
 Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "DOCUMENTATION"
-Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Documentation by Brandon Philips <brandon@ifup.org>
 .SH "GUILT"
 Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.23)
 
