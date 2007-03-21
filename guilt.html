@@ -314,11 +314,75 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 <em>quilt-add</em></p>
 <dl>
 <dt>
+<a href="guilt-add.html">guilt-add(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-add - Add a file to git and guilt.
+</p>
+</dd>
+<dt>
+<a href="guilt-applied.html">guilt-applied(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-applied - List applied patches.
+</p>
+</dd>
+<dt>
+<a href="guilt-delete.html">guilt-delete(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-delete - Delete a patch.
+</p>
+</dd>
+<dt>
 <a href="guilt-files.html">guilt-files(1)</a>
 </dt>
 <dd>
 <p>
-        Print the list of files that the topmost patch changes.
+        guilt-files - Print the list of files that the topmost patch changes.
+</p>
+</dd>
+<dt>
+<a href="guilt-fold.html">guilt-fold(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-fold - Fold a specified patch into the topmost applied patch.
+</p>
+</dd>
+<dt>
+<a href="guilt-fork.html">guilt-fork(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-fork - Fork the topmost applied patch.
+</p>
+</dd>
+<dt>
+<a href="guilt-header.html">guilt-header(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-header - Print a patch header.
+</p>
+</dd>
+<dt>
+<a href="guilt-help.html">guilt-help(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-help - open man page of a guilt command.
+</p>
+</dd>
+<dt>
+<a href="guilt-import-commit.html">guilt-import-commit(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-import-commit - Import one or more commits as patches.
 </p>
 </dd>
 <dt>
@@ -326,7 +390,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </dt>
 <dd>
 <p>
-        Initialize guilt for use in a git repository.
+        guilt-init - Initialize guilt for use in a git repository.
 </p>
 </dd>
 <dt>
@@ -334,7 +398,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </dt>
 <dd>
 <p>
-        Create a new patch.
+        guilt-new - Create a new patch.
 </p>
 </dd>
 <dt>
@@ -342,7 +406,23 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </dt>
 <dd>
 <p>
-        Output name of next patch to be pushed.
+        guilt-next - Output the name of next patch to be pushed.
+</p>
+</dd>
+<dt>
+<a href="guilt-patchbomb.html">guilt-patchbomb(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-patchbomb - Email a series of commits interactively.
+</p>
+</dd>
+<dt>
+<a href="guilt-pop.html">guilt-pop(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-pop - Pop patches from the tree.
 </p>
 </dd>
 <dt>
@@ -350,7 +430,15 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </dt>
 <dd>
 <p>
-        Output name of second topmost applied patch.
+        guilt-prev - Output name of second topmost applied patch.
+</p>
+</dd>
+<dt>
+<a href="guilt-push.html">guilt-push(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-push - Push patches onto the tree.
 </p>
 </dd>
 <dt>
@@ -358,7 +446,31 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </dt>
 <dd>
 <p>
-        Refresh topmost applied patch.
+        guilt-refresh - Refresh topmost applied patch.
+</p>
+</dd>
+<dt>
+<a href="guilt-rm.html">guilt-rm(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-rm - Remove a file from the git tree and guilt.
+</p>
+</dd>
+<dt>
+<a href="guilt-series.html">guilt-series(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-series - Print the stack of patches.
+</p>
+</dd>
+<dt>
+<a href="guilt-status.html">guilt-status(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-status - Print the status of files since the last refresh.
 </p>
 </dd>
 <dt>
@@ -366,7 +478,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </dt>
 <dd>
 <p>
-        Output name of topmost applied patch.
+        guilt-top - Output name of topmost applied patch.
 </p>
 </dd>
 <dt>
@@ -374,7 +486,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </dt>
 <dd>
 <p>
-        List all unapplied patches.
+        guilt-unapplied - List all unapplied patches.
 </p>
 </dd>
 </dl>
@@ -390,11 +502,12 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </div>
 <h2>GUILT</h2>
 <div class="sectionbody">
-<p>Part of the <a href="guilt.html">guilt(7)</a> suite</p>
+<p>Part of the <a href="guilt.html">guilt(7)</a> suite
+(Generated for Guilt v0.23)</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 11-Mar-2007 15:25:44 EDT
+Last updated 20-Mar-2007 19:59:45 EDT
 </div>
 </div>
 </body>

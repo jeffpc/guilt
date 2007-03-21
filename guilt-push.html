@@ -264,23 +264,55 @@ div.exampleblock-content {
   padding-left: 0.5em;
 }
 </style>
-<title>guilt-top(1)</title>
+<title>guilt-push(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-top(1) Manual Page
+guilt-push(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-top -
-   Output name of topmost applied patch
+<p>guilt-push -
+   Push patches onto the tree
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-top</em></p>
+<p><em>guilt-push</em> [ -f ] [-a | --all | &lt;patchname&gt;]</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+-f
+</dt>
+<dd>
+<p>
+        Force the push if the patch doesn't apply cleanly
+</p>
+</dd>
+<dt>
+--all
+</dt>
+<dt>
+-a
+</dt>
+<dd>
+<p>
+        Push all patches on the tree
+</p>
+</dd>
+<dt>
+&lt;patchname&gt;
+</dt>
+<dd>
+<p>
+        Push this patch on the tree
+</p>
+</dd>
+</dl>
 </div>
 <h2>Author</h2>
 <div class="sectionbody">
@@ -288,7 +320,7 @@ guilt-top(1) Manual Page
 </div>
 <h2>Documentation</h2>
 <div class="sectionbody">
-<p>Documentation by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p>
+<p>Documentation by Brandon Philips &lt;brandon@ifup.org&gt;</p>
 </div>
 <h2>GUILT</h2>
 <div class="sectionbody">
@@ -297,7 +329,7 @@ guilt-top(1) Manual Page
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 20-Mar-2007 19:59:44 EDT
+Last updated 20-Mar-2007 19:59:41 EDT
 </div>
 </div>
 </body>

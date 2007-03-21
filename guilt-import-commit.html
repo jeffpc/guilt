@@ -264,23 +264,58 @@ div.exampleblock-content {
   padding-left: 0.5em;
 }
 </style>
-<title>guilt-top(1)</title>
+<title>guilt-import-commit(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-top(1) Manual Page
+guilt-import-commit(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-top -
-   Output name of topmost applied patch
+<p>guilt-import-commit -
+   Import one or more commits as patches
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-top</em></p>
+<p><em>guilt-import-commit</em> [&lt;hash&gt; | &lt;since&gt;..[&lt;until&gt;] | ..&lt;until&gt;]</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Import one or more commits as individual patches.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+&lt;hash&gt;
+</dt>
+<dd>
+<p>
+        Only the specified revision.
+</p>
+</dd>
+<dt>
+&lt;since&gt;..[&lt;until&gt;]
+</dt>
+<dd>
+<p>
+        Revisions starting from <em>&lt;since&gt;</em> until <em>&lt;until&gt;</em>. The <em>&lt;since&gt;</em>
+        revision it self is NOT included, while <em>&lt;until&gt;</em> is. If <em>&lt;until&gt;</em>
+        is not specified, it is assumed to be HEAD.
+</p>
+</dd>
+<dt>
+..&lt;until&gt;
+</dt>
+<dd>
+<p>
+        All revisions until the <em>&lt;until&gt;</em> revision (inclusive).
+</p>
+</dd>
+</dl>
 </div>
 <h2>Author</h2>
 <div class="sectionbody">
@@ -297,7 +332,7 @@ guilt-top(1) Manual Page
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 20-Mar-2007 19:59:44 EDT
+Last updated 20-Mar-2007 19:59:38 EDT
 </div>
 </div>
 </body>

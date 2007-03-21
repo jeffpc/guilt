@@ -264,23 +264,53 @@ div.exampleblock-content {
   padding-left: 0.5em;
 }
 </style>
-<title>guilt-top(1)</title>
+<title>guilt-delete(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-top(1) Manual Page
+guilt-delete(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-top -
-   Output name of topmost applied patch
+<p>guilt-delete -
+   Delete a patch
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-top</em></p>
+<p><em>guilt-delete</em> [-f] &lt;patchname&gt;</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Delete an unapplied patch from the series.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+-f
+</dt>
+<dd>
+<p>
+        Remove the patch from the series and disk
+</p>
+</dd>
+<dt>
+&lt;patchname&gt;
+</dt>
+<dd>
+<p>
+        Name of the patch to delete.
+</p>
+</dd>
+</dl>
+</div>
+<h2>EXAMPLES</h2>
+<div class="sectionbody">
+<p>Delete a patch called <em>foobar</em>:</p>
+<p>$ guilt-delete foobar</p>
 </div>
 <h2>Author</h2>
 <div class="sectionbody">
@@ -288,7 +318,7 @@ guilt-top(1) Manual Page
 </div>
 <h2>Documentation</h2>
 <div class="sectionbody">
-<p>Documentation by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p>
+<p>Documentation by Brandon Philips &lt;brandon@ifup.org&gt;</p>
 </div>
 <h2>GUILT</h2>
 <div class="sectionbody">
@@ -297,7 +327,7 @@ guilt-top(1) Manual Page
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 20-Mar-2007 19:59:44 EDT
+Last updated 20-Mar-2007 19:59:36 EDT
 </div>
 </div>
 </body>
