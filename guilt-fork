@@ -19,8 +19,12 @@ if ! must_commit_first; then
 	die "Uncommited changes detected. Refresh first."
 fi
 
-# FIXME: Be smarter about the new patchname (ala what quilt does)
-newpatch="$patch-2"
+# Rename patches smartly
+base=$(echo "$patch" \
+	| sed -r -e 's:(\.diff?|\.patch)$::')
+num=$(echo "$base" | sed -nre 's:.*-([0-9]+)$:\1:'p)
+[ -n "$num" ] || num=1
+newpatch="${base%-$num}-$((num+1))${patch#$base}"
 
 # copy the patch
 cp "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$newpatch"
