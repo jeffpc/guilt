@@ -3,9 +3,10 @@
 # Copyright (c) Josef "Jeff" Sipek, 2007
 #
 
+USAGE="[<new_name>]"
 . guilt
 
-if [ $# -gt 0 ]; then
+if [ $# -gt 1 ]; then
 	usage
 fi
 
@@ -20,11 +21,19 @@ if ! must_commit_first; then
 fi
 
 # Rename patches smartly
-base=$(echo "$patch" \
-	| sed -r -e 's:(\.diff?|\.patch)$::')
-num=$(echo "$base" | sed -nre 's:.*-([0-9]+)$:\1:'p)
-[ -n "$num" ] || num=1
-newpatch="${base%-$num}-$((num+1))${patch#$base}"
+if [ $# -eq 1 ]; then
+	newpatch="$1"
+else
+	base=$(echo "$patch" \
+		| sed -r -e 's:(\.diff?|\.patch)$::')
+	num=$(echo "$base" | sed -nre 's:.*-([0-9]+)$:\1:'p)
+	[ -n "$num" ] || num=1
+	newpatch="${base%-$num}-$((num+1))${patch#$base}"
+fi
+
+if [ -e "$GUILT_DIR/$branch/$newpatch" ]; then
+	die "Patch \"$newpatch\" already exists. Choose another name."
+fi
 
 # copy the patch
 cp "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$newpatch"
