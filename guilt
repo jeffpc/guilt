@@ -6,6 +6,15 @@
 GUILT_VERSION="0.23"
 GUILT_NAME="Space Rock"
 
+# If the first argument is one of the below, display the man page instead of
+# the rather silly and mostly useless usage string
+case $1 in
+	-h|--h|--he|--hel|--help)
+	shift
+	exec "guilt-help" "$@"
+	exit
+esac
+
 # we change directories ourselves
 SUBDIRECTORY_OK=1
 
