@@ -22,6 +22,39 @@ Each file is printed with a prefix that describes it's status.
  U   unmerged
  ?   untracked
 
+OPTIONS
+-------
+-a::
+-A::
+	Display only added files
+
+-c::
+-C::
+	Display only copied files
+
+-d::
+-D::
+	Display only deleted files
+
+-m::
+-M::
+	Display only modified files
+
+-r::
+-R::
+	Display only renamed files
+
+-t::
+-T::
+	Display only files with a status change (e.g., mode)
+
+-u::
+-U::
+	Display only unmerged files
+
+-x::
+-X::
+	Display only unknown files
 
 Author
 ------
