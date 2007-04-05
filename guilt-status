@@ -81,6 +81,8 @@ function print_status
 	done
 }
 
+cd "$TOP_DIR"
+
 (
 # untracked; FIXME: there's got to be a better way
 if [ ! -z "$untracked" ]; then
@@ -109,3 +111,4 @@ fi | sed -e '
 '
 ) | print_status
 
+cd - 2>&1 >/dev/null
