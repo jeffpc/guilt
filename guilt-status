@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="[-a|-A] [-c|-C] [-d|-D] [-m|-M] [-r|-R] [-t|-T] [-u|-U] [-x|-X]"
+USAGE="[-a|-A] [-c|-C] [-d|-D] [-m|-M] [-r|-R] [-t|-T] [-u|-U] [-x|-X] [-n]"
 . guilt
 
 untracked=""
@@ -35,6 +35,9 @@ while [ $# -gt 0 ]; do
 			untracked="t"
 			DIFF_FILTER="X$DIFF_FILTER"
 			;;
+		-n)
+			no_prefix="t"
+			;;
 		*)
 			usage
 			;;
@@ -52,17 +55,28 @@ git-rev-parse --verify HEAD >/dev/null 2>&1 || IS_INITIAL=t
 
 function print_status
 {
+	if [ -z "$no_prefix" ] ; then
+		Apfx="A "
+		Cpfx="C "
+		Dpfx="D "
+		Mpfx="M "
+		Rpfx="R "
+		Tpfx="T "
+		Upfx="U "
+		Xpfx="? "
+	fi
+
 	while read status name newname
 	do
 		case "$status" in
-			A*) echo "A $name";;
-			C*) echo "C $name -> $newname";;
-			D*) echo "D $name";;
-			M ) echo "M $name";;
-			R*) echo "R $name -> $newname";;
-			T ) echo "T $name";;
-			U ) echo "U $name";;
-			? ) echo "? $name";;
+			A*) echo "$Apfx$name";;
+			C*) echo "$Cpfx$name -> $newname";;
+			D*) echo "$Dpfx$name";;
+			M ) echo "$Mpfx$name";;
+			R*) echo "$Rpfx$name -> $newname";;
+			T ) echo "$Tpfx$name";;
+			U ) echo "$Upfx$name";;
+			? ) echo "$Xpfx$name";;
 		esac
 	done
 }

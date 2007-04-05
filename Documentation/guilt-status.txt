@@ -24,6 +24,9 @@ Each file is printed with a prefix that describes it's status.
 
 OPTIONS
 -------
+-n::
+	Hide status prefix in the output
+
 -a::
 -A::
 	Display only added files
