@@ -14,11 +14,12 @@ DESCRIPTION
 Each file is printed with a prefix that describes it's status.
 
  A   added
- M   unmerged
+ C   copied
  D   deleted
- R   removed/deleted
- C   modified/changed
- K   to be killed
+ M   modified
+ R   renamed
+ T   type change (e.g., mode)
+ U   unmerged
  ?   untracked
 
 

@@ -3,11 +3,49 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE=""
+USAGE="[-a|-A] [-c|-C] [-d|-D] [-m|-M] [-r|-R] [-t|-T] [-u|-U] [-x|-X]"
 . guilt
 
-if [ $# -ne 0 ]; then
-	usage
+untracked=""
+DIFF_FILTER=""
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-a|-A)
+			DIFF_FILTER="A$DIFF_FILTER"
+			;;
+		-c|-C)
+			DIFF_FILTER="C$DIFF_FILTER"
+			;;
+		-d|-D)
+			DIFF_FILTER="D$DIFF_FILTER"
+			;;
+		-m|-M)
+			DIFF_FILTER="M$DIFF_FILTER"
+			;;
+		-r|-R)
+			DIFF_FILTER="R$DIFF_FILTER"
+			;;
+		-t|-T)
+			DIFF_FILTER="T$DIFF_FILTER"
+			;;
+		-u|-U)
+			DIFF_FILTER="U$DIFF_FILTER"
+			;;
+		-x|-X)
+			untracked="t"
+			DIFF_FILTER="X$DIFF_FILTER"
+			;;
+		*)
+			usage
+			;;
+	esac
+	shift
+done
+
+# default status displays all
+if [ -z "$DIFF_FILTER" ]; then
+	untracked="t"
+	DIFF_FILTER="ACDMRT"
 fi
 
 git-rev-parse --verify HEAD >/dev/null 2>&1 || IS_INITIAL=t
@@ -17,44 +55,43 @@ function print_status
 	while read status name newname
 	do
 		case "$status" in
-			M ) echo "M $name";;
-			D*) echo "D $name";;
-			T ) echo "T $name";;
-			C*) echo "C $name -> $newname";;
-			R*) echo "R $name -> $newname";;
 			A*) echo "A $name";;
+			C*) echo "C $name -> $newname";;
+			D*) echo "D $name";;
+			M ) echo "M $name";;
+			R*) echo "R $name -> $newname";;
+			T ) echo "T $name";;
 			U ) echo "U $name";;
+			? ) echo "? $name";;
 		esac
 	done
 }
 
+(
+# untracked; FIXME: there's got to be a better way
+if [ ! -z "$untracked" ]; then
+	if [ -f "$GIT_DIR/info/exclude" ]; then
+		git-ls-files -z --others \
+		--exclude-from="$GIT_DIR/info/exclude" \
+		--exclude-per-directory=.gitignore
+	else
+		git-ls-files -z --others --exclude-per-directory=.gitignore
+	fi | xargs -0 -L 1 echo | while read n; do
+		[ -z "$n" ] && continue
+		echo "$n" | sed -e "s/^/?\t/"
+	done
+fi
+
 # added
 if [ -z "$IS_INITIAL" ]; then
 	# non-initial commit
-	git-diff-index -M --cached --name-status --diff-filter=MDTCRA HEAD |
-	sed -e '
-		s/\\/\\\\/g
-		s/ /\\ /g
-	' | print_status
+	git-diff-index -M --name-status --diff-filter=$DIFF_FILTER HEAD
 else
 	# initial commit
-	git-ls-files |
-	sed -e '
-		s/\\/\\\\/g
-		s/ /\\ /g
-		s/^/A /
-	' | print_status
-fi
-
-# untracked
-if [ -f "$GIT_DIR/info/exclude" ]; then
-	git-ls-files -z --others \
-	--exclude-from="$GIT_DIR/info/exclude" \
-	--exclude-per-directory=.gitignore
-else
-	git-ls-files -z --others --exclude-per-directory=.gitignore
-fi | xargs -0 -L 1 echo | while read n; do
-	[ -z "$n" ] && continue
-	echo "$n" | sed -e 's/^/? /'
-done
+	git-ls-files | sed -e "s/^/A\t/"
+fi | sed -e '
+	s/\\/\\\\/g
+	s/ /\\ /g
+'
+) | print_status
 
