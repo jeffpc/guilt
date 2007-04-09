@@ -14,7 +14,8 @@ DESCRIPTION
 Print the stack of patches on this branch.
 
 -v::
-	Add a + next to the top most applied patch
+	Verbose output; adds an = next to the top most applied patch, and a
+	+ to all other applied patches
 
 Author
 ------
