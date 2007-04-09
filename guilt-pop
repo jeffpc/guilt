@@ -3,16 +3,38 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="[-a | --all | <patchname>]"
+USAGE="[-f] [-a | --all | <patchname>]"
 . guilt
 
-if [ $# -gt 1 ]; then
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-f)
+			force=t
+			;;
+		-a|--all)
+			all=t
+			;;
+		*)
+			break
+			;;
+	esac
+	shift
+done
+
+# "guilt-pop" or "guilt-pop foo"
+if [ -z "$all" ] && [ $# -gt 1 ]; then
+	usage
+fi
+
+# "guilt-pop -a"
+if [ ! -z "$all" ] && [ $# -gt 0 ]; then
 	usage
 fi
 
 patch="$1"
+[ ! -z "$all" ] && patch="-a"
 
-if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
+if [ "$patch" = "-a" ]; then
 	# we are supposed to pop all patches
 
 	sidx=`wc -l < $applied`
@@ -36,7 +58,12 @@ else
 fi
 
 # make sure that there are no unapplied changes
-if ! must_commit_first; then
+# if we are forcing the pop, reset first
+if [ ! -z "$force" ]; then
+	cd "$TOP_DIR" >&2 >/dev/null
+	git-reset --hard
+	cd - >&2 >/dev/null
+elif ! must_commit_first; then
 	die "Uncommited changes detected. Refresh first."
 fi
 

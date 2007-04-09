@@ -15,6 +15,9 @@ OPTIONS
 -a::
 	Pop all patches off the tree
 
+-f::
+	Force; discards any unrefreshed changes
+
 <patchname>::
 	Pop this patch off the tree
 
