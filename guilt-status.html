@@ -280,7 +280,7 @@ guilt-status(1) Manual Page
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-status</em></p>
+<p><em>guilt-status</em> [-a|-A] [-c|-C] [-d|-D] [-m|-M] [-r|-R] [-t|-T] [-u|-U] [-x|-X] [-n]</p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
@@ -288,13 +288,115 @@ guilt-status(1) Manual Page
 <div class="literalblock">
 <div class="content">
 <pre><tt>A   added
-M   unmerged
+C   copied
 D   deleted
-R   removed/deleted
-C   modified/changed
-K   to be killed
+M   modified
+R   renamed
+T   type change (e.g., mode)
+U   unmerged
 ?   untracked</tt></pre>
 </div></div>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+-n
+</dt>
+<dd>
+<p>
+        Hide status prefix in the output
+</p>
+</dd>
+<dt>
+-a
+</dt>
+<dt>
+-A
+</dt>
+<dd>
+<p>
+        Display only added files
+</p>
+</dd>
+<dt>
+-c
+</dt>
+<dt>
+-C
+</dt>
+<dd>
+<p>
+        Display only copied files
+</p>
+</dd>
+<dt>
+-d
+</dt>
+<dt>
+-D
+</dt>
+<dd>
+<p>
+        Display only deleted files
+</p>
+</dd>
+<dt>
+-m
+</dt>
+<dt>
+-M
+</dt>
+<dd>
+<p>
+        Display only modified files
+</p>
+</dd>
+<dt>
+-r
+</dt>
+<dt>
+-R
+</dt>
+<dd>
+<p>
+        Display only renamed files
+</p>
+</dd>
+<dt>
+-t
+</dt>
+<dt>
+-T
+</dt>
+<dd>
+<p>
+        Display only files with a status change (e.g., mode)
+</p>
+</dd>
+<dt>
+-u
+</dt>
+<dt>
+-U
+</dt>
+<dd>
+<p>
+        Display only unmerged files
+</p>
+</dd>
+<dt>
+-x
+</dt>
+<dt>
+-X
+</dt>
+<dd>
+<p>
+        Display only unknown files
+</p>
+</dd>
+</dl>
 </div>
 <h2>Author</h2>
 <div class="sectionbody">
@@ -307,11 +409,11 @@ K   to be killed
 <h2>GUILT</h2>
 <div class="sectionbody">
 <p>Part of the <a href="guilt.html">guilt(7)</a> suite
-(Generated for Guilt v0.23)</p>
+(Generated for Guilt v0.24)</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 20-Mar-2007 19:59:43 EDT
+Last updated 17-Apr-2007 13:48:36 EDT
 </div>
 </div>
 </body>
