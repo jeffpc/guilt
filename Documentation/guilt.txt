@@ -42,8 +42,8 @@ status: This file contains the state of the stack. What patches are applied.
 
 GUILT COMMANDS
 --------------
-All commands can be called with or without a dash. e.g. 'quilt add' or
-'quilt-add'
+All commands can be called with or without a dash. e.g. 'guilt add' or
+'guilt-add'
 
 include::cmds.txt[]
 
