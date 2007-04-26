@@ -3,10 +3,21 @@
 # Copyright (c) Josef "Jeff" Sipek, 2007
 #
 
-USAGE="<patch_file>"
+USAGE="[-P <patch> ] <patch_file>"
 . guilt
 
-if [ $# -gt 1 -o -z "$1" ]; then
+case "$1" in
+	-P)
+		newname="$2"
+		oldname="$3"
+		;;
+	*)
+		newname=`dirname "$1"`
+		oldname="$1"
+		;;
+esac
+
+if [ $# -lt 1 -o $# -gt 3 -o -z "$newname" -o -z "$oldname" ]; then
 	usage
 fi
 
@@ -15,14 +26,19 @@ if ! must_commit_first; then
 	die "Uncommited changes detected. Refresh first."
 fi
 
-
-if [ ! -e "$1" ]; then
+if [ ! -e "$oldname" ]; then
 	die "Specified file does not exist."
 fi
 
-pn=`basename "$1"`
+if [ -e "$GUILT_DIR/$branch/$newname" ]; then
+	die "Already tracking a patch under that name."
+fi
 
-cp "$1" "$GUILT_DIR/$branch/$pn"
+# create any directories as needed
+mkdir_dir=`dirname "$GUILT_DIR/$branch/$newname"`
+[ "$mkdir_dir" != "$GUILT_DIR/$branch" ] && mkdir -p "$mkdir_dir"
+
+cp "$oldname" "$GUILT_DIR/$branch/$newname"
 
 # insert the patch into the series file
-series_insert_patch "$pn"
+series_insert_patch "$newname"

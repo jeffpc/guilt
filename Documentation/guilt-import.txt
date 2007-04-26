@@ -16,6 +16,9 @@ current topmost patch.
 
 OPTIONS
 -------
+-P <patch>::
+	Name of the patch within Guilt.
+
 <patch_file>::
 	Name of the file to be imported into the series.
 
