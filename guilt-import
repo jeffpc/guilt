@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2007
+#
+
+USAGE="<patch_file>"
+. guilt
+
+if [ $# -gt 1 -o -z "$1" ]; then
+	usage
+fi
+
+# make sure that there are no unapplied changes
+if ! must_commit_first; then
+	die "Uncommited changes detected. Refresh first."
+fi
+
+
+if [ ! -e "$1" ]; then
+	die "Specified file does not exist."
+fi
+
+pn=`basename "$1"`
+
+cp "$1" "$GUILT_DIR/$branch/$pn"
+
+# insert the patch into the series file
+series_insert_patch "$pn"
