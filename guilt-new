@@ -67,10 +67,10 @@ mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
 # create the file with the right contents
 (
 # did we get a message with -m ?
-[ ! -z "$msg" ] && echo "$msg"
+[ ! -z "$msg" ] && printf "$msg\n\n"
 
 # add a sign-off-by (-s)
-[ "$signoff" = "t" ] && echo -e "\nSigned-off-by: `git-var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`"
+[ "$signoff" = "t" ] && printf "Signed-off-by: `git-var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`\n\n"
 ) >> "$GUILT_DIR/$branch/$patch"
 
 # edit -e ?
