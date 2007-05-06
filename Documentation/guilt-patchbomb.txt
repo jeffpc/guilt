@@ -19,6 +19,10 @@ OPTIONS
 -n::
 	Don't send
 
+--in-reply-to <msgid>::
+	Set the In-reply-to header to the specified message id. This allows
+	the patches to be sent as replies to an arbitrary message.
+
 include::hash-range.txt[]
 
 Author

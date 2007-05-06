@@ -5,29 +5,29 @@
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
-USAGE="[-n] [<hash> | <since>..[<until>] | ..<until>]"
+USAGE="[-n] [--in-reply-to <msgid>] [<hash> | <since>..[<until>] | ..<until>]"
 . guilt
 
-case $# in
-	1)
-		r="$1"
-		;;
-	2)
-		r="$2"
-		do_not_send=t
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-n)
+			do_not_send=t
+			;;
+		--in-reply-to)
+			reply_to="$2"
+			shift
+			;;
+		*)
+			break
+			;;
+	esac
+	shift
+done
 
-		if [ "$1" != "-n" ]; then
-			usage
-		fi
-		;;
-	*)
-		usage
-		;;
-esac
-
-r=`munge_hash_range $r`
-
-# FIXME: allow in-reply-to
+r=`munge_hash_range "$1"`
+if [ $? -ne 0 ]; then
+	usage
+fi
 
 # display the list of commits to be sent as patches
 git-log --pretty=oneline "$r" | cut -c 1-8,41- | $pager
@@ -62,14 +62,14 @@ for rc in $rawcc; do
 done
 
 opts=""
+
+# more than 1 commit
 if [ `git-rev-list "$r" | wc -l` -gt 1 ]; then
-	# more than 1 commit
-	opts="--no-chain-reply-to --compose"
+	opts="$opts --no-chain-reply-to --compose"
 fi
 opts="$opts $to_opts"
 
 # last possible point to abort!
-echo "About to execute 'git-send-email $opts $dir'"
 echo -n "Proceed with patchbomb (this is the last chance to abort)? [y/N] "
 read n
 if [ "$n" != "y" -a "$n" != "Y" ]; then
@@ -77,11 +77,16 @@ if [ "$n" != "y" -a "$n" != "Y" ]; then
 fi
 
 # ...and off they go.
-if [ -z "$do_not_send" ]; then
-	git-send-email $opts $dir
-else
+cmd="git-send-email"
+if [ ! -z "$do_not_send" ]; then
 	echo "-n passed: not sending, command that would be executed:" >&2
-	echo git-send-email $opts $dir
+	cmd="echo git-send-email"
+fi
+
+if [ -z "$reply_to" ]; then
+	$cmd $opts $dir
+else
+	$cmd --in-reply-to "$reply_to" $opts $dir
 fi
 
 # cleanup?
