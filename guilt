@@ -518,6 +518,8 @@ function __refresh_patch
 # The output of this function is suitable to be passed to git-rev-list
 function munge_hash_range
 {
+	[ -z "$1" ] && return 1
+
 	local l=`echo "$1" | sed -e 's/\.\./ /'`
 
 	local h1=`echo "$l" | cut -s -d' ' -f 1`
@@ -532,10 +534,15 @@ function munge_hash_range
 	elif [ -z "$h2" ]; then
 		# e.g., "v0.19.."
 		echo "$h1..HEAD"
-	else
+	elif [ ! -z "$h1" -a ! -z "$h2" ]; then
 		# e.g., "v0.19-rc1..v0.19"
 		echo "$h1..$h2"
+	else
+		# unknown hash range format
+		return 1
 	fi
+
+	return 0
 }
 
 #
