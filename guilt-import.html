@@ -264,136 +264,46 @@ div.exampleblock-content {
   padding-left: 0.5em;
 }
 </style>
-<title>guilt-status(1)</title>
+<title>guilt-import(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-status(1) Manual Page
+guilt-import(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-status -
-   Print the status of files since the last refresh
+<p>guilt-import -
+   Import specified patch file
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-status</em> [-a|-A] [-c|-C] [-d|-D] [-m|-M] [-r|-R] [-t|-T] [-u|-U] [-x|-X] [-n]</p>
+<p><em>guilt-import</em> [-P &lt;patch&gt; ] &lt;patch_file&gt;</p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
-<p>Each file is printed with a prefix that describes it's status.</p>
-<div class="literalblock">
-<div class="content">
-<pre><tt>A   added
-C   copied
-D   deleted
-M   modified
-R   renamed
-T   type change (e.g., mode)
-U   unmerged
-?   untracked</tt></pre>
-</div></div>
+<p>Import a specified patch file into the series, placing it after the
+current topmost patch.</p>
 </div>
 <h2>OPTIONS</h2>
 <div class="sectionbody">
 <dl>
 <dt>
--n
+-P &lt;patch&gt;
 </dt>
 <dd>
 <p>
-        Hide status prefix in the output
+        Name of the patch within Guilt.
 </p>
 </dd>
 <dt>
--a
-</dt>
-<dt>
--A
+&lt;patch_file&gt;
 </dt>
 <dd>
 <p>
-        Display only added files
-</p>
-</dd>
-<dt>
--c
-</dt>
-<dt>
--C
-</dt>
-<dd>
-<p>
-        Display only copied files
-</p>
-</dd>
-<dt>
--d
-</dt>
-<dt>
--D
-</dt>
-<dd>
-<p>
-        Display only deleted files
-</p>
-</dd>
-<dt>
--m
-</dt>
-<dt>
--M
-</dt>
-<dd>
-<p>
-        Display only modified files
-</p>
-</dd>
-<dt>
--r
-</dt>
-<dt>
--R
-</dt>
-<dd>
-<p>
-        Display only renamed files
-</p>
-</dd>
-<dt>
--t
-</dt>
-<dt>
--T
-</dt>
-<dd>
-<p>
-        Display only files with a status change (e.g., mode)
-</p>
-</dd>
-<dt>
--u
-</dt>
-<dt>
--U
-</dt>
-<dd>
-<p>
-        Display only unmerged files
-</p>
-</dd>
-<dt>
--x
-</dt>
-<dt>
--X
-</dt>
-<dd>
-<p>
-        Display only unknown files
+        Name of the file to be imported into the series.
 </p>
 </dd>
 </dl>
@@ -404,7 +314,7 @@ U   unmerged
 </div>
 <h2>Documentation</h2>
 <div class="sectionbody">
-<p>Documentation by Brandon Philips &lt;brandon@ifup.org&gt;</p>
+<p>Documentation by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p>
 </div>
 <h2>GUILT</h2>
 <div class="sectionbody">
@@ -413,7 +323,7 @@ U   unmerged
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 15-May-2007 13:21:27 EDT
+Last updated 15-May-2007 13:21:22 EDT
 </div>
 </div>
 </body>
