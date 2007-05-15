@@ -5,33 +5,14 @@
 # Heavily based on the long removed sh version of git-cherry
 #
 
-USAGE="<upstream> [<head>] [<limit>]"
+USAGE="<upstream>"
 . guilt
-
-case "$#,$1" in
-	1,*..*)
-		upstream=$(expr "z$1" : 'z\(.*\)\.\.')
-		ours=$(expr "z$1" : '.*\.\.\(.*\)$')
-		set x "$upstream" "$ours"
-		shift
-		;;
-esac
 
 case "$#" in
 	1) 
 		upstream=`git-rev-parse --verify "$1"` &&
-		ours=`git-rev-parse --verify HEAD` || exit
+		ours=`git-rev-parse --verify HEAD` || usage
 		limit="$upstream"
-		;;
-	2)
-		upstream=`git-rev-parse --verify "$1"` &&
-		ours=`git-rev-parse --verify "$2"` || exit
-		limit="$upstream"
-		;;
-	3)
-		upstream=`git-rev-parse --verify "$1"` &&
-		ours=`git-rev-parse --verify "$2"` &&
-		limit=`git-rev-parse --verify "$3"` || exit
 		;;
 	*)
 		usage

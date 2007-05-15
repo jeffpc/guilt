@@ -13,6 +13,21 @@ DESCRIPTION
 -----------
 Rebase pushed patches against an upstream branch.
 
+OPTIONS
+-------
+<upstream>::
+	Branch, tag, or a commit hash identifying upstream repository
+	history.
+
+EXAMPLES
+--------
+
+Rebase current tree against Linus's 2.6 tree
+
+$ git-fetch git://git.kernel.org/pub/scm/linux/kernel/git/tovalds/linux-2.6.git
+
+$ guilt-rebase FETCH_HEAD
+
 Author
 ------
 Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
