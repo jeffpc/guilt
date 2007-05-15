@@ -58,7 +58,7 @@ echo "HEAD is now at `echo $log | cut -c 1-7`... `echo $log | cut -c 41-`"
 # For each previously applied patch:
 #	1) calculate the patchid
 #	2) if the patchid matches any of the upstream commits' patchids...
-#		a) remove patch from the series file
+#		a) comment out the patch from the series file
 #	3) else
 #		a) push the patch onto the stack
 #
@@ -72,7 +72,7 @@ cat "$rebase_dir/status" | while read hash name; do
 			if [ -f "$rebase_dir/$patchid" ]; then
 				realcommit=`head -1 "$rebase_dir/$patchid"`
 				echo "Matches upstream commit $realcommit"
-				series_remove_patch "$name"
+				series_rename_patch "$name" "###rebased###$name"
 				echo "Patch removed from series."
 			else
 				# FIXME: use a guilt function instead
