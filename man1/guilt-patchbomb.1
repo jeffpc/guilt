@@ -1,11 +1,11 @@
-.\"     Title: guilt\-patchbomb
+.\"     Title: guilt-patchbomb
 .\"    Author: 
-.\" Generator: DocBook XSL Stylesheets v1.71.0 <http://docbook.sf.net/>
-.\"      Date: 04/17/2007
+.\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
+.\"      Date: 05/15/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-PATCHBOMB" "1" "04/17/2007" "" ""
+.TH "GUILT\-PATCHBOMB" "1" "05/15/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -13,28 +13,33 @@
 .SH "NAME"
 guilt\-patchbomb \- Email a series of commits interactively
 .SH "SYNOPSIS"
-\fIguilt\-patchbomb\fR [\-n] [<hash> | <since>..[<until>] | ..<until>]
+\fIguilt\-patchbomb\fR [\-n] [\-\-in\-reply\-to <msgid>] [<hash> | <since>..[<until>] | ..<until>]
 .SH "DESCRIPTION"
 Send a series of commits via email asking for To, CC and other information interactively.
 .SH "OPTIONS"
 .PP
 \-n
-.RS 3n
+.RS 4
 Don't send
 .RE
 .PP
+\-\-in\-reply\-to <msgid>
+.RS 4
+Set the In\-reply\-to header to the specified message id. This allows the patches to be sent as replies to an arbitrary message.
+.RE
+.PP
 <hash>
-.RS 3n
+.RS 4
 Only the specified revision.
 .RE
 .PP
 <since>..[<until>]
-.RS 3n
+.RS 4
 Revisions starting from \fI<since>\fR until \fI<until>\fR. The \fI<since>\fR revision it self is NOT included, while \fI<until>\fR is. If \fI<until>\fR is not specified, it is assumed to be HEAD.
 .RE
 .PP
-..<until>
-.RS 3n
+\&..<until>
+.RS 4
 All revisions until the \fI<until>\fR revision (inclusive).
 .RE
 .SH "AUTHOR"
@@ -42,5 +47,5 @@ Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "DOCUMENTATION"
 Documentation by Brandon Philips <brandon@ifup.org>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.24)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.25)
 

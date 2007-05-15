@@ -1,37 +1,33 @@
-.\"     Title: guilt-files
+.\"     Title: guilt-rebase
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
 .\"      Date: 05/15/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-FILES" "1" "05/15/2007" "" ""
+.TH "GUILT\-REBASE" "1" "05/15/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt\-files \- Print the list of files that the topmost patch changes
+guilt\-rebase \- Rebase pushed patches
 .SH "SYNOPSIS"
-\fIguilt\-files\fR [\-v] [\-a] [\-l]
+\fIguilt\-rebase\fR <upstream>
 .SH "DESCRIPTION"
-Print the list of files that the topmost patch changes.
+Rebase pushed patches against an upstream branch.
 .SH "OPTIONS"
 .PP
-\-v
+<upstream>
 .RS 4
-Verbose output
+Branch, tag, or a commit hash identifying upstream repository history.
 .RE
-.PP
-\-a
-.RS 4
-List all files in all applied patches
-.RE
-.PP
-\-l
-.RS 4
-Add patch name to the output
-.RE
+.SH "EXAMPLES"
+Rebase current tree against Linus's 2.6 tree
+
+$ git\-fetch git://git.kernel.org/pub/scm/linux/kernel/git/tovalds/linux\-2.6.git
+
+$ guilt\-rebase FETCH_HEAD
 .SH "AUTHOR"
 Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "DOCUMENTATION"
