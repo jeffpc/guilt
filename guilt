@@ -599,4 +599,4 @@ editor="vi"
 
 # determine a pager to use for anything interactive (fall back to more)
 pager="more"
-[ -z "$pager" ] && pager="$PAGER"
+[ ! -z "$PAGER" ] && pager="$PAGER"
