@@ -315,6 +315,15 @@ function pop_many_patches
 	update_stack_tags
 }
 
+# usage: pop_all_patches
+function pop_all_patches
+{
+	local x=`head -1 "$applied" | cut -d: -f1`
+	local n=`wc -l < "$applied"`
+
+	pop_many_patches $x^ $n
+}
+
 # usage: update_stack_tags
 function update_stack_tags
 {

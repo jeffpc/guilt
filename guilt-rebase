@@ -22,6 +22,8 @@ esac
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
 	die "Uncommited changes detected. Refresh first."
+elif [ `wc -l < "$applied"` -eq 0 ]; then
+	die "Nothing to rebase. First, you need to push patches onto the stack."
 fi
 
 # Note that these list commits in reverse order;
@@ -46,8 +48,7 @@ done
 cp "$applied" "$rebase_dir/status"
 
 echo "First, poping all patches..."
-# FIXME: use a guilt function instead
-guilt-pop -a > /dev/null 2> /dev/null
+pop_all_patches
 git-merge --no-commit "" HEAD $upstream > /dev/null 2> /dev/null
 
 echo ""
