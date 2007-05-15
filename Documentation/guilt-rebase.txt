@@ -1,0 +1,24 @@
+guilt-rebase(1)
+===============
+
+NAME
+----
+guilt-rebase - Rebase pushed patches
+
+SYNOPSIS
+--------
+include::usage-guilt-rebase.txt[]
+
+DESCRIPTION
+-----------
+Rebase pushed patches against an upstream branch.
+
+Author
+------
+Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+Documentation
+-------------
+Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+
+include::footer.txt[]
