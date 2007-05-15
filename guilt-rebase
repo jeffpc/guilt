@@ -1,0 +1,108 @@
+#!/bin/bash
+#
+# Copyright (c) Josef "Jeff" Sipek, 2007
+#
+# Heavily based on the long removed sh version of git-cherry
+#
+
+USAGE="<upstream> [<head>] [<limit>]"
+. guilt
+
+case "$#,$1" in
+	1,*..*)
+		upstream=$(expr "z$1" : 'z\(.*\)\.\.')
+		ours=$(expr "z$1" : '.*\.\.\(.*\)$')
+		set x "$upstream" "$ours"
+		shift
+		;;
+esac
+
+case "$#" in
+	1) 
+		upstream=`git-rev-parse --verify "$1"` &&
+		ours=`git-rev-parse --verify HEAD` || exit
+		limit="$upstream"
+		;;
+	2)
+		upstream=`git-rev-parse --verify "$1"` &&
+		ours=`git-rev-parse --verify "$2"` || exit
+		limit="$upstream"
+		;;
+	3)
+		upstream=`git-rev-parse --verify "$1"` &&
+		ours=`git-rev-parse --verify "$2"` &&
+		limit=`git-rev-parse --verify "$3"` || exit
+		;;
+	*)
+		usage
+		;;
+esac
+
+# make sure that there are no unapplied changes
+if ! must_commit_first; then
+	die "Uncommited changes detected. Refresh first."
+fi
+
+# Note that these list commits in reverse order;
+# not that the order in inup matters...
+inup=`git-rev-list ^$ours $upstream` &&
+ours=`git-rev-list $ours ^$limit` || exit
+
+rebase_dir="$GUILT_DIR/$branch/.rebase.$$"
+mkdir "$rebase_dir"
+
+#
+# calculate the patch ids for all the commits in upstream
+#
+for c in $inup ; do
+	git-diff-tree -p $c
+done | git-patch-id | while read id name ; do
+	echo "$name" >> "$rebase_dir/$id"
+done
+
+# backup the status file, so we don't have to do more work to figure out all
+# the patches that were pushed before we started rebasing
+cp "$applied" "$rebase_dir/status"
+
+echo "First, poping all patches..."
+# FIXME: use a guilt function instead
+guilt-pop -a > /dev/null 2> /dev/null
+git-merge --no-commit "" HEAD $upstream > /dev/null 2> /dev/null
+
+echo ""
+log=`git-log -1 --pretty=oneline`
+echo "HEAD is now at `echo $log | cut -c 1-7`... `echo $log | cut -c 41-`"
+
+#
+# For each previously applied patch:
+#	1) calculate the patchid
+#	2) if the patchid matches any of the upstream commits' patchids...
+#		a) remove patch from the series file
+#	3) else
+#		a) push the patch onto the stack
+#
+IFS=":"
+cat "$rebase_dir/status" | while read hash name; do
+	echo ""
+	IFS=" "
+	cat "$GUILT_DIR/$branch/$name" | git-patch-id |
+		while read patchid commitid ; do
+			echo "Applying '$name'"
+			if [ -f "$rebase_dir/$patchid" ]; then
+				realcommit=`head -1 "$rebase_dir/$patchid"`
+				echo "Matches upstream commit $realcommit"
+				series_remove_patch "$name"
+				echo "Patch removed from series."
+			else
+				# FIXME: use a guilt function instead
+				guilt-push > /dev/null
+				echo "Patch applied."
+			fi
+		done
+	IFS=":"
+done
+
+rm -rf "$rebase_dir"
+
+echo ""
+echo "Done."
