@@ -60,3 +60,4 @@ done
 
 echo "}"
 
+rm -rf "$cache"
