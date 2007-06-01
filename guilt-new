@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="[-s] [-e|-m message] <patchname>"
+USAGE="[-f] [-s] [-e|-m message] <patchname>"
 . guilt
 
 if [ $# -lt 1 -o $# -gt 4 ]; then
@@ -12,6 +12,9 @@ fi
 
 while [ $# -gt 0 ] ; do
 	case "$1" in
+		-f)
+			force=t
+			;;
 		-s)
 			signoff=t
 			;;
@@ -51,7 +54,7 @@ fi
 iidx=`wc -l < "$applied"`
 
 # make sure that there are no unapplied changes
-if ! must_commit_first; then
+if [ -z "$force" ] && ! must_commit_first; then
 	die "Uncommited changes detected. Refresh first."
 fi
 
@@ -75,6 +78,13 @@ mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
 
 # edit -e ?
 [ "$edit" = "t" ] && $editor "$GUILT_DIR/$branch/$patch"
+
+if [ ! -z "$force" ]; then
+	cd "$TOP_DIR"
+	git-diff HEAD >> "$GUILT_DIR/$branch/$patch"
+	git-reset --hard HEAD > /dev/null
+	cd -
+fi
 
 # insert the patch name into the series file
 series_insert_patch "$patch"

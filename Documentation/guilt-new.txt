@@ -16,6 +16,10 @@ description can be supplied either interactively on via the command line.
 
 OPTIONS
 -------
+-f::
+	Force patch creation if there are unrefreshed changes. These changes
+	will get automatically imported into the new patch.
+
 -s::
 	Add a Signed-off-by with your committer identifier string to the
 	patch message.
