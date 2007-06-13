@@ -474,18 +474,18 @@ function fold_patch
 
 	push_patch "$1"
 
-	__refresh_patch "$top_patch" HEAD^^ 2
+	__refresh_patch "$top_patch" HEAD^^ 2 ""
 
 	series_remove_patch "$1"
 }
 
-# usage: refresh_patch patchname
+# usage: refresh_patch patchname gengitdiff
 function refresh_patch
 {
-	__refresh_patch "$1" HEAD^ 1
+	__refresh_patch "$1" HEAD^ 1 "$2"
 }
 
-# usage: __refresh_patch patchname commitish number_of_commits
+# usage: __refresh_patch patchname commitish number_of_commits gengitdiff
 function __refresh_patch
 {
 	local p="$GUILT_DIR/$branch/$1"
@@ -499,8 +499,10 @@ function __refresh_patch
 	# get the patch header
 	do_get_full_header "$p" > /tmp/guilt.diff.$$
 
+	[ ! -z "$4" ] && diffopts="-C -M --find-copies-harder"
+	
 	# get the new patch
-	git-diff "$2" >> /tmp/guilt.diff.$$
+	git-diff $diffopts "$2" >> /tmp/guilt.diff.$$
 
 	# move the new patch in
 	mv "$p" "$p~"
