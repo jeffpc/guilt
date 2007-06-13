@@ -80,10 +80,10 @@ mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
 [ "$edit" = "t" ] && $editor "$GUILT_DIR/$branch/$patch"
 
 if [ ! -z "$force" ]; then
-	cd "$TOP_DIR" > /dev/null
+	cd "$TOP_DIR"
 	git-diff HEAD >> "$GUILT_DIR/$branch/$patch"
 	git-reset --hard HEAD > /dev/null
-	cd - > /dev/null
+	cd -
 fi
 
 # insert the patch name into the series file

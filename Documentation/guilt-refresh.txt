@@ -13,12 +13,6 @@ DESCRIPTION
 -----------
 Refresh topmost applied patch with changes in the working copy.
 
-OPTIONS
--------
---git::
-	Generate a patch which uses all the features offered by the git diff
-	format (e.g., rename and copy detection).
-
 Author
 ------
 Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>

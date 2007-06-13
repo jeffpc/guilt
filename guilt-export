@@ -19,6 +19,7 @@ trap "rm -rf \"$target_dir\"" 0
 mkdir -p "$target_dir"
 
 get_series | tee "$target_dir/series" | while read p; do
+	mkdir -p "`dirname $target_dir/$p`" 2> /dev/null || true
 	cp "$GUILT_DIR/$branch/$p" "$target_dir/$p"
 done
 

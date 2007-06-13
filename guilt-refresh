@@ -3,17 +3,12 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="[--git]"
+USAGE=""
 . guilt
 
-case $# in
-	0)
-		;;
-	1)
-		[ "$1" != "--git" ] && usage
-		gdiff=t
-		;;
-esac
+if [ $# -ne 0 ]; then
+	usage
+fi
 
 TOP=`get_top`
 
@@ -21,5 +16,5 @@ if [ -z "$TOP" ]; then
 	die "No patches applied; try guilt-push first"
 fi
 
-refresh_patch "$TOP" "$gdiff"
+refresh_patch "$TOP"
 
