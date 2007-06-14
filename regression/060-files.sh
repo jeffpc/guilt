@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Test the series parsing code
 #

@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Test that all commands that should fail do indeed fail if the branch was
 # not guilt-init'ed
