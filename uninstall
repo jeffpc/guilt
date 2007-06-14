@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) 2007 Nur Hussein <hussein@cs.usm.my>
 #
@@ -12,7 +12,4 @@ PRE=$1
 
 shift
 
-for x in "$@"
-do
-	rm "$PRE/$x"
-done
+(cd $PRE; rm "$@")

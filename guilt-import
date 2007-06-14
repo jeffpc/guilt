@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2007
 #
 
 USAGE="[-P <patch> ] <patch_file>"
-. guilt
+. `dirname $0`/guilt
 
 case "$1" in
 	-P)
@@ -17,7 +17,7 @@ case "$1" in
 		;;
 esac
 
-if [ $# -lt 1 -o $# -gt 3 -o -z "$newname" -o -z "$oldname" ]; then
+if [ $# -lt 1 ] || [ $# -gt 3 ] || [ -z "$newname" ] || [ -z "$oldname" ]; then
 	usage
 fi
 

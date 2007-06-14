@@ -1,15 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 USAGE="[ -f ] [-a | --all | <patchname>]"
-. guilt
+. `dirname $0`/guilt
 
 abort_flag="abort"
 
 
-if [ "$1" == "-f" ]; then
+if [ "$1" = "-f" ]; then
 	abort_flag=""
 	shift
 fi
@@ -20,7 +20,7 @@ fi
 
 patch="$1"
 
-if [ "$patch" = "--all" -o "$patch" = "-a" ]; then
+if [ "$patch" = "--all" ] || [ "$patch" = "-a" ]; then
 	# we are supposed to push all patches, get the last one out of
 	# series
 
@@ -52,12 +52,8 @@ fi
 sidx=`wc -l < $applied`
 sidx=`expr $sidx + 1`
 
-idx=0
-for p in `get_series`; do
-	idx=`expr $idx + 1`
-	[ $idx -lt $sidx ] && continue
-	[ $idx -gt $eidx ] && break
-
+get_series | sed -n -e "${sidx},${eidx}p" | while read p
+do
 	echo "Applying patch..$p"
 	if [ ! -f "$GUILT_DIR/$branch/$p" ]; then
 		die "Patch $patch does not exist. Aborting."

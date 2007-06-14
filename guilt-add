@@ -1,14 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 USAGE="<file>..."
-. guilt
+. `dirname $0`/guilt
 
 if [ $# -lt 1 ]; then
 	usage
 fi
 
-git-add -- "$@"
-
+exec git-add -- "$@"

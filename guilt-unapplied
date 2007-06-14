@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 USAGE=""
-. guilt
+. `dirname $0`/guilt
 
 if [ $# -ne 0 ]; then
 	usage
@@ -13,10 +13,4 @@ fi
 n=`wc -l < $applied`
 n=`expr $n + 1`
 
-idx=0
-for p in `get_series`; do
-	idx=`expr $idx + 1`
-	[ $idx -lt $n ] && continue
-
-	echo $p
-done
+get_series | sed -n -e "$n,\$p"

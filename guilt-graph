@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2007
 #
 
 USAGE="[<patchname>]"
-. guilt
+. `dirname $0`/guilt
 
 if [ $# -gt 1 ]; then
 	usage
@@ -24,13 +24,14 @@ else
 	fi
 fi
 
-function getfiles
+getfiles()
 {
 	git-diff-tree -r "$1^" "$1" | tr '\t' ' ' | cut -d' ' -f6
 }
 
 cache="$GUILT_DIR/$branch/.graphcache.$$"
 mkdir "$cache"
+trap "rm -rf \"$cache\"" 0
 
 echo "digraph G {"
 
@@ -39,7 +40,7 @@ current="$top"
 while [ "$current" != "$base" ]; do
 	echo "# checking rev $current"
 
-	echo -n '' > "$cache/dep"
+	touch "$cache/dep"
 
 	getfiles $current | while read f; do
 		# hash the filename
@@ -51,7 +52,7 @@ while [ "$current" != "$base" ]; do
 		echo "$current" > "$cache/$fh"
 	done
 
-	cat "$cache/dep" | sort | uniq | while read h; do
+	sort -u "$cache/dep" | while read h; do
 		echo "	\"${h:0:8}\" -> \"${current:0:8}\"; // ?"
 	done
 
@@ -60,4 +61,4 @@ done
 
 echo "}"
 
-rm -rf "$cache"
+trap - 0

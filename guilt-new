@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 USAGE="[-f] [-s] [-e|-m message] <patchname>"
-. guilt
+. `dirname $0`/guilt
 
-if [ $# -lt 1 -o $# -gt 4 ]; then
+if [ $# -lt 1 ] || [ $# -gt 4 ]; then
 	usage
 fi
 
@@ -80,10 +80,11 @@ mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
 [ "$edit" = "t" ] && $editor "$GUILT_DIR/$branch/$patch"
 
 if [ ! -z "$force" ]; then
-	cd "$TOP_DIR"
-	git-diff HEAD >> "$GUILT_DIR/$branch/$patch"
-	git-reset --hard HEAD > /dev/null
-	cd -
+	(
+		cd "$TOP_DIR"
+		git-diff HEAD >> "$GUILT_DIR/$branch/$patch"
+		git-reset --hard HEAD > /dev/null
+	)
 fi
 
 # insert the patch name into the series file
