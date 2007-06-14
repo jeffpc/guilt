@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
@@ -348,106 +348,71 @@ update_stack_tags()
 # usage: push_patch patchname [bail_action]
 push_patch()
 {
-	local p="$GUILT_DIR/$branch/$1"
-	local pname="$1"
-	local bail_action="$2"
+	__push_patch_bail=0
 
-	local bail=0
-	local reject="--reject"
+	(
+		p="$GUILT_DIR/$branch/$1"
+		pname="$1"
+		bail_action="$2"
+		reject="--reject"
 
-	assert_head_check
+		assert_head_check
+		cd "$TOP_DIR"
 
-	cd "$TOP_DIR"
-
-	# apply the patch if and only if there is something to apply
-	if [ `git-apply --numstat "$p" | wc -l` -gt 0 ]; then
-		if [ "$bail_action" = abort ]; then
-		    reject=""
-		fi
-		git-apply -C$guilt_push_diff_context \
-			$reject "$p" > /dev/null 2> /tmp/guilt.log.$$
-		bail=$?
-
-		if [ $bail -ne 0 ]; then
-			cat /tmp/guilt.log.$$ >&2
+		# apply the patch if and only if there is something to apply
+		if [ `git-apply --numstat "$p" | wc -l` -gt 0 ]; then
 			if [ "$bail_action" = abort ]; then
-				return $bail
+				reject=""
 			fi
+			git-apply -C$guilt_push_diff_context \
+				$reject "$p" > /dev/null 2> /tmp/guilt.log.$$
+			__push_patch_bail=$?
+
+			if [ $__push_patch_bail -ne 0 ]; then
+				cat /tmp/guilt.log.$$ >&2
+				if [ "$bail_action" = "abort" ]; then
+					rm -f /tmp/guilt.log.$$ /tmp/guilt.msg.$$
+					return $__push_patch_bail
+				fi
+			fi
+
+			# FIXME: Path munging is being done, we need to convince
+			# git-apply to just give us list of files with \0 as a
+			# delimiter, and pass -z to git-update-index
+			git-apply --numstat "$p" | cut -f 3- | git-update-index --add --remove --stdin
 		fi
 
-		# FIXME: Path munging is being done, we need to convince
-		# git-apply to just give us list of files with \0 as a
-		# delimiter, and pass -z to git-update-index
-		git-apply --numstat "$p" | cut -f 3- | git-update-index --add --remove --stdin
-	fi
+		# grab a commit message out of the patch
+		do_get_header "$p" > /tmp/guilt.msg.$$
 
-	# grab a commit message out of the patch
-	do_get_header "$p" > /tmp/guilt.msg.$$
+		# make a default commit message if patch doesn't contain one
+		[ ! -s /tmp/guilt.msg.$$ ] && echo "patch $pname" > /tmp/guilt.msg.$$
 
-	# make a default commit message if patch doesn't contain one
-	[ ! -s /tmp/guilt.msg.$$ ] && echo "patch $pname" > /tmp/guilt.msg.$$
-
-	# extract a From line from the patch header, and set
-	# GIT_AUTHOR_{NAME,EMAIL}
-	local author_str=`cat "$p" | grep -e '^From: ' | sed -e 's/^From: //'`
-	if [ ! -z "$author_str" ]; then
-		local backup_author_name="$GIT_AUTHOR_NAME"
-		local backup_author_email="$GIT_AUTHOR_EMAIL"
-		GIT_AUTHOR_NAME=`echo $author_str | sed -e 's/ *<.*$//'`
-		GIT_AUTHOR_EMAIL=`echo $author_str | sed -e 's/[^<]*//'`
-
-		if [ -z "$GIT_AUTHOR_NAME" ]; then
-			GIT_AUTHOR_NAME=" "
+		# extract a From line from the patch header, and set
+		# GIT_AUTHOR_{NAME,EMAIL}
+		author_str=`sed -n -e '/^From:/ { s/^From: //; p; q }' "$p"`
+		if [ ! -z "$author_str" ]; then
+			GIT_AUTHOR_NAME=`echo $author_str | sed -e 's/ *<.*$//'`
+			export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-" "}"
+                        export GIT_AUTHOR_EMAIL="`echo $author_str | sed -e 's/[^<]*//'`"
 		fi
+		export GIT_AUTHOR_DATE="`stat -c %y "$p"`"
+		export GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"
 
-		export GIT_AUTHOR_NAME GIT_AUTHOR_EMAIL
-	fi
-	local backup_author_date="$GIT_AUTHOR_DATE"
-	local backup_committer_date="$GIT_COMMITTER_DATE"
-	export GIT_AUTHOR_DATE=`stat -c %y "$p"`
-	export GIT_COMMITTER_DATE=$GIT_AUTHOR_DATE
+		# commit
+		treeish=`git-write-tree`
+		commitish=`git-commit-tree $treeish -p HEAD < /tmp/guilt.msg.$$`
+		echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
 
-	# commit
-	local treeish=`git-write-tree`
-	local commitish=`git-commit-tree $treeish -p HEAD < /tmp/guilt.msg.$$`
-	echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
-
-	# mark patch as applied
-	echo "$commitish:$pname" >> $applied
-
-	cd - 2>&1 >/dev/null
+		# mark patch as applied
+		echo "$commitish:$pname" >> $applied
+	)
 
 	# update references to top, bottom, and base of the stack
 	update_stack_tags
 
-	# restore original GIT_AUTHOR_{NAME,EMAIL}
-	if [ ! -z "$author_str" ]; then
-		if [ ! -z "$backup_author_name" ]; then
-			export GIT_AUTHOR_NAME="$backup_author_name"
-		else
-			unset GIT_AUTHOR_NAME
-		fi
-
-		if [ ! -z "$backup_author_name" ]; then
-			export GIT_AUTHOR_EMAIL="$backup_author_email"
-		else
-			unset GIT_AUTHOR_EMAIL
-		fi
-	fi
-	if [ ! -z "$backup_author_date" ]; then
-		export GIT_AUTHOR_DATE="$backup_author_date"
-	else
-		unset GIT_AUTHOR_DATE
-	fi
-		if [ ! -z "$backup_committer_date" ]; then
-		export GIT_COMMITTER_DATE="$backup_committer_date"
-	else
-		unset GIT_COMMITTER_DATE
-	fi
-
 	rm -f /tmp/guilt.msg.$$ /tmp/guilt.log.$$
-
-	return $bail
+	return $__push_patch_bail
 }
 
 # usage: must_commit_first
