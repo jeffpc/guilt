@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
@@ -6,7 +6,7 @@
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
 USAGE="[-n]"
-. guilt
+. `dirname $0`/guilt
 
 autotag=1
 

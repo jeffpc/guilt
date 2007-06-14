@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 USAGE="[-c]"
-. guilt
+. `dirname $0`/guilt
 
 case $# in
 	0)
