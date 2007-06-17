@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Pierre Habouzit, 2007
 #
 
 USAGE="[<target_dir>]"
-. guilt
+. `dirname $0`/guilt
 
 if [ $# -gt 1 ]; then
 	usage
@@ -19,7 +19,7 @@ trap "rm -rf \"$target_dir\"" 0
 mkdir -p "$target_dir"
 
 get_series | tee "$target_dir/series" | while read p; do
-	mkdir -p "`dirname $target_dir/$p`" 2> /dev/null || true
+	silent mkdir -p "`dirname $target_dir/$p`" || true
 	cp "$GUILT_DIR/$branch/$p" "$target_dir/$p"
 done
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2007
 #
@@ -6,7 +6,7 @@
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
 USAGE="[<command> | <topic>]"
-. guilt
+. `dirname $0`/guilt
 
 case $# in
 	0)
@@ -24,4 +24,4 @@ case $# in
 		;;
 esac
 
-man "$page"
+exec man "$page"

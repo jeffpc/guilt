@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2007
 #
 
 USAGE="[<hash> | <since>..[<until>] | ..<until>]"
-. guilt
+. `dirname $0`/guilt
 
-if [ $# -ne 1 -o -z "$1" ]; then
+if [ $# -ne 1 ] || [ -z "$1" ]; then
 	die "You must specify a range of commits"
 fi
 

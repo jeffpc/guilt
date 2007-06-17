@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 USAGE="[<patchname>]"
-. guilt
+. `dirname $0`/guilt
 
 if [ $# -gt 1 ]; then
 	usage

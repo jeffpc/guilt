@@ -1,17 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 USAGE=""
-. guilt
+. `dirname $0`/guilt
 
 if [ $# -ne 0 ]; then
 	usage
 fi
 
 n=`wc -l < $applied`
-n=`expr $n + 1`
+n=$(($n + 1))
 
 get_series | awk "{ if (NR == $n) print \$0}"
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2007
 #
@@ -6,7 +6,7 @@
 #
 
 USAGE="<upstream>"
-. guilt
+. `dirname $0`/guilt
 
 case "$#" in
 	1) 

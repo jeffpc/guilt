@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 USAGE="[-f] [-a | --all | <patchname>]"
-. guilt
+. `dirname $0`/guilt
 
 while [ $# -gt 0 ]; do
 	case "$1" in

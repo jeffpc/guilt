@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
 USAGE="[-v | -g]"
-. guilt
+. `dirname $0`/guilt
 
 while case "$#" in 0) break ;; esac
 do
@@ -35,7 +35,7 @@ elif [ -z "$verbose" ]; then
 	get_series
 else
 	prefix="+"
-	top=$(get_top)
+	top=`get_top`
 
 	get_series |
 	while read patch; do

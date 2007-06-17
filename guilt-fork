@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Copyright (c) Josef "Jeff" Sipek, 2007
 #
 
 USAGE="[<new_name>]"
-. guilt
+. `dirname $0`/guilt
 
 if [ $# -gt 1 ]; then
 	usage
@@ -28,7 +28,7 @@ else
 		| sed -r -e 's:(\.diff?|\.patch)$::')
 	num=$(echo "$base" | sed -nre 's:.*-([0-9]+)$:\1:'p)
 	[ -n "$num" ] || num=1
-	newpatch="${base%-$num}-$((num+1))${patch#$base}"
+	newpatch="${base%-$num}-$(($num+1))${patch#$base}"
 fi
 
 if [ -e "$GUILT_DIR/$branch/$newpatch" ]; then
