@@ -13,6 +13,11 @@ case $1 in
 	shift
 	exec "guilt-help" "$@"
 	exit
+	;;
+	-V|--ver|--versi|--versio|--version)
+	echo "Guilt version $GUILT_VERSION"
+	exit
+	;;
 esac
 
 # we change directories ourselves
