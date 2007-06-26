@@ -210,6 +210,7 @@ do_get_header()
 	# 3rd line skips the empty line right after a From line
 	do_get_full_header "$1" | awk '
 BEGIN{skip=0}
+/^Subject:/ && (NR==1){print substr($0, 10); next}
 /^From:/{skip=1; next}
 /^[ \t\f\n\r\v]*$/ && (skip==1){skip=0; next}
 {print $0}
