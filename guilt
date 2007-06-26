@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-GUILT_VERSION="0.25"
+GUILT_VERSION="0.26-rc1"
 GUILT_NAME="Lone Wolf"
 
 # If the first argument is one of the below, display the man page instead of
