@@ -3,8 +3,13 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="<patchname>"
+USAGE="[-k] <patchname>"
 . `dirname $0`/guilt
+
+if [ "$1" = "-k" ]; then
+	keep=t
+	shift
+fi
 
 if [ $# -ne 1 ]; then
 	usage
@@ -34,4 +39,4 @@ fi
 fold_patch "$patch"
 
 # back it up just in case :)
-mv "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$patch~"
+[ -z "$keep" ] && mv "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$patch~"
