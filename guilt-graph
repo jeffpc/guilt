@@ -40,6 +40,8 @@ current="$top"
 while [ "$current" != "$base" ]; do
 	echo "# checking rev $current"
 
+	# new "hash table"
+	rm -f "$cache/dep"
 	touch "$cache/dep"
 
 	getfiles $current | while read f; do
@@ -60,5 +62,3 @@ while [ "$current" != "$base" ]; do
 done
 
 echo "}"
-
-trap - 0
