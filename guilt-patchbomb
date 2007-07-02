@@ -84,8 +84,6 @@ $ {
 	s/\n/, /g
 	p
 }' > /tmp/guilt.$$.tmp
-	echo "$n"
-	cat /tmp/guilt.$$.tmp
 	if [ -s /tmp/guilt.$$.tmp ]; then
 		head -1 "$fulln" > "$fulln~"
 		echo -n "Cc: " >> "$fulln~"
@@ -93,7 +91,6 @@ $ {
 		tail -n +2 "$fulln" >> "$fulln~"
 		mv "$fulln~" "$fulln"
 		echo "${n:0:4}: Including Cc from patch description"
-		cat /tmp/guilt.$$.tmp
 		rm -f /tmp/guilt.$$.tmp
 	else
 		echo "${n:0:4}: No Cc found in patch description"
