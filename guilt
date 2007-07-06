@@ -247,7 +247,7 @@ head_check()
 	# if the expected hash is empty, just return
 	[ -z "$1" ] && return 0
 
-	if [ "`cat "$GIT_DIR/refs/heads/$branch"`" != "$1" ]; then
+	if [ "`git show-ref -s "refs/heads/$branch"`" != "$1" ]; then
 		echo "Expected HEAD commit $1" >&2
 		echo "                 got `cat "$GIT_DIR/refs/heads/$branch"`" >&2
 		return 1
