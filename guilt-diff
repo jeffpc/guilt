@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# Copyright (C) 2007 Josef 'Jeff' Sipek <jsipek@cs.sunysb.edu>
+#
+
+USAGE="[-z]"
+. `dirname $0`/guilt
+
+while [ $# -ne 0 ]; do
+	case "$1" in
+	-z)
+		working_tree=t ;;
+	*)
+		usage ;;
+	esac
+	shift
+done
+
+if [ ! -z "$working_tree" ] ; then
+	git-diff
+else
+	git-diff HEAD^
+fi
