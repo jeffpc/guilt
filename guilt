@@ -3,8 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-GUILT_VERSION="0.26-rc1"
-GUILT_NAME="Lone Wolf"
+GUILT_VERSION="0.26"
+GUILT_NAME="Los"
 
 # If the first argument is one of the below, display the man page instead of
 # the rather silly and mostly useless usage string
