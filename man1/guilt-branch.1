@@ -1,21 +1,27 @@
-.\"     Title: guilt-upapplied
+.\"     Title: guilt-branch
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
 .\"      Date: 07/17/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-UPAPPLIED" "1" "07/17/2007" "" ""
+.TH "GUILT\-BRANCH" "1" "07/17/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt\-unapplied \- List all unapplied patches
+guilt\-branch \- Branch the entire patch series
 .SH "SYNOPSIS"
-\fIguilt\-unapplied\fR
+\fIguilt\-branch\fR [<new_name>]
 .SH "DESCRIPTION"
-List all unapplied patches.
+Create a copy of the entire branch patch directory (.git/patches/<branch>) to (.git/patches/<new_name>), create a new git branch <new_name> and check it out.
+.SH "OPTIONS"
+.PP
+<new_name>
+.RS 4
+The name of the new branch to create. If not specified, the current branch name is appended with the current year, month and day.
+.RE
 .SH "AUTHOR"
 Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "DOCUMENTATION"

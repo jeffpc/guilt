@@ -1,11 +1,11 @@
 .\"     Title: guilt
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
-.\"      Date: 05/15/2007
+.\"      Date: 07/17/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT" "7" "05/15/2007" "" ""
+.TH "GUILT" "7" "07/17/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -37,9 +37,24 @@ guilt\-add \- Add a file to git and guilt.
 guilt\-applied \- List applied patches.
 .RE
 .PP
+\fBguilt\-branch\fR(1)
+.RS 4
+guilt\-branch \- Branch the entire patch series.
+.RE
+.PP
 \fBguilt\-delete\fR(1)
 .RS 4
 guilt\-delete \- Delete a patch.
+.RE
+.PP
+\fBguilt\-diff\fR(1)
+.RS 4
+guilt\-diff \- Outputs various diffs.
+.RE
+.PP
+\fBguilt\-export\fR(1)
+.RS 4
+guilt\-export \- Export a patch series (to be used by quilt).
 .RE
 .PP
 \fBguilt\-files\fR(1)
@@ -55,6 +70,11 @@ guilt\-fold \- Fold a specified patch into the topmost applied patch.
 \fBguilt\-fork\fR(1)
 .RS 4
 guilt\-fork \- Fork the topmost applied patch.
+.RE
+.PP
+\fBguilt\-graph\fR(1)
+.RS 4
+guilt\-graph \- Create a patch dependency graph.
 .RE
 .PP
 \fBguilt\-header\fR(1)
@@ -151,5 +171,5 @@ Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "DOCUMENTATION"
 Documentation by Brandon Philips <brandon@ifup.org> and Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.25)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.26)
 

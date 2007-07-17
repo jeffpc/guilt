@@ -1,31 +1,31 @@
-.\"     Title: guilt-rm
+.\"     Title: guilt-export
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
 .\"      Date: 07/17/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-RM" "1" "07/17/2007" "" ""
+.TH "GUILT\-EXPORT" "1" "07/17/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt\-rm \- Remove a file from the git tree and guilt
+guilt\-export \- Export a patch series (to be used by quilt)
 .SH "SYNOPSIS"
-\fIguilt\-rm\fR <file>\&...
+\fIguilt\-export\fR [<target_dir>]
 .SH "DESCRIPTION"
-Removes the files specified from git using git\-rm
+Export a guilt series to be used by quilt.
 .SH "OPTIONS"
 .PP
-<files>
+<target_dir>
 .RS 4
-Files to add
+Name of the directory to export the patch series to. (defaults to patches).
 .RE
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Written by Pierre Habouzit <madcoder@debian.org>
 .SH "DOCUMENTATION"
-Documentation by Brandon Philips <brandon@ifup.org>
+Documentation by Pierre Habouzit <madcoder@debian.org>
 .SH "GUILT"
 Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.26)
 

@@ -1,11 +1,11 @@
 .\"     Title: guilt-new
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
-.\"      Date: 05/15/2007
+.\"      Date: 07/17/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-NEW" "1" "05/15/2007" "" ""
+.TH "GUILT\-NEW" "1" "07/17/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -13,10 +13,15 @@
 .SH "NAME"
 guilt\-new \- Create a new patch
 .SH "SYNOPSIS"
-\fIguilt\-new\fR [\-s] [\-e|\-m message] <patchname>
+\fIguilt\-new\fR [\-f] [\-s] [\-e|\-m message] <patchname>
 .SH "DESCRIPTION"
 Create a new patch and push it on top of the stack. An optional patch description can be supplied either interactively on via the command line.
 .SH "OPTIONS"
+.PP
+\-f
+.RS 4
+Force patch creation if there are unrefreshed changes. These changes will get automatically imported into the new patch.
+.RE
 .PP
 \-s
 .RS 4
@@ -54,5 +59,5 @@ Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "DOCUMENTATION"
 Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.25)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.26)
 
