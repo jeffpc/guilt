@@ -299,28 +299,43 @@ div.exampleblock-content {
 /* IE6 sets dynamically generated links as visited. */
 div#toc a:visited { color: blue; }
 </style>
-<title>guilt-prev(1)</title>
+<title>guilt-branch(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-prev(1) Manual Page
+guilt-branch(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-prev -
-   Output name of second topmost applied patch
+<p>guilt-branch -
+   Branch the entire patch series
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-prev</em></p>
+<p><em>guilt-branch</em> [&lt;new_name&gt;]</p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
-<p>Output name of second topmost applied patch. If <a href="guilt-pop.html">guilt-pop(1)</a> is used, this
-patch will become the topmost patch.</p>
+<p>Create a copy of the entire branch patch directory (.git/patches/&lt;branch&gt;)
+to (.git/patches/&lt;new_name&gt;), create a new git branch &lt;new_name&gt; and check
+it out.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+&lt;new_name&gt;
+</dt>
+<dd>
+<p>
+        The name of the new branch to create. If not specified, the current
+        branch name is appended with the current year, month and day.
+</p>
+</dd>
+</dl>
 </div>
 <h2>Author</h2>
 <div class="sectionbody">
@@ -337,7 +352,7 @@ patch will become the topmost patch.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 17-Jul-2007 10:51:34 EDT
+Last updated 17-Jul-2007 10:51:21 EDT
 </div>
 </div>
 </body>

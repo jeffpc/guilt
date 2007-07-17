@@ -299,36 +299,49 @@ div.exampleblock-content {
 /* IE6 sets dynamically generated links as visited. */
 div#toc a:visited { color: blue; }
 </style>
-<title>guilt-prev(1)</title>
+<title>guilt-export(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-prev(1) Manual Page
+guilt-export(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-prev -
-   Output name of second topmost applied patch
+<p>guilt-export -
+   Export a patch series (to be used by quilt)
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-prev</em></p>
+<p><em>guilt-export</em> [&lt;target_dir&gt;]</p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
-<p>Output name of second topmost applied patch. If <a href="guilt-pop.html">guilt-pop(1)</a> is used, this
-patch will become the topmost patch.</p>
+<p>Export a guilt series to be used by quilt.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+&lt;target_dir&gt;
+</dt>
+<dd>
+<p>
+        Name of the directory to export the patch series to.
+        (defaults to patches).
+</p>
+</dd>
+</dl>
 </div>
 <h2>Author</h2>
 <div class="sectionbody">
-<p>Written by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p>
+<p>Written by Pierre Habouzit &lt;madcoder@debian.org&gt;</p>
 </div>
 <h2>Documentation</h2>
 <div class="sectionbody">
-<p>Documentation by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p>
+<p>Documentation by Pierre Habouzit &lt;madcoder@debian.org&gt;</p>
 </div>
 <h2>GUILT</h2>
 <div class="sectionbody">
@@ -337,7 +350,7 @@ patch will become the topmost patch.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 17-Jul-2007 10:51:34 EDT
+Last updated 17-Jul-2007 10:51:22 EDT
 </div>
 </div>
 </body>

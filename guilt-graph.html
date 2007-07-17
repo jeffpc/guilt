@@ -299,28 +299,42 @@ div.exampleblock-content {
 /* IE6 sets dynamically generated links as visited. */
 div#toc a:visited { color: blue; }
 </style>
-<title>guilt-prev(1)</title>
+<title>guilt-graph(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-prev(1) Manual Page
+guilt-graph(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-prev -
-   Output name of second topmost applied patch
+<p>guilt-graph -
+   Create a patch dependency graph
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-prev</em></p>
+<p><em>guilt-graph</em> [&lt;patchname&gt;]</p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
-<p>Output name of second topmost applied patch. If <a href="guilt-pop.html">guilt-pop(1)</a> is used, this
-patch will become the topmost patch.</p>
+<p>Create a dot(1) directed graph showing the dependencies between applied
+patches.</p>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+&lt;patchname&gt;
+</dt>
+<dd>
+<p>
+        Instead of starting with the topmost applied patch, start with
+        &lt;patchname&gt;.
+</p>
+</dd>
+</dl>
 </div>
 <h2>Author</h2>
 <div class="sectionbody">
@@ -337,7 +351,7 @@ patch will become the topmost patch.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 17-Jul-2007 10:51:34 EDT
+Last updated 17-Jul-2007 10:51:24 EDT
 </div>
 </div>
 </body>
