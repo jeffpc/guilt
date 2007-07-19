@@ -19,6 +19,10 @@ OPTIONS
 	Generate a patch which uses all the features offered by the git diff
 	format (e.g., rename and copy detection).
 
+--diffstat::
+	Include a diffstat output in the patch file. Useful for cases where
+	patches will be submitted with other tools.
+
 Author
 ------
 Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>

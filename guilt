@@ -437,18 +437,19 @@ fold_patch()
 
 	push_patch "$1"
 
-	__refresh_patch "$2" HEAD^^ 2 ""
+	__refresh_patch "$2" HEAD^^ 2 "" ""
 
 	series_remove_patch "$1"
 }
 
-# usage: refresh_patch patchname gengitdiff
+# usage: refresh_patch patchname gengitdiff incldiffstat
 refresh_patch()
 {
-	__refresh_patch "$1" HEAD^ 1 "$2"
+	__refresh_patch "$1" HEAD^ 1 "$2" "$3"
 }
 
 # usage: __refresh_patch patchname commitish number_of_commits gengitdiff
+#			 incldiffstat
 __refresh_patch()
 {
 	assert_head_check
@@ -464,6 +465,14 @@ __refresh_patch()
 
 		[ ! -z "$4" ] && diffopts="-C -M --find-copies-harder"
 		
+		if [ ! -z "$5" ]; then
+			(
+				echo "---"
+				git-diff --stat $diffopts "$2"
+				echo ""
+			) >> /tmp/guilt.diff.$$
+		fi
+
 		# get the new patch
 		git-diff $diffopts "$2" >> /tmp/guilt.diff.$$
 
