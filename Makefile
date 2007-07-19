@@ -1,7 +1,7 @@
 PREFIX=/usr/local
 
 SCRIPTS = guilt \
-	  $(wildcard guilt-*)
+	  $(filter-out $(wildcard *~),$(wildcard guilt-*))
 
 .PHONY: all 
 all: doc
