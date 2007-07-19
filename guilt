@@ -338,6 +338,7 @@ update_stack_tags()
 		# there are patches applied, therefore we must get the top,
 		# bottom and base hashes, and update the tags
 
+		mkdir -p `dirname "$GIT_DIR/refs/tags/${branch}_top"`
 		git-rev-parse HEAD > "$GIT_DIR/refs/tags/${branch}_top"
 		head -1 < $applied | cut -d: -f1 > "$GIT_DIR/refs/tags/${branch}_bottom"
 		git-rev-parse $(head -1 < $applied | cut -d: -f1)^ > "$GIT_DIR/refs/tags/${branch}_base"

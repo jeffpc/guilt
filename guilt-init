@@ -24,7 +24,7 @@ if [ -d "$GUILT_DIR/$branch" ]; then
 fi
 
 [ ! -d "$GUILT_DIR" ] && mkdir $GUILT_DIR
-mkdir $GUILT_DIR/$branch
+mkdir -p $GUILT_DIR/$branch
 touch $GUILT_DIR/$branch/series
 touch $GUILT_DIR/$branch/status
 
