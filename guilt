@@ -26,6 +26,15 @@ SUBDIRECTORY_OK=1
 . git-sh-setup
 
 #
+# Git version check
+#
+gitver=`git --version | cut -d' ' -f3`
+case "$gitver" in
+	1.5.*)	;; # git-config
+	*)	die "Unsupported version of git ($gitver)" ;;
+esac
+
+#
 # Shell library
 #
 
