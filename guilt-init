@@ -28,4 +28,6 @@ mkdir -p "$GUILT_DIR/$branch"
 touch "$GUILT_DIR/$branch/series"
 touch "$GUILT_DIR/$branch/status"
 
+mkdir -p "$GIT_DIR/hooks/guilt"
+
 git-config --int --replace-all guilt.autotag $autotag

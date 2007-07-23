@@ -532,6 +532,18 @@ munge_hash_range()
 	return 0
 }
 
+# usage: guilt_hook <hook name> <args....>
+guilt_hook()
+{
+	__hookname="$1"
+	[ ! -x "$GIT_DIR/hooks/guilt/$__hookname" ] && return 0
+
+	shift
+
+	"$GIT_DIR/hooks/guilt/$__hookname" "$@"
+	return $?
+}
+
 #
 # Some constants
 #
