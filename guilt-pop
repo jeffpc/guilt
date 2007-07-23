@@ -34,7 +34,10 @@ fi
 patch="$1"
 [ ! -z "$all" ] && patch="-a"
 
-if [ "$patch" = "-a" ]; then
+if [ ! -s "$applied" ]; then
+	echo "No patches applied."
+	exit 0
+elif [ "$patch" = "-a" ]; then
 	# we are supposed to pop all patches
 
 	sidx=`wc -l < $applied`
