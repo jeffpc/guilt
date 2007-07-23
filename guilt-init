@@ -29,5 +29,11 @@ touch "$GUILT_DIR/$branch/series"
 touch "$GUILT_DIR/$branch/status"
 
 mkdir -p "$GIT_DIR/hooks/guilt"
+cat > "$GIT_DIR/hooks/guilt/delete" <<EOF
+#!/bin/sh
+# Usage: <script> <patch being removed>
+
+echo "Removing patch '\$1'..."
+EOF
 
 git-config --int --replace-all guilt.autotag $autotag

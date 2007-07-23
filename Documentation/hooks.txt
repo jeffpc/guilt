@@ -5,3 +5,8 @@ Guilt follows the same basic design of hooks in Git itself. All Guilt hooks
 are executable files (generally shell scripts, but they can be anything the
 operating system can execute) in .git/hooks/guilt/.
 
+The following hooks are supported:
+
+delete <patch name>::
+	Executed when a patch is deleted from the patch series via
+	guiltlink:guilt-delete[1].

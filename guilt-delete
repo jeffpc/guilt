@@ -38,6 +38,8 @@ fi
 
 series_remove_patch "$patch"
 
+guilt_hook "delete" "$patch"
+
 [ ! -z "$force" ] && rm -f $GUILT_DIR/$branch/$patch
 
 exit 0
