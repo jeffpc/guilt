@@ -345,7 +345,7 @@ update_stack_tags()
 		return 0
 	fi
 
-	if [ `wc -l < $applied` -gt 0 ]; then
+	if [ -s "$applied" ]; then
 		# there are patches applied, therefore we must get the top,
 		# bottom and base hashes, and update the tags
 
