@@ -32,10 +32,13 @@ for rev in `git-rev-list $rhash`; do
 
 	echo "Converting `echo $rev | cut -c 1-8` as $fname"
 
-	if [ -f "$GUILT_DIR/$branch/$fname" ]; then
-		echo "Oy, the file "$fname" already exists, what should we do? What should we do?" >&2
-		die "Aborting..."
-	fi
+	mangle_prefix=1
+	fname_base=$fname
+	while [ -f "$GUILT_DIR/$branch/$fname" ]; do
+		fname="$fname_base-$mangle_prefix"
+	        mangle_prefix=`expr $mangle_prefix + 1`
+		echo "Patch under that name exists...trying '$fname'"
+	done
 
 	(
 		do_make_header $rev
