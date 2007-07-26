@@ -12,7 +12,7 @@ case "$1" in
 		oldname="$3"
 		;;
 	*)
-		newname=`dirname "$1"`
+		newname=`basename "$1"`
 		oldname="$1"
 		;;
 esac
