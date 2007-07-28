@@ -58,11 +58,11 @@ cp "$applied" "$rebase_dir/status"
 
 echo "First, poping all patches..."
 pop_all_patches
-git-merge --no-commit "" HEAD $upstream > /dev/null 2> /dev/null
+git-merge --no-commit $upstream > /dev/null 2> /dev/null
 
 echo ""
 log=`git-log -1 --pretty=oneline`
-echo "HEAD is now at `echo $log | cut -c 1-7`... `echo $log | cut -c 41-`"
+echo "HEAD is now at `echo $log | cut -c 1-7`... `echo "$log" | cut -c 41-`"
 
 #
 # For each previously applied patch:
