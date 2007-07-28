@@ -421,6 +421,9 @@ push_patch()
 		echo "$commitish:$pname" >> $applied
 	)
 
+	# sub-shell funky-ness
+	__push_patch_bail=$?
+
 	# update references to top, bottom, and base of the stack
 	update_stack_tags
 
