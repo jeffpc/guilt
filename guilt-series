@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="[-v | -g]"
+USAGE="[-v | -g | -e]"
 . `dirname $0`/guilt
 
 while case "$#" in 0) break ;; esac
@@ -13,13 +13,17 @@ do
 		verbose=t ;;
 	-g)
 		gui=t ;;
+	-e)
+		edit=t ;;
 	*)
 		usage ;;
 	esac
 	shift
 done
 
-if [ ! -z "$gui" ]; then
+if [ ! -z "$edit" ]; then 
+	$editor "$series"
+elif [ ! -z "$gui" ]; then
 	[ -z "`get_top`" ] && die "No patches applied."
 	bottom=`head -1 $applied | cut -d: -f1`
 	top=`tail -1 $applied | cut -d: -f1`
