@@ -15,6 +15,9 @@ Print the stack of patches on this branch.
 
 OPTIONS
 -------
+-e::
+	Edit the series file.
+
 -g::
 	Instead of outputing the series, start gitk and display the applied
 	patches. Ignores the verbose flag.
