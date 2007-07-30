@@ -6,48 +6,48 @@
 USAGE="[-e] [<patchname>]"
 . `dirname $0`/guilt
 
-if [ $# -gt 2 ]; then
-	usage
+case $# in
+	0)
+		patch=`get_top`
+		;;
+	1)
+		if [ "$1" = "-e" ]; then
+			edit=t
+			patch=`get_top`
+		else
+			patch="$1"
+		fi
+		;;
+	2)
+		[ "$1" != "-e" ] && usage
+
+		edit=t
+		patch="$2"
+
+		;;
+esac
+
+# are there any patches applied?
+[ -z "$patch" ] && die "No patches applied."
+
+# check that patch exists in the series
+ret=`get_series | grep -ne "^$patch\$" | cut -d: -f1`
+if [ $ret -eq 0 ]; then
+	die "Patch $patch is not in the series"
 fi
 
-if [ "$1" = "-e" ]; then
-	edit=t
-	shift
-fi
+# FIXME: warn if we're editing an applied patch
 
-patch="$1"
-
-if [ -z "$patch" ]; then
-	# use the patch that's on the top of the stack
-
-	eidx=`wc -l < $applied`
-	if [ $eidx -eq 0 ]; then
-		die "Status file is empty"
-	fi
+if [ -z "$edit" ]; then
+	do_get_header "$GUILT_DIR/$branch/$patch"
 else
-	# use the specified patch
+	do_get_full_header "$GUILT_DIR/$branch/$patch" > /tmp/guilt.msg.$$
+	do_get_patch "$GUILT_DIR/$branch/$patch" > /tmp/guilt.diff.$$
+	$editor "/tmp/guilt.msg.$$"
+	mv "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$patch~"
 
-	eidx=`get_series | grep -ne "^$patch\$" | cut -d: -f1`
-	if [ $eidx -eq 0 ]; then
-		die "Patch $patch is not in the series"
-	fi
+	(
+		cat /tmp/guilt.msg.$$
+		cat /tmp/guilt.diff.$$
+	) > "$GUILT_DIR/$branch/$patch"
 fi
-
-idx=0
-for p in `get_series`; do
-	idx=`expr $idx + 1`
-	[ $idx -lt $eidx ] && continue
-	[ $idx -gt $eidx ] && break
-
-	if [ -z "$edit" ]; then
-		do_get_header $GUILT_DIR/$branch/$p
-	else
-		do_get_full_header $GUILT_DIR/$branch/$p > /tmp/guilt.msg.$$
-		do_get_patch  $GUILT_DIR/$branch/$p > /tmp/guilt.diff.$$
-		$editor "/tmp/guilt.msg.$$"
-		mv $GUILT_DIR/$branch/$p $GUILT_DIR/$branch/$p~
-		cat /tmp/guilt.msg.$$ > $GUILT_DIR/$branch/$p
-		cat /tmp/guilt.diff.$$ >> $GUILT_DIR/$branch/$p
-	fi
-done
-
