@@ -3,11 +3,16 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="[<patchname>]"
+USAGE="[-e] [<patchname>]"
 . `dirname $0`/guilt
 
-if [ $# -gt 1 ]; then
+if [ $# -gt 2 ]; then
 	usage
+fi
+
+if [ "$1" = "-e" ]; then
+	edit=t
+	shift
 fi
 
 patch="$1"
@@ -34,6 +39,15 @@ for p in `get_series`; do
 	[ $idx -lt $eidx ] && continue
 	[ $idx -gt $eidx ] && break
 
-	do_get_header $GUILT_DIR/$branch/$p
+	if [ -z "$edit" ]; then
+		do_get_header $GUILT_DIR/$branch/$p
+	else
+		do_get_full_header $GUILT_DIR/$branch/$p > /tmp/guilt.msg.$$
+		do_get_patch  $GUILT_DIR/$branch/$p > /tmp/guilt.diff.$$
+		$editor "/tmp/guilt.msg.$$"
+		mv $GUILT_DIR/$branch/$p $GUILT_DIR/$branch/$p~
+		cat /tmp/guilt.msg.$$ > $GUILT_DIR/$branch/$p
+		cat /tmp/guilt.diff.$$ >> $GUILT_DIR/$branch/$p
+	fi
 done
 

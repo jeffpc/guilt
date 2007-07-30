@@ -209,6 +209,15 @@ do_make_header()
 	'
 }
 
+# usage: do_get_patch patchfile
+do_get_patch()
+{
+	cat "$1" | awk '
+BEGIN{}
+/^(diff|---)/,/END{}/
+'
+}
+
 # usage: do_get_header patchfile
 do_get_header()
 {
