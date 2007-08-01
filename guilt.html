@@ -343,6 +343,29 @@ Each of these per-branch directories contains 2 special files:</p>
 per-branch patch directory. Empty and commented out lines are ignored.</p>
 <p>status: This file contains the state of the stack. What patches are applied.</p>
 </div>
+<h2>HOOKS</h2>
+<div class="sectionbody">
+<p>Any guilt operation may execute zero or more hook scripts which can be used
+to run any houskeeping commands or even abort the execution of the command.</p>
+</div>
+<h2>HOOKS DIRECTORY</h2>
+<div class="sectionbody">
+<p>Guilt follows the same basic design of hooks in Git itself. All Guilt hooks
+are executable files (generally shell scripts, but they can be anything the
+operating system can execute) in .git/hooks/guilt/.</p>
+<p>The following hooks are supported:</p>
+<dl>
+<dt>
+delete &lt;patch name&gt;
+</dt>
+<dd>
+<p>
+        Executed when a patch is deleted from the patch series via
+        <a href="guilt-delete.html">guilt-delete(1)</a>.
+</p>
+</dd>
+</dl>
+</div>
 <h2>GUILT COMMANDS</h2>
 <div class="sectionbody">
 <p>All commands can be called with or without a dash. e.g. <em>guilt add</em> or
@@ -590,7 +613,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 17-Jul-2007 10:51:38 EDT
+Last updated 01-Aug-2007 15:05:40 EDT
 </div>
 </div>
 </body>

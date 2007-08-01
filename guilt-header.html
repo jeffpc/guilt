@@ -315,12 +315,20 @@ guilt-header(1) Manual Page
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-header</em> [&lt;patchname&gt;]</p>
+<p><em>guilt-header</em> [-e] [&lt;patchname&gt;]</p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
-<p>Prints either the topmost patches' header or the header of a specified patch.</p>
+<p>Prints either the topmost patch's header or the header of a specified patch.</p>
 <dl>
+<dt>
+-e
+</dt>
+<dd>
+<p>
+        Open the header in an editor, instead of printing it.
+</p>
+</dd>
 <dt>
 &lt;patchname&gt;
 </dt>
@@ -346,7 +354,7 @@ guilt-header(1) Manual Page
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 17-Jul-2007 10:51:25 EDT
+Last updated 01-Aug-2007 15:09:36 EDT
 </div>
 </div>
 </body>

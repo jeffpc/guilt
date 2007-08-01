@@ -315,7 +315,7 @@ guilt-refresh(1) Manual Page
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt-refresh</em> [--git]</p>
+<p><em>guilt-refresh</em> [--git] [--diffstat]</p>
 </div>
 <h2>DESCRIPTION</h2>
 <div class="sectionbody">
@@ -331,6 +331,15 @@ guilt-refresh(1) Manual Page
 <p>
         Generate a patch which uses all the features offered by the git diff
         format (e.g., rename and copy detection).
+</p>
+</dd>
+<dt>
+--diffstat
+</dt>
+<dd>
+<p>
+        Include a diffstat output in the patch file. Useful for cases where
+        patches will be submitted with other tools.
 </p>
 </dd>
 </dl>
@@ -350,7 +359,7 @@ guilt-refresh(1) Manual Page
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 17-Jul-2007 10:51:35 EDT
+Last updated 01-Aug-2007 15:09:41 EDT
 </div>
 </div>
 </body>
