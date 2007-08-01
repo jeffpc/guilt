@@ -1,11 +1,11 @@
 .\"     Title: guilt
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
-.\"      Date: 07/17/2007
+.\"      Date: 08/01/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT" "7" "07/17/2007" "" ""
+.TH "GUILT" "7" "08/01/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -24,6 +24,17 @@ In Guilt, all the patches are stored in .git/patches/$branch/, where $branch is 
 series: This file contains a list of all the patch filenames relative to the per\-branch patch directory. Empty and commented out lines are ignored.
 
 status: This file contains the state of the stack. What patches are applied.
+.SH "HOOKS"
+Any guilt operation may execute zero or more hook scripts which can be used to run any houskeeping commands or even abort the execution of the command.
+.SH "HOOKS DIRECTORY"
+Guilt follows the same basic design of hooks in Git itself. All Guilt hooks are executable files (generally shell scripts, but they can be anything the operating system can execute) in .git/hooks/guilt/.
+
+The following hooks are supported:
+.PP
+delete <patch name>
+.RS 4
+Executed when a patch is deleted from the patch series via \fBguilt\-delete\fR(1).
+.RE
 .SH "GUILT COMMANDS"
 All commands can be called with or without a dash. e.g. \fIguilt add\fR or \fIguilt\-add\fR
 .PP
