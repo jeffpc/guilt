@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE=""
+USAGE="[-p|--path]"
 . `dirname $0`/guilt
 
 while [ $# -ne 0 ]; do

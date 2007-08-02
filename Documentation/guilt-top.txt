@@ -9,6 +9,12 @@ SYNOPSIS
 --------
 include::usage-guilt-top.txt[]
 
+OPTIONS
+-------
+-p::
+--path::
+	Output full path instead of just patch name.
+
 Author
 ------
 Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
