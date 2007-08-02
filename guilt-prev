@@ -6,8 +6,18 @@
 USAGE=""
 . `dirname $0`/guilt
 
-if [ $# -ne 0 ]; then
-	usage
-fi
+while [ $# -ne 0 ]; do
+	case "$1" in
+	-p|--path)
+		path="$GUILT_DIR/$branch/" ;;
+	*)
+		usage ;;
+	esac
+	shift
+done
 
-get_prev
+p=`get_prev`
+
+if [ -n "$p" ]; then
+	echo $path$p
+fi

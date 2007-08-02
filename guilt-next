@@ -6,12 +6,21 @@
 USAGE=""
 . `dirname $0`/guilt
 
-if [ $# -ne 0 ]; then
-	usage
-fi
+while [ $# -ne 0 ]; do
+	case "$1" in
+	-p|--path)
+		path="$GUILT_DIR/$branch/" ;;
+	*)
+		usage ;;
+	esac
+	shift
+done
 
 n=`wc -l < $applied`
 n=$(($n + 1))
 
-get_series | awk "{ if (NR == $n) print \$0}"
+p=`get_series | awk "{ if (NR == $n) print \\$0}"`
 
+if [ -n "$p" ]; then
+	echo $path$p
+fi
