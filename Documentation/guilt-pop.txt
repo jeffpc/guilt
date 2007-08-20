@@ -19,7 +19,9 @@ OPTIONS
 	Force; discards any unrefreshed changes
 
 <patchname>::
-	Pop this patch off the tree
+	Pop all patches up to and including this patch off the tree
+
+If no patchname is given, pop the top-most patch.
 
 Author
 ------

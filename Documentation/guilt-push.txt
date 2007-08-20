@@ -19,7 +19,9 @@ OPTIONS
 	Push all patches on the tree
 
 <patchname>::
-	Push this patch on the tree
+	Push all patches up to and including this patch on the tree
+
+If no patchname is given, push the next patch in the series onto the tree.
 
 Author
 ------
