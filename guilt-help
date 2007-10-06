@@ -13,11 +13,16 @@ case $# in
 		page="guilt"
 		;;
 	1)
-		if [ "$1" != "guilt" ]; then
-			page="guilt-$1"
-		else
-			page="guilt"
-		fi
+		case "$1" in
+			guilt*)
+				# guilt --help
+				# guilt-cmd --help
+				# guilt-help guilt-foo
+				page="$1" ;;
+			*)
+				# guilt-help foo
+				page="guilt-$1" ;;
+		esac
 		;;
 	*)
 		usage

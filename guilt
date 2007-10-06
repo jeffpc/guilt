@@ -11,7 +11,7 @@ GUILT_NAME="Mind Games"
 case $1 in
 	-h|--h|--he|--hel|--help)
 	shift
-	exec "guilt-help" "$@"
+	exec "guilt-help" "`basename $0`"
 	exit
 	;;
 	-V|--ver|--versi|--versio|--version)
