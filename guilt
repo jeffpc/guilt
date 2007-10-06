@@ -378,6 +378,9 @@ push_patch()
 	__push_patch_bail=0
 
 	(
+		TMP_LOG=`get_tmp_file log`
+		TMP_MSG=`get_tmp_file msg`
+
 		p="$GUILT_DIR/$branch/$1"
 		pname="$1"
 		bail_action="$2"
@@ -392,23 +395,23 @@ push_patch()
 				reject=""
 			fi
 			git-apply -C$guilt_push_diff_context --index \
-				$reject "$p" > /dev/null 2> /tmp/guilt.log.$$
+				$reject "$p" > /dev/null 2> "$TMP_LOG"
 			__push_patch_bail=$?
 
 			if [ $__push_patch_bail -ne 0 ]; then
-				cat /tmp/guilt.log.$$ >&2
+				cat "$TMP_LOG" >&2
 				if [ "$bail_action" = "abort" ]; then
-					rm -f /tmp/guilt.log.$$ /tmp/guilt.msg.$$
+					rm -f "$TMP_LOG" "$TMP_MSG"
 					return $__push_patch_bail
 				fi
 			fi
 		fi
 
 		# grab a commit message out of the patch
-		do_get_header "$p" > /tmp/guilt.msg.$$
+		do_get_header "$p" > "$TMP_MSG"
 
 		# make a default commit message if patch doesn't contain one
-		[ ! -s /tmp/guilt.msg.$$ ] && echo "patch $pname" > /tmp/guilt.msg.$$
+		[ ! -s "$TMP_MSG" ] && echo "patch $pname" > "$TMP_MSG"
 
 		# extract a From line from the patch header, and set
 		# GIT_AUTHOR_{NAME,EMAIL}
@@ -423,11 +426,13 @@ push_patch()
 
 		# commit
 		treeish=`git-write-tree`
-		commitish=`git-commit-tree $treeish -p HEAD < /tmp/guilt.msg.$$`
+		commitish=`git-commit-tree $treeish -p HEAD < "$TMP_MSG"`
 		echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
 
 		# mark patch as applied
 		echo "$commitish:$pname" >> $applied
+
+		rm -f "$TMP_MSG" "$TMP_LOG"
 	)
 
 	# sub-shell funky-ness
@@ -436,7 +441,6 @@ push_patch()
 	# update references to top, bottom, and base of the stack
 	update_stack_tags
 
-	rm -f /tmp/guilt.msg.$$ /tmp/guilt.log.$$
 	return $__push_patch_bail
 }
 
@@ -474,13 +478,15 @@ __refresh_patch()
 	assert_head_check
 
 	(
+		TMP_DIFF=`get_tmp_file diff`
+
 		cd "$TOP_DIR"
 		p="$GUILT_DIR/$branch/$1"
 
 		git-diff-files --name-only | (while read n; do git-update-index "$n" ; done)
 
 		# get the patch header
-		do_get_full_header "$p" > /tmp/guilt.diff.$$
+		do_get_full_header "$p" > "$TMP_DIFF"
 
 		[ ! -z "$4" ] && diffopts="-C -M --find-copies-harder"
 		
@@ -489,15 +495,15 @@ __refresh_patch()
 				echo "---"
 				git-diff --stat $diffopts "$2"
 				echo ""
-			) >> /tmp/guilt.diff.$$
+			) >> "$TMP_DIFF"
 		fi
 
 		# get the new patch
-		git-diff $diffopts "$2" >> /tmp/guilt.diff.$$
+		git-diff $diffopts "$2" >> "$TMP_DIFF"
 
 		# move the new patch in
 		mv "$p" "$p~"
-		mv /tmp/guilt.diff.$$ $p
+		mv "$TMP_DIFF" $p
 	)
 
 	# drop the currently applied patch, pop_many_patches does it's own
@@ -539,6 +545,16 @@ munge_hash_range()
 			return 1;;
 	esac
 	return 0
+}
+
+# usage: get_tmp_file <prefix>
+#
+# Get a unique filename and create the file in a non-racy way
+get_tmp_file()
+{
+	while true; do
+		mktemp "/tmp/guilt.$1.XXXXXXXXXXXXXXX" && break
+	done
 }
 
 # usage: guilt_hook <hook name> <args....>

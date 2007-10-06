@@ -38,16 +38,21 @@ fi
 
 # FIXME: warn if we're editing an applied patch
 
+TMP_MSG=`get_tmp_file msg`
+TMP_DIFF=`get_tmp_file diff`
+
 if [ -z "$edit" ]; then
 	do_get_header "$GUILT_DIR/$branch/$patch"
 else
-	do_get_full_header "$GUILT_DIR/$branch/$patch" > /tmp/guilt.msg.$$
-	do_get_patch "$GUILT_DIR/$branch/$patch" > /tmp/guilt.diff.$$
-	$editor "/tmp/guilt.msg.$$"
+	do_get_full_header "$GUILT_DIR/$branch/$patch" > "$TMP_MSG"
+	do_get_patch "$GUILT_DIR/$branch/$patch" > "$TMP_DIFF"
+	$editor "$TMP_MSG"
 	mv "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$patch~"
 
 	(
-		cat /tmp/guilt.msg.$$
-		cat /tmp/guilt.diff.$$
+		cat "$TMP_MSG"
+		cat "$TMP_DIFF"
 	) > "$GUILT_DIR/$branch/$patch"
 fi
+
+rm -f "$TMP_MSG" "$TMP_DIFF"
