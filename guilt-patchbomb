@@ -94,8 +94,6 @@ $ {
 		mv "$fulln~" "$fulln"
 		echo "${n:0:4}: Including Cc from patch description"
 		rm -f "$TMP_FILE"
-	else
-		echo "${n:0:4}: No Cc found in patch description"
 	fi
 done
 
