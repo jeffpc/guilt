@@ -421,7 +421,13 @@ push_patch()
 			export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-" "}"
                         export GIT_AUTHOR_EMAIL="`echo $author_str | sed -e 's/[^<]*//'`"
 		fi
-		export GIT_AUTHOR_DATE="`stat -c %y "$p"`"
+
+		# must strip nano-second part otherwise git gets very
+		# confused, and makes up strange timestamps from the past
+		# (chances are it decides to interpret it as a unix
+		# timestamp).
+		export GIT_AUTHOR_DATE="`stat -c %y "$p" | sed -e '
+s/^\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\) \([0-9]\{2\}\):\([0-9]\{2\}\):\([0-9]\{2\}\)\.[0-9]* \(.*\)$/\1-\2-\3 \4:\5:\6 \7/'`"
 		export GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"
 
 		# commit
