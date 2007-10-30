@@ -18,6 +18,9 @@ OPTIONS
 -a::
 	Push all patches on the tree
 
+-n <num>::
+	Push specified number of patches
+
 <patchname>::
 	Push all patches up to and including this patch on the tree
 

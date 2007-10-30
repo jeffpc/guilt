@@ -20,6 +20,8 @@ f .git/patches/master/mode
 DONE
 }
 
+patches=4
+
 # the test itself
 empty_repo
 cd $REPODIR
@@ -48,6 +50,23 @@ do
 	expected_files | verify_repo .git/patches
 
 	echo -n "[$t] "
+
+	guilt-pop --all > /dev/null
+done
+
+guilt-pop --all > /dev/null
+
+for n in `seq -1 $patches`
+do
+	if [ $n -ge 0 ]; then
+		guilt-push -n $n > /dev/null
+	else
+		shouldfail guilt-push -n $n > /dev/null
+	fi
+
+	expected_files | verify_repo .git/patches
+
+	echo -n "[-n:$n] "
 
 	guilt-pop --all > /dev/null
 done

@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="[-f] [-a | --all | <patchname>]"
+USAGE="[-f] [-a | --all | -n <num> | <patchname>]"
 . `dirname $0`/guilt
 
 while [ $# -gt 0 ]; do
@@ -14,6 +14,9 @@ while [ $# -gt 0 ]; do
 		-a|--all)
 			all=t
 			;;
+		-n)
+			num=t
+			;;
 		*)
 			break
 			;;
@@ -21,9 +24,16 @@ while [ $# -gt 0 ]; do
 	shift
 done
 
-# "guilt-pop" or "guilt-pop foo"
+# "guilt-pop" or "guilt-pop foo" or "guilt-pop -n foo"
 if [ -z "$all" ] && [ $# -gt 1 ]; then
 	usage
+fi
+
+# "guilt-pop -n foo"
+if [ ! -z "$num" ]; then
+	if [ $# -gt 1 ] || [ $# -eq 0 ]; then
+		usage
+	fi
 fi
 
 # "guilt-pop -a"
@@ -42,6 +52,17 @@ elif [ "$patch" = "-a" ]; then
 
 	sidx=`wc -l < $applied`
 	eidx=0
+elif [ ! -z "$num" ]; then
+	# we are supposed to pop a set number of patches
+
+	[ "$patch" -lt 0 ] && die "Invalid number of patches to pop."
+
+	sidx=`wc -l < $applied`
+	eidx=`expr $sidx - $patch`
+
+	# catch underflow
+	[ $eidx -lt 0 ] && eidx=0
+	[ $eidx -eq $sidx ] && die "No patches requested to be removed."
 elif [ -z "$patch" ]; then
 	# we are supposed to pop only the current patch on the stack
 

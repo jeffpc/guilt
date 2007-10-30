@@ -3,24 +3,55 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="[ -f ] [-a | --all | <patchname>]"
+USAGE="[ -f ] [-a | --all | -n <num> | <patchname>]"
 . `dirname $0`/guilt
 
 abort_flag="abort"
 
-
-if [ "$1" = "-f" ]; then
-	abort_flag=""
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-f)
+			abort_flag=""
+			;;
+		-a|--all)
+			all=t
+			;;
+		-n)
+			num=t
+			;;
+		*)
+			break
+			;;
+	esac
 	shift
-fi
+done
+
 
 if [ $# -gt 1 ]; then
 	usage
 fi
 
-patch="$1"
+# "guilt-push" or "guilt-push foo"
+if [ -z "$all" ] && [ $# -gt 1 ]; then
+	usage
+fi
 
-if [ "$patch" = "--all" ] || [ "$patch" = "-a" ]; then
+# "guilt-push -n foo"
+if [ ! -z "$num" ]; then
+	if [ $# -gt 1 ] || [ $# -eq 0 ]; then
+		usage
+	fi
+fi
+
+# "guilt-push -a"
+if [ ! -z "$all" ] && [ $# -gt 0 ]; then
+	usage
+fi
+
+patch="$1"
+[ ! -z "$all" ] && patch="-a"
+
+if [ "$patch" = "-a" ]; then
 	# we are supposed to push all patches, get the last one out of
 	# series
 
@@ -28,6 +59,20 @@ if [ "$patch" = "--all" ] || [ "$patch" = "-a" ]; then
 	if [ $eidx -eq 0 ]; then
 		die "There are no patches to push"
 	fi
+elif [ ! -z "$num" ]; then
+	# we are supposed to pop a set number of patches
+
+	[ "$patch" -lt 0 ] && die "Invalid number of patches to push."
+
+	eidx=`get_series | wc -l`
+
+	# calculate end index from current
+	tidx=`wc -l < $applied`
+	tidx=`expr $tidx + $patch`
+
+	# clamp to minimum
+	[ $tidx -lt $eidx ] && eidx=$tidx
+
 elif [ -z "$patch" ]; then
 	# we are supposed to push only the next patch onto the stack
 
