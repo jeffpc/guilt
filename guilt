@@ -3,8 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-GUILT_VERSION="0.27"
-GUILT_NAME="Mind Games"
+GUILT_VERSION="0.28"
+GUILT_NAME="Voodoo"
 
 # If the first argument is one of the below, display the man page instead of
 # the rather silly and mostly useless usage string
