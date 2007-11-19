@@ -1,19 +1,19 @@
 .\"     Title: guilt-pop
 .\"    Author: 
-.\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
-.\"      Date: 08/01/2007
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 11/19/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-POP" "1" "08/01/2007" "" ""
+.TH "GUILT\-POP" "1" "11/19/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt\-pop \- Pop patches from the tree
+guilt-pop - Pop patches from the tree
 .SH "SYNOPSIS"
-\fIguilt\-pop\fR [\-f] [\-a | \-\-all | <patchname>]
+\fIguilt\-pop\fR [\-f] [\-a | \-\-all | \-n <num> | <patchname>]
 .SH "OPTIONS"
 .PP
 \-\-all, \-a
@@ -26,14 +26,20 @@ Pop all patches off the tree
 Force; discards any unrefreshed changes
 .RE
 .PP
+\-n <num>
+.RS 4
+Push specified number of patches
+.RE
+.PP
 <patchname>
 .RS 4
-Pop this patch off the tree
+Pop all patches up to and including this patch off the tree
 .RE
+If no patchname is given, pop the top\-most patch\.
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Written by Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
 .SH "DOCUMENTATION"
-Documentation by Brandon Philips <brandon@ifup.org>
+Documentation by Brandon Philips <brandon@ifup\.org>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.26)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\.28)
 

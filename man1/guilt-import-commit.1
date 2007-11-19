@@ -1,41 +1,41 @@
 .\"     Title: guilt-import-commit
 .\"    Author: 
-.\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
-.\"      Date: 08/01/2007
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 11/19/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-IMPORT\-COMMIT" "1" "08/01/2007" "" ""
+.TH "GUILT\-IMPORT\-COMMI" "1" "11/19/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt\-import\-commit \- Import one or more commits as patches
+guilt-import-commit - Import one or more commits as patches
 .SH "SYNOPSIS"
-\fIguilt\-import\-commit\fR [<hash> | <since>..[<until>] | ..<until>]
+\fIguilt\-import\-commit\fR [<hash> | <since>\.\.[<until>] | \.\.<until>]
 .SH "DESCRIPTION"
-Import one or more commits as individual patches.
+Import one or more commits as individual patches\.
 .SH "OPTIONS"
 .PP
 <hash>
 .RS 4
-Only the specified revision.
+Only the specified revision\.
 .RE
 .PP
-<since>..[<until>]
+<since>\.\.[<until>]
 .RS 4
-Revisions starting from \fI<since>\fR until \fI<until>\fR. The \fI<since>\fR revision it self is NOT included, while \fI<until>\fR is. If \fI<until>\fR is not specified, it is assumed to be HEAD.
+Revisions starting from \fI<since>\fR until \fI<until>\fR\. The \fI<since>\fR revision it self is NOT included, while \fI<until>\fR is\. If \fI<until>\fR is not specified, it is assumed to be HEAD\.
 .RE
 .PP
-\&..<until>
+\.\.<until>
 .RS 4
-All revisions until the \fI<until>\fR revision (inclusive).
+All revisions until the \fI<until>\fR revision (inclusive)\.
 .RE
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Written by Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
 .SH "DOCUMENTATION"
-Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Documentation by Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.26)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\.28)
 

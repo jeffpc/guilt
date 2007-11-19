@@ -1,186 +1,186 @@
 .\"     Title: guilt
 .\"    Author: 
-.\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
-.\"      Date: 08/01/2007
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 11/19/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT" "7" "08/01/2007" "" ""
+.TH "GUILT" "7" "11/19/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt \- quilt on top of git
+guilt - quilt on top of git
 .SH "SYNOPSIS"
 \fIguilt\fR COMMAND [ARGS]
 .SH "DESCRIPTION"
-Andrew Morton originally developed a set of scripts for maintaining kernel patches outside of any SCM tool. Others extended these into a suite called quilt. The basic idea behind quilt is to maintain patches instead of maintaining source files. Patches can be added, removed or reordered, and they can be refreshed as you fix bugs or update to a new base revision. quilt is very powerful, but it is not integrated with the underlying SCM tools. This makes it difficult to visualize your changes.
+Andrew Morton originally developed a set of scripts for maintaining kernel patches outside of any SCM tool\. Others extended these into a suite called quilt\. The basic idea behind quilt is to maintain patches instead of maintaining source files\. Patches can be added, removed or reordered, and they can be refreshed as you fix bugs or update to a new base revision\. quilt is very powerful, but it is not integrated with the underlying SCM tools\. This makes it difficult to visualize your changes\.
 
-Guilt allows one to use quilt functionality on top of a Git repository. Changes are maintained as patches which are committed into Git. Commits can be removed or reordered, and the underlying patch can be refreshed based on changes made in the working directory. The patch directory can also be placed under revision control, so you can have a separate history of changes made to your patches.
+Guilt allows one to use quilt functionality on top of a Git repository\. Changes are maintained as patches which are committed into Git\. Commits can be removed or reordered, and the underlying patch can be refreshed based on changes made in the working directory\. The patch directory can also be placed under revision control, so you can have a separate history of changes made to your patches\.
 .SH "PATCHES DIRECTORY"
-In Guilt, all the patches are stored in .git/patches/$branch/, where $branch is the name of the branch being worked on. This means that one can have a independent series of patches for each branch present in the repository. Each of these per\-branch directories contains 2 special files:
+In Guilt, all the patches are stored in \.git/patches/$branch/, where $branch is the name of the branch being worked on\. This means that one can have a independent series of patches for each branch present in the repository\. Each of these per\-branch directories contains 2 special files:
 
-series: This file contains a list of all the patch filenames relative to the per\-branch patch directory. Empty and commented out lines are ignored.
+series: This file contains a list of all the patch filenames relative to the per\-branch patch directory\. Empty and commented out lines are ignored\.
 
-status: This file contains the state of the stack. What patches are applied.
+status: This file contains the state of the stack\. What patches are applied\.
 .SH "HOOKS"
-Any guilt operation may execute zero or more hook scripts which can be used to run any houskeeping commands or even abort the execution of the command.
+Any guilt operation may execute zero or more hook scripts which can be used to run any houskeeping commands or even abort the execution of the command\.
 .SH "HOOKS DIRECTORY"
-Guilt follows the same basic design of hooks in Git itself. All Guilt hooks are executable files (generally shell scripts, but they can be anything the operating system can execute) in .git/hooks/guilt/.
+Guilt follows the same basic design of hooks in Git itself\. All Guilt hooks are executable files (generally shell scripts, but they can be anything the operating system can execute) in \.git/hooks/guilt/\.
 
 The following hooks are supported:
 .PP
 delete <patch name>
 .RS 4
-Executed when a patch is deleted from the patch series via \fBguilt\-delete\fR(1).
+Executed when a patch is deleted from the patch series via \fBguilt-delete\fR(1)\.
 .RE
 .SH "GUILT COMMANDS"
-All commands can be called with or without a dash. e.g. \fIguilt add\fR or \fIguilt\-add\fR
+All commands can be called with or without a dash\. e\.g\. \fIguilt add\fR or \fIguilt\-add\fR
 .PP
-\fBguilt\-add\fR(1)
+\fBguilt-add\fR(1)
 .RS 4
-guilt\-add \- Add a file to git and guilt.
+guilt\-add \- Add a file to git and guilt\.
 .RE
 .PP
-\fBguilt\-applied\fR(1)
+\fBguilt-applied\fR(1)
 .RS 4
-guilt\-applied \- List applied patches.
+guilt\-applied \- List applied patches\.
 .RE
 .PP
-\fBguilt\-branch\fR(1)
+\fBguilt-branch\fR(1)
 .RS 4
-guilt\-branch \- Branch the entire patch series.
+guilt\-branch \- Branch the entire patch series\.
 .RE
 .PP
-\fBguilt\-delete\fR(1)
+\fBguilt-delete\fR(1)
 .RS 4
-guilt\-delete \- Delete a patch.
+guilt\-delete \- Delete a patch\.
 .RE
 .PP
-\fBguilt\-diff\fR(1)
+\fBguilt-diff\fR(1)
 .RS 4
-guilt\-diff \- Outputs various diffs.
+guilt\-diff \- Outputs various diffs\.
 .RE
 .PP
-\fBguilt\-export\fR(1)
+\fBguilt-export\fR(1)
 .RS 4
-guilt\-export \- Export a patch series (to be used by quilt).
+guilt\-export \- Export a patch series (to be used by quilt)\.
 .RE
 .PP
-\fBguilt\-files\fR(1)
+\fBguilt-files\fR(1)
 .RS 4
-guilt\-files \- Print the list of files that the topmost patch changes.
+guilt\-files \- Print the list of files that the topmost patch changes\.
 .RE
 .PP
-\fBguilt\-fold\fR(1)
+\fBguilt-fold\fR(1)
 .RS 4
-guilt\-fold \- Fold a specified patch into the topmost applied patch.
+guilt\-fold \- Fold a specified patch into the topmost applied patch\.
 .RE
 .PP
-\fBguilt\-fork\fR(1)
+\fBguilt-fork\fR(1)
 .RS 4
-guilt\-fork \- Fork the topmost applied patch.
+guilt\-fork \- Fork the topmost applied patch\.
 .RE
 .PP
-\fBguilt\-graph\fR(1)
+\fBguilt-graph\fR(1)
 .RS 4
-guilt\-graph \- Create a patch dependency graph.
+guilt\-graph \- Create a patch dependency graph\.
 .RE
 .PP
-\fBguilt\-header\fR(1)
+\fBguilt-header\fR(1)
 .RS 4
-guilt\-header \- Print a patch header.
+guilt\-header \- Print a patch header\.
 .RE
 .PP
-\fBguilt\-help\fR(1)
+\fBguilt-help\fR(1)
 .RS 4
-guilt\-help \- open man page of a guilt command.
+guilt\-help \- open man page of a guilt command\.
 .RE
 .PP
-\fBguilt\-import\-commit\fR(1)
+\fBguilt-import-commit\fR(1)
 .RS 4
-guilt\-import\-commit \- Import one or more commits as patches.
+guilt\-import\-commit \- Import one or more commits as patches\.
 .RE
 .PP
-\fBguilt\-import\fR(1)
+\fBguilt-import\fR(1)
 .RS 4
-guilt\-import \- Import specified patch file.
+guilt\-import \- Import specified patch file\.
 .RE
 .PP
-\fBguilt\-init\fR(1)
+\fBguilt-init\fR(1)
 .RS 4
-guilt\-init \- Initialize guilt for use in a git repository.
+guilt\-init \- Initialize guilt for use in a git repository\.
 .RE
 .PP
-\fBguilt\-new\fR(1)
+\fBguilt-new\fR(1)
 .RS 4
-guilt\-new \- Create a new patch.
+guilt\-new \- Create a new patch\.
 .RE
 .PP
-\fBguilt\-next\fR(1)
+\fBguilt-next\fR(1)
 .RS 4
-guilt\-next \- Output the name of next patch to be pushed.
+guilt\-next \- Output the name of next patch to be pushed\.
 .RE
 .PP
-\fBguilt\-patchbomb\fR(1)
+\fBguilt-patchbomb\fR(1)
 .RS 4
-guilt\-patchbomb \- Email a series of commits interactively.
+guilt\-patchbomb \- Email a series of commits interactively\.
 .RE
 .PP
-\fBguilt\-pop\fR(1)
+\fBguilt-pop\fR(1)
 .RS 4
-guilt\-pop \- Pop patches from the tree.
+guilt\-pop \- Pop patches from the tree\.
 .RE
 .PP
-\fBguilt\-prev\fR(1)
+\fBguilt-prev\fR(1)
 .RS 4
-guilt\-prev \- Output name of second topmost applied patch.
+guilt\-prev \- Output name of second topmost applied patch\.
 .RE
 .PP
-\fBguilt\-push\fR(1)
+\fBguilt-push\fR(1)
 .RS 4
-guilt\-push \- Push patches onto the tree.
+guilt\-push \- Push patches onto the tree\.
 .RE
 .PP
-\fBguilt\-rebase\fR(1)
+\fBguilt-rebase\fR(1)
 .RS 4
-guilt\-rebase \- Rebase pushed patches.
+guilt\-rebase \- Rebase pushed patches\.
 .RE
 .PP
-\fBguilt\-refresh\fR(1)
+\fBguilt-refresh\fR(1)
 .RS 4
-guilt\-refresh \- Refresh topmost applied patch.
+guilt\-refresh \- Refresh topmost applied patch\.
 .RE
 .PP
-\fBguilt\-rm\fR(1)
+\fBguilt-rm\fR(1)
 .RS 4
-guilt\-rm \- Remove a file from the git tree and guilt.
+guilt\-rm \- Remove a file from the git tree and guilt\.
 .RE
 .PP
-\fBguilt\-series\fR(1)
+\fBguilt-series\fR(1)
 .RS 4
-guilt\-series \- Print the stack of patches.
+guilt\-series \- Print the stack of patches\.
 .RE
 .PP
-\fBguilt\-status\fR(1)
+\fBguilt-status\fR(1)
 .RS 4
-guilt\-status \- Print the status of files since the last refresh.
+guilt\-status \- Print the status of files since the last refresh\.
 .RE
 .PP
-\fBguilt\-top\fR(1)
+\fBguilt-top\fR(1)
 .RS 4
-guilt\-top \- Output name of topmost applied patch.
+guilt\-top \- Output name of topmost applied patch\.
 .RE
 .PP
-\fBguilt\-unapplied\fR(1)
+\fBguilt-unapplied\fR(1)
 .RS 4
-guilt\-unapplied \- List all unapplied patches.
+guilt\-unapplied \- List all unapplied patches\.
 .RE
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Written by Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
 .SH "DOCUMENTATION"
-Documentation by Brandon Philips <brandon@ifup.org> and Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Documentation by Brandon Philips <brandon@ifup\.org> and Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.26)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\.28)
 

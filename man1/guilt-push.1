@@ -1,24 +1,24 @@
 .\"     Title: guilt-push
 .\"    Author: 
-.\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
-.\"      Date: 08/01/2007
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 11/19/2007
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-PUSH" "1" "08/01/2007" "" ""
+.TH "GUILT\-PUSH" "1" "11/19/2007" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt\-push \- Push patches onto the tree
+guilt-push - Push patches onto the tree
 .SH "SYNOPSIS"
-\fIguilt\-push\fR [ \-f ] [\-a | \-\-all | <patchname>]
+\fIguilt\-push\fR [ \-f ] [\-a | \-\-all | \-n <num> | <patchname>]
 .SH "OPTIONS"
 .PP
 \-f
 .RS 4
-Force the push if the patch doesn't apply cleanly
+Force the push if the patch doesn\'t apply cleanly
 .RE
 .PP
 \-\-all, \-a
@@ -26,14 +26,20 @@ Force the push if the patch doesn't apply cleanly
 Push all patches on the tree
 .RE
 .PP
+\-n <num>
+.RS 4
+Push specified number of patches
+.RE
+.PP
 <patchname>
 .RS 4
-Push this patch on the tree
+Push all patches up to and including this patch on the tree
 .RE
+If no patchname is given, push the next patch in the series onto the tree\.
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Written by Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
 .SH "DOCUMENTATION"
-Documentation by Brandon Philips <brandon@ifup.org>
+Documentation by Brandon Philips <brandon@ifup\.org>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.26)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\.28)
 
