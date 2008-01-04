@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+# Copyright (c) Josef "Jeff" Sipek, 2008
+#
+
+USAGE="[-f]"
+. `dirname $0`/guilt
+
+safety_abort()
+{
+	die "Please read the man page first. (you need to specify -f to force the repair)."
+}
+
+case $# in
+	0)
+		safety_abort
+		;;
+	1)
+		[ "$1" != "-f" ] && safety_abort
+		;;
+	*)
+		usage
+		;;
+esac
+
+oldrev=`git show-ref -s "refs/heads/$branch"`
+echo "Current  HEAD commit $oldrev"
+
+if [ -s "$applied" ]; then
+	# there were some patches applied
+	newrev=`git-rev-parse $(head -1 < "$applied" | cut -d: -f1)^`
+else
+	# no patches were applied, but let's do all the work anyway
+	newrev="$oldrev"
+fi
+
+echo "New      HEAD commit $newrev"
+
+echo -n "Are you sure you want to proceed? [y/N] "
+read n
+if [ "$n" != "y" ] && [ "$n" != "Y" ]; then
+	die "Aborting..."
+fi
+
+# blow away any commits
+git-reset --hard "$newrev" > /dev/null
+
+# blow away the applied stack
+printf "" > "$applied"
+
+# update the top/bottom/base tags
+update_stack_tags
+
+echo "Done."
