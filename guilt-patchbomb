@@ -71,32 +71,6 @@ if [ `git-rev-list "$r" | wc -l` -gt 1 ]; then
 fi
 opts="$opts $to_opts"
 
-ls "$dir" | while read n; do
-	fulln="$dir/$n"
-
-	do_get_full_header "$fulln" | awk '
-BEGIN{p=0}
-/^$/{p=1}
-/^[Cc][Cc]: / && (p==1){print substr($0, 5)}
-' | sed -n -e '
-1 h
-2,$ H
-$ {
-	x
-	s/\n/, /g
-	p
-}' > "$TMP_FILE"
-	if [ -s "$TMP_FILE" ]; then
-		head -1 "$fulln" > "$fulln~"
-		echo -n "Cc: " >> "$fulln~"
-		cat "$TMP_FILE" >> "$fulln~"
-		tail -n +2 "$fulln" >> "$fulln~"
-		mv "$fulln~" "$fulln"
-		echo "${n:0:4}: Including Cc from patch description"
-		rm -f "$TMP_FILE"
-	fi
-done
-
 # last possible point to abort!
 echo -n "Proceed with patchbomb (this is the last chance to abort)? [y/N] "
 read n
