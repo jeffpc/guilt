@@ -1,0 +1,50 @@
+% setup_repo
+% guilt-new
+% mkdir blah
+% touch blah/sub
+% guilt-add blah/sub
+% guilt-refresh
+% guilt-push -a
+Applying patch..modify
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..mode
+Patch applied.
+% guilt-files
+def
+% guilt-files -l
+mode def
+% guilt-files -v -l
+[mode] def
+% guilt-files -a
+blah/sub
+def
+abd
+abd
+def
+% guilt-files -l -a
+subdir blah/sub
+modify def
+add abd
+remove abd
+mode def
+% guilt-files -v -a
+subdir
++ blah/sub
+modify
+  def
+add
++ abd
+remove
+- abd
+mode
+  def
+% guilt-files -v -l -a
+[subdir] blah/sub
+[modify] def
+[add] abd
+[remove] abd
+[mode] def

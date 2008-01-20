@@ -1,0 +1,1056 @@
+% setup_repo
+% guilt-push (unnamed, modify)
+Applying patch..modify
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-push (unnamed, add)
+Applying patch..add
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f fc42fbc05afb7265d358add98f500f83bf29aea7  .git/patches/master/status
+% git-log
+commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch add
+
+diff --git a/abd b/abd
+new file mode 100644
+index 0000000..489450e
+--- /dev/null
++++ b/abd
+@@ -0,0 +1 @@
++qweert
+
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-push (unnamed, remove)
+Applying patch..remove
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f f8012069806c3baed27b8f661c19083211fb7ca9  .git/patches/master/status
+% git-log
+commit e67345cf1e7e9594c73efad7381a994f1fe63b14
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch remove
+
+diff --git a/abd b/abd
+deleted file mode 100644
+index 489450e..0000000
+--- a/abd
++++ /dev/null
+@@ -1 +0,0 @@
+-qweert
+
+commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch add
+
+diff --git a/abd b/abd
+new file mode 100644
+index 0000000..489450e
+--- /dev/null
++++ b/abd
+@@ -0,0 +1 @@
++qweert
+
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-push (unnamed, mode)
+Applying patch..mode
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 49571a872d2f2f1a8c56e65352c0f9b8aff53143  .git/patches/master/status
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 632ca0f5ec27a961990b45673dfc751f1da830f3
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch mode
+
+diff --git a/def b/def
+old mode 100644
+new mode 100755
+
+commit e67345cf1e7e9594c73efad7381a994f1fe63b14
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch remove
+
+diff --git a/abd b/abd
+deleted file mode 100644
+index 489450e..0000000
+--- a/abd
++++ /dev/null
+@@ -1 +0,0 @@
+-qweert
+
+commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch add
+
+diff --git a/abd b/abd
+new file mode 100644
+index 0000000..489450e
+--- /dev/null
++++ b/abd
+@@ -0,0 +1 @@
++qweert
+
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push modify (named, modify)
+Applying patch..modify
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push add (named, add)
+Applying patch..modify
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push remove (named, remove)
+Applying patch..modify
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push mode (named, mode)
+Applying patch..modify
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push modify (named, incremental, modify)
+Applying patch..modify
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-push add (named, incremental, add)
+Applying patch..add
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f fc42fbc05afb7265d358add98f500f83bf29aea7  .git/patches/master/status
+% git-log
+commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch add
+
+diff --git a/abd b/abd
+new file mode 100644
+index 0000000..489450e
+--- /dev/null
++++ b/abd
+@@ -0,0 +1 @@
++qweert
+
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-push remove (named, incremental, remove)
+Applying patch..remove
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f f8012069806c3baed27b8f661c19083211fb7ca9  .git/patches/master/status
+% git-log
+commit e67345cf1e7e9594c73efad7381a994f1fe63b14
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch remove
+
+diff --git a/abd b/abd
+deleted file mode 100644
+index 489450e..0000000
+--- a/abd
++++ /dev/null
+@@ -1 +0,0 @@
+-qweert
+
+commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch add
+
+diff --git a/abd b/abd
+new file mode 100644
+index 0000000..489450e
+--- /dev/null
++++ b/abd
+@@ -0,0 +1 @@
++qweert
+
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-push mode (named, incremental, mode)
+Applying patch..mode
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 49571a872d2f2f1a8c56e65352c0f9b8aff53143  .git/patches/master/status
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 632ca0f5ec27a961990b45673dfc751f1da830f3
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch mode
+
+diff --git a/def b/def
+old mode 100644
+new mode 100755
+
+commit e67345cf1e7e9594c73efad7381a994f1fe63b14
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch remove
+
+diff --git a/abd b/abd
+deleted file mode 100644
+index 489450e..0000000
+--- a/abd
++++ /dev/null
+@@ -1 +0,0 @@
+-qweert
+
+commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch add
+
+diff --git a/abd b/abd
+new file mode 100644
+index 0000000..489450e
+--- /dev/null
++++ b/abd
+@@ -0,0 +1 @@
++qweert
+
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push -n -2
+Invalid number of patches to push.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+% git-log
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+No patches applied.
+% guilt-push -n -1
+Invalid number of patches to push.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+% git-log
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+No patches applied.
+% guilt-push -n 0
+Applying patch..modify
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push -n 1
+Applying patch..modify
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push -n 2
+Applying patch..modify
+Patch applied.
+Applying patch..add
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f fc42fbc05afb7265d358add98f500f83bf29aea7  .git/patches/master/status
+% git-log
+commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch add
+
+diff --git a/abd b/abd
+new file mode 100644
+index 0000000..489450e
+--- /dev/null
++++ b/abd
+@@ -0,0 +1 @@
++qweert
+
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push -n 3
+Applying patch..modify
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..remove
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f f8012069806c3baed27b8f661c19083211fb7ca9  .git/patches/master/status
+% git-log
+commit e67345cf1e7e9594c73efad7381a994f1fe63b14
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch remove
+
+diff --git a/abd b/abd
+deleted file mode 100644
+index 489450e..0000000
+--- a/abd
++++ /dev/null
+@@ -1 +0,0 @@
+-qweert
+
+commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch add
+
+diff --git a/abd b/abd
+new file mode 100644
+index 0000000..489450e
+--- /dev/null
++++ b/abd
+@@ -0,0 +1 @@
++qweert
+
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% guilt-push -n 4
+Applying patch..modify
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..mode
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 49571a872d2f2f1a8c56e65352c0f9b8aff53143  .git/patches/master/status
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% git-log
+commit 632ca0f5ec27a961990b45673dfc751f1da830f3
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch mode
+
+diff --git a/def b/def
+old mode 100644
+new mode 100755
+
+commit e67345cf1e7e9594c73efad7381a994f1fe63b14
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch remove
+
+diff --git a/abd b/abd
+deleted file mode 100644
+index 489450e..0000000
+--- a/abd
++++ /dev/null
+@@ -1 +0,0 @@
+-qweert
+
+commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch add
+
+diff --git a/abd b/abd
+new file mode 100644
+index 0000000..489450e
+--- /dev/null
++++ b/abd
+@@ -0,0 +1 @@
++qweert
+
+commit 33633e7a1aa31972f125878baf7807be57b1672d
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    patch modify
+
+diff --git a/def b/def
+index 8baef1b..7d69c2f 100644
+--- a/def
++++ b/def
+@@ -1 +1,2 @@
+ abc
++asjhfksad
+
+commit d4850419ccc1146c7169f500725ce504b9774ed0
+Author: Author Name <author@email>
+Date:   Mon Jan 1 00:00:00 2007 +0000
+
+    initial
+    
+    Signed-off-by: Commiter Name <commiter@email>
+
+diff --git a/def b/def
+new file mode 100644
+index 0000000..8baef1b
+--- /dev/null
++++ b/def
+@@ -0,0 +1 @@
++abc
+% guilt-pop --all
+All patches popped.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status

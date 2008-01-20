@@ -1,0 +1,78 @@
+% setup_repo
+% applied (empty)
+% push (modify)
+Applying patch..modify
+Patch applied.
+% applied (modify)
+modify
+% applied -c (modify)
+33633e7a1aa31972f125878baf7807be57b1672d modify
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+% push (add)
+Applying patch..add
+Patch applied.
+% applied (add)
+modify
+add
+% applied -c (add)
+33633e7a1aa31972f125878baf7807be57b1672d modify
+68f33a015dcfd09c3896f15d152378b54eaa4eb6 add
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f fc42fbc05afb7265d358add98f500f83bf29aea7  .git/patches/master/status
+% push (remove)
+Applying patch..remove
+Patch applied.
+% applied (remove)
+modify
+add
+remove
+% applied -c (remove)
+33633e7a1aa31972f125878baf7807be57b1672d modify
+68f33a015dcfd09c3896f15d152378b54eaa4eb6 add
+e67345cf1e7e9594c73efad7381a994f1fe63b14 remove
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f f8012069806c3baed27b8f661c19083211fb7ca9  .git/patches/master/status
+% push (mode)
+Applying patch..mode
+Patch applied.
+% applied (mode)
+modify
+add
+remove
+mode
+% applied -c (mode)
+33633e7a1aa31972f125878baf7807be57b1672d modify
+68f33a015dcfd09c3896f15d152378b54eaa4eb6 add
+e67345cf1e7e9594c73efad7381a994f1fe63b14 remove
+632ca0f5ec27a961990b45673dfc751f1da830f3 mode
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 49571a872d2f2f1a8c56e65352c0f9b8aff53143  .git/patches/master/status
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
