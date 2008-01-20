@@ -1,43 +1,11 @@
-#!/bin/bash
+if [ -z "$REG_DIR" ]; then
+	echo "ERROR: You cannot run tests by hand" >&2
+	exit 2
+fi
 
 set -e
 
-export REPODIR=/tmp/$RANDOM
 export PATH=$PWD/..:$PATH
-
-function empty_repo
-{
-	rm -rf $REPODIR || exit 1
-	mkdir $REPODIR || exit 1
-	cd $REPODIR
-	git-init-db 2> /dev/null > /dev/null
-}
-
-function verify_repo
-{
-        ( find $1 -type d -printf 'd %p\n' ; find $1 -type f -printf 'f %p\n' ; find $1 -type b -printf 'b %p\n' ; find $1 -type c -printf %'c %p\n' ; find $1 -type l -printf 'l %p\n') | sort > /tmp/check-$$
-        grep -v '^$' | sort | diff -u - /tmp/check-$$
-        ERR=$?
-        rm -f /tmp/check-$$
-        return $ERR
-}
-
-function shouldfail
-{
-	if $* 2>/tmp/saveout-$$ ; then
-		echo "UNWANTED SUCCESS: " $*
-		cat /tmp/saveout-$$
-		return 1
-	fi
-	rm -f /tmp/saveout-$$
-	return 0
-}
-
-function complete_test
-{
-	echo "OK"
-	rm -rf $REPODIR
-}
 
 export TZ="UTC"
 export GIT_AUTHOR_DATE="2007-01-01 00:00:00 UTC"
@@ -47,5 +15,73 @@ export GIT_AUTHOR_EMAIL="author@email"
 export GIT_COMMITTER_NAME="Commiter Name"
 export GIT_COMMITTER_EMAIL="commiter@email"
 
-echo -n "`basename $0`: "
+# usage: die <msg>
+function die
+{
+	echo "Error: $@" >&2
+	exit 1
+}
+
+# usage: begin <msg>
+function begin
+{
+	echo "% $1"
+}
+
+# usage: shouldfail <cmd>..
+function shouldfail
+{
+	"$@" || return 0
+	return 1
+}
+
+# usage: list_files
+function list_files
+{
+	(
+		find .git/patches -type f -printf "f " -exec sha1sum {} \;
+		find .git/patches -type d -printf "d %p\n"
+	) | sort
+}
+
+function setup_git_repo
+{
+	# set up the repo so we have something interesting to run guilt on
+	echo "abc" > def
+	git-add def
+	git-commit -s -m "initial" 2> /dev/null > /dev/null
+}
+
+function setup_repo
+{
+	setup_git_repo
+
+	mkdir -p .git/patches/master
+
+	# patch to modify a file
+	cp "$REG_DIR/data/modify.patch" .git/patches/master/modify
+
+	# patch to add a new file
+	cp "$REG_DIR/data/add.patch" .git/patches/master/add
+
+	# patch to remove an existing file
+	cp "$REG_DIR/data/remove.patch" .git/patches/master/remove
+
+	# patch to change a mode
+	cp "$REG_DIR/data/mode.patch" .git/patches/master/mode
+
+	# the series file of all the things
+	cp "$REG_DIR/data/series" .git/patches/master/series
+
+	# the status file
+	touch .git/patches/master/status
+
+	# the status file
+	touch .git/patches/master/status
+
+	touch -d "$GIT_COMMITTER_DATE" .git/patches/master/modify
+	touch -d "$GIT_COMMITTER_DATE" .git/patches/master/add
+	touch -d "$GIT_COMMITTER_DATE" .git/patches/master/remove
+	touch -d "$GIT_COMMITTER_DATE" .git/patches/master/mode
+}
 
