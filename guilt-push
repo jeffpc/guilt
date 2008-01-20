@@ -101,7 +101,7 @@ get_series | sed -n -e "${sidx},${eidx}p" | while read p
 do
 	echo "Applying patch..$p"
 	if [ ! -f "$GUILT_DIR/$branch/$p" ]; then
-		die "Patch $patch does not exist. Aborting."
+		die "Patch $p does not exist. Aborting."
 	fi
 
 	push_patch $p $abort_flag
