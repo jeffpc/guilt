@@ -104,7 +104,7 @@ do
 		die "Patch $patch does not exist. Aborting."
 	fi
 
-	push_patch $p $abort_flag
+	push_patch "$p" $abort_flag
 
 	# bail if necessary
 	if [ $? -eq 0 ]; then
