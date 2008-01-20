@@ -1,0 +1,31 @@
+% setup_repo
+% guilt-refresh (no applied patches)
+No patches applied; try guilt-push first
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+% git-reset --hard HEAD
+HEAD is now at d485041... initial
+% guilt-push modify
+Applying patch..modify
+Patch applied.
+% guilt-refresh (applied patch)
+All patches popped.
+Applying patch..modify
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 42d2613ecee1b642b2b8b7b7a9cef165bf456e48  .git/patches/master/modify
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify~
+f de06c667ff8f99131cb05bf1ce42083449db78df  .git/patches/master/status
