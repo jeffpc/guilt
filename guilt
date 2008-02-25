@@ -329,6 +329,11 @@ pop_many_patches()
 	(
 		cd "$TOP_DIR"
 
+		# remove the patches refs
+		tail -$2 < "$applied" | cut -d: -f2 | while read pname; do
+			git update-ref -d "refs/patches/$branch/$pname" `git rev-parse "refs/patches/$branch/$pname"`
+		done
+
 		git reset --hard "$1" > /dev/null
 		head -n "-$2" < "$applied" > "$applied.tmp"
 		mv "$applied.tmp" "$applied"
@@ -438,6 +443,8 @@ s/^\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\) \([0-9]\{2\}\):\([0-9]\{2\}\):\(
 		git update-ref HEAD $commitish
 
 		# mark patch as applied
+		git update-ref "refs/patches/$branch/$pname" $commitish ""
+
 		echo "$commitish:$pname" >> $applied
 
 		rm -f "$TMP_MSG" "$TMP_LOG"

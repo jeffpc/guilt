@@ -6,6 +6,8 @@ Patch applied.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
 f 6e65775e6ed741dc0219e6008f7e0b06add0b395  .git/patches/master/series
@@ -13,6 +15,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f dfcdf91459f75509d815705c5769d71fcd5f73b0  .git/patches/master/status
+r f14ef0cd369e82820fbb0785c45614aee25c922c  .git/refs/patches/master/file
 % guilt-new dir/file
 Now at file.
 Applying patch..dir/file
@@ -21,6 +24,9 @@ Patch applied.
 d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
 f 0b488d592b2a401d638ca87dacaf60a061f84c3c  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -29,6 +35,8 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+r bead5908ff96e4b5719fe714c3e50c183152ae57  .git/refs/patches/master/dir/file
+r f14ef0cd369e82820fbb0785c45614aee25c922c  .git/refs/patches/master/file
 % guilt-new dir/subdir/file
 Now at dir/file.
 Applying patch..dir/subdir/file
@@ -38,6 +46,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 00f4d968227f29edd1d6dc985c1650f21a343486  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 2db31bd49d73b8d16773a4e6c9c5c7ccfb4a3eda  .git/patches/master/status
@@ -47,6 +59,9 @@ f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+r adc76eb117d58d48b5d0de7f81ab45849f538a5b  .git/refs/patches/master/dir/subdir/file
+r bead5908ff96e4b5719fe714c3e50c183152ae57  .git/refs/patches/master/dir/file
+r f14ef0cd369e82820fbb0785c45614aee25c922c  .git/refs/patches/master/file
 % guilt-push --all
 Applying patch..modify
 Patch applied.
@@ -65,6 +80,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 578dd8fc3317db2c8fdab355ce5828d00218990d  .git/patches/master/series
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -75,6 +94,14 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+r 04b6a3533f9570be11faa4aa88ae1461ded2ce83  .git/refs/patches/master/modify
+r 0e99c45432949fa47566b818fd1ea2c55dd153cb  .git/refs/patches/master/mode
+r 444830baa82d8d2e11e4bbe74afde638080af932  .git/refs/patches/master/remove
+r 9180d267bd0d4042f216cd70a22a2ee4fcb2d8e8  .git/refs/patches/master/add
+r adc76eb117d58d48b5d0de7f81ab45849f538a5b  .git/refs/patches/master/dir/subdir/file
+r bead5908ff96e4b5719fe714c3e50c183152ae57  .git/refs/patches/master/dir/file
+r d3843e2682d667e5e42a64e1e5028a1d5d03e973  .git/refs/patches/master/append
+r f14ef0cd369e82820fbb0785c45614aee25c922c  .git/refs/patches/master/file
 % guilt-pop --all
 All patches popped.
 % guilt-new prepend
@@ -86,6 +113,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -97,6 +128,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt-new "white space"
 Patchname is invalid.
 it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
@@ -105,6 +137,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -116,6 +152,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new prepend
 patch 'prepend' already exist
 % list_files
@@ -123,6 +160,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -134,6 +175,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new mode
 patch 'mode' already exist
 % list_files
@@ -141,6 +183,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -152,6 +198,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new /abc
 Patchname is invalid.
 it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
@@ -160,6 +207,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -171,6 +222,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new ./blah
 Patchname is invalid.
 it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
@@ -179,6 +231,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -190,6 +246,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new ../blah
 Patchname is invalid.
 it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
@@ -198,6 +255,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -209,6 +270,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new abc/./blah
 Patchname is invalid.
 it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
@@ -217,6 +279,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -228,6 +294,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new abc/../blah
 Patchname is invalid.
 it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
@@ -236,6 +303,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -247,6 +318,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new abc/.
 Patchname is invalid.
 it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
@@ -255,6 +327,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -266,6 +342,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new abc/..
 Patchname is invalid.
 it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
@@ -274,6 +351,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -285,6 +366,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % gult-new abc/
 Patchname is invalid.
 it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
@@ -293,6 +375,10 @@ d .git/patches
 d .git/patches/master
 d .git/patches/master/dir
 d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
@@ -304,3 +390,4 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
