@@ -19,8 +19,8 @@ fi
 
 case "$#" in
 	1) 
-		upstream=`git-rev-parse --verify "$1"` &&
-		ours=`git-rev-parse --verify HEAD` || usage
+		upstream=`git rev-parse --verify "$1"` &&
+		ours=`git rev-parse --verify HEAD` || usage
 		limit="$upstream"
 		;;
 	*)
@@ -37,8 +37,8 @@ fi
 
 # Note that these list commits in reverse order;
 # not that the order in inup matters...
-inup=`git-rev-list ^$ours $upstream` &&
-ours=`git-rev-list $ours ^$limit` || exit
+inup=`git rev-list ^$ours $upstream` &&
+ours=`git rev-list $ours ^$limit` || exit
 
 rebase_dir="$GUILT_DIR/$branch/.rebase.$$"
 mkdir "$rebase_dir"
@@ -47,8 +47,8 @@ mkdir "$rebase_dir"
 # calculate the patch ids for all the commits in upstream
 #
 for c in $inup ; do
-	git-diff-tree -p $c
-done | git-patch-id | while read id name ; do
+	git diff-tree -p $c
+done | git patch-id | while read id name ; do
 	echo "$name" >> "$rebase_dir/$id"
 done
 
@@ -58,10 +58,10 @@ cp "$applied" "$rebase_dir/status"
 
 echo "First, poping all patches..."
 pop_all_patches
-git-merge --no-commit $upstream > /dev/null 2> /dev/null
+git merge --no-commit $upstream > /dev/null 2> /dev/null
 
 echo ""
-log=`git-log -1 --pretty=oneline`
+log=`git log -1 --pretty=oneline`
 echo "HEAD is now at `echo $log | cut -c 1-7`... `echo "$log" | cut -c 41-`"
 
 #
@@ -76,7 +76,7 @@ IFS=":"
 cat "$rebase_dir/status" | while read hash name; do
 	echo ""
 	IFS=" "
-	cat "$GUILT_DIR/$branch/$name" | git-patch-id |
+	cat "$GUILT_DIR/$branch/$name" | git patch-id |
 		while read patchid commitid ; do
 			echo "Applying '$name'"
 			if [ -f "$rebase_dir/$patchid" ]; then

@@ -25,8 +25,8 @@ if [ -e "$GUILT_DIR/$newbranch" ]; then
 	die "Patch directory for branch \"$newbranch\" already exists."
 fi
 
-git-branch "$newbranch"
-git-checkout "$newbranch"
+git branch "$newbranch"
+git checkout "$newbranch"
 
 mkdir -p "$GUILT_DIR/`dirname $newbranch`"
 

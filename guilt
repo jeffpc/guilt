@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2006-2008
 #
 
 GUILT_VERSION="0.28"
@@ -30,7 +30,7 @@ SUBDIRECTORY_OK=1
 #
 gitver=`git --version | cut -d' ' -f3`
 case "$gitver" in
-	1.5.*)	;; # git-config
+	1.5.*)	;; # git config
 	*)	die "Unsupported version of git ($gitver)" ;;
 esac
 
@@ -135,7 +135,7 @@ valid_patchname()
 
 get_branch()
 {
-	git-symbolic-ref HEAD | sed -e 's,^refs/heads/,,'
+	git symbolic-ref HEAD | sed -e 's,^refs/heads/,,'
 }
 
 verify_branch()
@@ -185,13 +185,13 @@ get_series()
 do_make_header()
 {
 	# we should try to work with commit objects only
-	if [ `git-cat-file -t "$1"` != "commit" ]; then
+	if [ `git cat-file -t "$1"` != "commit" ]; then
 		echo "Hash $1 is not a commit object" >&2
 		echo "Aborting..." >&2
 		exit 2
 	fi
 
-	git-cat-file -p "$1" | awk '
+	git cat-file -p "$1" | awk '
 		BEGIN{headers=1; firstline=1}
 		/^author / && headers {
 			sub(/^author +/, "");
@@ -329,7 +329,7 @@ pop_many_patches()
 	(
 		cd "$TOP_DIR"
 
-		git-reset --hard "$1" > /dev/null
+		git reset --hard "$1" > /dev/null
 		head -n "-$2" < "$applied" > "$applied.tmp"
 		mv "$applied.tmp" "$applied"
 	)
@@ -359,9 +359,9 @@ update_stack_tags()
 		# bottom and base hashes, and update the tags
 
 		mkdir -p `dirname "$GIT_DIR/refs/tags/${branch}_top"`
-		git-rev-parse HEAD > "$GIT_DIR/refs/tags/${branch}_top"
+		git rev-parse HEAD > "$GIT_DIR/refs/tags/${branch}_top"
 		head -1 < $applied | cut -d: -f1 > "$GIT_DIR/refs/tags/${branch}_bottom"
-		git-rev-parse $(head -1 < $applied | cut -d: -f1)^ > "$GIT_DIR/refs/tags/${branch}_base"
+		git rev-parse $(head -1 < $applied | cut -d: -f1)^ > "$GIT_DIR/refs/tags/${branch}_base"
 	else
 		# there are no patches applied, therefore we must remove the
 		# tags to old top, bottom, and base
@@ -390,11 +390,11 @@ push_patch()
 		cd "$TOP_DIR"
 
 		# apply the patch if and only if there is something to apply
-		if [ `git-apply --numstat "$p" | wc -l` -gt 0 ]; then
+		if [ `git apply --numstat "$p" | wc -l` -gt 0 ]; then
 			if [ "$bail_action" = abort ]; then
 				reject=""
 			fi
-			git-apply -C$guilt_push_diff_context --index \
+			git apply -C$guilt_push_diff_context --index \
 				$reject "$p" > /dev/null 2> "$TMP_LOG"
 			__push_patch_bail=$?
 
@@ -431,9 +431,9 @@ s/^\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\) \([0-9]\{2\}\):\([0-9]\{2\}\):\(
 		export GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"
 
 		# commit
-		treeish=`git-write-tree`
-		commitish=`git-commit-tree $treeish -p HEAD < "$TMP_MSG"`
-		echo $commitish > $GIT_DIR/`git-symbolic-ref HEAD`
+		treeish=`git write-tree`
+		commitish=`git commit-tree $treeish -p HEAD < "$TMP_MSG"`
+		echo $commitish > $GIT_DIR/`git symbolic-ref HEAD`
 
 		# mark patch as applied
 		echo "$commitish:$pname" >> $applied
@@ -453,7 +453,7 @@ s/^\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\) \([0-9]\{2\}\):\([0-9]\{2\}\):\(
 # usage: must_commit_first
 must_commit_first()
 {
-	[ `git-diff-files | wc -l` -eq 0 ]
+	[ `git diff-files | wc -l` -eq 0 ]
 	return $?
 }
 
@@ -489,7 +489,7 @@ __refresh_patch()
 		cd "$TOP_DIR"
 		p="$GUILT_DIR/$branch/$1"
 
-		git-diff-files --name-only | (while read n; do git-update-index "$n" ; done)
+		git diff-files --name-only | (while read n; do git update-index "$n" ; done)
 
 		# get the patch header
 		do_get_full_header "$p" > "$TMP_DIFF"
@@ -499,13 +499,13 @@ __refresh_patch()
 		if [ ! -z "$5" ]; then
 			(
 				echo "---"
-				git-diff --stat $diffopts "$2"
+				git diff --stat $diffopts "$2"
 				echo ""
 			) >> "$TMP_DIFF"
 		fi
 
 		# get the new patch
-		git-diff $diffopts "$2" >> "$TMP_DIFF"
+		git diff $diffopts "$2" >> "$TMP_DIFF"
 
 		# move the new patch in
 		mv "$p" "$p~"
@@ -528,7 +528,7 @@ __refresh_patch()
 #	..<hash>		- until hash (includes hash)
 #	<hash1>..<hash2>	- from hash to hash (inclusive)
 #
-# The output of this function is suitable to be passed to git-rev-list
+# The output of this function is suitable to be passed to "git rev-list"
 munge_hash_range()
 {
 	case "$1" in
@@ -579,7 +579,7 @@ guilt_hook()
 # Some constants
 #
 
-# used for: git-apply -C <val>
+# used for: git apply -C <val>
 guilt_push_diff_context=1
 
 #
@@ -587,14 +587,14 @@ guilt_push_diff_context=1
 #
 
 # autotag?
-autotag=`git-config guilt.autotag`
+autotag=`git config guilt.autotag`
 [ -z "$autotag" ] && autotag=1
 
 #
 # The following gets run every time this file is source'd
 #
 
-TOP_DIR=`git-rev-parse --show-cdup`
+TOP_DIR=`git rev-parse --show-cdup`
 if [ -z "$TOP_DIR" ]; then
 	TOP_DIR="./"
 fi

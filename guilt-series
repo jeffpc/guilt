@@ -30,7 +30,7 @@ elif [ ! -z "$gui" ]; then
 	range="$bottom..$top"
 
 	# FIXME, this doesn't quite work - it's perfectly fine with
-	# git-rev-list, but gitk for whatever reason likes to include the
+	# "git rev-list", but gitk for whatever reason likes to include the
 	# parent
 	[ "$bottom" = "$top" ] && range="$bottom^..$bottom"
 

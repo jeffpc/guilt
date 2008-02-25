@@ -17,7 +17,7 @@ while [ $# -ne 0 ]; do
 done
 
 if [ ! -z "$working_tree" ] ; then
-	git-diff
+	git diff
 else
-	git-diff HEAD^
+	git diff HEAD^
 fi

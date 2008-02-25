@@ -13,10 +13,10 @@ fi
 patchname="$1"
 
 bottom=`head -1 < "$applied" | cut -d: -f1`
-base=`git-rev-parse $bottom^`
+base=`git rev-parse $bottom^`
 
 if [ -z "$patchname" ]; then
-	top=`git-rev-parse HEAD`
+	top=`git rev-parse HEAD`
 else
 	top=`grep "^[0-9a-f]\{40\}:$patchname" "$applied" | cut -d: -f1`
 	if [ -z "$top" ]; then
@@ -26,7 +26,7 @@ fi
 
 getfiles()
 {
-	git-diff-tree -r "$1^" "$1" | tr '\t' ' ' | cut -d' ' -f6
+	git diff-tree -r "$1^" "$1" | tr '\t' ' ' | cut -d' ' -f6
 }
 
 cache="$GUILT_DIR/$branch/.graphcache.$$"
@@ -58,7 +58,7 @@ while [ "$current" != "$base" ]; do
 		echo "	\"${h:0:8}\" -> \"${current:0:8}\"; // ?"
 	done
 
-	current=`git-rev-parse $current^`
+	current=`git rev-parse $current^`
 done
 
 echo "}"

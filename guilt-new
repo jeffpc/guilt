@@ -73,7 +73,7 @@ mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
 [ ! -z "$msg" ] && printf "$msg\n\n"
 
 # add a sign-off-by (-s)
-[ "$signoff" = "t" ] && printf "Signed-off-by: `git-var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`\n\n"
+[ "$signoff" = "t" ] && printf "Signed-off-by: `git var GIT_COMMITTER_IDENT | sed -e 's/>.*/>/'`\n\n"
 ) >> "$GUILT_DIR/$branch/$patch"
 
 # edit -e ?
@@ -82,8 +82,8 @@ mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
 if [ ! -z "$force" ]; then
 	(
 		cd "$TOP_DIR"
-		git-diff HEAD >> "$GUILT_DIR/$branch/$patch"
-		git-reset --hard HEAD > /dev/null
+		git diff HEAD >> "$GUILT_DIR/$branch/$patch"
+		git reset --hard HEAD > /dev/null
 	)
 fi
 

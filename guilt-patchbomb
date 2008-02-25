@@ -32,7 +32,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # display the list of commits to be sent as patches
-git-log --pretty=oneline "$r" | cut -c 1-8,41- | $pager
+git log --pretty=oneline "$r" | cut -c 1-8,41- | $pager
 
 echo -n "Are these what you want to send? [Y/n] "
 read n
@@ -46,7 +46,7 @@ if [ -e $dir ]; then
 fi
 echo "Using '$dir' as temporary directory"
 
-git-format-patch -o $dir -n -s "$r"
+git format-patch -o $dir -n -s "$r"
 
 # get the to/cc addresses
 echo -n "Enter all the To: email addresses (separated by space): "
@@ -66,7 +66,7 @@ done
 opts=""
 
 # more than 1 commit
-if [ `git-rev-list "$r" | wc -l` -gt 1 ]; then
+if [ `git rev-list "$r" | wc -l` -gt 1 ]; then
 	opts="$opts --no-chain-reply-to --compose"
 fi
 opts="$opts $to_opts"
@@ -79,10 +79,10 @@ if [ "$n" != "y" ] && [ "$n" != "Y" ]; then
 fi
 
 # ...and off they go.
-cmd="git-send-email"
+cmd="git send-email"
 if [ ! -z "$do_not_send" ]; then
 	echo "-n passed: not sending, command that would be executed:" >&2
-	cmd="echo git-send-email"
+	cmd="echo git send-email"
 fi
 
 if [ -z "$reply_to" ]; then

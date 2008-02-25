@@ -85,7 +85,7 @@ fi
 # if we are forcing the pop, reset first
 if [ ! -z "$force" ]; then
 	cd "$TOP_DIR" >&2 >/dev/null
-	git-reset --hard
+	git reset --hard
 	cd - >&2 >/dev/null
 elif ! must_commit_first; then
 	die "Uncommited changes detected. Refresh first."

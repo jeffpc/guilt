@@ -28,7 +28,7 @@ echo "Current  HEAD commit $oldrev"
 
 if [ -s "$applied" ]; then
 	# there were some patches applied
-	newrev=`git-rev-parse $(head -1 < "$applied" | cut -d: -f1)^`
+	newrev=`git rev-parse $(head -1 < "$applied" | cut -d: -f1)^`
 else
 	# no patches were applied, but let's do all the work anyway
 	newrev="$oldrev"
@@ -43,7 +43,7 @@ if [ "$n" != "y" ] && [ "$n" != "Y" ]; then
 fi
 
 # blow away any commits
-git-reset --hard "$newrev" > /dev/null
+git reset --hard "$newrev" > /dev/null
 
 # blow away the applied stack
 printf "" > "$applied"

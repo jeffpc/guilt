@@ -20,8 +20,8 @@ fi
 echo "About to begin conversion..." >&2
 echo "Current head: `cat $GIT_DIR/refs/heads/$branch`" >&2
 
-for rev in `git-rev-list $rhash`; do
-	s=`git-log --pretty=oneline -1 $rev | cut -c 42-`
+for rev in `git rev-list $rhash`; do
+	s=`git log --pretty=oneline -1 $rev | cut -c 42-`
 
 	fname=`echo $s | sed -e "s/&/and/g" -e "s/[ :]/_/g" -e "s,[/\\],-,g" \
 			-e "s/['\\[{}]//g" -e 's/]//g' | tr A-Z a-z`
@@ -39,7 +39,7 @@ for rev in `git-rev-list $rhash`; do
 	(
 		do_make_header $rev
 		echo ""
-		git-diff $rev^..$rev
+		git diff $rev^..$rev
 	) > $GUILT_DIR/$branch/$fname
 
 	# FIXME: grab the GIT_AUTHOR_DATE from the commit object and set the
@@ -50,9 +50,10 @@ for rev in `git-rev-list $rhash`; do
 
 	# Only reset if the commit was on this branch
 	if head_check $rev 2> /dev/null; then
-		# BEWARE: git-reset ahead! Is there a way to verify that we really
-		# created a patch? - We don't want to lose any history.
-		git-reset --hard $rev^ > /dev/null
+		# BEWARE: "git reset" ahead! Is there a way to verify that
+		# we really created a patch? - We don't want to lose any
+		# history.
+		git reset --hard $rev^ > /dev/null
 	elif [ -z "$warned" ]; then
 		echo "Warning: commit $rev is not the HEAD...preserving commit" >&2
 		echo "Warning: (this message is displayed only once)" >&2

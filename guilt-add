@@ -10,4 +10,4 @@ if [ $# -lt 1 ]; then
 	usage
 fi
 
-exec git-add -- "$@"
+exec git add -- "$@"

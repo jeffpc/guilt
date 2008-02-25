@@ -40,7 +40,7 @@ fi | while read obj patch; do
 	fi
 
 	IFS=' '
-	git-diff-tree -r $obj^ $obj | tr '\t' ' '|
+	git diff-tree -r $obj^ $obj | tr '\t' ' '|
 	while read omode nmode osha1 nsha1 st file; do
 		if [ -n "$opt_labels" ]; then
 			if [ -n "$opt_verbose" ]; then
