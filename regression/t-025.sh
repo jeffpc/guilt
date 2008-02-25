@@ -49,10 +49,7 @@ begin "list_files"
 list_files
 
 begin "guilt-new \"white space\""
-guilt-new "white space"
-guilt-pop 2>&1
-fixup_time_info "white space"
-guilt-push 2>&1
+shouldfail guilt-new "white space" 2>&1
 
 begin "list_files"
 list_files
