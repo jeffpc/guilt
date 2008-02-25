@@ -358,17 +358,19 @@ update_stack_tags()
 		# there are patches applied, therefore we must get the top,
 		# bottom and base hashes, and update the tags
 
-		mkdir -p `dirname "$GIT_DIR/refs/tags/${branch}_top"`
-		git rev-parse HEAD > "$GIT_DIR/refs/tags/${branch}_top"
-		head -1 < $applied | cut -d: -f1 > "$GIT_DIR/refs/tags/${branch}_bottom"
-		git rev-parse $(head -1 < $applied | cut -d: -f1)^ > "$GIT_DIR/refs/tags/${branch}_base"
+		git update-ref "refs/tags/${branch}_top" `git rev-parse HEAD`
+		git update-ref "refs/tags/${branch}_bottom" `head -1 < $applied | cut -d: -f1`
+		git update-ref "refs/tags/${branch}_base" `git rev-parse $(head -1 < $applied | cut -d: -f1)^`
 	else
 		# there are no patches applied, therefore we must remove the
 		# tags to old top, bottom, and base
 
-		rm -f "$GIT_DIR/refs/tags/${branch}_top"
-		rm -f "$GIT_DIR/refs/tags/${branch}_bottom"
-		rm -f "$GIT_DIR/refs/tags/${branch}_base"
+		git update-ref -d "refs/tags/${branch}_top" \
+			`git rev-parse "refs/tags/${branch}_top"`
+		git update-ref -d "refs/tags/${branch}_bottom" \
+			`git rev-parse "refs/tags/${branch}_bottom"`
+		git update-ref -d "refs/tags/${branch}_base" \
+			`git rev-parse "refs/tags/${branch}_base"`
 	fi
 }
 
@@ -433,7 +435,7 @@ s/^\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\) \([0-9]\{2\}\):\([0-9]\{2\}\):\(
 		# commit
 		treeish=`git write-tree`
 		commitish=`git commit-tree $treeish -p HEAD < "$TMP_MSG"`
-		echo $commitish > $GIT_DIR/`git symbolic-ref HEAD`
+		git update-ref HEAD $commitish
 
 		# mark patch as applied
 		echo "$commitish:$pname" >> $applied
