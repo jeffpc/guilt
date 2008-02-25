@@ -31,7 +31,7 @@ if [ -z "$patch" ]; then
 	die "You must specify a patch to delete"
 fi
 
-p=`grep -e "^[0-9a-f]\{40\}:$patch\$" < "$applied"`
+p=`grep -e "^$patch$" < "$applied"`
 if [ ! -z "$p" ] ; then
 	die "Cannot delete an applied patch"
 fi

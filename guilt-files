@@ -30,7 +30,9 @@ if [ -n "$opt_all" ]; then
 	cat $applied
 else
 	tail -1 $applied
-fi | while read obj patch; do
+fi | while read patch; do
+	obj=`git rev-parse refs/patches/$branch/$patch`
+
 	# shamelessly taken from Quilt(quilt/quilt/files)
 	if [ -n "$opt_all" ] && [ -n "$opt_verbose" ] && [ -z "$opt_labels" ]; then
 		echo "$patch"

@@ -12,13 +12,13 @@ fi
 
 patchname="$1"
 
-bottom=`head -1 < "$applied" | cut -d: -f1`
+bottom=`git rev-parse refs/patches/$branch/$(head -1 < "$applied")`
 base=`git rev-parse $bottom^`
 
 if [ -z "$patchname" ]; then
 	top=`git rev-parse HEAD`
 else
-	top=`grep "^[0-9a-f]\{40\}:$patchname" "$applied" | cut -d: -f1`
+	top=`grep "^$patchname$" "$applied"`
 	if [ -z "$top" ]; then
 		die "Cannot find patch '$patchname'. Is it applied?"
 	fi
