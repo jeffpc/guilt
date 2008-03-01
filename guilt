@@ -328,6 +328,15 @@ applied_rename_patch()
 	mv "$applied.tmp" "$applied"
 }
 
+# usage: remove_patch_refs
+# reads patch names from stdin
+remove_patch_refs()
+{
+	while read pname; do
+		git update-ref -d "refs/patches/$branch/$pname" `git rev-parse "refs/patches/$branch/$pname"`
+	done
+}
+
 # usage: pop_many_patches <commitish> <number of patches>
 pop_many_patches()
 {
@@ -337,9 +346,7 @@ pop_many_patches()
 		cd "$TOP_DIR"
 
 		# remove the patches refs
-		tail -$2 < "$applied" | while read pname; do
-			git update-ref -d "refs/patches/$branch/$pname" `git rev-parse "refs/patches/$branch/$pname"`
-		done
+		tail -$2 < "$applied" | remove_patch_refs
 
 		git reset --hard "$1" > /dev/null
 		head -n "-$2" < "$applied" > "$applied.tmp"

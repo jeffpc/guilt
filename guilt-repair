@@ -46,6 +46,7 @@ fi
 git reset --hard "$newrev" > /dev/null
 
 # blow away the applied stack
+remove_patch_refs < "$applied"
 printf "" > "$applied"
 
 # update the top/bottom/base tags
