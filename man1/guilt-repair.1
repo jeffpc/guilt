@@ -1,0 +1,43 @@
+.\"     Title: guilt-repair
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 03/19/2008
+.\"    Manual: 
+.\"    Source: 
+.\"
+.TH "GUILT\-REPAIR" "1" "03/19/2008" "" ""
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+guilt-repair - Repair the repository state
+.SH "SYNOPSIS"
+\fIguilt\-repair\fR [\-f]
+.SH "DESCRIPTION"
+Resets the repository state by reseting the HEAD to what\'s believed to be the proper commit, and reseting the applied stack\. The end result should be a repository with no patches applied\.
+.sp
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+Warning
+Running this command may result in commits and working directory changes being lost\. You may want to create a new reference (tag or branch) to the original HEAD before using guilt\-repair\.
+
+.PP
+\-f
+.RS 4
+Force repair\. Without this option, guilt\-repair aborts\.
+.RE
+.SH "AUTHOR"
+Written by Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
+.SH "DOCUMENTATION"
+Documentation by Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
+.SH "GUILT"
+Part of the guilt\fI7\fR\&[1] suite (Generated for Guilt v0\.29)
+.SH "NOTES"
+.IP " 1." 4
+7
+.RS 4
+\%guilt
+.RE
