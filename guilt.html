@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.1.0" />
+<meta name="generator" content="AsciiDoc 8.2.5" />
 <style type="text/css">
 /* Debug borders */
 p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
@@ -44,12 +44,17 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
 }
 
-h1 {
+h1, h2, h3 {
   border-bottom: 2px solid silver;
 }
 h2 {
-  border-bottom: 2px solid silver;
   padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
 }
 
 div.sectionbody {
@@ -206,7 +211,7 @@ dd > *:first-child {
 ul, ol {
     list-style-position: outside;
 }
-ol.olist2 {
+div.olist2 ol {
   list-style-type: lower-alpha;
 }
 
@@ -224,6 +229,9 @@ tfoot {
 div.hlist {
   margin-top: 0.8em;
   margin-bottom: 0.8em;
+}
+div.hlist td {
+  padding-bottom: 5px;
 }
 td.hlist1 {
   vertical-align: top;
@@ -247,12 +255,21 @@ div#toctitle {
   margin-bottom: 0.1em;
 }
 
-div.toclevel1, div.toclevel2 {
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
   margin-top: 0;
   margin-bottom: 0;
 }
 div.toclevel2 {
   margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
 }
 include1::./stylesheets/xhtml11-manpage.css[]
 /* Workarounds for IE6's broken and incomplete CSS2. */
@@ -303,64 +320,64 @@ guilt(7) Manual Page
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<p><em>guilt</em> COMMAND [ARGS]</p>
+<div class="para"><p><em>guilt</em> COMMAND [ARGS]</p></div>
 </div>
-<h2>DESCRIPTION</h2>
+<h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
-<p>Andrew Morton originally developed a set of scripts for maintaining kernel
+<div class="para"><p>Andrew Morton originally developed a set of scripts for maintaining kernel
 patches outside of any SCM tool. Others extended these into a suite called
 quilt. The basic idea behind quilt is to maintain patches instead of
 maintaining source files. Patches can be added, removed or reordered, and
 they can be refreshed as you fix bugs or update to a new base revision.
 quilt is very powerful, but it is not integrated with the underlying SCM
-tools. This makes it difficult to visualize your changes.</p>
-<p>Guilt allows one to use quilt functionality on top of a Git repository.
+tools. This makes it difficult to visualize your changes.</p></div>
+<div class="para"><p>Guilt allows one to use quilt functionality on top of a Git repository.
 Changes are maintained as patches which are committed into Git.  Commits can
 be removed or reordered, and the underlying patch can be refreshed based on
 changes made in the working directory. The patch directory can also be
 placed under revision control, so you can have a separate history of changes
-made to your patches.</p>
+made to your patches.</p></div>
 </div>
-<h2>PATCHES DIRECTORY</h2>
+<h2 id="_patches_directory">PATCHES DIRECTORY</h2>
 <div class="sectionbody">
-<p>In Guilt, all the patches are stored in .git/patches/$branch/, where $branch
+<div class="para"><p>In Guilt, all the patches are stored in .git/patches/$branch/, where $branch
 is the name of the branch being worked on. This means that one can have a
 independent series of patches for each branch present in the repository.
-Each of these per-branch directories contains 2 special files:</p>
-<p>series: This file contains a list of all the patch filenames relative to the
-per-branch patch directory. Empty and commented out lines are ignored.</p>
-<p>status: This file contains the state of the stack. What patches are applied.</p>
+Each of these per-branch directories contains 2 special files:</p></div>
+<div class="para"><p>series: This file contains a list of all the patch filenames relative to the
+per-branch patch directory. Empty and commented out lines are ignored.</p></div>
+<div class="para"><p>status: This file contains the state of the stack. What patches are applied.</p></div>
 </div>
-<h2>HOOKS</h2>
+<h2 id="_hooks">HOOKS</h2>
 <div class="sectionbody">
-<p>Any guilt operation may execute zero or more hook scripts which can be used
-to run any houskeeping commands or even abort the execution of the command.</p>
+<div class="para"><p>Any guilt operation may execute zero or more hook scripts which can be used
+to run any houskeeping commands or even abort the execution of the command.</p></div>
 </div>
-<h2>HOOKS DIRECTORY</h2>
+<h2 id="_hooks_directory">HOOKS DIRECTORY</h2>
 <div class="sectionbody">
-<p>Guilt follows the same basic design of hooks in Git itself. All Guilt hooks
+<div class="para"><p>Guilt follows the same basic design of hooks in Git itself. All Guilt hooks
 are executable files (generally shell scripts, but they can be anything the
-operating system can execute) in .git/hooks/guilt/.</p>
-<p>The following hooks are supported:</p>
-<dl>
+operating system can execute) in .git/hooks/guilt/.</p></div>
+<div class="para"><p>The following hooks are supported:</p></div>
+<div class="vlist"><dl>
 <dt>
 delete &lt;patch name&gt;
 </dt>
 <dd>
 <p>
         Executed when a patch is deleted from the patch series via
-        <a href="guilt-delete.html">guilt-delete(1)</a>.
+        guilt<a href="guilt-delete">1</a>.
 </p>
 </dd>
-</dl>
+</dl></div>
 </div>
-<h2>GUILT COMMANDS</h2>
+<h2 id="_guilt_commands">GUILT COMMANDS</h2>
 <div class="sectionbody">
-<p>All commands can be called with or without a dash. e.g. <em>guilt add</em> or
-<em>guilt-add</em></p>
-<dl>
+<div class="para"><p>All commands can be called with or without a dash. e.g. <em>guilt add</em> or
+<em>guilt-add</em></p></div>
+<div class="vlist"><dl>
 <dt>
-<a href="guilt-add.html">guilt-add(1)</a>
+guilt<a href="guilt-add">1</a>
 </dt>
 <dd>
 <p>
@@ -368,7 +385,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-applied.html">guilt-applied(1)</a>
+guilt<a href="guilt-applied">1</a>
 </dt>
 <dd>
 <p>
@@ -376,7 +393,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-branch.html">guilt-branch(1)</a>
+guilt<a href="guilt-branch">1</a>
 </dt>
 <dd>
 <p>
@@ -384,7 +401,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-delete.html">guilt-delete(1)</a>
+guilt<a href="guilt-delete">1</a>
 </dt>
 <dd>
 <p>
@@ -392,7 +409,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-diff.html">guilt-diff(1)</a>
+guilt<a href="guilt-diff">1</a>
 </dt>
 <dd>
 <p>
@@ -400,7 +417,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-export.html">guilt-export(1)</a>
+guilt<a href="guilt-export">1</a>
 </dt>
 <dd>
 <p>
@@ -408,7 +425,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-files.html">guilt-files(1)</a>
+guilt<a href="guilt-files">1</a>
 </dt>
 <dd>
 <p>
@@ -416,7 +433,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-fold.html">guilt-fold(1)</a>
+guilt<a href="guilt-fold">1</a>
 </dt>
 <dd>
 <p>
@@ -424,7 +441,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-fork.html">guilt-fork(1)</a>
+guilt<a href="guilt-fork">1</a>
 </dt>
 <dd>
 <p>
@@ -432,7 +449,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-graph.html">guilt-graph(1)</a>
+guilt<a href="guilt-graph">1</a>
 </dt>
 <dd>
 <p>
@@ -440,7 +457,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-header.html">guilt-header(1)</a>
+guilt<a href="guilt-header">1</a>
 </dt>
 <dd>
 <p>
@@ -448,7 +465,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-help.html">guilt-help(1)</a>
+guilt<a href="guilt-help">1</a>
 </dt>
 <dd>
 <p>
@@ -456,7 +473,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-import-commit.html">guilt-import-commit(1)</a>
+guilt<a href="guilt-import-commit">1</a>
 </dt>
 <dd>
 <p>
@@ -464,7 +481,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-import.html">guilt-import(1)</a>
+guilt<a href="guilt-import">1</a>
 </dt>
 <dd>
 <p>
@@ -472,7 +489,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-init.html">guilt-init(1)</a>
+guilt<a href="guilt-init">1</a>
 </dt>
 <dd>
 <p>
@@ -480,7 +497,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-new.html">guilt-new(1)</a>
+guilt<a href="guilt-new">1</a>
 </dt>
 <dd>
 <p>
@@ -488,7 +505,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-next.html">guilt-next(1)</a>
+guilt<a href="guilt-next">1</a>
 </dt>
 <dd>
 <p>
@@ -496,7 +513,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-patchbomb.html">guilt-patchbomb(1)</a>
+guilt<a href="guilt-patchbomb">1</a>
 </dt>
 <dd>
 <p>
@@ -504,7 +521,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-pop.html">guilt-pop(1)</a>
+guilt<a href="guilt-pop">1</a>
 </dt>
 <dd>
 <p>
@@ -512,7 +529,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-prev.html">guilt-prev(1)</a>
+guilt<a href="guilt-prev">1</a>
 </dt>
 <dd>
 <p>
@@ -520,7 +537,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-push.html">guilt-push(1)</a>
+guilt<a href="guilt-push">1</a>
 </dt>
 <dd>
 <p>
@@ -528,7 +545,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-rebase.html">guilt-rebase(1)</a>
+guilt<a href="guilt-rebase">1</a>
 </dt>
 <dd>
 <p>
@@ -536,7 +553,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-refresh.html">guilt-refresh(1)</a>
+guilt<a href="guilt-refresh">1</a>
 </dt>
 <dd>
 <p>
@@ -544,7 +561,15 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-rm.html">guilt-rm(1)</a>
+guilt<a href="guilt-repair">1</a>
+</dt>
+<dd>
+<p>
+        guilt-repair - Repair the repository state.
+</p>
+</dd>
+<dt>
+guilt<a href="guilt-rm">1</a>
 </dt>
 <dd>
 <p>
@@ -552,7 +577,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-series.html">guilt-series(1)</a>
+guilt<a href="guilt-series">1</a>
 </dt>
 <dd>
 <p>
@@ -560,7 +585,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-status.html">guilt-status(1)</a>
+guilt<a href="guilt-status">1</a>
 </dt>
 <dd>
 <p>
@@ -568,7 +593,7 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-top.html">guilt-top(1)</a>
+guilt<a href="guilt-top">1</a>
 </dt>
 <dd>
 <p>
@@ -576,32 +601,32 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 <dt>
-<a href="guilt-unapplied.html">guilt-unapplied(1)</a>
+guilt<a href="guilt-unapplied">1</a>
 </dt>
 <dd>
 <p>
         guilt-unapplied - List all unapplied patches.
 </p>
 </dd>
-</dl>
+</dl></div>
 </div>
-<h2>Author</h2>
+<h2 id="_author">Author</h2>
 <div class="sectionbody">
-<p>Written by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p>
+<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p></div>
 </div>
-<h2>Documentation</h2>
+<h2 id="_documentation">Documentation</h2>
 <div class="sectionbody">
-<p>Documentation by Brandon Philips &lt;brandon@ifup.org&gt; and Josef "Jeff" Sipek
-&lt;jsipek@cs.sunysb.edu&gt;</p>
+<div class="para"><p>Documentation by Brandon Philips &lt;brandon@ifup.org&gt; and Josef "Jeff" Sipek
+&lt;jsipek@cs.sunysb.edu&gt;</p></div>
 </div>
-<h2>GUILT</h2>
+<h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
-<p>Part of the <a href="guilt.html">guilt(7)</a> suite
-(Generated for Guilt v0.28)</p>
+<div class="para"><p>Part of the guilt<a href="guilt">7</a> suite
+(Generated for Guilt v0.29)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 19-Nov-2007 17:09:49 EDT
+Last updated 2008-03-19 00:43:49 EDT
 </div>
 </div>
 </body>

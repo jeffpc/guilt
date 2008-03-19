@@ -304,39 +304,46 @@ div.exampleblock-content {
 /* IE6 sets dynamically generated links as visited. */
 div#toc a:visited { color: blue; }
 </style>
-<title>guilt-diff(1)</title>
+<title>guilt-repair(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-diff(1) Manual Page
+guilt-repair(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-diff -
-   Outputs various diffs
+<p>guilt-repair -
+   Repair the repository state
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="para"><p><em>guilt-diff</em> [-z]</p></div>
+<div class="para"><p><em>guilt-repair</em> [-f]</p></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
-<div class="para"><p>Outputs top-most applied diff and any additional changes in the working
-directory to stdout.</p></div>
+<div class="para"><p>Resets the repository state by reseting the HEAD to what's believed to be
+the proper commit, and reseting the applied stack. The end result should be
+a repository with no patches applied.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">Running this command may result in commits and working directory
+changes being lost. You may want to create a new reference (tag or branch)
+to the original HEAD before using guilt-repair.</td>
+</tr></table>
 </div>
-<h2 id="_options">OPTIONS</h2>
-<div class="sectionbody">
 <div class="vlist"><dl>
 <dt>
--z
+-f
 </dt>
 <dd>
 <p>
-        Output a interdiff against the top-most applied patch. This should
-        produce the same diff as "guilt-new -f foo".
+        Force repair. Without this option, guilt-repair aborts.
 </p>
 </dd>
 </dl></div>
@@ -356,7 +363,7 @@ directory to stdout.</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-03-19 00:43:28 EDT
+Last updated 2008-03-19 00:43:44 EDT
 </div>
 </div>
 </body>
