@@ -60,7 +60,7 @@ fi
 
 if ! valid_patchname "$patch"; then
 	echo "Patchname is invalid." >&2
-	die "it cannot begin with '/', './' or '../', or contain /./ or /../"
+	die "it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace"
 fi
 
 # create any directories as needed

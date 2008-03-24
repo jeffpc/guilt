@@ -25,8 +25,8 @@ if [ ! -z "$edit" ]; then
 	$editor "$series"
 elif [ ! -z "$gui" ]; then
 	[ -z "`get_top`" ] && die "No patches applied."
-	bottom=`head -1 $applied | cut -d: -f1`
-	top=`tail -1 $applied | cut -d: -f1`
+	bottom=`git rev-parse refs/patches/$branch/$(head -1 $applied)`
+	top=`git rev-parse refs/patches/$branch/$(tail -1 $applied)`
 	range="$bottom..$top"
 
 	# FIXME, this doesn't quite work - it's perfectly fine with

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export REG_DIR="$PWD"
+export PATH="$PWD/bin:$PATH"
 
 source scaffold
 

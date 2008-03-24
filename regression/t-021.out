@@ -81,12 +81,17 @@ Now at remove.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
-f f8012069806c3baed27b8f661c19083211fb7ca9  .git/patches/master/status
+f f322f08d907e3737a4321b0ec90bc545f71af7cf  .git/patches/master/status
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
 % git-log
 commit e67345cf1e7e9594c73efad7381a994f1fe63b14
 Author: Author Name <author@email>
@@ -150,12 +155,16 @@ Now at add.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
-f fc42fbc05afb7265d358add98f500f83bf29aea7  .git/patches/master/status
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 % git-log
 commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
 Author: Author Name <author@email>
@@ -205,12 +214,15 @@ Now at modify.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
-f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 % git-log
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
@@ -246,6 +258,8 @@ All patches popped.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
@@ -282,12 +296,17 @@ Now at remove.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
-f f8012069806c3baed27b8f661c19083211fb7ca9  .git/patches/master/status
+f f322f08d907e3737a4321b0ec90bc545f71af7cf  .git/patches/master/status
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
 % git-log
 commit e67345cf1e7e9594c73efad7381a994f1fe63b14
 Author: Author Name <author@email>
@@ -354,12 +373,16 @@ Now at add.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
-f fc42fbc05afb7265d358add98f500f83bf29aea7  .git/patches/master/status
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 % git-log
 commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
 Author: Author Name <author@email>
@@ -414,12 +437,15 @@ Now at modify.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
-f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 % git-log
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
@@ -462,6 +488,8 @@ All patches popped.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
@@ -498,12 +526,17 @@ Now at remove.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
-f f8012069806c3baed27b8f661c19083211fb7ca9  .git/patches/master/status
+f f322f08d907e3737a4321b0ec90bc545f71af7cf  .git/patches/master/status
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
 % git-log
 commit e67345cf1e7e9594c73efad7381a994f1fe63b14
 Author: Author Name <author@email>
@@ -567,12 +600,16 @@ Now at add.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
-f fc42fbc05afb7265d358add98f500f83bf29aea7  .git/patches/master/status
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 % git-log
 commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
 Author: Author Name <author@email>
@@ -622,12 +659,15 @@ Now at modify.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
-f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 % git-log
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
@@ -663,6 +703,8 @@ All patches popped.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
@@ -699,12 +741,18 @@ Invalid number of patches to pop.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 49571a872d2f2f1a8c56e65352c0f9b8aff53143  .git/patches/master/status
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
 % git-log
 commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 Author: Author Name <author@email>
@@ -779,12 +827,18 @@ Invalid number of patches to pop.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 49571a872d2f2f1a8c56e65352c0f9b8aff53143  .git/patches/master/status
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
 % git-log
 commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 Author: Author Name <author@email>
@@ -859,12 +913,18 @@ No patches requested to be removed.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 49571a872d2f2f1a8c56e65352c0f9b8aff53143  .git/patches/master/status
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
 % git-log
 commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 Author: Author Name <author@email>
@@ -939,12 +999,17 @@ Now at remove.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
-f f8012069806c3baed27b8f661c19083211fb7ca9  .git/patches/master/status
+f f322f08d907e3737a4321b0ec90bc545f71af7cf  .git/patches/master/status
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
 % git-log
 commit e67345cf1e7e9594c73efad7381a994f1fe63b14
 Author: Author Name <author@email>
@@ -1011,12 +1076,16 @@ Now at add.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
-f fc42fbc05afb7265d358add98f500f83bf29aea7  .git/patches/master/status
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 % git-log
 commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
 Author: Author Name <author@email>
@@ -1071,12 +1140,15 @@ Now at modify.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
-f a19b18afeac33e6a55ef55b93cf0bca721e5610b  .git/patches/master/status
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 % git-log
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
@@ -1119,6 +1191,8 @@ All patches popped.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
@@ -1153,9 +1227,15 @@ Patch applied.
 % list_files
 d .git/patches
 d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 49571a872d2f2f1a8c56e65352c0f9b8aff53143  .git/patches/master/status
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
