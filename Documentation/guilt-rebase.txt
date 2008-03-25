@@ -30,10 +30,10 @@ $ guilt-rebase FETCH_HEAD
 
 Author
 ------
-Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Written by Josef "Jeff" Sipek <jeffpc@josefsipek.net>
 
 Documentation
 -------------
-Documentation by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Documentation by Josef "Jeff" Sipek <jeffpc@josefsipek.net>
 
 include::footer.txt[]

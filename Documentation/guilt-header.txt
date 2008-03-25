@@ -20,7 +20,7 @@ Prints either the topmost patch's header or the header of a specified patch.
 
 Author
 ------
-Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Written by Josef "Jeff" Sipek <jeffpc@josefsipek.net>
 
 Documentation
 -------------

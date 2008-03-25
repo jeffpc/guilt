@@ -15,7 +15,7 @@ Prints a list of all applied patches.
 
 Author
 ------
-Written by Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>
+Written by Josef "Jeff" Sipek <jeffpc@josefsipek.net>
 
 Documentation
 -------------

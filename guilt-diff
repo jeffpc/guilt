@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (C) 2007 Josef 'Jeff' Sipek <jsipek@cs.sunysb.edu>
+# Copyright (C) 2007 Josef 'Jeff' Sipek <jeffpc@josefsipek.net>
 #
 
 USAGE="[-z]"
