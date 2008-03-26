@@ -141,22 +141,15 @@ get_branch()
 verify_branch()
 {
 	[ ! -d "$GIT_DIR/patches" ] &&
-		echo "Patches directory doesn't exist, try guilt-init" >&2 &&
-		return 1
+		die "Patches directory doesn't exist, try guilt-init"
 	[ ! -d "$GIT_DIR/patches/$branch" ] &&
-		echo "Branch $branch is not initialized, try guilt-init" >&2 &&
-		return 1
+		die "Branch $branch is not initialized, try guilt-init"
 	[ ! -f "$GIT_DIR/patches/$branch/series" ] &&
-		echo "Branch $branch does not have a series file" >&2 &&
-		return 1
+		die "Branch $branch does not have a series file"
 	[ ! -f "$GIT_DIR/patches/$branch/status" ] &&
-		echo "Branch $branch does not have a status file" >&2 &&
-		return 1
+		die "Branch $branch does not have a status file"
 	[ -f "$GIT_DIR/patches/$branch/applied" ] &&
-		echo "Warning: Branch $branch has 'applied' file - guilt is not compatible with stgit" >&2 &&
-		return 1
-
-	return 0
+		die "Warning: Branch $branch has 'applied' file - guilt is not compatible with stgit"
 }
 
 get_top()
@@ -630,7 +623,7 @@ branch=`get_branch`
 # initialized, but every once in a blue moon (e.g., we want to run guilt-init),
 # we must avoid the checks
 if [ -z "$DO_NOT_CHECK_BRANCH_EXISTENCE" ]; then
-	verify_branch || exit 1
+	verify_branch
 
 	# do not check the status file format (guilt-repair needs this,
 	# otherwise nothing can do what's necessary to bring the repo into a
