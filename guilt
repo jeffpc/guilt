@@ -631,6 +631,15 @@ branch=`get_branch`
 # we must avoid the checks
 if [ -z "$DO_NOT_CHECK_BRANCH_EXISTENCE" ]; then
 	verify_branch || exit 1
+
+	# do not check the status file format (guilt-repair needs this,
+	# otherwise nothing can do what's necessary to bring the repo into a
+	# useable state)
+	if [ -z "$DO_NOT_CHECK_STATUS_FILE_FORMAT" ]; then
+		[ -s "$GIT_DIR/patches/$branch/status" ] &&
+			grep "^[0-9a-f]\{40\}:" "$GIT_DIR/patches/$branch/status" > /dev/null &&
+			die "Status file appears to use old format, try guilt-repair --status"
+	fi
 fi
 
 # very useful files

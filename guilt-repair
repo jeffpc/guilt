@@ -3,6 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2008
 #
 
+DO_NOT_CHECK_STATUS_FILE_FORMAT=1
+
 USAGE="--full | --status"
 . `dirname $0`/guilt
 
