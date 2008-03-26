@@ -3,20 +3,22 @@
 # Copyright (c) Josef "Jeff" Sipek, 2008
 #
 
-USAGE="[-f]"
+USAGE="--full | --status"
 . `dirname $0`/guilt
 
 safety_abort()
 {
-	die "Please read the man page first. (you need to specify -f to force the repair)."
+	die "Please read the man page first. (you need to specify repair mode to proceed)."
 }
 
-case $# in
-	0)
-		safety_abort
+[ $# -ne 1 ] && safety_abort
+
+case "$1" in
+	--full)
+		repair="full"
 		;;
-	1)
-		[ "$1" != "-f" ] && safety_abort
+	--status)
+		repair="status"
 		;;
 	*)
 		usage
@@ -24,32 +26,99 @@ case $# in
 esac
 
 oldrev=`git show-ref -s "refs/heads/$branch"`
-echo "Current  HEAD commit $oldrev"
 
-if [ -s "$applied" ]; then
-	# there were some patches applied
-	newrev=`git rev-parse refs/patches/$branch/$(head -1 < "$applied")^`
-else
-	# no patches were applied, but let's do all the work anyway
-	newrev="$oldrev"
-fi
+#
+# Check whether status file needs fixing/upgrading. If not, just return,
+# otherwise proceed to rewrite the status file and set up proper refs
+#
+repair_status()
+{
+	printf "Checking status file format..."
+	if ! grep "^[0-9a-f]\{40\}:" "$applied" > /dev/null ; then
+		echo "ok; no upgrade necessary."
+		return 0
+	fi
+	echo "old; about to upgrade."
 
-echo "New      HEAD commit $newrev"
+	# we got an old format status file
 
-echo -n "Are you sure you want to proceed? [y/N] "
-read n
-if [ "$n" != "y" ] && [ "$n" != "Y" ]; then
-	die "Aborting..."
-fi
+	printf "" > "$applied.new"
 
-# blow away any commits
-git reset --hard "$newrev" > /dev/null
+	cat "$applied" | while read line ; do
+		hash=`echo "$line" | cut -d: -f1`
+		pname=`echo "$line" | cut -d: -f2-`
 
-# blow away the applied stack
-remove_patch_refs < "$applied"
-printf "" > "$applied"
+		npname=`echo "$pname" | sed -e 's/ /-/g'`
+		[ "$pname" != "$npname" -a -e "$npname" ] && die "Patch name collision"
 
-# update the top/bottom/base tags
-update_stack_tags
+		git update-ref "refs/patches/$branch/$npname" "$hash"
+		echo "$npname" >> "$applied.new"
 
-echo "Done."
+		if [ "$pname" != "$npname" ]; then
+			series_rename_patch "$pname" "$npname"
+
+			mv "$GUILT_DIR/$branch/$pname" "$GUILT_DIR/$branch/$npname"
+		fi
+	done
+
+	# replace the status file
+	mv "$applied" "$applied~"
+	mv "$applied.new" "$applied"
+
+	echo "Upgrade complete."
+
+	return 0
+}
+
+#
+# Pop all patches - forcefully.
+#
+repair_pushed()
+{
+	if [ -s "$applied" ]; then
+		# there were some patches applied
+		newrev=`git rev-parse refs/patches/$branch/$(head -1 < "$applied")^`
+	else
+		# no patches were applied, but let's do all the work anyway
+		newrev="$oldrev"
+	fi
+
+	echo "Current  HEAD commit $oldrev"
+	echo "New      HEAD commit $newrev"
+
+	echo "About to forcefully pop all patches..."
+	echo -n "Are you sure you want to proceed? [y/N] "
+	read n
+	if [ "$n" != "y" ] && [ "$n" != "Y" ]; then
+		die "Aborting..."
+	fi
+
+	# blow away any commits
+	git reset --hard "$newrev" > /dev/null
+
+	# blow away the applied stack
+	remove_patch_refs < "$applied"
+	printf "" > "$applied"
+
+	# update the top/bottom/base tags
+	update_stack_tags
+
+	echo "Patches should be popped."
+	return 0
+}
+
+case "$repair" in
+	full)
+		repair_status
+		repair_pushed
+		;;
+	status)
+		repair_status
+		;;
+	*)
+		die "Internal error"
+		;;
+esac
+
+echo "Repair complete."
+exit 0

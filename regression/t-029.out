@@ -24,7 +24,7 @@ r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
 % guilt-repair
-Please read the man page first. (you need to specify -f to force the repair).
+Please read the man page first. (you need to specify repair mode to proceed).
 % list_files
 d .git/patches
 d .git/patches/master
@@ -40,9 +40,11 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% guilt-repair -f (answer: empty)
+% guilt-repair --full (answer: empty)
+Checking status file format...ok; no upgrade necessary.
 Current  HEAD commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 New      HEAD commit d4850419ccc1146c7169f500725ce504b9774ed0
+About to forcefully pop all patches...
 Are you sure you want to proceed? [y/N] Aborting...
 % list_files
 d .git/patches
@@ -59,9 +61,11 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% guilt-repair -f (answer: n)
+% guilt-repair --full (answer: n)
+Checking status file format...ok; no upgrade necessary.
 Current  HEAD commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 New      HEAD commit d4850419ccc1146c7169f500725ce504b9774ed0
+About to forcefully pop all patches...
 Are you sure you want to proceed? [y/N] Aborting...
 % list_files
 d .git/patches
@@ -78,10 +82,13 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% guilt-repair -f (answer: y)
+% guilt-repair --full (answer: y)
+Checking status file format...ok; no upgrade necessary.
 Current  HEAD commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 New      HEAD commit d4850419ccc1146c7169f500725ce504b9774ed0
-Are you sure you want to proceed? [y/N] Done.
+About to forcefully pop all patches...
+Are you sure you want to proceed? [y/N] Patches should be popped.
+Repair complete.
 % list_files
 d .git/patches
 d .git/patches/master
@@ -117,10 +124,13 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% guilt-repair -f (answer: Y)
+% guilt-repair --full (answer: Y)
+Checking status file format...ok; no upgrade necessary.
 Current  HEAD commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 New      HEAD commit d4850419ccc1146c7169f500725ce504b9774ed0
-Are you sure you want to proceed? [y/N] Done.
+About to forcefully pop all patches...
+Are you sure you want to proceed? [y/N] Patches should be popped.
+Repair complete.
 % list_files
 d .git/patches
 d .git/patches/master
