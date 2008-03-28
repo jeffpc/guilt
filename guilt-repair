@@ -5,7 +5,7 @@
 
 DO_NOT_CHECK_STATUS_FILE_FORMAT=1
 
-USAGE="--full | --status"
+USAGE="--full | --status | --autotag"
 . `dirname $0`/guilt
 
 safety_abort()
@@ -21,6 +21,9 @@ case "$1" in
 		;;
 	--status)
 		repair="status"
+		;;
+	--autotag)
+		repair="autotag"
 		;;
 	*)
 		usage
@@ -102,11 +105,17 @@ repair_pushed()
 	remove_patch_refs < "$applied"
 	printf "" > "$applied"
 
-	# update the top/bottom/base tags
-	update_stack_tags
+	# remove the ${branch}_{top,bottom,base} tags
+	update_stack_tags "force"
 
 	echo "Patches should be popped."
 	return 0
+}
+
+# update the top/bottom/base tags
+repair_autotag()
+{
+	update_stack_tags
 }
 
 case "$repair" in
@@ -116,6 +125,9 @@ case "$repair" in
 		;;
 	status)
 		repair_status
+		;;
+	autotag)
+		repair_autotag
 		;;
 	*)
 		die "Internal error"

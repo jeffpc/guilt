@@ -358,11 +358,14 @@ pop_all_patches()
 		`wc -l < "$applied"`
 }
 
-# usage: update_stack_tags
+# usage: update_stack_tags [force]
+#
+# if [force] is non-empty, then do not check for autotagging being enabled,
+# just assume it is
 update_stack_tags()
 {
 	# bail if autotagging is not enabled
-	if [ $autotag -eq 0 ]; then
+	if [ -z "$1" -a $autotag -eq 0 ]; then
 		return 0
 	fi
 
