@@ -326,7 +326,7 @@ applied_rename_patch()
 remove_patch_refs()
 {
 	while read pname; do
-		git update-ref -d "refs/patches/$branch/$pname" `git rev-parse "refs/patches/$branch/$pname"`
+		remove_ref "refs/patches/$branch/$pname"
 	done
 }
 
@@ -358,6 +358,19 @@ pop_all_patches()
 		`wc -l < "$applied"`
 }
 
+# usage: remove_ref <refname>
+remove_ref()
+{
+	(
+		# does the ref exist?
+		r=`git show-ref --verify -s "$1" 2> /dev/null`
+		[ $? -ne 0 ] && exit 0
+
+		# remove it
+		git update-ref -d "$1" "$r"
+	)
+}
+
 # usage: update_stack_tags [force]
 #
 # if [force] is non-empty, then do not check for autotagging being enabled,
@@ -380,12 +393,9 @@ update_stack_tags()
 		# there are no patches applied, therefore we must remove the
 		# tags to old top, bottom, and base
 
-		git update-ref -d "refs/tags/${branch}_top" \
-			`git rev-parse "refs/tags/${branch}_top"`
-		git update-ref -d "refs/tags/${branch}_bottom" \
-			`git rev-parse "refs/tags/${branch}_bottom"`
-		git update-ref -d "refs/tags/${branch}_base" \
-			`git rev-parse "refs/tags/${branch}_base"`
+		remove_ref "refs/tags/${branch}_top" 
+		remove_ref "refs/tags/${branch}_bottom"
+		remove_ref "refs/tags/${branch}_base"
 	fi
 }
 
