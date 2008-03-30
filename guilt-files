@@ -35,7 +35,7 @@ fi | while read patch; do
 
 	# shamelessly taken from Quilt(quilt/quilt/files)
 	if [ -n "$opt_all" ] && [ -n "$opt_verbose" ] && [ -z "$opt_labels" ]; then
-		echo "$patch"
+		disp "$patch"
 	fi
 	if [ -n "$opt_verbose" ] && [ -z "$opt_labels" ]; then
 		use_status=yes
@@ -46,14 +46,14 @@ fi | while read patch; do
 	while read omode nmode osha1 nsha1 st file; do
 		if [ -n "$opt_labels" ]; then
 			if [ -n "$opt_verbose" ]; then
-				echo -n "[$patch] "
+				_disp "[$patch] "
 			else
-				echo -n "$patch "
+				_disp "$patch "
 			fi
 		fi
 
 		if [ -z "$use_status" ]; then
-			echo "$file"
+			disp "$file"
 		else
 			status=" "
 			if [ $osha1 = "0000000000000000000000000000000000000000" ]; then
@@ -62,7 +62,7 @@ fi | while read patch; do
 			if [ $nsha1 = "0000000000000000000000000000000000000000" ]; then
 				status="-"
 			fi
-			echo "$status $file"
+			disp "$status $file"
 		fi
 	done
 	IFS=:

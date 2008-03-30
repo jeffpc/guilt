@@ -38,12 +38,12 @@ oldrev=`git show-ref -s "refs/heads/$branch"`
 #
 repair_status()
 {
-	printf "Checking status file format..."
+	_disp "Checking status file format..."
 	if ! grep "^[0-9a-f]\{40\}:" "$applied" > /dev/null ; then
-		echo "ok; no upgrade necessary."
+		disp "ok; no upgrade necessary."
 		return 0
 	fi
-	echo "old; about to upgrade."
+	disp "old; about to upgrade."
 
 	# we got an old format status file
 
@@ -70,7 +70,7 @@ repair_status()
 	mv "$applied" "$applied~"
 	mv "$applied.new" "$applied"
 
-	echo "Upgrade complete."
+	disp "Upgrade complete."
 
 	return 0
 }
@@ -88,11 +88,11 @@ repair_pushed()
 		newrev="$oldrev"
 	fi
 
-	echo "Current  HEAD commit $oldrev"
-	echo "New      HEAD commit $newrev"
+	disp "Current  HEAD commit $oldrev"
+	disp "New      HEAD commit $newrev"
 
-	echo "About to forcefully pop all patches..."
-	echo -n "Are you sure you want to proceed? [y/N] "
+	disp "About to forcefully pop all patches..."
+	_disp "Are you sure you want to proceed? [y/N] "
 	read n
 	if [ "$n" != "y" ] && [ "$n" != "Y" ]; then
 		die "Aborting..."
@@ -108,7 +108,7 @@ repair_pushed()
 	# remove the ${branch}_{top,bottom,base} tags
 	update_stack_tags "force"
 
-	echo "Patches should be popped."
+	disp "Patches should be popped."
 	return 0
 }
 
@@ -134,5 +134,5 @@ case "$repair" in
 		;;
 esac
 
-echo "Repair complete."
+disp "Repair complete."
 exit 0

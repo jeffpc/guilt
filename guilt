@@ -38,10 +38,16 @@ esac
 # Shell library
 #
 
-# echo -e is a bashism, fallback to /bin/echo if the builtin does not supports it
-echo()
+# echo -n is a bashism, use printf instead
+_disp()
 {
-	/bin/echo "$@"
+	printf "%b" "$*"
+}
+
+# echo -e is a bashism, use printf instead
+disp()
+{
+	printf "%b\n" "$*"
 }
 
 noerr()
@@ -94,23 +100,23 @@ if [ "`basename $0`" = "guilt" ]; then
 			# this is not reached because of the exec
 			die "Exec failed! Something is terribly wrong!"
 		else
-			echo "Command $arg not found" >&2
-			echo "" >&2
+			disp "Command $arg not found" >&2
+			disp "" >&2
 		fi
 	fi
 
 	# no args passed or invalid command entered, just output help summary
 
-	echo "Guilt v$GUILT_VERSION"
-	echo ""
-	echo "Pick a command:"
-	guilt_commands | sort | column | column -t | sed -e 's/^/\t/'
+	disp "Guilt v$GUILT_VERSION"
+	disp ""
+	disp "Pick a command:"
+	guilt_commands | sort | column | column -t | sed -e 's/^/	/'
 
-	echo ""
-	echo "Example:"
-	echo -e "\tguilt-push"
-	echo "or"
-	echo -e "\tguilt push"
+	disp ""
+	disp "Example:"
+	disp "\tguilt-push"
+	disp "or"
+	disp "\tguilt push"
 
 	# now, let's exit
 	exit 1
@@ -179,8 +185,8 @@ do_make_header()
 {
 	# we should try to work with commit objects only
 	if [ `git cat-file -t "$1"` != "commit" ]; then
-		echo "Hash $1 is not a commit object" >&2
-		echo "Aborting..." >&2
+		disp "Hash $1 is not a commit object" >&2
+		disp "Aborting..." >&2
 		exit 2
 	fi
 
@@ -268,8 +274,8 @@ head_check()
 	esac
 
 	if [ "`git rev-parse refs/heads/$branch`" != "`git rev-parse $1`" ]; then
-		echo "Expected HEAD commit $1" >&2
-		echo "                 got `git rev-parse refs/heads/$branch`" >&2
+		disp "Expected HEAD commit $1" >&2
+		disp "                 got `git rev-parse refs/heads/$branch`" >&2
 		return 1
 	fi
 	return 0

@@ -99,7 +99,7 @@ sidx=`expr $sidx + 1`
 
 get_series | sed -n -e "${sidx},${eidx}p" | while read p
 do
-	echo "Applying patch..$p"
+	disp "Applying patch..$p"
 	if [ ! -f "$GUILT_DIR/$branch/$p" ]; then
 		die "Patch $p does not exist. Aborting."
 	fi
@@ -108,7 +108,7 @@ do
 
 	# bail if necessary
 	if [ $? -eq 0 ]; then
-		echo "Patch applied."
+		disp "Patch applied."
 	elif [ -z "$abort_flag" ]; then
 		die "Patch applied with rejects. Fix it up, and refresh."
 	else

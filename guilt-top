@@ -19,5 +19,5 @@ done
 p=`get_top`
 
 if [ -n "$p" ]; then
-	echo $path$p
+	disp "$path$p"
 fi

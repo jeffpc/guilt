@@ -59,7 +59,7 @@ if [ -z "$force" ] && ! must_commit_first; then
 fi
 
 if ! valid_patchname "$patch"; then
-	echo "Patchname is invalid." >&2
+	disp "Patchname is invalid." >&2
 	die "it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace"
 fi
 

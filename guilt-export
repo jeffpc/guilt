@@ -24,4 +24,4 @@ get_series | tee "$target_dir/series" | while read p; do
 done
 
 trap - 0
-echo "Series exported to \"$target_dir\" sucessfully."
+disp "Series exported to \"$target_dir\" sucessfully."

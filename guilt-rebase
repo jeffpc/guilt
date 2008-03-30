@@ -8,12 +8,12 @@
 USAGE="<upstream>"
 . `dirname $0`/guilt
 
-echo "Beware, rebase is currently EXPERIMENTAL."
-echo "In other words, it might eat your patches."
-echo -n "Do you wish to proceed? [y/N] "
+disp "Beware, rebase is currently EXPERIMENTAL."
+disp "In other words, it might eat your patches."
+_disp "Do you wish to proceed? [y/N] "
 read n
 if [ "$n" != "y" -a "$n" != "Y" ]; then
-	echo "Aborted."
+	disp "Aborted."
 	exit 0
 fi
 
@@ -56,13 +56,13 @@ done
 # the patches that were pushed before we started rebasing
 cp "$applied" "$rebase_dir/status"
 
-echo "First, poping all patches..."
+disp "First, poping all patches..."
 pop_all_patches
 git merge --no-commit $upstream > /dev/null 2> /dev/null
 
-echo ""
+disp ""
 log=`git log -1 --pretty=oneline`
-echo "HEAD is now at `echo $log | cut -c 1-7`... `echo "$log" | cut -c 41-`"
+disp "HEAD is now at `echo $log | cut -c 1-7`... `echo "$log" | cut -c 41-`"
 
 #
 # For each previously applied patch:
@@ -74,20 +74,20 @@ echo "HEAD is now at `echo $log | cut -c 1-7`... `echo "$log" | cut -c 41-`"
 #
 IFS=":"
 cat "$rebase_dir/status" | while read hash name; do
-	echo ""
+	disp ""
 	IFS=" "
 	cat "$GUILT_DIR/$branch/$name" | git patch-id |
 		while read patchid commitid ; do
-			echo "Applying '$name'"
+			disp "Applying '$name'"
 			if [ -f "$rebase_dir/$patchid" ]; then
 				realcommit=`head -1 "$rebase_dir/$patchid"`
-				echo "Matches upstream commit $realcommit"
+				disp "Matches upstream commit $realcommit"
 				series_rename_patch "$name" "###rebased###$name"
-				echo "Patch removed from series."
+				disp "Patch removed from series."
 			else
 				# FIXME: use a guilt function instead
 				guilt-push > /dev/null
-				echo "Patch applied."
+				disp "Patch applied."
 			fi
 		done
 	IFS=":"
@@ -95,5 +95,5 @@ done
 
 rm -rf "$rebase_dir"
 
-echo ""
-echo "Done."
+disp ""
+disp "Done."

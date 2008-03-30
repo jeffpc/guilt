@@ -69,14 +69,14 @@ print_status()
 	while read status name newname
 	do
 		case "$status" in
-			A*) echo "$Apfx$name";;
-			C*) echo "$Cpfx$name -> $newname";;
-			D*) echo "$Dpfx$name";;
-			M ) echo "$Mpfx$name";;
-			R*) echo "$Rpfx$name -> $newname";;
-			T ) echo "$Tpfx$name";;
-			U ) echo "$Upfx$name";;
-			? ) echo "$Xpfx$name";;
+			A*) disp "$Apfx$name";;
+			C*) disp "$Cpfx$name -> $newname";;
+			D*) disp "$Dpfx$name";;
+			M ) disp "$Mpfx$name";;
+			R*) disp "$Rpfx$name -> $newname";;
+			T ) disp "$Tpfx$name";;
+			U ) disp "$Upfx$name";;
+			? ) disp "$Xpfx$name";;
 		esac
 	done
 }

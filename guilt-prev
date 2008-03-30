@@ -19,5 +19,5 @@ done
 p=`get_prev`
 
 if [ -n "$p" ]; then
-	echo $path$p
+	disp $path$p
 fi

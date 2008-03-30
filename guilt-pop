@@ -45,7 +45,7 @@ patch="$1"
 [ ! -z "$all" ] && patch="-a"
 
 if [ ! -s "$applied" ]; then
-	echo "No patches applied."
+	disp "No patches applied."
 	exit 0
 elif [ "$patch" = "-a" ]; then
 	# we are supposed to pop all patches
@@ -96,5 +96,5 @@ l=`awk "BEGIN{n=0}(n==$eidx){print \\$0; exit}{n=n+1}END{}" < $applied`
 pop_many_patches `git rev-parse refs/patches/$branch/$l^` `expr $sidx - $eidx`
 
 p=`get_top`
-[ ! -z "$p" ] && echo "Now at $p." || echo "All patches popped."
+[ ! -z "$p" ] && disp "Now at $p." || disp "All patches popped."
 

@@ -33,12 +33,12 @@ cache="$GUILT_DIR/$branch/.graphcache.$$"
 mkdir "$cache"
 trap "rm -rf \"$cache\"" 0
 
-echo "digraph G {"
+disp "digraph G {"
 
 current="$top"
 
 while [ "$current" != "$base" ]; do
-	echo "# checking rev $current"
+	disp "# checking rev $current"
 
 	# new "hash table"
 	rm -f "$cache/dep"
@@ -55,10 +55,10 @@ while [ "$current" != "$base" ]; do
 	done
 
 	sort -u "$cache/dep" | while read h; do
-		echo "	\"${h:0:8}\" -> \"${current:0:8}\"; // ?"
+		disp "	\"${h:0:8}\" -> \"${current:0:8}\"; // ?"
 	done
 
 	current=`git rev-parse $current^`
 done
 
-echo "}"
+disp "}"
