@@ -304,6 +304,13 @@ series_rename_patch()
 	mv "$series.tmp" "$series"
 }
 
+# usage: series_rename_patch <oldname> <newname>
+ref_rename_patch()
+{
+	git update-ref "$2" `git rev-parse "$1"`
+	remove_ref "$1"
+}
+
 # Beware! This is one of the few (only?) places where we modify the applied
 # file directly
 #

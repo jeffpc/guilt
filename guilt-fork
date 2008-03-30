@@ -41,3 +41,4 @@ cp "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$newpatch"
 # replace the series & applied file references
 series_rename_patch "$patch" "$newpatch"
 applied_rename_patch "$patch" "$newpatch"
+ref_rename_patch "$patch" "$newpatch"
