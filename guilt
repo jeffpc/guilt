@@ -58,7 +58,7 @@ silent()
 
 guilt_commands()
 {
-	find "`dirname $0`" -maxdepth 1 -name "guilt-*" -type f -perm /111 | sed -e "s/.*\\/`basename $0`-//"
+	find "`dirname $0`" -maxdepth 1 -name "guilt-*" -type f -perm +111 | sed -e "s/.*\\/`basename $0`-//"
 }
 
 if [ "`basename $0`" = "guilt" ]; then
@@ -449,7 +449,7 @@ push_patch()
 
 		# extract a From line from the patch header, and set
 		# GIT_AUTHOR_{NAME,EMAIL}
-		author_str=`sed -n -e '/^From:/ { s/^From: //; p; q }; /^(diff |---)/ q' "$p"`
+		author_str=`sed -n -e '/^From:/ { s/^From: //; p; q; }; /^(diff |---)/ q' "$p"`
 		if [ ! -z "$author_str" ]; then
 			GIT_AUTHOR_NAME=`echo $author_str | sed -e 's/ *<.*$//'`
 			export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-" "}"
