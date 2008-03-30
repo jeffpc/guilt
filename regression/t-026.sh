@@ -5,26 +5,19 @@
 
 source $REG_DIR/scaffold
 
-begin "setup_repo"
-setup_repo
+cmd setup_repo
 
-begin "guilt-delete mode"
-guilt-delete mode
+cmd guilt-delete mode
 
-begin "list_files"
-list_files
+cmd list_files
 
-begin "guilt-delete mode (again)"
-guilt-delete mode 2>&1
+cmd guilt-delete mode
 # FIXME: this should return a non-zero status, no?
 
-begin "list_files"
-list_files
+cmd list_files
 
-begin "guilt-delete add"
-guilt-delete add
+cmd guilt-delete add
 
-begin "list_files"
-list_files
+cmd list_files
 
 # FIXME: test delete -f

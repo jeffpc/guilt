@@ -9,7 +9,7 @@ mode
   add
   remove
   mode
-% guilt-push (modify)
+% guilt-push
 Applying patch..modify
 Patch applied.
 % guilt-series -v
@@ -17,7 +17,7 @@ Patch applied.
   add
   remove
   mode
-% guilt-push (add)
+% guilt-push
 Applying patch..add
 Patch applied.
 % guilt-series -v
@@ -25,7 +25,7 @@ Patch applied.
 = add
   remove
   mode
-% guilt-push (remove)
+% guilt-push
 Applying patch..remove
 Patch applied.
 % guilt-series -v
@@ -33,7 +33,7 @@ Patch applied.
 + add
 = remove
   mode
-% guilt-push (mode)
+% guilt-push
 Applying patch..mode
 Patch applied.
 % guilt-series -v

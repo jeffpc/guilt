@@ -1,5 +1,5 @@
 % setup_repo
-% guilt-header (no patches)
+% guilt-header
 No patches applied.
 % guilt-push -a
 Applying patch..modify
@@ -10,8 +10,10 @@ Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-new -s -m "blah blah blah" patch-with-some-desc
+% guilt-new -s -m blah blah blah patch-with-some-desc
+% guilt-pop
 Now at mode.
+% guilt-push
 Applying patch..patch-with-some-desc
 Patch applied.
 % list_files

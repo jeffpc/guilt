@@ -7,47 +7,32 @@
 
 source $REG_DIR/scaffold
 
-begin "setup_repo"
-setup_repo
+cmd setup_repo
 
-begin "guilt-push -a"
-guilt-push -a
+cmd guilt-push -a
 
-begin "list_files"
-list_files
+cmd list_files
 
-begin "guilt-repair"
-shouldfail guilt-repair 2>&1
+shouldfail guilt-repair
 
-begin "list_files"
-list_files
+cmd list_files
 
-begin "guilt-repair --full (answer: empty)"
-echo | shouldfail guilt-repair --full 2>&1
+echo | shouldfail guilt-repair --full
 
-begin "list_files"
-list_files
+cmd list_files
 
-begin "guilt-repair --full (answer: n)"
-yes n | shouldfail guilt-repair --full 2>&1
+yes n | shouldfail guilt-repair --full
 
-begin "list_files"
-list_files
+cmd list_files
 
-begin "guilt-repair --full (answer: y)"
-yes y | guilt-repair --full 2>&1
+yes y | cmd guilt-repair --full
 
-begin "list_files"
-list_files
+cmd list_files
 
-begin "guilt-push -a"
-guilt-push -a
+cmd guilt-push -a
 
-begin "list_files"
-list_files
+cmd list_files
 
-begin "guilt-repair --full (answer: Y)"
-yes Y | guilt-repair --full 2>&1
+yes Y | cmd guilt-repair --full
 
-begin "list_files"
-list_files
+cmd list_files

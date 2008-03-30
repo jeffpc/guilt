@@ -5,22 +5,16 @@
 
 source $REG_DIR/scaffold
 
-begin "setup_repo"
-setup_repo
+cmd setup_repo
 
-begin "guilt-series"
-guilt-series
+cmd guilt-series
 
-begin "guilt-series -v"
-guilt-series -v
+cmd guilt-series -v
 
 guilt-series | while read n ; do
-	begin "guilt-push ($n)"
-	guilt-push
+	cmd guilt-push
 
-	begin "guilt-series -v"
-	guilt-series -v
+	cmd guilt-series -v
 done
 
-begin "list_files"
-list_files
+cmd list_files

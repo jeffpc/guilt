@@ -22,17 +22,29 @@ function die
 	exit 1
 }
 
-# usage: begin <msg>
-function begin
+function replace_path
 {
-	echo "% $1"
+	sed -e "s,$PWD,PATH,g" \
+	    -e "s,$REG_DIR,REGDIR,g"
+}
+
+# usage: cmd <cmd>..
+function cmd
+{
+	echo "% $@"
+	"$@" 2>&1 | replace_path && return 0
+	return 1
 }
 
 # usage: shouldfail <cmd>..
 function shouldfail
 {
-	"$@" || return 0
-	return 1
+	echo "% $@"
+	(
+		"$@" 2>&1 || return 0
+		return 1
+	) | replace_path
+	return $?
 }
 
 # usage: list_files

@@ -40,7 +40,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% guilt-repair --full (answer: empty)
+% guilt-repair --full
 Checking status file format...ok; no upgrade necessary.
 Current  HEAD commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 New      HEAD commit d4850419ccc1146c7169f500725ce504b9774ed0
@@ -61,7 +61,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% guilt-repair --full (answer: n)
+% guilt-repair --full
 Checking status file format...ok; no upgrade necessary.
 Current  HEAD commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 New      HEAD commit d4850419ccc1146c7169f500725ce504b9774ed0
@@ -82,7 +82,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% guilt-repair --full (answer: y)
+% guilt-repair --full
 Checking status file format...ok; no upgrade necessary.
 Current  HEAD commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 New      HEAD commit d4850419ccc1146c7169f500725ce504b9774ed0
@@ -124,7 +124,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% guilt-repair --full (answer: Y)
+% guilt-repair --full
 Checking status file format...ok; no upgrade necessary.
 Current  HEAD commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 New      HEAD commit d4850419ccc1146c7169f500725ce504b9774ed0

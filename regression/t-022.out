@@ -1,11 +1,11 @@
 % setup_repo
-% applied (empty)
-% push (modify)
+% guilt-applied
+% guilt-push
 Applying patch..modify
 Patch applied.
-% applied (modify)
+% guilt-applied
 modify
-% applied -c (modify)
+% guilt-applied -c
 33633e7a1aa31972f125878baf7807be57b1672d modify
 % list_files
 d .git/patches
@@ -19,13 +19,13 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% push (add)
+% guilt-push
 Applying patch..add
 Patch applied.
-% applied (add)
+% guilt-applied
 modify
 add
-% applied -c (add)
+% guilt-applied -c
 33633e7a1aa31972f125878baf7807be57b1672d modify
 68f33a015dcfd09c3896f15d152378b54eaa4eb6 add
 % list_files
@@ -41,14 +41,14 @@ f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
-% push (remove)
+% guilt-push
 Applying patch..remove
 Patch applied.
-% applied (remove)
+% guilt-applied
 modify
 add
 remove
-% applied -c (remove)
+% guilt-applied -c
 33633e7a1aa31972f125878baf7807be57b1672d modify
 68f33a015dcfd09c3896f15d152378b54eaa4eb6 add
 e67345cf1e7e9594c73efad7381a994f1fe63b14 remove
@@ -66,15 +66,15 @@ f f322f08d907e3737a4321b0ec90bc545f71af7cf  .git/patches/master/status
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% push (mode)
+% guilt-push
 Applying patch..mode
 Patch applied.
-% applied (mode)
+% guilt-applied
 modify
 add
 remove
 mode
-% applied -c (mode)
+% guilt-applied -c
 33633e7a1aa31972f125878baf7807be57b1672d modify
 68f33a015dcfd09c3896f15d152378b54eaa4eb6 add
 e67345cf1e7e9594c73efad7381a994f1fe63b14 remove

@@ -1,5 +1,5 @@
 % setup_repo
-% guilt-new
+% guilt-new subdir
 % mkdir blah
 % touch blah/sub
 % guilt-add blah/sub

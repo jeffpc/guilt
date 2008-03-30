@@ -5,36 +5,29 @@
 
 source $REG_DIR/scaffold
 
-begin "setup_repo"
-setup_repo
+cmd setup_repo
 
 function fixup_time_info
 {
 	touch -d "$GIT_COMMITTER_DATE" ".git/patches/master/$1"
 }
 
-begin "guilt-refresh (no applied patches)"
 echo abcdef >> def
-shouldfail guilt-refresh 2>&1
+shouldfail guilt-refresh
 
-begin "list_files"
-list_files
+cmd list_files
 
-begin "git-reset --hard HEAD"
-git-reset --hard HEAD
+cmd git-reset --hard HEAD
 
-begin "guilt-push modify"
-guilt-push modify 2>&1
+cmd guilt-push modify
 
-begin "guilt-refresh (applied patch)"
 echo abcdef >> def
-guilt-refresh
-guilt-pop
+cmd guilt-refresh
+cmd guilt-pop
 fixup_time_info modify
-guilt-push modify
+cmd guilt-push modify
 
-begin "list_files"
-list_files
+cmd list_files
 
 # FIXME: we should check that the patch actually contains what it should,
 # test arguments work the way they should

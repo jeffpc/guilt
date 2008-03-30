@@ -5,19 +5,14 @@
 
 source $REG_DIR/scaffold
 
-begin "setup_repo"
-setup_repo
+cmd setup_repo
 
-begin "unapplied (empty)"
-guilt-unapplied
+cmd guilt-unapplied
 
 guilt-series | while read n; do
-	begin "push ($n)"
-	guilt-push
+	cmd guilt-push
 
-	begin "unapplied ($n)"
-	guilt-unapplied
+	cmd guilt-unapplied
 
-	begin "list_files"
-	list_files
+	cmd list_files
 done

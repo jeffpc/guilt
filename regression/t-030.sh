@@ -5,8 +5,7 @@
 
 source $REG_DIR/scaffold
 
-begin "setup_repo"
-setup_repo
+cmd setup_repo
 
 function opts_to_try
 {
@@ -18,36 +17,27 @@ function opts_to_try
 DONE
 }
 
-begin "guilt-commit"
-shouldfail guilt-commit 2>&1
+shouldfail guilt-commit
 
-begin "list_files"
-list_files
+cmd list_files
  
 opts_to_try | while read opt; do
-	begin "guilt-commit $opt"
-	guilt-commit $opt 2>&1
+	cmd guilt-commit $opt
 
-	begin "list_files"
-	list_files
+	cmd list_files
 done 
 
 
-begin "guilt-push -a"
-guilt-push -a
+cmd guilt-push -a
 
-begin "guilt-commit"
-shouldfail guilt-commit 2>&1
+shouldfail guilt-commit
 
-begin "list_files"
-list_files
+cmd list_files
  
 opts_to_try | while read opt; do
-	begin "guilt-commit $opt"
-	guilt-commit $opt 2>&1
+	cmd guilt-commit $opt
 
-	begin "list_files"
-	list_files
+	cmd list_files
 done
 
 echo > /dev/null

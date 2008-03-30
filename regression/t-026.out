@@ -9,7 +9,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 f f819c9abb712af6e42af30044bc5388d454ab0cb  .git/patches/master/series
-% guilt-delete mode (again)
+% guilt-delete mode
 % list_files
 d .git/patches
 d .git/patches/master

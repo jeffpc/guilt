@@ -1,5 +1,5 @@
 % setup_repo
-% guilt-refresh (no applied patches)
+% guilt-refresh
 No patches applied; try guilt-push first
 % list_files
 d .git/patches
@@ -15,8 +15,10 @@ HEAD is now at d485041... initial
 % guilt-push modify
 Applying patch..modify
 Patch applied.
-% guilt-refresh (applied patch)
+% guilt-refresh
+% guilt-pop
 All patches popped.
+% guilt-push modify
 Applying patch..modify
 Patch applied.
 % list_files

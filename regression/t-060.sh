@@ -5,50 +5,36 @@
 
 source $REG_DIR/scaffold
 
-begin "setup_repo"
-setup_repo
+cmd setup_repo
 
 # create a patch that contains a file in a subdirectory
-begin "guilt-new"
-guilt-new subdir
+cmd guilt-new subdir
 
-begin "mkdir blah"
-mkdir blah
+cmd mkdir blah
 
-begin "touch blah/sub"
-touch blah/sub
+cmd touch blah/sub
 
-begin "guilt-add blah/sub"
-guilt-add blah/sub
+cmd guilt-add blah/sub
 
-begin "guilt-refresh"
-guilt-refresh
+cmd guilt-refresh
 
 # push em all for tesing
-begin "guilt-push -a"
-guilt-push -a
+cmd guilt-push -a
 
 #
 # actual tests
 #
 
-begin "guilt-files"
-guilt-files
+cmd guilt-files
 
-begin "guilt-files -l"
-guilt-files -l
+cmd guilt-files -l
 
-begin "guilt-files -v -l"
-guilt-files -v -l
+cmd guilt-files -v -l
 
-begin "guilt-files -a"
-guilt-files -a
+cmd guilt-files -a
 
-begin "guilt-files -l -a"
-guilt-files -l -a
+cmd guilt-files -l -a
 
-begin "guilt-files -v -a"
-guilt-files -v -a
+cmd guilt-files -v -a
 
-begin "guilt-files -v -l -a"
-guilt-files -v -l -a
+cmd guilt-files -v -l -a
