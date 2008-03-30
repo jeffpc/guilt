@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]; then
+	echo "ERROR"
+	exit 1
+fi
+
+if [ -d "$1" ]; then
+	echo "d $1"
+elif [ -f "$1" ]; then
+	echo "f `sha1sum "$1"`"
+else
+	echo "? $1"
+fi
