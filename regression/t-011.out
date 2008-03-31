@@ -5,6 +5,8 @@ Patches directory doesn't exist, try guilt-init
 Patches directory doesn't exist, try guilt-init
 % guilt-branch
 Patches directory doesn't exist, try guilt-init
+% guilt-commit
+Patches directory doesn't exist, try guilt-init
 % guilt-delete
 Patches directory doesn't exist, try guilt-init
 % guilt-diff
