@@ -1,0 +1,49 @@
+% setup_repo
+% guilt-push -n 2
+Applying patch..modify
+Patch applied.
+Applying patch..add
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+% guilt-fork mode
+Patch "mode" already exists. Choose another name.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+% guilt-fork foobar
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/foobar
+f 60bc97eb44b6e7424b22f6cf4ac09e71a1911447  .git/patches/master/status
+f 6b8e2c2139d4133d7d25c79b4e083f8fd5a09a32  .git/patches/master/series
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/foobar
