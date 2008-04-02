@@ -5,29 +5,30 @@
 
 source $REG_DIR/scaffold
 
-function relative_git_dir_path
+function opts
 {
-	sed -e "s,GIT_DIR=$PWD/,GIT_DIR=,"
+	cat << DONE
+
+-a
+-n
+DONE
 }
 
 cmd setup_git_repo
 
-cmd guilt-init
+opts | while read opt ; do 
+	cmd reset_git_repo
 
-cmd list_files
-
-shouldfail guilt-init | relative_git_dir_path
-
-cmd list_files
+	cmd guilt-init $opt
+	cmd list_files
+	shouldfail guilt-init $opt
+	cmd list_files
+done
 
 cmd git-branch other
-
 cmd git-checkout other
 
 cmd guilt-init
-
 cmd list_files
-
-shouldfail guilt-init | relative_git_dir_path
-
+shouldfail guilt-init
 cmd list_files

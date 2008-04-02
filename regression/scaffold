@@ -64,12 +64,11 @@ function setup_git_repo
 	echo "abc" > def
 	git-add def
 	git-commit -s -m "initial" 2> /dev/null > /dev/null
+	# the commit should be d4850419ccc1146c7169f500725ce504b9774ed0
 }
 
-function setup_repo
+function setup_guilt_repo
 {
-	setup_git_repo
-
 	mkdir -p .git/patches/master
 
 	# patch to modify a file
@@ -97,5 +96,20 @@ function setup_repo
 	touch -a -m -t "$TOUCH_DATE" .git/patches/master/add
 	touch -a -m -t "$TOUCH_DATE" .git/patches/master/remove
 	touch -a -m -t "$TOUCH_DATE" .git/patches/master/mode
+}
+
+function reset_git_repo
+{
+	git-checkout master
+
+	git-reset --hard d4850419ccc1146c7169f500725ce504b9774ed0
+
+	rm -rf .git/patches/
+}
+
+function setup_repo
+{
+	setup_git_repo
+	setup_guilt_repo
 }
 
