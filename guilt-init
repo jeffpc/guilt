@@ -5,18 +5,24 @@
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
-USAGE="[-n]"
+USAGE="[-n | -a]"
 . `dirname $0`/guilt
 
-autotag=1
+AUTOTAG_DEFAULT=1
 
 while case $# in 0) break ;; esac; do
-	if [ "$1" = "-n" ]; then
-		autotag=0
-		shift
-	else
-		usage
-	fi
+	case $1 in
+		-n)
+			autotag=0
+			;;
+		-a)
+			autotag=1
+			;;
+		*)
+			usage
+			;;
+	esac
+	shift
 done
 
 if [ -d "$GUILT_DIR/$branch" ]; then
@@ -36,4 +42,10 @@ cat > "$GIT_DIR/hooks/guilt/delete" <<EOF
 echo "Removing patch '\$1'..."
 EOF
 
-git config --int --replace-all guilt.autotag $autotag
+# if there's no guilt.autotag config, set it to default
+cur=`git config --int --get guilt.autotag`
+if [ -z "$cur" -o ! -z "$autotag" ]; then
+	[ -z "$autotag" ] && autotag=$AUTOTAG_DEFAULT
+
+	git config --int --replace-all guilt.autotag $autotag
+fi
