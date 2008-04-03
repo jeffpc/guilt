@@ -24,7 +24,8 @@ for rev in `git rev-list $rhash`; do
 	s=`git log --pretty=oneline -1 $rev | cut -c 42-`
 
 	fname=`echo $s | sed -e "s/&/and/g" -e "s/[ :]/_/g" -e "s,[/\\],-,g" \
-			-e "s/['\\[{}]//g" -e 's/]//g' | tr A-Z a-z`
+			-e "s/['\\[{}]//g" -e 's/]//g' -e 's/\*/-/g' \
+			-e 's/\?/-/g' | tr A-Z a-z`
 
 	disp "Converting `echo $rev | cut -c 1-8` as $fname"
 
