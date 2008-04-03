@@ -46,7 +46,13 @@ if [ -e $dir ]; then
 fi
 disp "Using '$dir' as temporary directory"
 
-git format-patch -o $dir -n -s "$r"
+# more than one patch?
+if [ `git rev-list "$r" | wc -l` -gt 1 ]; then
+	format_opts="-n" # include "n/m" in the subject
+	send_opts="--no-chain-reply-to --compose" # compose
+fi
+
+git format-patch $format_opts -o $dir -s "$r"
 
 # get the to/cc addresses
 _disp "Enter all the To: email addresses (separated by space): "
@@ -63,13 +69,7 @@ for rc in $rawcc; do
 	to_opts="$to_opts --cc $rc"
 done
 
-opts=""
-
-# more than 1 commit
-if [ `git rev-list "$r" | wc -l` -gt 1 ]; then
-	opts="$opts --no-chain-reply-to --compose"
-fi
-opts="$opts $to_opts"
+opts="$send_opts $to_opts"
 
 # last possible point to abort!
 _disp "Proceed with patchbomb (this is the last chance to abort)? [y/N] "
