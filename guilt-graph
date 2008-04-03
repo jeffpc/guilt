@@ -38,7 +38,16 @@ disp "digraph G {"
 current="$top"
 
 while [ "$current" != "$base" ]; do
+	pname=`git show-ref | sed -n -e "
+/^$current refs\/patches\/$branch/ {
+	s,^$current refs/patches/$branch/,,
+	p
+	q
+}"`
+	[ -z "$pname" ] && pname="?"
+
 	disp "# checking rev $current"
+	disp "	\"$current\" [label=\"$pname\"]"
 
 	# new "hash table"
 	rm -f "$cache/dep"
@@ -55,7 +64,7 @@ while [ "$current" != "$base" ]; do
 	done
 
 	sort -u "$cache/dep" | while read h; do
-		disp "	\"${h:0:8}\" -> \"${current:0:8}\"; // ?"
+		disp "	\"$h\" -> \"$current\"; // ?"
 	done
 
 	current=`git rev-parse $current^`
