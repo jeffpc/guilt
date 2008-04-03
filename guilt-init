@@ -8,15 +8,13 @@ DO_NOT_CHECK_BRANCH_EXISTENCE=1
 USAGE="[-n | -a]"
 . `dirname $0`/guilt
 
-AUTOTAG_DEFAULT=1
-
 while case $# in 0) break ;; esac; do
 	case $1 in
 		-n)
-			autotag=0
+			req_autotag=0
 			;;
 		-a)
-			autotag=1
+			req_autotag=1
 			;;
 		*)
 			usage
@@ -44,8 +42,8 @@ EOF
 
 # if there's no guilt.autotag config, set it to default
 cur=`git config --int --get guilt.autotag`
-if [ -z "$cur" -o ! -z "$autotag" ]; then
-	[ -z "$autotag" ] && autotag=$AUTOTAG_DEFAULT
+if [ -z "$cur" -o ! -z "$req_autotag" ]; then
+	[ -z "$req_autotag" ] && req_autotag=$AUTOTAG_DEFAULT
 
-	git config --int --replace-all guilt.autotag $autotag
+	git config --int --replace-all guilt.autotag $req_autotag
 fi

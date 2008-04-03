@@ -624,13 +624,16 @@ guilt_hook()
 # used for: git apply -C <val>
 guilt_push_diff_context=1
 
+# default autotag value
+AUTOTAG_DEFAULT=1
+
 #
 # Parse any part of .git/config that belongs to us
 #
 
 # autotag?
 autotag=`git config guilt.autotag`
-[ -z "$autotag" ] && autotag=1
+[ -z "$autotag" ] && autotag=$AUTOTAG_DEFAULT
 
 #
 # The following gets run every time this file is source'd
