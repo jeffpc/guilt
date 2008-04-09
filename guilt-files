@@ -25,6 +25,8 @@ do
 	shift
 done
 
+top_patch=`get_top`
+
 IFS=:
 if [ -n "$opt_all" ]; then
 	cat $applied
@@ -42,7 +44,13 @@ fi | while read patch; do
 	fi
 
 	IFS=' '
-	git diff-tree -r $obj^ $obj | tr '\t' ' '|
+	(
+		if [ "$top_patch" != "$patch" ]; then
+			git diff-tree -r $obj^ $obj
+		else
+			git diff-index HEAD^
+		fi
+	) | tr '\t' ' '|
 	while read omode nmode osha1 nsha1 st file; do
 		if [ -n "$opt_labels" ]; then
 			if [ -n "$opt_verbose" ]; then
@@ -55,13 +63,15 @@ fi | while read patch; do
 		if [ -z "$use_status" ]; then
 			disp "$file"
 		else
-			status=" "
-			if [ $osha1 = "0000000000000000000000000000000000000000" ]; then
-				status="+"
-			fi
-			if [ $nsha1 = "0000000000000000000000000000000000000000" ]; then
-				status="-"
-			fi
+			case $st in
+				A)
+					status="+" ;;
+				D)
+					status="-" ;;
+				*)
+					status=" " ;;
+			esac
+
 			disp "$status $file"
 		fi
 	done
