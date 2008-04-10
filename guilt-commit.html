@@ -304,49 +304,57 @@ div.exampleblock-content {
 /* IE6 sets dynamically generated links as visited. */
 div#toc a:visited { color: blue; }
 </style>
-<title>guilt-export(1)</title>
+<title>guilt-commit(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-export(1) Manual Page
+guilt-commit(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-export -
-   Export a patch series (to be used by quilt)
+<p>guilt-commit -
+   Commit specified number of patches
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="para"><p><em>guilt-export</em> [&lt;target_dir&gt;]</p></div>
-</div>
-<h2 id="_description">DESCRIPTION</h2>
-<div class="sectionbody">
-<div class="para"><p>Export a guilt series to be used by quilt.</p></div>
+<div class="para"><p><em>guilt-commit</em> -n &lt;num&gt; | -a | --all</p></div>
+<div class="para"><p>Turn specified number of bottom most patches into Git commits. This removes
+the the patches from the series, and status file.</p></div>
 </div>
 <h2 id="_options">OPTIONS</h2>
 <div class="sectionbody">
 <div class="vlist"><dl>
 <dt>
-&lt;target_dir&gt;
+--all
+</dt>
+<dt>
+-a
 </dt>
 <dd>
 <p>
-        Name of the directory to export the patch series to.
-        (defaults to patches).
+        Commit all applied patches
+</p>
+</dd>
+<dt>
+-n &lt;num&gt;
+</dt>
+<dd>
+<p>
+        Commit &lt;num&gt; bottom most patches
 </p>
 </dd>
 </dl></div>
 </div>
 <h2 id="_author">Author</h2>
 <div class="sectionbody">
-<div class="para"><p>Written by Pierre Habouzit &lt;madcoder@debian.org&gt;</p></div>
+<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jeffpc@josefsipek.net&gt;</p></div>
 </div>
 <h2 id="_documentation">Documentation</h2>
 <div class="sectionbody">
-<div class="para"><p>Documentation by Pierre Habouzit &lt;madcoder@debian.org&gt;</p></div>
+<div class="para"><p>Documentation by Josef "Jeff" Sipek &lt;jeffpc@josefsipek.net&gt;</p></div>
 </div>
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
@@ -355,7 +363,7 @@ guilt-export(1) Manual Page
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-04-10 19:30:11 EDT
+Last updated 2008-04-10 19:30:09 EDT
 </div>
 </div>
 </body>

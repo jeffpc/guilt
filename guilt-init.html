@@ -320,7 +320,7 @@ guilt-init(1) Manual Page
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="para"><p><em>guilt-init</em> [-n]</p></div>
+<div class="para"><p><em>guilt-init</em> [-n | -a]</p></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
@@ -329,6 +329,17 @@ guilt-init(1) Manual Page
 <h2 id="_options">OPTIONS</h2>
 <div class="sectionbody">
 <div class="vlist"><dl>
+<dt>
+-a
+</dt>
+<dd>
+<p>
+        Automatically create stack top, bottom, and base tags (sets
+        guilt.autotag config variable to 1). This is the default in most
+        cases. For more details about autotagging default option handling,
+        see guilt(7).
+</p>
+</dd>
 <dt>
 -n
 </dt>
@@ -350,7 +361,7 @@ guilt-init(1) Manual Page
 </div>
 <h2 id="_author">Author</h2>
 <div class="sectionbody">
-<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p></div>
+<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jeffpc@josefsipek.net&gt;</p></div>
 </div>
 <h2 id="_documentation">Documentation</h2>
 <div class="sectionbody">
@@ -359,11 +370,11 @@ guilt-init(1) Manual Page
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
 <div class="para"><p>Part of the guilt<a href="guilt">7</a> suite
-(Generated for Guilt v0.29)</p></div>
+(Generated for Guilt v0.30)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-03-19 00:43:37 EDT
+Last updated 2008-04-10 19:30:17 EDT
 </div>
 </div>
 </body>

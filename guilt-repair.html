@@ -320,50 +320,64 @@ guilt-repair(1) Manual Page
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="para"><p><em>guilt-repair</em> [-f]</p></div>
+<div class="para"><p><em>guilt-repair</em> --full | --status | --autotag</p></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
-<div class="para"><p>Resets the repository state by reseting the HEAD to what's believed to be
-the proper commit, and reseting the applied stack. The end result should be
-a repository with no patches applied.</p></div>
-<div class="admonitionblock">
-<table><tr>
-<td class="icon">
-<div class="title">Warning</div>
-</td>
-<td class="content">Running this command may result in commits and working directory
-changes being lost. You may want to create a new reference (tag or branch)
-to the original HEAD before using guilt-repair.</td>
-</tr></table>
-</div>
+<div class="para"><p>Perform various repository repairs. You must specify one mode of repair:</p></div>
 <div class="vlist"><dl>
 <dt>
--f
+--full
 </dt>
 <dd>
 <p>
-        Force repair. Without this option, guilt-repair aborts.
+        Tries to repair everything possible. Additionally, it resets the
+        repository state by reseting the HEAD to what's believed to be the
+        proper commit, and reseting the applied stack. The end result should
+        be a repository with no patches applied.
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>WARNING: Running this command may result in commits and working
+directory changes being lost. You may want to create a new reference
+(e.g., branch, or reflog) to the original HEAD before using
+guilt-repair.</tt></pre>
+</div></div>
+</dd>
+<dt>
+--status
+</dt>
+<dd>
+<p>
+        Upgrade the status file from old format to new.
+</p>
+</dd>
+<dt>
+--autotag
+</dt>
+<dd>
+<p>
+        Fixup autotags (the &lt;branch&gt;_{top,bottom,base} tags)
 </p>
 </dd>
 </dl></div>
 </div>
 <h2 id="_author">Author</h2>
 <div class="sectionbody">
-<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p></div>
+<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jeffpc@josefsipek.net&gt;</p></div>
 </div>
 <h2 id="_documentation">Documentation</h2>
 <div class="sectionbody">
-<div class="para"><p>Documentation by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p></div>
+<div class="para"><p>Documentation by Josef "Jeff" Sipek &lt;jeffpc@josefsipek.net&gt;</p></div>
 </div>
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
 <div class="para"><p>Part of the guilt<a href="guilt">7</a> suite
-(Generated for Guilt v0.29)</p></div>
+(Generated for Guilt v0.30)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-03-19 00:43:44 EDT
+Last updated 2008-04-10 19:30:24 EDT
 </div>
 </div>
 </body>

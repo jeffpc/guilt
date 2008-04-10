@@ -371,6 +371,50 @@ delete &lt;patch name&gt;
 </dd>
 </dl></div>
 </div>
+<h2 id="_autotagging">AUTOTAGGING</h2>
+<div class="sectionbody">
+<div class="para"><p>Autotagging is a feature that automatically creates unannotated tags for
+top, bottom, and base of the stack.</p></div>
+<div class="para"><p>On every push or pop operation (refresh is a pop followed by a push), Guilt</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>Top: Top-most applied patch/commit
+Bottom: Bottom-most applied patch/commit
+Base: Commit on top of which the bottom most patch is applied</tt></pre>
+</div></div>
+<div class="para"><p>Having these three tags, one can easily get the log/diff/other information
+only for commits that are (or are not!) part of the patch stack.</p></div>
+<div class="para"><p>Since some users may not want to have Guilt autotag, a Git config setting
+guilt.autotag can be used to turn it on or off.</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>If none of the config files (system, global, etc.) contain a
+guilt.autotag, the feature defaults to being on.</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>If one or more config file contains the value, regular
+git-config(1) rules apply.</tt></pre>
+</div></div>
+<div class="para"><p>During guilt-init(1), the rules are:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>If none of the config files contain guilt.autotag, the repository
+config file's guilt.autotag is set to the default (on).</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>If there already exists a setting in any of the config files, and
+neither of the autotagging related options is used, no local value
+is set.</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>If there already exists a setting in any of the config files, but
+an autotagging option is specified, the repository config file's
+guilt.autotag is set to the value specified on the command line.</tt></pre>
+</div></div>
+</div>
 <h2 id="_guilt_commands">GUILT COMMANDS</h2>
 <div class="sectionbody">
 <div class="para"><p>All commands can be called with or without a dash. e.g. <em>guilt add</em> or
@@ -398,6 +442,14 @@ guilt<a href="guilt-branch">1</a>
 <dd>
 <p>
         guilt-branch - Branch the entire patch series.
+</p>
+</dd>
+<dt>
+guilt<a href="guilt-commit">1</a>
+</dt>
+<dd>
+<p>
+        guilt-commit - Commit specified number of patches.
 </p>
 </dd>
 <dt>
@@ -612,21 +664,21 @@ guilt<a href="guilt-unapplied">1</a>
 </div>
 <h2 id="_author">Author</h2>
 <div class="sectionbody">
-<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jsipek@cs.sunysb.edu&gt;</p></div>
+<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jeffpc@josefsipek.net&gt;</p></div>
 </div>
 <h2 id="_documentation">Documentation</h2>
 <div class="sectionbody">
 <div class="para"><p>Documentation by Brandon Philips &lt;brandon@ifup.org&gt; and Josef "Jeff" Sipek
-&lt;jsipek@cs.sunysb.edu&gt;</p></div>
+&lt;jeffpc@josefsipek.net&gt;</p></div>
 </div>
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
 <div class="para"><p>Part of the guilt<a href="guilt">7</a> suite
-(Generated for Guilt v0.29)</p></div>
+(Generated for Guilt v0.30)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-03-19 00:43:49 EDT
+Last updated 2008-04-10 19:30:28 EDT
 </div>
 </div>
 </body>
