@@ -29,6 +29,11 @@ function replace_path
 	    -e "s,$REG_DIR,REGDIR,g"
 }
 
+function filter_dd
+{
+	sed -e 's:^\([0-9]*\) bytes (\([0-9]*\.[0-9]* .B\)) copied.*$:\1 bytes (\2) copied:'
+}
+
 # usage: cmd <cmd>..
 function cmd
 {

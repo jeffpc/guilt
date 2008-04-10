@@ -7,6 +7,19 @@ source $REG_DIR/scaffold
 
 cmd setup_repo
 
+function guiltfiles_args
+{
+	cat << DONE
+
+-l
+-v -l
+-a
+-l -a
+-v -a
+-v -l -a
+DONE
+}
+
 # create a patch that contains a file in a subdirectory
 cmd guilt-new subdir
 
@@ -25,16 +38,28 @@ cmd guilt-push -a
 # actual tests
 #
 
-cmd guilt-files
+guiltfiles_args | while read args; do
+	cmd guilt-files $args
+done
 
-cmd guilt-files -l
+#
+# test that changes in the index are also considered
+#
 
-cmd guilt-files -v -l
+cmd dd if=/dev/zero of=file.bin bs=1 count=1024 | filter_dd
 
-cmd guilt-files -a
+guiltfiles_args | while read args; do
+	cmd guilt-files $args
+done
 
-cmd guilt-files -l -a
+cmd git-add file.bin
 
-cmd guilt-files -v -a
+guiltfiles_args | while read args; do
+	cmd guilt-files $args
+done
 
-cmd guilt-files -v -l -a
+cmd git-rm def
+
+guiltfiles_args | while read args; do
+	cmd guilt-files $args
+done
