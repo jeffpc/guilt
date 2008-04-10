@@ -11,6 +11,7 @@ function guiltfiles_args
 {
 	cat << DONE
 
+-v
 -l
 -v -l
 -a

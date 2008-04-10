@@ -15,6 +15,8 @@ Applying patch..mode
 Patch applied.
 % guilt-files
 def
+% guilt-files -v
+  def
 % guilt-files -l
 mode def
 % guilt-files -v -l
@@ -54,6 +56,8 @@ mode
 1024 bytes (1.0 kB) copied
 % guilt-files
 def
+% guilt-files -v
+  def
 % guilt-files -l
 mode def
 % guilt-files -v -l
@@ -91,6 +95,9 @@ mode
 % guilt-files
 def
 file.bin
+% guilt-files -v
+  def
++ file.bin
 % guilt-files -l
 mode def
 mode file.bin
@@ -135,6 +142,9 @@ rm 'def'
 % guilt-files
 def
 file.bin
+% guilt-files -v
+- def
++ file.bin
 % guilt-files -l
 mode def
 mode file.bin
