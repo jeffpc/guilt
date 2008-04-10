@@ -1,36 +1,31 @@
-.\"     Title: guilt-files
+.\"     Title: guilt-commit
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
 .\"      Date: 04/10/2008
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-FILES" "1" "04/10/2008" "" ""
+.TH "GUILT\-COMMIT" "1" "04/10/2008" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt-files \- Print the list of files that the topmost patch changes
+guilt-commit \- Commit specified number of patches
 .SH "SYNOPSIS"
-\fIguilt\-files\fR [\-v] [\-a] [\-l]
-.SH "DESCRIPTION"
-Print the list of files that the topmost patch changes\.
+\fIguilt\-commit\fR \-n <num> | \-a | \-\-all
+
+Turn specified number of bottom most patches into Git commits\. This removes the the patches from the series, and status file\.
 .SH "OPTIONS"
 .PP
-\-v
+\-\-all, \-a
 .RS 4
-Verbose output
+Commit all applied patches
 .RE
 .PP
-\-a
+\-n <num>
 .RS 4
-List all files in all applied patches
-.RE
-.PP
-\-l
-.RS 4
-Add patch name to the output
+Commit <num> bottom most patches
 .RE
 .SH "AUTHOR"
 Written by Josef "Jeff" Sipek <jeffpc@josefsipek\.net>

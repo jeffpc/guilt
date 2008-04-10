@@ -1,17 +1,17 @@
 .\"     Title: guilt
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 03/19/2008
+.\"      Date: 04/10/2008
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT" "7" "03/19/2008" "" ""
+.TH "GUILT" "7" "04/10/2008" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt - quilt on top of git
+guilt \- quilt on top of git
 .SH "SYNOPSIS"
 \fIguilt\fR COMMAND [ARGS]
 .SH "DESCRIPTION"
@@ -35,6 +35,62 @@ delete <patch name>
 .RS 4
 Executed when a patch is deleted from the patch series via guilt\fI1\fR\&[1]\.
 .RE
+.SH "AUTOTAGGING"
+Autotagging is a feature that automatically creates unannotated tags for top, bottom, and base of the stack\.
+
+On every push or pop operation (refresh is a pop followed by a push), Guilt
+
+.sp
+.RS 4
+.nf
+Top: Top\-most applied patch/commit
+Bottom: Bottom\-most applied patch/commit
+Base: Commit on top of which the bottom most patch is applied
+.fi
+.RE
+Having these three tags, one can easily get the log/diff/other information only for commits that are (or are not!) part of the patch stack\.
+
+Since some users may not want to have Guilt autotag, a Git config setting guilt\.autotag can be used to turn it on or off\.
+
+.sp
+.RS 4
+.nf
+If none of the config files (system, global, etc\.) contain a
+guilt\.autotag, the feature defaults to being on\.
+.fi
+.RE
+.sp
+.RS 4
+.nf
+If one or more config file contains the value, regular
+git\-config(1) rules apply\.
+.fi
+.RE
+During guilt\-init(1), the rules are:
+
+.sp
+.RS 4
+.nf
+If none of the config files contain guilt\.autotag, the repository
+config file\'s guilt\.autotag is set to the default (on)\.
+.fi
+.RE
+.sp
+.RS 4
+.nf
+If there already exists a setting in any of the config files, and
+neither of the autotagging related options is used, no local value
+is set\.
+.fi
+.RE
+.sp
+.RS 4
+.nf
+If there already exists a setting in any of the config files, but
+an autotagging option is specified, the repository config file\'s
+guilt\.autotag is set to the value specified on the command line\.
+.fi
+.RE
 .SH "GUILT COMMANDS"
 All commands can be called with or without a dash\. e\.g\. \fIguilt add\fR or \fIguilt\-add\fR
 .PP
@@ -53,141 +109,146 @@ guilt\fI1\fR\&[4]
 guilt\-branch \- Branch the entire patch series\.
 .RE
 .PP
+guilt\fI1\fR\&[5]
+.RS 4
+guilt\-commit \- Commit specified number of patches\.
+.RE
+.PP
 guilt\fI1\fR\&[1]
 .RS 4
 guilt\-delete \- Delete a patch\.
 .RE
 .PP
-guilt\fI1\fR\&[5]
+guilt\fI1\fR\&[6]
 .RS 4
 guilt\-diff \- Outputs various diffs\.
 .RE
 .PP
-guilt\fI1\fR\&[6]
+guilt\fI1\fR\&[7]
 .RS 4
 guilt\-export \- Export a patch series (to be used by quilt)\.
 .RE
 .PP
-guilt\fI1\fR\&[7]
+guilt\fI1\fR\&[8]
 .RS 4
 guilt\-files \- Print the list of files that the topmost patch changes\.
 .RE
 .PP
-guilt\fI1\fR\&[8]
+guilt\fI1\fR\&[9]
 .RS 4
 guilt\-fold \- Fold a specified patch into the topmost applied patch\.
 .RE
 .PP
-guilt\fI1\fR\&[9]
+guilt\fI1\fR\&[10]
 .RS 4
 guilt\-fork \- Fork the topmost applied patch\.
 .RE
 .PP
-guilt\fI1\fR\&[10]
+guilt\fI1\fR\&[11]
 .RS 4
 guilt\-graph \- Create a patch dependency graph\.
 .RE
 .PP
-guilt\fI1\fR\&[11]
+guilt\fI1\fR\&[12]
 .RS 4
 guilt\-header \- Print a patch header\.
 .RE
 .PP
-guilt\fI1\fR\&[12]
+guilt\fI1\fR\&[13]
 .RS 4
 guilt\-help \- open man page of a guilt command\.
 .RE
 .PP
-guilt\fI1\fR\&[13]
+guilt\fI1\fR\&[14]
 .RS 4
 guilt\-import\-commit \- Import one or more commits as patches\.
 .RE
 .PP
-guilt\fI1\fR\&[14]
+guilt\fI1\fR\&[15]
 .RS 4
 guilt\-import \- Import specified patch file\.
 .RE
 .PP
-guilt\fI1\fR\&[15]
+guilt\fI1\fR\&[16]
 .RS 4
 guilt\-init \- Initialize guilt for use in a git repository\.
 .RE
 .PP
-guilt\fI1\fR\&[16]
+guilt\fI1\fR\&[17]
 .RS 4
 guilt\-new \- Create a new patch\.
 .RE
 .PP
-guilt\fI1\fR\&[17]
+guilt\fI1\fR\&[18]
 .RS 4
 guilt\-next \- Output the name of next patch to be pushed\.
 .RE
 .PP
-guilt\fI1\fR\&[18]
+guilt\fI1\fR\&[19]
 .RS 4
 guilt\-patchbomb \- Email a series of commits interactively\.
 .RE
 .PP
-guilt\fI1\fR\&[19]
+guilt\fI1\fR\&[20]
 .RS 4
 guilt\-pop \- Pop patches from the tree\.
 .RE
 .PP
-guilt\fI1\fR\&[20]
+guilt\fI1\fR\&[21]
 .RS 4
 guilt\-prev \- Output name of second topmost applied patch\.
 .RE
 .PP
-guilt\fI1\fR\&[21]
+guilt\fI1\fR\&[22]
 .RS 4
 guilt\-push \- Push patches onto the tree\.
 .RE
 .PP
-guilt\fI1\fR\&[22]
+guilt\fI1\fR\&[23]
 .RS 4
 guilt\-rebase \- Rebase pushed patches\.
 .RE
 .PP
-guilt\fI1\fR\&[23]
+guilt\fI1\fR\&[24]
 .RS 4
 guilt\-refresh \- Refresh topmost applied patch\.
 .RE
 .PP
-guilt\fI1\fR\&[24]
+guilt\fI1\fR\&[25]
 .RS 4
 guilt\-repair \- Repair the repository state\.
 .RE
 .PP
-guilt\fI1\fR\&[25]
+guilt\fI1\fR\&[26]
 .RS 4
 guilt\-rm \- Remove a file from the git tree and guilt\.
 .RE
 .PP
-guilt\fI1\fR\&[26]
+guilt\fI1\fR\&[27]
 .RS 4
 guilt\-series \- Print the stack of patches\.
 .RE
 .PP
-guilt\fI1\fR\&[27]
+guilt\fI1\fR\&[28]
 .RS 4
 guilt\-status \- Print the status of files since the last refresh\.
 .RE
 .PP
-guilt\fI1\fR\&[28]
+guilt\fI1\fR\&[29]
 .RS 4
 guilt\-top \- Output name of topmost applied patch\.
 .RE
 .PP
-guilt\fI1\fR\&[29]
+guilt\fI1\fR\&[30]
 .RS 4
 guilt\-unapplied \- List all unapplied patches\.
 .RE
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
+Written by Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
 .SH "DOCUMENTATION"
-Documentation by Brandon Philips <brandon@ifup\.org> and Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
+Documentation by Brandon Philips <brandon@ifup\.org> and Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
 .SH "GUILT"
-Part of the guilt\fI7\fR\&[30] suite (Generated for Guilt v0\.29)
+Part of the guilt\fI7\fR\&[31] suite (Generated for Guilt v0\.30)
 .SH "NOTES"
 .IP " 1." 4
 1
@@ -212,129 +273,134 @@ Part of the guilt\fI7\fR\&[30] suite (Generated for Guilt v0\.29)
 .IP " 5." 4
 1
 .RS 4
-\%guilt-diff
+\%guilt-commit
 .RE
 .IP " 6." 4
 1
 .RS 4
-\%guilt-export
+\%guilt-diff
 .RE
 .IP " 7." 4
 1
 .RS 4
-\%guilt-files
+\%guilt-export
 .RE
 .IP " 8." 4
 1
 .RS 4
-\%guilt-fold
+\%guilt-files
 .RE
 .IP " 9." 4
 1
 .RS 4
-\%guilt-fork
+\%guilt-fold
 .RE
 .IP "10." 4
 1
 .RS 4
-\%guilt-graph
+\%guilt-fork
 .RE
 .IP "11." 4
 1
 .RS 4
-\%guilt-header
+\%guilt-graph
 .RE
 .IP "12." 4
 1
 .RS 4
-\%guilt-help
+\%guilt-header
 .RE
 .IP "13." 4
 1
 .RS 4
-\%guilt-import-commit
+\%guilt-help
 .RE
 .IP "14." 4
 1
 .RS 4
-\%guilt-import
+\%guilt-import-commit
 .RE
 .IP "15." 4
 1
 .RS 4
-\%guilt-init
+\%guilt-import
 .RE
 .IP "16." 4
 1
 .RS 4
-\%guilt-new
+\%guilt-init
 .RE
 .IP "17." 4
 1
 .RS 4
-\%guilt-next
+\%guilt-new
 .RE
 .IP "18." 4
 1
 .RS 4
-\%guilt-patchbomb
+\%guilt-next
 .RE
 .IP "19." 4
 1
 .RS 4
-\%guilt-pop
+\%guilt-patchbomb
 .RE
 .IP "20." 4
 1
 .RS 4
-\%guilt-prev
+\%guilt-pop
 .RE
 .IP "21." 4
 1
 .RS 4
-\%guilt-push
+\%guilt-prev
 .RE
 .IP "22." 4
 1
 .RS 4
-\%guilt-rebase
+\%guilt-push
 .RE
 .IP "23." 4
 1
 .RS 4
-\%guilt-refresh
+\%guilt-rebase
 .RE
 .IP "24." 4
 1
 .RS 4
-\%guilt-repair
+\%guilt-refresh
 .RE
 .IP "25." 4
 1
 .RS 4
-\%guilt-rm
+\%guilt-repair
 .RE
 .IP "26." 4
 1
 .RS 4
-\%guilt-series
+\%guilt-rm
 .RE
 .IP "27." 4
 1
 .RS 4
-\%guilt-status
+\%guilt-series
 .RE
 .IP "28." 4
 1
 .RS 4
-\%guilt-top
+\%guilt-status
 .RE
 .IP "29." 4
 1
 .RS 4
-\%guilt-unapplied
+\%guilt-top
 .RE
 .IP "30." 4
+1
+.RS 4
+\%guilt-unapplied
+.RE
+.IP "31." 4
 7
 .RS 4
 \%guilt

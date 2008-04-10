@@ -1,22 +1,27 @@
 .\"     Title: guilt-init
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 03/19/2008
+.\"      Date: 04/10/2008
 .\"    Manual: 
 .\"    Source: 
 .\"
-.TH "GUILT\-INIT" "1" "03/19/2008" "" ""
+.TH "GUILT\-INIT" "1" "04/10/2008" "" ""
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
 .SH "NAME"
-guilt-init - Initialize guilt for use in a git repository
+guilt-init \- Initialize guilt for use in a git repository
 .SH "SYNOPSIS"
-\fIguilt\-init\fR [\-n]
+\fIguilt\-init\fR [\-n | \-a]
 .SH "DESCRIPTION"
 Initialize a git repository for use with guilt
 .SH "OPTIONS"
+.PP
+\-a
+.RS 4
+Automatically create stack top, bottom, and base tags (sets guilt\.autotag config variable to 1)\. This is the default in most cases\. For more details about autotagging default option handling, see guilt(7)\.
+.RE
 .PP
 \-n
 .RS 4
@@ -33,11 +38,11 @@ $ cd hello
 
 $ guilt\-init
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jsipek@cs\.sunysb\.edu>
+Written by Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
 .SH "DOCUMENTATION"
 Documentation by Brandon Philips <brandon@ifup\.org>
 .SH "GUILT"
-Part of the guilt\fI7\fR\&[1] suite (Generated for Guilt v0\.29)
+Part of the guilt\fI7\fR\&[1] suite (Generated for Guilt v0\.30)
 .SH "NOTES"
 .IP " 1." 4
 7
