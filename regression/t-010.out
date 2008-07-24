@@ -1,7 +1,7 @@
 % setup_git_repo
 % reset_git_repo
-Already on branch "master"
-HEAD is now at d485041... initial
+Already on "master"
+HEAD is now at d485041 initial
 % guilt-init
 % list_files
 d .git/patches
@@ -16,8 +16,8 @@ d .git/patches/master
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 % reset_git_repo
-Already on branch "master"
-HEAD is now at d485041... initial
+Already on "master"
+HEAD is now at d485041 initial
 % guilt-init -a
 % list_files
 d .git/patches
@@ -32,8 +32,8 @@ d .git/patches/master
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 % reset_git_repo
-Already on branch "master"
-HEAD is now at d485041... initial
+Already on "master"
+HEAD is now at d485041 initial
 % guilt-init -n
 % list_files
 d .git/patches

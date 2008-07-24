@@ -26,7 +26,9 @@ function die
 function replace_path
 {
 	sed -e "s,$PWD,PATH,g" \
-	    -e "s,$REG_DIR,REGDIR,g"
+	    -e "s,$REG_DIR,REGDIR,g" \
+	    -e "s,\.\.\. initial, initial,g" \
+	    -e "s,^Already on branch,Already on,g"
 }
 
 function filter_dd
