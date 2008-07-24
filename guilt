@@ -23,7 +23,7 @@ esac
 # we change directories ourselves
 SUBDIRECTORY_OK=1
 
-. git-sh-setup
+. "$(git --exec-path)/git-sh-setup"
 
 #
 # Git version check
