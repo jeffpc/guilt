@@ -19,8 +19,8 @@ while [ $# -ne 0 ]; do
 	shift
 done
 
-if [ ! -z "$working_tree" ] ; then
-	git diff -- "$@"
-else
-	git diff HEAD^ -- "$@"
-fi
+PREV=HEAD^
+[ -z "`get_top`" ] && PREV=
+[ ! -z "$working_tree" ] && PREV=
+
+git diff $PREV -- "$@"
