@@ -7,6 +7,7 @@ DOC_MAN1=$(patsubst %.txt,%.1,$(MAN1_TXT))
 DOC_MAN7=$(patsubst %.txt,%.7,$(MAN7_TXT))
 
 USAGE=$(patsubst %.txt,usage-%.txt,$(MAN1_TXT))
+VERSION=$(shell git describe)
 
 prefix?=$(PREFIX)
 bindir?=$(prefix)/bin
@@ -50,7 +51,7 @@ doc.dep : $(wildcard *.txt) build-docdep.perl
 -include doc.dep
 
 version.txt:
-	echo "(Generated for Guilt `git-describe`)" > version.txt
+	echo "(Generated for Guilt $(VERSION))" > version.txt
 
 cmds.txt: cmd-list.sh $(MAN1_TXT)
 	sh ./cmd-list.sh
@@ -73,4 +74,4 @@ usage-%.txt: $(MAN1_TXT) usage.sh
 	xmlto -m callouts.xsl man $<
 
 %.xml : %.txt footer.txt version.txt
-	$(ASCIIDOC) -b docbook -d manpage -f asciidoc.conf $<
+	$(ASCIIDOC) -b docbook -a version=$(VERSION) -d manpage -f asciidoc.conf $<
