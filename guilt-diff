@@ -3,21 +3,24 @@
 # Copyright (C) 2007 Josef 'Jeff' Sipek <jeffpc@josefsipek.net>
 #
 
-USAGE="[-z]"
+USAGE="[-z] [<path>...]"
 . `dirname $0`/guilt
 
 while [ $# -ne 0 ]; do
 	case "$1" in
 	-z)
 		working_tree=t ;;
-	*)
+	-* | --*)
 		usage ;;
+
+	*)
+		break ;;
 	esac
 	shift
 done
 
 if [ ! -z "$working_tree" ] ; then
-	git diff
+	git diff -- "$@"
 else
-	git diff HEAD^
+	git diff HEAD^ -- "$@"
 fi
