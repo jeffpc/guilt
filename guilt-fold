@@ -20,6 +20,11 @@ if [ -z "$patch" ]; then
 	die "No patch name supplied."
 fi
 
+# make sure it is a file
+if [ ! -f "$GUILT_DIR/$branch/$patch" ]; then
+	die "Patch $patch does not exist."
+fi
+
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
 	die "Uncommited changes detected. Refresh first."
@@ -29,11 +34,6 @@ fi
 pline=`cat $applied | grep -e "^$patch$"`
 if [ ! -z "$pline" ]; then
 	die "Patch is applied. Pop the patch first."
-fi
-
-# make sure it is a file
-if [ ! -f "$GUILT_DIR/$branch/$patch" ]; then
-	die "Patch '$patch' is not a regular file."
 fi
 
 fold_patch "$patch"
