@@ -57,9 +57,9 @@ On every push or pop operation (refresh is a pop followed by a push), Guilt
 updates the stack top (${branch}_top), stack bottom (${branch}_bottom), and
 stack base (${branch}_base) tags.
 
-	Top: Top-most applied patch/commit
-	Bottom: Bottom-most applied patch/commit
-	Base: Commit on top of which the bottom most patch is applied
+Top:: Top-most applied patch/commit
+Bottom:: Bottom-most applied patch/commit
+Base:: Commit on top of which the bottom most patch is applied
 
 Having these three tags, one can easily get the log/diff/other information
 only for commits that are (or are not!) part of the patch stack.
@@ -67,24 +67,23 @@ only for commits that are (or are not!) part of the patch stack.
 Since some users may not want to have Guilt autotag, a Git config setting
 guilt.autotag can be used to turn it on or off.
 
-	If none of the config files (system, global, etc.) contain a
-	guilt.autotag, the feature defaults to being on.
+ - If none of the config files (system, global, etc.) contain a guilt.autotag,
+   the feature defaults to being on.
 
-	If one or more config file contains the value, regular
-	git-config(1) rules apply.
+ - If one or more config file contains the value, regular git-config(1) rules
+   apply.
 
 During guilt-init(1), the rules are:
 
-	If none of the config files contain guilt.autotag, the repository
-	config file's guilt.autotag is set to the default (on).
+ - If none of the config files contain guilt.autotag, the repository config
+   file's guilt.autotag is set to the default (on).
 
-	If there already exists a setting in any of the config files, and
-	neither of the autotagging related options is used, no local value
-	is set.
+ - If there already exists a setting in any of the config files, and neither
+   of the autotagging related options is used, no local value is set.
 
-	If there already exists a setting in any of the config files, but
-	an autotagging option is specified, the repository config file's
-	guilt.autotag is set to the value specified on the command line.
+ - If there already exists a setting in any of the config files, but an
+   autotagging option is specified, the repository config file's guilt.autotag
+   is set to the value specified on the command line.
 
 GUILT COMMANDS
 --------------
