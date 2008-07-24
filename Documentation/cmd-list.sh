@@ -21,7 +21,7 @@ BEGIN{state=0}
 		exit 1
 	fi
 
-	echo "guiltlink:$cmd[1]::"
+	echo "linkguilt:$cmd[1]::"
 	echo "	$desc."
 	echo ""
 }

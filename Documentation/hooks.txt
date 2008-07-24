@@ -9,4 +9,4 @@ The following hooks are supported:
 
 delete <patch name>::
 	Executed when a patch is deleted from the patch series via
-	guiltlink:guilt-delete[1].
+	linkguilt:guilt-delete[1].
