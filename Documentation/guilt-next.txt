@@ -11,8 +11,8 @@ include::usage-guilt-next.txt[]
 
 DESCRIPTION
 -----------
-Output the name of next patch to be pushed. If guilt-push(1) is issued, this
-patch would be the topmost patch.
+Output the name of next patch to be pushed. If linkguilt:guilt-push[1] is
+issued, this patch would be the topmost patch.
 
 OPTIONS
 -------

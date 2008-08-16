@@ -73,7 +73,7 @@ guilt.autotag can be used to turn it on or off.
  - If one or more config file contains the value, regular git-config(1) rules
    apply.
 
-During guilt-init(1), the rules are:
+During linkguilt:guilt-init[1], the rules are:
 
  - If none of the config files contain guilt.autotag, the repository config
    file's guilt.autotag is set to the default (on).
