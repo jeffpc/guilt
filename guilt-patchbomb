@@ -40,10 +40,7 @@ if [ "$n" = "n" ] || [ "$n" = "N" ]; then
 	die "Aborting..."
 fi
 
-dir=/tmp/patches-$RANDOM/
-if [ -e $dir ]; then
-	die "Conspiracy uncovered: Temporary dir '$dir' already exists"
-fi
+dir=`get_tmp_file patchbomb -d`
 disp "Using '$dir' as temporary directory"
 
 # more than one patch?

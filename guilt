@@ -597,13 +597,13 @@ munge_hash_range()
 	return 0
 }
 
-# usage: get_tmp_file <prefix>
+# usage: get_tmp_file <prefix> [<opts>]
 #
 # Get a unique filename and create the file in a non-racy way
 get_tmp_file()
 {
 	while true; do
-		mktemp "/tmp/guilt.$1.XXXXXXXXXXXXXXX" && break
+		mktemp $2 "/tmp/guilt.$1.XXXXXXXXXXXXXXX" && break
 	done
 }
 
