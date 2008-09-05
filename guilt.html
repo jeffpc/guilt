@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.2.5" />
+<meta name="generator" content="AsciiDoc 8.2.7" />
 <style type="text/css">
 /* Debug borders */
 p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
@@ -26,10 +26,12 @@ a:visited {
 
 em {
   font-style: italic;
+  color: navy;
 }
 
 strong {
   font-weight: bold;
+  color: #083194;
 }
 
 tt {
@@ -69,6 +71,10 @@ hr {
 p {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
 }
 
 pre {
@@ -123,6 +129,7 @@ div.content { /* Block element content. */
 
 /* Block element titles. */
 div.title, caption.title {
+  color: #527bbd;
   font-family: sans-serif;
   font-weight: bold;
   text-align: left;
@@ -158,13 +165,25 @@ div.listingblock > div.content {
   padding: 0.5em;
 }
 
-div.quoteblock > div.content {
+div.quoteblock {
   padding-left: 2.0em;
 }
-
-div.attribution {
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
   text-align: right;
 }
+
+div.verseblock {
+  padding-left: 2.0em;
+}
+div.verseblock > div.content {
+  white-space: pre;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
 div.verseblock + div.attribution {
   text-align: left;
 }
@@ -187,10 +206,6 @@ div.exampleblock > div.content {
   padding: 0.5em;
 }
 
-div.verseblock div.content {
-  white-space: pre;
-}
-
 div.imageblock div.content { padding-left: 0; }
 div.imageblock img { border: 1px solid silver; }
 span.image img { border-style: none; }
@@ -202,16 +217,19 @@ dl {
 dt {
   margin-top: 0.5em;
   margin-bottom: 0;
-  font-style: italic;
+  font-style: normal;
 }
 dd > *:first-child {
-  margin-top: 0;
+  margin-top: 0.1em;
 }
 
 ul, ol {
     list-style-position: outside;
 }
-div.olist2 ol {
+div.olist > ol {
+  list-style-type: decimal;
+}
+div.olist2 > ol {
   list-style-type: lower-alpha;
 }
 
@@ -231,11 +249,11 @@ div.hlist {
   margin-bottom: 0.8em;
 }
 div.hlist td {
-  padding-bottom: 5px;
+  padding-bottom: 15px;
 }
 td.hlist1 {
   vertical-align: top;
-  font-style: italic;
+  font-style: normal;
   padding-right: 0.8em;
 }
 td.hlist2 {
@@ -271,7 +289,24 @@ div.toclevel4 {
   margin-left: 6em;
   font-size: 0.9em;
 }
-include1::./stylesheets/xhtml11-manpage.css[]
+/* Overrides for manpage documents */
+h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-style: none;
+}
+div.sectionbody {
+  margin-left: 5%;
+}
+
+@media print {
+  div#toc { display: none; }
+}
+
 /* Workarounds for IE6's broken and incomplete CSS2. */
 
 div.sidebar-content {
@@ -280,6 +315,7 @@ div.sidebar-content {
   padding: 0.5em;
 }
 div.sidebar-title, div.image-title {
+  color: #527bbd;
   font-family: sans-serif;
   font-weight: bold;
   margin-top: 0.0em;
@@ -292,8 +328,17 @@ div.listingblock div.content {
   padding: 0.5em;
 }
 
-div.quoteblock-content {
-  padding-left: 2.0em;
+div.quoteblock-attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock-content {
+  white-space: pre;
+}
+div.verseblock-attribution {
+  padding-top: 0.75em;
+  text-align: left;
 }
 
 div.exampleblock-content {
@@ -303,6 +348,14 @@ div.exampleblock-content {
 
 /* IE6 sets dynamically generated links as visited. */
 div#toc a:visited { color: blue; }
+
+/* Because IE6 child selector is broken. */
+div.olist2 ol {
+  list-style-type: lower-alpha;
+}
+div.olist2 div.olist ol {
+  list-style-type: decimal;
+}
 </style>
 <title>guilt(7)</title>
 </head>
@@ -366,7 +419,7 @@ delete &lt;patch name&gt;
 <dd>
 <p>
         Executed when a patch is deleted from the patch series via
-        guilt<a href="guilt-delete">1</a>.
+        <a href="guilt-delete.html">guilt-delete(1)</a>.
 </p>
 </dd>
 </dl></div>
@@ -376,44 +429,72 @@ delete &lt;patch name&gt;
 <div class="para"><p>Autotagging is a feature that automatically creates unannotated tags for
 top, bottom, and base of the stack.</p></div>
 <div class="para"><p>On every push or pop operation (refresh is a pop followed by a push), Guilt</p></div>
-<div class="literalblock">
-<div class="content">
-<pre><tt>Top: Top-most applied patch/commit
-Bottom: Bottom-most applied patch/commit
-Base: Commit on top of which the bottom most patch is applied</tt></pre>
-</div></div>
+<div class="hlist"><table>
+<tr>
+<td class="hlist1">
+Top
+</td>
+<td class="hlist2">
+Top-most applied patch/commit
+</td>
+</tr>
+<tr>
+<td class="hlist1">
+Bottom
+</td>
+<td class="hlist2">
+Bottom-most applied patch/commit
+</td>
+</tr>
+<tr>
+<td class="hlist1">
+Base
+</td>
+<td class="hlist2">
+Commit on top of which the bottom most patch is applied
+</td>
+</tr>
+</table></div>
 <div class="para"><p>Having these three tags, one can easily get the log/diff/other information
 only for commits that are (or are not!) part of the patch stack.</p></div>
 <div class="para"><p>Since some users may not want to have Guilt autotag, a Git config setting
 guilt.autotag can be used to turn it on or off.</p></div>
-<div class="literalblock">
-<div class="content">
-<pre><tt>If none of the config files (system, global, etc.) contain a
-guilt.autotag, the feature defaults to being on.</tt></pre>
-</div></div>
-<div class="literalblock">
-<div class="content">
-<pre><tt>If one or more config file contains the value, regular
-git-config(1) rules apply.</tt></pre>
-</div></div>
-<div class="para"><p>During guilt-init(1), the rules are:</p></div>
-<div class="literalblock">
-<div class="content">
-<pre><tt>If none of the config files contain guilt.autotag, the repository
-config file's guilt.autotag is set to the default (on).</tt></pre>
-</div></div>
-<div class="literalblock">
-<div class="content">
-<pre><tt>If there already exists a setting in any of the config files, and
-neither of the autotagging related options is used, no local value
-is set.</tt></pre>
-</div></div>
-<div class="literalblock">
-<div class="content">
-<pre><tt>If there already exists a setting in any of the config files, but
-an autotagging option is specified, the repository config file's
-guilt.autotag is set to the value specified on the command line.</tt></pre>
-</div></div>
+<div class="ilist"><ul>
+<li>
+<p>
+If none of the config files (system, global, etc.) contain a guilt.autotag,
+   the feature defaults to being on.
+</p>
+</li>
+<li>
+<p>
+If one or more config file contains the value, regular git-config(1) rules
+   apply.
+</p>
+</li>
+</ul></div>
+<div class="para"><p>During <a href="guilt-init.html">guilt-init(1)</a>, the rules are:</p></div>
+<div class="ilist"><ul>
+<li>
+<p>
+If none of the config files contain guilt.autotag, the repository config
+   file's guilt.autotag is set to the default (on).
+</p>
+</li>
+<li>
+<p>
+If there already exists a setting in any of the config files, and neither
+   of the autotagging related options is used, no local value is set.
+</p>
+</li>
+<li>
+<p>
+If there already exists a setting in any of the config files, but an
+   autotagging option is specified, the repository config file's guilt.autotag
+   is set to the value specified on the command line.
+</p>
+</li>
+</ul></div>
 </div>
 <h2 id="_guilt_commands">GUILT COMMANDS</h2>
 <div class="sectionbody">
@@ -421,7 +502,7 @@ guilt.autotag is set to the value specified on the command line.</tt></pre>
 <em>guilt-add</em></p></div>
 <div class="vlist"><dl>
 <dt>
-guilt<a href="guilt-add">1</a>
+<a href="guilt-add.html">guilt-add(1)</a>
 </dt>
 <dd>
 <p>
@@ -429,7 +510,7 @@ guilt<a href="guilt-add">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-applied">1</a>
+<a href="guilt-applied.html">guilt-applied(1)</a>
 </dt>
 <dd>
 <p>
@@ -437,7 +518,7 @@ guilt<a href="guilt-applied">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-branch">1</a>
+<a href="guilt-branch.html">guilt-branch(1)</a>
 </dt>
 <dd>
 <p>
@@ -445,7 +526,7 @@ guilt<a href="guilt-branch">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-commit">1</a>
+<a href="guilt-commit.html">guilt-commit(1)</a>
 </dt>
 <dd>
 <p>
@@ -453,7 +534,7 @@ guilt<a href="guilt-commit">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-delete">1</a>
+<a href="guilt-delete.html">guilt-delete(1)</a>
 </dt>
 <dd>
 <p>
@@ -461,7 +542,7 @@ guilt<a href="guilt-delete">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-diff">1</a>
+<a href="guilt-diff.html">guilt-diff(1)</a>
 </dt>
 <dd>
 <p>
@@ -469,7 +550,7 @@ guilt<a href="guilt-diff">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-export">1</a>
+<a href="guilt-export.html">guilt-export(1)</a>
 </dt>
 <dd>
 <p>
@@ -477,7 +558,7 @@ guilt<a href="guilt-export">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-files">1</a>
+<a href="guilt-files.html">guilt-files(1)</a>
 </dt>
 <dd>
 <p>
@@ -485,7 +566,7 @@ guilt<a href="guilt-files">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-fold">1</a>
+<a href="guilt-fold.html">guilt-fold(1)</a>
 </dt>
 <dd>
 <p>
@@ -493,7 +574,7 @@ guilt<a href="guilt-fold">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-fork">1</a>
+<a href="guilt-fork.html">guilt-fork(1)</a>
 </dt>
 <dd>
 <p>
@@ -501,7 +582,7 @@ guilt<a href="guilt-fork">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-graph">1</a>
+<a href="guilt-graph.html">guilt-graph(1)</a>
 </dt>
 <dd>
 <p>
@@ -509,7 +590,7 @@ guilt<a href="guilt-graph">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-header">1</a>
+<a href="guilt-header.html">guilt-header(1)</a>
 </dt>
 <dd>
 <p>
@@ -517,7 +598,7 @@ guilt<a href="guilt-header">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-help">1</a>
+<a href="guilt-help.html">guilt-help(1)</a>
 </dt>
 <dd>
 <p>
@@ -525,7 +606,7 @@ guilt<a href="guilt-help">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-import-commit">1</a>
+<a href="guilt-import-commit.html">guilt-import-commit(1)</a>
 </dt>
 <dd>
 <p>
@@ -533,7 +614,7 @@ guilt<a href="guilt-import-commit">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-import">1</a>
+<a href="guilt-import.html">guilt-import(1)</a>
 </dt>
 <dd>
 <p>
@@ -541,7 +622,7 @@ guilt<a href="guilt-import">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-init">1</a>
+<a href="guilt-init.html">guilt-init(1)</a>
 </dt>
 <dd>
 <p>
@@ -549,7 +630,7 @@ guilt<a href="guilt-init">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-new">1</a>
+<a href="guilt-new.html">guilt-new(1)</a>
 </dt>
 <dd>
 <p>
@@ -557,7 +638,7 @@ guilt<a href="guilt-new">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-next">1</a>
+<a href="guilt-next.html">guilt-next(1)</a>
 </dt>
 <dd>
 <p>
@@ -565,7 +646,7 @@ guilt<a href="guilt-next">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-patchbomb">1</a>
+<a href="guilt-patchbomb.html">guilt-patchbomb(1)</a>
 </dt>
 <dd>
 <p>
@@ -573,7 +654,7 @@ guilt<a href="guilt-patchbomb">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-pop">1</a>
+<a href="guilt-pop.html">guilt-pop(1)</a>
 </dt>
 <dd>
 <p>
@@ -581,7 +662,7 @@ guilt<a href="guilt-pop">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-prev">1</a>
+<a href="guilt-prev.html">guilt-prev(1)</a>
 </dt>
 <dd>
 <p>
@@ -589,7 +670,7 @@ guilt<a href="guilt-prev">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-push">1</a>
+<a href="guilt-push.html">guilt-push(1)</a>
 </dt>
 <dd>
 <p>
@@ -597,7 +678,7 @@ guilt<a href="guilt-push">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-rebase">1</a>
+<a href="guilt-rebase.html">guilt-rebase(1)</a>
 </dt>
 <dd>
 <p>
@@ -605,7 +686,7 @@ guilt<a href="guilt-rebase">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-refresh">1</a>
+<a href="guilt-refresh.html">guilt-refresh(1)</a>
 </dt>
 <dd>
 <p>
@@ -613,7 +694,7 @@ guilt<a href="guilt-refresh">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-repair">1</a>
+<a href="guilt-repair.html">guilt-repair(1)</a>
 </dt>
 <dd>
 <p>
@@ -621,7 +702,7 @@ guilt<a href="guilt-repair">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-rm">1</a>
+<a href="guilt-rm.html">guilt-rm(1)</a>
 </dt>
 <dd>
 <p>
@@ -629,7 +710,7 @@ guilt<a href="guilt-rm">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-series">1</a>
+<a href="guilt-series.html">guilt-series(1)</a>
 </dt>
 <dd>
 <p>
@@ -637,7 +718,7 @@ guilt<a href="guilt-series">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-status">1</a>
+<a href="guilt-status.html">guilt-status(1)</a>
 </dt>
 <dd>
 <p>
@@ -645,7 +726,7 @@ guilt<a href="guilt-status">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-top">1</a>
+<a href="guilt-top.html">guilt-top(1)</a>
 </dt>
 <dd>
 <p>
@@ -653,7 +734,7 @@ guilt<a href="guilt-top">1</a>
 </p>
 </dd>
 <dt>
-guilt<a href="guilt-unapplied">1</a>
+<a href="guilt-unapplied.html">guilt-unapplied(1)</a>
 </dt>
 <dd>
 <p>
@@ -664,21 +745,21 @@ guilt<a href="guilt-unapplied">1</a>
 </div>
 <h2 id="_author">Author</h2>
 <div class="sectionbody">
-<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jeffpc@josefsipek.net&gt;</p></div>
+<div class="para"><p>Written by Josef "Jeff" Sipek &lt;<a href="mailto:jeffpc@josefsipek.net">jeffpc@josefsipek.net</a>&gt;</p></div>
 </div>
 <h2 id="_documentation">Documentation</h2>
 <div class="sectionbody">
-<div class="para"><p>Documentation by Brandon Philips &lt;brandon@ifup.org&gt; and Josef "Jeff" Sipek
-&lt;jeffpc@josefsipek.net&gt;</p></div>
+<div class="para"><p>Documentation by Brandon Philips &lt;<a href="mailto:brandon@ifup.org">brandon@ifup.org</a>&gt; and Josef "Jeff" Sipek
+&lt;<a href="mailto:jeffpc@josefsipek.net">jeffpc@josefsipek.net</a>&gt;</p></div>
 </div>
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
-<div class="para"><p>Part of the guilt<a href="guilt">7</a> suite
-(Generated for Guilt v0.30)</p></div>
+<div class="para"><p>Part of the <a href="guilt.html">guilt(7)</a> suite
+(Generated for Guilt v0.31)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-04-10 19:30:28 EDT
+Last updated 2008-09-05 18:34:58 EDT
 </div>
 </div>
 </body>

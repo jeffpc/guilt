@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.2.5" />
+<meta name="generator" content="AsciiDoc 8.2.7" />
 <style type="text/css">
 /* Debug borders */
 p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
@@ -26,10 +26,12 @@ a:visited {
 
 em {
   font-style: italic;
+  color: navy;
 }
 
 strong {
   font-weight: bold;
+  color: #083194;
 }
 
 tt {
@@ -69,6 +71,10 @@ hr {
 p {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
 }
 
 pre {
@@ -123,6 +129,7 @@ div.content { /* Block element content. */
 
 /* Block element titles. */
 div.title, caption.title {
+  color: #527bbd;
   font-family: sans-serif;
   font-weight: bold;
   text-align: left;
@@ -158,13 +165,25 @@ div.listingblock > div.content {
   padding: 0.5em;
 }
 
-div.quoteblock > div.content {
+div.quoteblock {
   padding-left: 2.0em;
 }
-
-div.attribution {
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
   text-align: right;
 }
+
+div.verseblock {
+  padding-left: 2.0em;
+}
+div.verseblock > div.content {
+  white-space: pre;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
 div.verseblock + div.attribution {
   text-align: left;
 }
@@ -187,10 +206,6 @@ div.exampleblock > div.content {
   padding: 0.5em;
 }
 
-div.verseblock div.content {
-  white-space: pre;
-}
-
 div.imageblock div.content { padding-left: 0; }
 div.imageblock img { border: 1px solid silver; }
 span.image img { border-style: none; }
@@ -202,16 +217,19 @@ dl {
 dt {
   margin-top: 0.5em;
   margin-bottom: 0;
-  font-style: italic;
+  font-style: normal;
 }
 dd > *:first-child {
-  margin-top: 0;
+  margin-top: 0.1em;
 }
 
 ul, ol {
     list-style-position: outside;
 }
-div.olist2 ol {
+div.olist > ol {
+  list-style-type: decimal;
+}
+div.olist2 > ol {
   list-style-type: lower-alpha;
 }
 
@@ -231,11 +249,11 @@ div.hlist {
   margin-bottom: 0.8em;
 }
 div.hlist td {
-  padding-bottom: 5px;
+  padding-bottom: 15px;
 }
 td.hlist1 {
   vertical-align: top;
-  font-style: italic;
+  font-style: normal;
   padding-right: 0.8em;
 }
 td.hlist2 {
@@ -271,7 +289,24 @@ div.toclevel4 {
   margin-left: 6em;
   font-size: 0.9em;
 }
-include1::./stylesheets/xhtml11-manpage.css[]
+/* Overrides for manpage documents */
+h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-style: none;
+}
+div.sectionbody {
+  margin-left: 5%;
+}
+
+@media print {
+  div#toc { display: none; }
+}
+
 /* Workarounds for IE6's broken and incomplete CSS2. */
 
 div.sidebar-content {
@@ -280,6 +315,7 @@ div.sidebar-content {
   padding: 0.5em;
 }
 div.sidebar-title, div.image-title {
+  color: #527bbd;
   font-family: sans-serif;
   font-weight: bold;
   margin-top: 0.0em;
@@ -292,8 +328,17 @@ div.listingblock div.content {
   padding: 0.5em;
 }
 
-div.quoteblock-content {
-  padding-left: 2.0em;
+div.quoteblock-attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock-content {
+  white-space: pre;
+}
+div.verseblock-attribution {
+  padding-top: 0.75em;
+  text-align: left;
 }
 
 div.exampleblock-content {
@@ -303,6 +348,14 @@ div.exampleblock-content {
 
 /* IE6 sets dynamically generated links as visited. */
 div#toc a:visited { color: blue; }
+
+/* Because IE6 child selector is broken. */
+div.olist2 ol {
+  list-style-type: lower-alpha;
+}
+div.olist2 div.olist ol {
+  list-style-type: decimal;
+}
 </style>
 <title>guilt-fork(1)</title>
 </head>
@@ -342,20 +395,20 @@ file to use this new patch file.</p></div>
 </div>
 <h2 id="_author">Author</h2>
 <div class="sectionbody">
-<div class="para"><p>Written by Josef "Jeff" Sipek &lt;jeffpc@josefsipek.net&gt;</p></div>
+<div class="para"><p>Written by Josef "Jeff" Sipek &lt;<a href="mailto:jeffpc@josefsipek.net">jeffpc@josefsipek.net</a>&gt;</p></div>
 </div>
 <h2 id="_documentation">Documentation</h2>
 <div class="sectionbody">
-<div class="para"><p>Documentation by Josef "Jeff" Sipek &lt;jeffpc@josefsipek.net&gt;</p></div>
+<div class="para"><p>Documentation by Josef "Jeff" Sipek &lt;<a href="mailto:jeffpc@josefsipek.net">jeffpc@josefsipek.net</a>&gt;</p></div>
 </div>
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
-<div class="para"><p>Part of the guilt<a href="guilt">7</a> suite
-(Generated for Guilt v0.30)</p></div>
+<div class="para"><p>Part of the <a href="guilt.html">guilt(7)</a> suite
+(Generated for Guilt v0.31)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-04-10 19:30:13 EDT
+Last updated 2008-09-05 18:34:44 EDT
 </div>
 </div>
 </body>
