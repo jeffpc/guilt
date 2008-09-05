@@ -1,11 +1,11 @@
 .\"     Title: guilt-repair
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 04/10/2008
-.\"    Manual: 
-.\"    Source: 
+.\"      Date: 09/05/2008
+.\"    Manual: Guilt Manual
+.\"    Source: Guilt v0.31
 .\"
-.TH "GUILT\-REPAIR" "1" "04/10/2008" "" ""
+.TH "GUILT\-REPAIR" "1" "09/05/2008" "Guilt v0\&.31" "Guilt Manual"
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -15,26 +15,26 @@ guilt-repair \- Repair the repository state
 .SH "SYNOPSIS"
 \fIguilt\-repair\fR \-\-full | \-\-status | \-\-autotag
 .SH "DESCRIPTION"
-Perform various repository repairs\. You must specify one mode of repair:
+Perform various repository repairs\&. You must specify one mode of repair:
 .PP
 \-\-full
 .RS 4
-Tries to repair everything possible\. Additionally, it resets the repository state by reseting the HEAD to what\'s believed to be the proper commit, and reseting the applied stack\. The end result should be a repository with no patches applied\.
+Tries to repair everything possible\&. Additionally, it resets the repository state by reseting the HEAD to what\'s believed to be the proper commit, and reseting the applied stack\&. The end result should be a repository with no patches applied\&.
 
 .sp
 .RS 4
 .nf
 WARNING: Running this command may result in commits and working
-directory changes being lost\. You may want to create a new reference
-(e\.g\., branch, or reflog) to the original HEAD before using
-guilt\-repair\.
+directory changes being lost\&. You may want to create a new reference
+(e\&.g\&., branch, or reflog) to the original HEAD before using
+guilt\-repair\&.
 .fi
 .RE
 .RE
 .PP
 \-\-status
 .RS 4
-Upgrade the status file from old format to new\.
+Upgrade the status file from old format to new\&.
 .RE
 .PP
 \-\-autotag
@@ -42,14 +42,14 @@ Upgrade the status file from old format to new\.
 Fixup autotags (the <branch>_{top,bottom,base} tags)
 .RE
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
+Written by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "DOCUMENTATION"
-Documentation by Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
+Documentation by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "GUILT"
-Part of the guilt\fI7\fR\&[1] suite (Generated for Guilt v0\.30)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.31)
 .SH "NOTES"
 .IP " 1." 4
-7
+jeffpc@josefsipek.net
 .RS 4
-\%guilt
+\%mailto:jeffpc@josefsipek.net
 .RE

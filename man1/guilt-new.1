@@ -1,11 +1,11 @@
 .\"     Title: guilt-new
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 04/10/2008
-.\"    Manual: 
-.\"    Source: 
+.\"      Date: 09/05/2008
+.\"    Manual: Guilt Manual
+.\"    Source: Guilt v0.31
 .\"
-.TH "GUILT\-NEW" "1" "04/10/2008" "" ""
+.TH "GUILT\-NEW" "1" "09/05/2008" "Guilt v0\&.31" "Guilt Manual"
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -15,32 +15,32 @@ guilt-new \- Create a new patch
 .SH "SYNOPSIS"
 \fIguilt\-new\fR [\-f] [\-s] [\-e|\-m message] <patchname>
 .SH "DESCRIPTION"
-Create a new patch and push it on top of the stack\. An optional patch description can be supplied either interactively on via the command line\.
+Create a new patch and push it on top of the stack\&. An optional patch description can be supplied either interactively on via the command line\&.
 .SH "OPTIONS"
 .PP
 \-f
 .RS 4
-Force patch creation if there are unrefreshed changes\. These changes will get automatically imported into the new patch\.
+Force patch creation if there are unrefreshed changes\&. These changes will get automatically imported into the new patch\&.
 .RE
 .PP
 \-s
 .RS 4
-Add a Signed\-off\-by with your committer identifier string to the patch message\.
+Add a Signed\-off\-by with your committer identifier string to the patch message\&.
 .RE
 .PP
 \-e
 .RS 4
-Edit the patch message interactively\. This option can be combined with \-s to easily sign off on the patch\.
+Edit the patch message interactively\&. This option can be combined with \-s to easily sign off on the patch\&.
 .RE
 .PP
 \-m <message>
 .RS 4
-The "<message>" string will used as the commit message\. This option can be combined with \-s to easily sign off on the patch\.
+The "<message>" string will used as the commit message\&. This option can be combined with \-s to easily sign off on the patch\&.
 .RE
 .PP
 <patchname>
 .RS 4
-Name of the patch to create\. This must be a legal relative pathname string\. For example, "foo", "foo/bar", and "foo/bar/foobar" are all valid\.
+Name of the patch to create\&. This must be a legal relative pathname string\&. For example, "foo", "foo/bar", and "foo/bar/foobar" are all valid\&.
 .RE
 .SH "EXAMPLES"
 Create a new patch called \fIfoobar\fR:
@@ -55,14 +55,14 @@ Create a patch called \fIbar\fR with a provided patch description and sign off o
 
 $ guilt\-new \-s \-m patch\-fu bar
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
+Written by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "DOCUMENTATION"
-Documentation by Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
+Documentation by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "GUILT"
-Part of the guilt\fI7\fR\&[1] suite (Generated for Guilt v0\.30)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.31)
 .SH "NOTES"
 .IP " 1." 4
-7
+jeffpc@josefsipek.net
 .RS 4
-\%guilt
+\%mailto:jeffpc@josefsipek.net
 .RE

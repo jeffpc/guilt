@@ -1,11 +1,11 @@
 .\"     Title: guilt-init
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 04/10/2008
-.\"    Manual: 
-.\"    Source: 
+.\"      Date: 09/05/2008
+.\"    Manual: Guilt Manual
+.\"    Source: Guilt v0.31
 .\"
-.TH "GUILT\-INIT" "1" "04/10/2008" "" ""
+.TH "GUILT\-INIT" "1" "09/05/2008" "Guilt v0\&.31" "Guilt Manual"
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -20,17 +20,17 @@ Initialize a git repository for use with guilt
 .PP
 \-a
 .RS 4
-Automatically create stack top, bottom, and base tags (sets guilt\.autotag config variable to 1)\. This is the default in most cases\. For more details about autotagging default option handling, see guilt(7)\.
+Automatically create stack top, bottom, and base tags (sets guilt\&.autotag config variable to 1)\&. This is the default in most cases\&. For more details about autotagging default option handling, see guilt(7)\&.
 .RE
 .PP
 \-n
 .RS 4
-Do not automatically create stack top, bottom, and base tags (sets guilt\.autotag config variable to 0)\.
+Do not automatically create stack top, bottom, and base tags (sets guilt\&.autotag config variable to 0)\&.
 .RE
 .SH "EXAMPLES"
-First, get a repository to work on\. Here\'s one that we\'ll use as an example:
+First, get a repository to work on\&. Here\'s one that we\'ll use as an example:
 
-$ git\-clone git://git\.kernel\.org/pub/scm/linux/kernel/jsipek/guilt\-hello\.git
+$ git\-clone git://git\&.kernel\&.org/pub/scm/linux/kernel/jsipek/guilt\-hello\&.git
 
 Now, it initialize the patches directory using guilt\'s init command:
 
@@ -38,14 +38,19 @@ $ cd hello
 
 $ guilt\-init
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
+Written by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "DOCUMENTATION"
-Documentation by Brandon Philips <brandon@ifup\.org>
+Documentation by Brandon Philips <\fIbrandon@ifup\&.org\fR\&[2]>
 .SH "GUILT"
-Part of the guilt\fI7\fR\&[1] suite (Generated for Guilt v0\.30)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.31)
 .SH "NOTES"
 .IP " 1." 4
-7
+jeffpc@josefsipek.net
 .RS 4
-\%guilt
+\%mailto:jeffpc@josefsipek.net
+.RE
+.IP " 2." 4
+brandon@ifup.org
+.RS 4
+\%mailto:brandon@ifup.org
 .RE

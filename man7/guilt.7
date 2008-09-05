@@ -1,11 +1,11 @@
 .\"     Title: guilt
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 04/10/2008
-.\"    Manual: 
-.\"    Source: 
+.\"      Date: 09/05/2008
+.\"    Manual: Guilt Manual
+.\"    Source: Guilt v0.31
 .\"
-.TH "GUILT" "7" "04/10/2008" "" ""
+.TH "GUILT" "7" "09/05/2008" "Guilt v0\&.31" "Guilt Manual"
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -15,393 +15,244 @@ guilt \- quilt on top of git
 .SH "SYNOPSIS"
 \fIguilt\fR COMMAND [ARGS]
 .SH "DESCRIPTION"
-Andrew Morton originally developed a set of scripts for maintaining kernel patches outside of any SCM tool\. Others extended these into a suite called quilt\. The basic idea behind quilt is to maintain patches instead of maintaining source files\. Patches can be added, removed or reordered, and they can be refreshed as you fix bugs or update to a new base revision\. quilt is very powerful, but it is not integrated with the underlying SCM tools\. This makes it difficult to visualize your changes\.
+Andrew Morton originally developed a set of scripts for maintaining kernel patches outside of any SCM tool\&. Others extended these into a suite called quilt\&. The basic idea behind quilt is to maintain patches instead of maintaining source files\&. Patches can be added, removed or reordered, and they can be refreshed as you fix bugs or update to a new base revision\&. quilt is very powerful, but it is not integrated with the underlying SCM tools\&. This makes it difficult to visualize your changes\&.
 
-Guilt allows one to use quilt functionality on top of a Git repository\. Changes are maintained as patches which are committed into Git\. Commits can be removed or reordered, and the underlying patch can be refreshed based on changes made in the working directory\. The patch directory can also be placed under revision control, so you can have a separate history of changes made to your patches\.
+Guilt allows one to use quilt functionality on top of a Git repository\&. Changes are maintained as patches which are committed into Git\&. Commits can be removed or reordered, and the underlying patch can be refreshed based on changes made in the working directory\&. The patch directory can also be placed under revision control, so you can have a separate history of changes made to your patches\&.
 .SH "PATCHES DIRECTORY"
-In Guilt, all the patches are stored in \.git/patches/$branch/, where $branch is the name of the branch being worked on\. This means that one can have a independent series of patches for each branch present in the repository\. Each of these per\-branch directories contains 2 special files:
+In Guilt, all the patches are stored in \&.git/patches/$branch/, where $branch is the name of the branch being worked on\&. This means that one can have a independent series of patches for each branch present in the repository\&. Each of these per\-branch directories contains 2 special files:
 
-series: This file contains a list of all the patch filenames relative to the per\-branch patch directory\. Empty and commented out lines are ignored\.
+series: This file contains a list of all the patch filenames relative to the per\-branch patch directory\&. Empty and commented out lines are ignored\&.
 
-status: This file contains the state of the stack\. What patches are applied\.
+status: This file contains the state of the stack\&. What patches are applied\&.
 .SH "HOOKS"
-Any guilt operation may execute zero or more hook scripts which can be used to run any houskeeping commands or even abort the execution of the command\.
+Any guilt operation may execute zero or more hook scripts which can be used to run any houskeeping commands or even abort the execution of the command\&.
 .SH "HOOKS DIRECTORY"
-Guilt follows the same basic design of hooks in Git itself\. All Guilt hooks are executable files (generally shell scripts, but they can be anything the operating system can execute) in \.git/hooks/guilt/\.
+Guilt follows the same basic design of hooks in Git itself\&. All Guilt hooks are executable files (generally shell scripts, but they can be anything the operating system can execute) in \&.git/hooks/guilt/\&.
 
 The following hooks are supported:
 .PP
 delete <patch name>
 .RS 4
-Executed when a patch is deleted from the patch series via guilt\fI1\fR\&[1]\.
+Executed when a patch is deleted from the patch series via \fBguilt-delete\fR(1)\&.
 .RE
 .SH "AUTOTAGGING"
-Autotagging is a feature that automatically creates unannotated tags for top, bottom, and base of the stack\.
+Autotagging is a feature that automatically creates unannotated tags for top, bottom, and base of the stack\&.
 
 On every push or pop operation (refresh is a pop followed by a push), Guilt
+.TS
+tab(:);
+lt lt
+lt lt
+lt lt.
+T{
+Top
+T}:T{
+Top\-most applied patch/commit
+T}
+T{
+Bottom
+T}:T{
+Bottom\-most applied patch/commit
+T}
+T{
+Base
+T}:T{
+Commit on top of which the bottom most patch is applied
+T}
+.TE
+.sp
+Having these three tags, one can easily get the log/diff/other information only for commits that are (or are not!) part of the patch stack\&.
+
+Since some users may not want to have Guilt autotag, a Git config setting guilt\&.autotag can be used to turn it on or off\&.
 
 .sp
 .RS 4
-.nf
-Top: Top\-most applied patch/commit
-Bottom: Bottom\-most applied patch/commit
-Base: Commit on top of which the bottom most patch is applied
-.fi
+\h'-04'\(bu\h'+03'If none of the config files (system, global, etc\&.) contain a guilt\&.autotag, the feature defaults to being on\&.
 .RE
-Having these three tags, one can easily get the log/diff/other information only for commits that are (or are not!) part of the patch stack\.
-
-Since some users may not want to have Guilt autotag, a Git config setting guilt\.autotag can be used to turn it on or off\.
+.sp
+.RS 4
+\h'-04'\(bu\h'+03'If one or more config file contains the value, regular git\-config(1) rules apply\&.
+.RE
+During \fBguilt-init\fR(1), the rules are:
 
 .sp
 .RS 4
-.nf
-If none of the config files (system, global, etc\.) contain a
-guilt\.autotag, the feature defaults to being on\.
-.fi
+\h'-04'\(bu\h'+03'If none of the config files contain guilt\&.autotag, the repository config file\'s guilt\&.autotag is set to the default (on)\&.
 .RE
 .sp
 .RS 4
-.nf
-If one or more config file contains the value, regular
-git\-config(1) rules apply\.
-.fi
-.RE
-During guilt\-init(1), the rules are:
-
-.sp
-.RS 4
-.nf
-If none of the config files contain guilt\.autotag, the repository
-config file\'s guilt\.autotag is set to the default (on)\.
-.fi
+\h'-04'\(bu\h'+03'If there already exists a setting in any of the config files, and neither of the autotagging related options is used, no local value is set\&.
 .RE
 .sp
 .RS 4
-.nf
-If there already exists a setting in any of the config files, and
-neither of the autotagging related options is used, no local value
-is set\.
-.fi
-.RE
-.sp
-.RS 4
-.nf
-If there already exists a setting in any of the config files, but
-an autotagging option is specified, the repository config file\'s
-guilt\.autotag is set to the value specified on the command line\.
-.fi
+\h'-04'\(bu\h'+03'If there already exists a setting in any of the config files, but an autotagging option is specified, the repository config file\'s guilt\&.autotag is set to the value specified on the command line\&.
 .RE
 .SH "GUILT COMMANDS"
-All commands can be called with or without a dash\. e\.g\. \fIguilt add\fR or \fIguilt\-add\fR
+All commands can be called with or without a dash\&. e\&.g\&. \fIguilt add\fR or \fIguilt\-add\fR
 .PP
-guilt\fI1\fR\&[2]
+\fBguilt-add\fR(1)
 .RS 4
-guilt\-add \- Add a file to git and guilt\.
+guilt\-add \- Add a file to git and guilt\&.
 .RE
 .PP
-guilt\fI1\fR\&[3]
+\fBguilt-applied\fR(1)
 .RS 4
-guilt\-applied \- List applied patches\.
+guilt\-applied \- List applied patches\&.
 .RE
 .PP
-guilt\fI1\fR\&[4]
+\fBguilt-branch\fR(1)
 .RS 4
-guilt\-branch \- Branch the entire patch series\.
+guilt\-branch \- Branch the entire patch series\&.
 .RE
 .PP
-guilt\fI1\fR\&[5]
+\fBguilt-commit\fR(1)
 .RS 4
-guilt\-commit \- Commit specified number of patches\.
+guilt\-commit \- Commit specified number of patches\&.
 .RE
 .PP
-guilt\fI1\fR\&[1]
+\fBguilt-delete\fR(1)
 .RS 4
-guilt\-delete \- Delete a patch\.
+guilt\-delete \- Delete a patch\&.
 .RE
 .PP
-guilt\fI1\fR\&[6]
+\fBguilt-diff\fR(1)
 .RS 4
-guilt\-diff \- Outputs various diffs\.
+guilt\-diff \- Outputs various diffs\&.
 .RE
 .PP
-guilt\fI1\fR\&[7]
+\fBguilt-export\fR(1)
 .RS 4
-guilt\-export \- Export a patch series (to be used by quilt)\.
+guilt\-export \- Export a patch series (to be used by quilt)\&.
 .RE
 .PP
-guilt\fI1\fR\&[8]
+\fBguilt-files\fR(1)
 .RS 4
-guilt\-files \- Print the list of files that the topmost patch changes\.
+guilt\-files \- Print the list of files that the topmost patch changes\&.
 .RE
 .PP
-guilt\fI1\fR\&[9]
+\fBguilt-fold\fR(1)
 .RS 4
-guilt\-fold \- Fold a specified patch into the topmost applied patch\.
+guilt\-fold \- Fold a specified patch into the topmost applied patch\&.
 .RE
 .PP
-guilt\fI1\fR\&[10]
+\fBguilt-fork\fR(1)
 .RS 4
-guilt\-fork \- Fork the topmost applied patch\.
+guilt\-fork \- Fork the topmost applied patch\&.
 .RE
 .PP
-guilt\fI1\fR\&[11]
+\fBguilt-graph\fR(1)
 .RS 4
-guilt\-graph \- Create a patch dependency graph\.
+guilt\-graph \- Create a patch dependency graph\&.
 .RE
 .PP
-guilt\fI1\fR\&[12]
+\fBguilt-header\fR(1)
 .RS 4
-guilt\-header \- Print a patch header\.
+guilt\-header \- Print a patch header\&.
 .RE
 .PP
-guilt\fI1\fR\&[13]
+\fBguilt-help\fR(1)
 .RS 4
-guilt\-help \- open man page of a guilt command\.
+guilt\-help \- open man page of a guilt command\&.
 .RE
 .PP
-guilt\fI1\fR\&[14]
+\fBguilt-import-commit\fR(1)
 .RS 4
-guilt\-import\-commit \- Import one or more commits as patches\.
+guilt\-import\-commit \- Import one or more commits as patches\&.
 .RE
 .PP
-guilt\fI1\fR\&[15]
+\fBguilt-import\fR(1)
 .RS 4
-guilt\-import \- Import specified patch file\.
+guilt\-import \- Import specified patch file\&.
 .RE
 .PP
-guilt\fI1\fR\&[16]
+\fBguilt-init\fR(1)
 .RS 4
-guilt\-init \- Initialize guilt for use in a git repository\.
+guilt\-init \- Initialize guilt for use in a git repository\&.
 .RE
 .PP
-guilt\fI1\fR\&[17]
+\fBguilt-new\fR(1)
 .RS 4
-guilt\-new \- Create a new patch\.
+guilt\-new \- Create a new patch\&.
 .RE
 .PP
-guilt\fI1\fR\&[18]
+\fBguilt-next\fR(1)
 .RS 4
-guilt\-next \- Output the name of next patch to be pushed\.
+guilt\-next \- Output the name of next patch to be pushed\&.
 .RE
 .PP
-guilt\fI1\fR\&[19]
+\fBguilt-patchbomb\fR(1)
 .RS 4
-guilt\-patchbomb \- Email a series of commits interactively\.
+guilt\-patchbomb \- Email a series of commits interactively\&.
 .RE
 .PP
-guilt\fI1\fR\&[20]
+\fBguilt-pop\fR(1)
 .RS 4
-guilt\-pop \- Pop patches from the tree\.
+guilt\-pop \- Pop patches from the tree\&.
 .RE
 .PP
-guilt\fI1\fR\&[21]
+\fBguilt-prev\fR(1)
 .RS 4
-guilt\-prev \- Output name of second topmost applied patch\.
+guilt\-prev \- Output name of second topmost applied patch\&.
 .RE
 .PP
-guilt\fI1\fR\&[22]
+\fBguilt-push\fR(1)
 .RS 4
-guilt\-push \- Push patches onto the tree\.
+guilt\-push \- Push patches onto the tree\&.
 .RE
 .PP
-guilt\fI1\fR\&[23]
+\fBguilt-rebase\fR(1)
 .RS 4
-guilt\-rebase \- Rebase pushed patches\.
+guilt\-rebase \- Rebase pushed patches\&.
 .RE
 .PP
-guilt\fI1\fR\&[24]
+\fBguilt-refresh\fR(1)
 .RS 4
-guilt\-refresh \- Refresh topmost applied patch\.
+guilt\-refresh \- Refresh topmost applied patch\&.
 .RE
 .PP
-guilt\fI1\fR\&[25]
+\fBguilt-repair\fR(1)
 .RS 4
-guilt\-repair \- Repair the repository state\.
+guilt\-repair \- Repair the repository state\&.
 .RE
 .PP
-guilt\fI1\fR\&[26]
+\fBguilt-rm\fR(1)
 .RS 4
-guilt\-rm \- Remove a file from the git tree and guilt\.
+guilt\-rm \- Remove a file from the git tree and guilt\&.
 .RE
 .PP
-guilt\fI1\fR\&[27]
+\fBguilt-series\fR(1)
 .RS 4
-guilt\-series \- Print the stack of patches\.
+guilt\-series \- Print the stack of patches\&.
 .RE
 .PP
-guilt\fI1\fR\&[28]
+\fBguilt-status\fR(1)
 .RS 4
-guilt\-status \- Print the status of files since the last refresh\.
+guilt\-status \- Print the status of files since the last refresh\&.
 .RE
 .PP
-guilt\fI1\fR\&[29]
+\fBguilt-top\fR(1)
 .RS 4
-guilt\-top \- Output name of topmost applied patch\.
+guilt\-top \- Output name of topmost applied patch\&.
 .RE
 .PP
-guilt\fI1\fR\&[30]
+\fBguilt-unapplied\fR(1)
 .RS 4
-guilt\-unapplied \- List all unapplied patches\.
+guilt\-unapplied \- List all unapplied patches\&.
 .RE
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
+Written by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "DOCUMENTATION"
-Documentation by Brandon Philips <brandon@ifup\.org> and Josef "Jeff" Sipek <jeffpc@josefsipek\.net>
+Documentation by Brandon Philips <\fIbrandon@ifup\&.org\fR\&[2]> and Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "GUILT"
-Part of the guilt\fI7\fR\&[31] suite (Generated for Guilt v0\.30)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.31)
 .SH "NOTES"
 .IP " 1." 4
-1
+jeffpc@josefsipek.net
 .RS 4
-\%guilt-delete
+\%mailto:jeffpc@josefsipek.net
 .RE
 .IP " 2." 4
-1
+brandon@ifup.org
 .RS 4
-\%guilt-add
-.RE
-.IP " 3." 4
-1
-.RS 4
-\%guilt-applied
-.RE
-.IP " 4." 4
-1
-.RS 4
-\%guilt-branch
-.RE
-.IP " 5." 4
-1
-.RS 4
-\%guilt-commit
-.RE
-.IP " 6." 4
-1
-.RS 4
-\%guilt-diff
-.RE
-.IP " 7." 4
-1
-.RS 4
-\%guilt-export
-.RE
-.IP " 8." 4
-1
-.RS 4
-\%guilt-files
-.RE
-.IP " 9." 4
-1
-.RS 4
-\%guilt-fold
-.RE
-.IP "10." 4
-1
-.RS 4
-\%guilt-fork
-.RE
-.IP "11." 4
-1
-.RS 4
-\%guilt-graph
-.RE
-.IP "12." 4
-1
-.RS 4
-\%guilt-header
-.RE
-.IP "13." 4
-1
-.RS 4
-\%guilt-help
-.RE
-.IP "14." 4
-1
-.RS 4
-\%guilt-import-commit
-.RE
-.IP "15." 4
-1
-.RS 4
-\%guilt-import
-.RE
-.IP "16." 4
-1
-.RS 4
-\%guilt-init
-.RE
-.IP "17." 4
-1
-.RS 4
-\%guilt-new
-.RE
-.IP "18." 4
-1
-.RS 4
-\%guilt-next
-.RE
-.IP "19." 4
-1
-.RS 4
-\%guilt-patchbomb
-.RE
-.IP "20." 4
-1
-.RS 4
-\%guilt-pop
-.RE
-.IP "21." 4
-1
-.RS 4
-\%guilt-prev
-.RE
-.IP "22." 4
-1
-.RS 4
-\%guilt-push
-.RE
-.IP "23." 4
-1
-.RS 4
-\%guilt-rebase
-.RE
-.IP "24." 4
-1
-.RS 4
-\%guilt-refresh
-.RE
-.IP "25." 4
-1
-.RS 4
-\%guilt-repair
-.RE
-.IP "26." 4
-1
-.RS 4
-\%guilt-rm
-.RE
-.IP "27." 4
-1
-.RS 4
-\%guilt-series
-.RE
-.IP "28." 4
-1
-.RS 4
-\%guilt-status
-.RE
-.IP "29." 4
-1
-.RS 4
-\%guilt-top
-.RE
-.IP "30." 4
-1
-.RS 4
-\%guilt-unapplied
-.RE
-.IP "31." 4
-7
-.RS 4
-\%guilt
+\%mailto:brandon@ifup.org
 .RE
