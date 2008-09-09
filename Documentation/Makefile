@@ -7,7 +7,7 @@ DOC_MAN1=$(patsubst %.txt,%.1,$(MAN1_TXT))
 DOC_MAN7=$(patsubst %.txt,%.7,$(MAN7_TXT))
 
 USAGE=$(patsubst %.txt,usage-%.txt,$(MAN1_TXT))
-VERSION=$(shell git describe)
+VERSION=$(shell git describe 2> /dev/null || sed -n -e '/^GUILT_VERSION=/ { s/^GUILT_VERSION="/v/; s/"//; p; q; }' ../guilt)
 
 prefix?=$(PREFIX)
 bindir?=$(prefix)/bin
