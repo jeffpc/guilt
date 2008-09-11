@@ -48,3 +48,24 @@ for pname in prepend mode /abc ./blah ../blah abc/./blah abc/../blah abc/. abc/.
 
 	cmd list_files
 done
+
+#
+# Test the -f option
+#
+
+# modify the working dir file
+cmd echo qwerty >> def
+cmd git diff
+
+# try to make a new patch, without -f
+shouldfail guilt new uncommitted-changes
+cmd git diff
+cmd list_files
+
+# give new -f, to force things
+cmd guilt new -f uncommitted-changes
+cmd git diff
+cmd guilt pop
+fixup_time_info uncommitted-changes
+cmd guilt push
+cmd list_files
