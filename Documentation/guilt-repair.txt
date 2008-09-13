@@ -27,9 +27,6 @@ Perform various repository repairs. You must specify one mode of repair:
 --status::
 	Upgrade the status file from old format to new.
 
---autotag::
-	Fixup autotags (the <branch>_{top,bottom,base} tags)
-
 Author
 ------
 Written by Josef "Jeff" Sipek <jeffpc@josefsipek.net>

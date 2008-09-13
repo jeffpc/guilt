@@ -5,7 +5,7 @@
 
 DO_NOT_CHECK_STATUS_FILE_FORMAT=1
 
-USAGE="--full | --status | --autotag"
+USAGE="--full | --status"
 . `dirname $0`/guilt
 
 safety_abort()
@@ -23,7 +23,7 @@ case "$1" in
 		repair="status"
 		;;
 	--autotag)
-		repair="autotag"
+		echo "Autotagging is no longer supported" >&2
 		;;
 	*)
 		usage
@@ -105,17 +105,8 @@ repair_pushed()
 	remove_patch_refs < "$applied"
 	printf "" > "$applied"
 
-	# remove the ${branch}_{top,bottom,base} tags
-	update_stack_tags "force"
-
 	disp "Patches should be popped."
 	return 0
-}
-
-# update the top/bottom/base tags
-repair_autotag()
-{
-	update_stack_tags
 }
 
 case "$repair" in
@@ -125,9 +116,6 @@ case "$repair" in
 		;;
 	status)
 		repair_status
-		;;
-	autotag)
-		repair_autotag
 		;;
 	*)
 		die "Internal error"

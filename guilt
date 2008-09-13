@@ -362,9 +362,6 @@ pop_many_patches()
 		head -n "-$2" < "$applied" > "$applied.tmp"
 		mv "$applied.tmp" "$applied"
 	)
-
-	# update references to top, bottom, and base
-	update_stack_tags
 }
 
 # usage: pop_all_patches
@@ -386,34 +383,6 @@ remove_ref()
 		# remove it
 		git update-ref -d "$1" "$r"
 	)
-}
-
-# usage: update_stack_tags [force]
-#
-# if [force] is non-empty, then do not check for autotagging being enabled,
-# just assume it is
-update_stack_tags()
-{
-	# bail if autotagging is not enabled
-	if [ -z "$1" -a $autotag -eq 0 ]; then
-		return 0
-	fi
-
-	if [ -s "$applied" ]; then
-		# there are patches applied, therefore we must get the top,
-		# bottom and base hashes, and update the tags
-
-		git update-ref "refs/tags/${branch}_top" `git rev-parse HEAD`
-		git update-ref "refs/tags/${branch}_bottom" `git rev-parse refs/patches/$branch/$(head -1 < $applied)`
-		git update-ref "refs/tags/${branch}_base" `git rev-parse refs/patches/$branch/$(head -1 < $applied)^`
-	else
-		# there are no patches applied, therefore we must remove the
-		# tags to old top, bottom, and base
-
-		remove_ref "refs/tags/${branch}_top" 
-		remove_ref "refs/tags/${branch}_bottom"
-		remove_ref "refs/tags/${branch}_base"
-	fi
 }
 
 # usage: commit patchname parent
@@ -507,9 +476,6 @@ push_patch()
 	# sub-shell funky-ness
 	__push_patch_bail=$?
 
-	# update references to top, bottom, and base of the stack
-	update_stack_tags
-
 	return $__push_patch_bail
 }
 
@@ -587,9 +553,6 @@ __refresh_patch()
 		head -n "-$N" < "$applied" > "$applied.tmp"
 		mv "$applied.tmp" "$applied"
 	)
-
-	# update references to top, bottom, and base
-	update_stack_tags
 }
 
 # usage: munge_hash_range <hash range>
@@ -654,16 +617,9 @@ guilt_hook()
 # used for: git apply -C <val>
 guilt_push_diff_context=1
 
-# default autotag value
-AUTOTAG_DEFAULT=1
-
 #
 # Parse any part of .git/config that belongs to us
 #
-
-# autotag?
-autotag=`git config guilt.autotag`
-[ -z "$autotag" ] && autotag=$AUTOTAG_DEFAULT
 
 #
 # The following gets run every time this file is source'd
