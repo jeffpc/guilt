@@ -1,0 +1,914 @@
+% setup_repo
+% guilt-new first
+% guilt-push modify
+Applying patch..modify
+Patch applied.
+% guilt-new second
+% guilt-push add
+Applying patch..add
+Patch applied.
+% guilt-new third
+% guilt-push remove
+Applying patch..remove
+Patch applied.
+% guilt-new fourth
+% guilt-push mode
+Applying patch..mode
+Patch applied.
+% guilt-new fifth
+% guilt-pop -a
+All patches popped.
+% guilt-guard -l
+first: 
+modify: 
+second: 
+add: 
+third: 
+remove: 
+fourth: 
+mode: 
+fifth: 
+% guilt-push -a
+Applying patch..first
+Patch applied.
+Applying patch..modify
+Patch applied.
+Applying patch..second
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..third
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..fourth
+Patch applied.
+Applying patch..mode
+Patch applied.
+Applying patch..fifth
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a60aaf2a27d522dd432e628418ddea55cd4cbab5  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f c8727042110a9708f7fb3ae224c3a5114d66c8a0  .git/patches/master/series
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+r 1d38670276c004e45fd9b4c53859cd4c035814e3  .git/refs/patches/master/second
+r 43baa39cb58f15194e065d808836857127402d28  .git/refs/patches/master/modify
+r 4be200ae7271e81fe7decf1f5952eef588ebebf8  .git/refs/patches/master/remove
+r 548bef00e881e7b1b3ea7d37f72832bbae74c08d  .git/refs/patches/master/fifth
+r aa24bec691809757c8b855551f28a5c33bc52ceb  .git/refs/patches/master/third
+r e879a6edd53fd85ed29fff06f11e0ee091dab94e  .git/refs/patches/master/first
+r e8cfb01b40460bb0155815e408cc26c0c5765910  .git/refs/patches/master/mode
+r eccabc8f59b6d974118a852d1303135bdfd87211  .git/refs/patches/master/add
+r f022c8bc0f27c442b12f4401c62fd54ea2835d90  .git/refs/patches/master/fourth
+% guilt-prev
+mode
+% guilt-next
+% guilt-applied
+first
+modify
+second
+add
+third
+remove
+fourth
+mode
+fifth
+% guilt-unapplied
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a60aaf2a27d522dd432e628418ddea55cd4cbab5  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f c8727042110a9708f7fb3ae224c3a5114d66c8a0  .git/patches/master/series
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+r 1d38670276c004e45fd9b4c53859cd4c035814e3  .git/refs/patches/master/second
+r 43baa39cb58f15194e065d808836857127402d28  .git/refs/patches/master/modify
+r 4be200ae7271e81fe7decf1f5952eef588ebebf8  .git/refs/patches/master/remove
+r 548bef00e881e7b1b3ea7d37f72832bbae74c08d  .git/refs/patches/master/fifth
+r aa24bec691809757c8b855551f28a5c33bc52ceb  .git/refs/patches/master/third
+r e879a6edd53fd85ed29fff06f11e0ee091dab94e  .git/refs/patches/master/first
+r e8cfb01b40460bb0155815e408cc26c0c5765910  .git/refs/patches/master/mode
+r eccabc8f59b6d974118a852d1303135bdfd87211  .git/refs/patches/master/add
+r f022c8bc0f27c442b12f4401c62fd54ea2835d90  .git/refs/patches/master/fourth
+% guilt-pop -a
+All patches popped.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f c8727042110a9708f7fb3ae224c3a5114d66c8a0  .git/patches/master/series
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+% guilt-select foo
+% guilt-guard -l
+first: 
+modify: 
+second: 
+add: 
+third: 
+remove: 
+fourth: 
+mode: 
+fifth: 
+% guilt-push -a
+Applying patch..first
+Patch applied.
+Applying patch..modify
+Patch applied.
+Applying patch..second
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..third
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..fourth
+Patch applied.
+Applying patch..mode
+Patch applied.
+Applying patch..fifth
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a60aaf2a27d522dd432e628418ddea55cd4cbab5  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f c8727042110a9708f7fb3ae224c3a5114d66c8a0  .git/patches/master/series
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f f1d2d2f924e986ac86fdf7b36c94bcdf32beec15  .git/patches/master/guards
+r 1d38670276c004e45fd9b4c53859cd4c035814e3  .git/refs/patches/master/second
+r 43baa39cb58f15194e065d808836857127402d28  .git/refs/patches/master/modify
+r 4be200ae7271e81fe7decf1f5952eef588ebebf8  .git/refs/patches/master/remove
+r 548bef00e881e7b1b3ea7d37f72832bbae74c08d  .git/refs/patches/master/fifth
+r aa24bec691809757c8b855551f28a5c33bc52ceb  .git/refs/patches/master/third
+r e879a6edd53fd85ed29fff06f11e0ee091dab94e  .git/refs/patches/master/first
+r e8cfb01b40460bb0155815e408cc26c0c5765910  .git/refs/patches/master/mode
+r eccabc8f59b6d974118a852d1303135bdfd87211  .git/refs/patches/master/add
+r f022c8bc0f27c442b12f4401c62fd54ea2835d90  .git/refs/patches/master/fourth
+% guilt-prev
+mode
+% guilt-next
+% guilt-applied
+first
+modify
+second
+add
+third
+remove
+fourth
+mode
+fifth
+% guilt-unapplied
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a60aaf2a27d522dd432e628418ddea55cd4cbab5  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f c8727042110a9708f7fb3ae224c3a5114d66c8a0  .git/patches/master/series
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f f1d2d2f924e986ac86fdf7b36c94bcdf32beec15  .git/patches/master/guards
+r 1d38670276c004e45fd9b4c53859cd4c035814e3  .git/refs/patches/master/second
+r 43baa39cb58f15194e065d808836857127402d28  .git/refs/patches/master/modify
+r 4be200ae7271e81fe7decf1f5952eef588ebebf8  .git/refs/patches/master/remove
+r 548bef00e881e7b1b3ea7d37f72832bbae74c08d  .git/refs/patches/master/fifth
+r aa24bec691809757c8b855551f28a5c33bc52ceb  .git/refs/patches/master/third
+r e879a6edd53fd85ed29fff06f11e0ee091dab94e  .git/refs/patches/master/first
+r e8cfb01b40460bb0155815e408cc26c0c5765910  .git/refs/patches/master/mode
+r eccabc8f59b6d974118a852d1303135bdfd87211  .git/refs/patches/master/add
+r f022c8bc0f27c442b12f4401c62fd54ea2835d90  .git/refs/patches/master/fourth
+% guilt-pop -a
+All patches popped.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f c8727042110a9708f7fb3ae224c3a5114d66c8a0  .git/patches/master/series
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f f1d2d2f924e986ac86fdf7b36c94bcdf32beec15  .git/patches/master/guards
+% guilt-select -n
+% guilt-guard first +foo
+% guilt-guard -l
+first: +foo
+modify: 
+second: 
+add: 
+third: 
+remove: 
+fourth: 
+mode: 
+fifth: 
+% guilt-push -a
+Applying patch..modify
+Patch applied.
+Applying patch..second
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..third
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..fourth
+Patch applied.
+Applying patch..mode
+Patch applied.
+Applying patch..fifth
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 4a83e5a312b6e25e333400a5ebdf19a297a7ecfc  .git/patches/master/series
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-prev
+mode
+% guilt-next
+% guilt-applied
+modify
+second
+add
+third
+remove
+fourth
+mode
+fifth
+% guilt-unapplied
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 4a83e5a312b6e25e333400a5ebdf19a297a7ecfc  .git/patches/master/series
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-pop -a
+All patches popped.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 4a83e5a312b6e25e333400a5ebdf19a297a7ecfc  .git/patches/master/series
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+% guilt-select foo
+% guilt-guard -l
+first: +foo
+modify: 
+second: 
+add: 
+third: 
+remove: 
+fourth: 
+mode: 
+fifth: 
+% guilt-push -a
+Applying patch..modify
+Patch applied.
+Applying patch..second
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..third
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..fourth
+Patch applied.
+Applying patch..mode
+Patch applied.
+Applying patch..fifth
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 4a83e5a312b6e25e333400a5ebdf19a297a7ecfc  .git/patches/master/series
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f f1d2d2f924e986ac86fdf7b36c94bcdf32beec15  .git/patches/master/guards
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-prev
+mode
+% guilt-next
+% guilt-applied
+modify
+second
+add
+third
+remove
+fourth
+mode
+fifth
+% guilt-unapplied
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 4a83e5a312b6e25e333400a5ebdf19a297a7ecfc  .git/patches/master/series
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f f1d2d2f924e986ac86fdf7b36c94bcdf32beec15  .git/patches/master/guards
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-pop -a
+All patches popped.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 4a83e5a312b6e25e333400a5ebdf19a297a7ecfc  .git/patches/master/series
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f f1d2d2f924e986ac86fdf7b36c94bcdf32beec15  .git/patches/master/guards
+% guilt-select -n
+% guilt-select bar
+% guilt-guard -l
+first: +foo
+modify: 
+second: 
+add: 
+third: 
+remove: 
+fourth: 
+mode: 
+fifth: 
+% guilt-push -a
+Applying patch..modify
+Patch applied.
+Applying patch..second
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..third
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..fourth
+Patch applied.
+Applying patch..mode
+Patch applied.
+Applying patch..fifth
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 4a83e5a312b6e25e333400a5ebdf19a297a7ecfc  .git/patches/master/series
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f e242ed3bffccdf271b7fbaf34ed72d089537b42f  .git/patches/master/guards
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-prev
+mode
+% guilt-next
+% guilt-applied
+modify
+second
+add
+third
+remove
+fourth
+mode
+fifth
+% guilt-unapplied
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 4a83e5a312b6e25e333400a5ebdf19a297a7ecfc  .git/patches/master/series
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f e242ed3bffccdf271b7fbaf34ed72d089537b42f  .git/patches/master/guards
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-pop -a
+All patches popped.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 4a83e5a312b6e25e333400a5ebdf19a297a7ecfc  .git/patches/master/series
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f e242ed3bffccdf271b7fbaf34ed72d089537b42f  .git/patches/master/guards
+% guilt-select -n
+% guilt-guard -l
+first: +foo
+modify: 
+second: 
+add: 
+third: 
+remove: 
+fourth: 
+mode: 
+fifth: 
+% guilt-guard first -foo
+% guilt-guard -l
+first: -foo
+modify: 
+second: 
+add: 
+third: 
+remove: 
+fourth: 
+mode: 
+fifth: 
+% guilt-push -a
+Applying patch..modify
+Patch applied.
+Applying patch..second
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..third
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..fourth
+Patch applied.
+Applying patch..mode
+Patch applied.
+Applying patch..fifth
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 03416e9c8dd788d6cb1b318d74ff34f4d6150c44  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-prev
+mode
+% guilt-next
+% guilt-applied
+modify
+second
+add
+third
+remove
+fourth
+mode
+fifth
+% guilt-unapplied
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 03416e9c8dd788d6cb1b318d74ff34f4d6150c44  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-pop -a
+All patches popped.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 03416e9c8dd788d6cb1b318d74ff34f4d6150c44  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+% guilt-select foo
+% guilt-guard -l
+first: -foo
+modify: 
+second: 
+add: 
+third: 
+remove: 
+fourth: 
+mode: 
+fifth: 
+% guilt-push -a
+Applying patch..modify
+Patch applied.
+Applying patch..second
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..third
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..fourth
+Patch applied.
+Applying patch..mode
+Patch applied.
+Applying patch..fifth
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 03416e9c8dd788d6cb1b318d74ff34f4d6150c44  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f f1d2d2f924e986ac86fdf7b36c94bcdf32beec15  .git/patches/master/guards
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-prev
+mode
+% guilt-next
+% guilt-applied
+modify
+second
+add
+third
+remove
+fourth
+mode
+fifth
+% guilt-unapplied
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 03416e9c8dd788d6cb1b318d74ff34f4d6150c44  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f f1d2d2f924e986ac86fdf7b36c94bcdf32beec15  .git/patches/master/guards
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-pop -a
+All patches popped.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 03416e9c8dd788d6cb1b318d74ff34f4d6150c44  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f f1d2d2f924e986ac86fdf7b36c94bcdf32beec15  .git/patches/master/guards
+% guilt-select -n
+% guilt-select bar
+% guilt-guard -l
+first: -foo
+modify: 
+second: 
+add: 
+third: 
+remove: 
+fourth: 
+mode: 
+fifth: 
+% guilt-push -a
+Applying patch..modify
+Patch applied.
+Applying patch..second
+Patch applied.
+Applying patch..add
+Patch applied.
+Applying patch..third
+Patch applied.
+Applying patch..remove
+Patch applied.
+Applying patch..fourth
+Patch applied.
+Applying patch..mode
+Patch applied.
+Applying patch..fifth
+Patch applied.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 03416e9c8dd788d6cb1b318d74ff34f4d6150c44  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f e242ed3bffccdf271b7fbaf34ed72d089537b42f  .git/patches/master/guards
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-prev
+mode
+% guilt-next
+% guilt-applied
+modify
+second
+add
+third
+remove
+fourth
+mode
+fifth
+% guilt-unapplied
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 03416e9c8dd788d6cb1b318d74ff34f4d6150c44  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f a63cf5aa65216db69145c28d10535101b44a958a  .git/patches/master/status
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f e242ed3bffccdf271b7fbaf34ed72d089537b42f  .git/patches/master/guards
+r 029218f997dd279f74b790462d41722455dc17c5  .git/refs/patches/master/fourth
+r 0d1d059051567b5757b275d994803e2ee2c6f249  .git/refs/patches/master/second
+r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+r 7d799a41d17061b160b4b6689bf15762e24cc516  .git/refs/patches/master/mode
+r 9d3414ef7459c5a598038678eb88481b22a49278  .git/refs/patches/master/third
+r d75e5094470c136f741d8c3f08e1105aaeda2a1f  .git/refs/patches/master/remove
+r eb53c1b09670fde63b708a94a665a773b7246e23  .git/refs/patches/master/fifth
+r fc1bd0a0930314f42e974f4e24eabca2336671db  .git/refs/patches/master/add
+% guilt-pop -a
+All patches popped.
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/refs/patches
+d .git/refs/patches/master
+f 03416e9c8dd788d6cb1b318d74ff34f4d6150c44  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fifth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/first
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/fourth
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/second
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/third
+f e242ed3bffccdf271b7fbaf34ed72d089537b42f  .git/patches/master/guards
