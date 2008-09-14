@@ -18,7 +18,7 @@ fi
 trap "rm -rf \"$target_dir\"" 0
 mkdir -p "$target_dir"
 
-get_series | tee "$target_dir/series" | while read p; do
+get_full_series | tee "$target_dir/series" | while read p; do
 	silent mkdir -p "`dirname $target_dir/$p`" || true
 	cp "$GUILT_DIR/$branch/$p" "$target_dir/$p"
 done

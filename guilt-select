@@ -42,7 +42,7 @@ case $1 in
 		guilt-push "$top"
 		;;
 	-s|--series)
-		(get_series | while read patch; do
+		(get_full_series | while read patch; do
 			get_guards "$patch"
 		done) | sed -e 's/ /\n/g' | sort | uniq
 		;;

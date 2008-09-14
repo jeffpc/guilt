@@ -174,7 +174,7 @@ get_prev()
 	fi
 }
 
-get_series()
+get_full_series()
 {
 	# ignore all lines matching:
 	#	- empty lines
@@ -190,9 +190,9 @@ get_series()
 		" $series
 }
 
-get_guarded_series()
+get_series()
 {
-	get_series | while read p; do
+	get_full_series | while read p; do
 		check_guards "$p" && echo "$p"
 	done
 }

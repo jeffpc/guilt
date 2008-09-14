@@ -57,7 +57,7 @@ if [ "$patch" = "-a" ]; then
 
 	eidx=`get_series | wc -l`
 	if [ $eidx -eq 0 ]; then
-		die "There are no patches to push"
+		die "There are no patches to push."
 	fi
 elif [ ! -z "$num" ]; then
 	# we are supposed to pop a set number of patches
@@ -84,7 +84,7 @@ else
 
 	eidx=`get_series | grep -ne "^$patch\$" | cut -d: -f1`
 	if [ -z "$eidx" ]; then
-		die "Patch $patch is not in the series"
+		die "Patch $patch is not in the series or is guarded."
 	fi
 fi
 

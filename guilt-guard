@@ -13,7 +13,7 @@ print_guards()
 }
 
 if [ "$1" == "-l" ] || [ "$1" == "--list" ]; then
-	get_series | while read patch; do
+	get_full_series | while read patch; do
 		print_guards "$patch"
 	done
 	exit 0
@@ -35,7 +35,7 @@ case $# in
 		;;
 	1)
 		if [ -z $(printf %s "$1" | grep -e '^[+-]') ]; then
-			if [ -z $(get_series | grep -e "^$1\$") ]; then
+			if [ -z $(get_full_series | grep -e "^$1\$") ]; then
 				die "Patch $1 does not exist."
 			else
 				print_guards "$1"
@@ -51,7 +51,7 @@ case $# in
 		;;
 	*)
 		if [ -z $(printf %s "$1" | grep -e '^[+-]') ]; then
-			if [ -z $(get_series | grep -e "^$1\$") ]; then
+			if [ -z $(get_full_series | grep -e "^$1\$") ]; then
 				die "Patch $1 does not exist."
 			else
 				patch="$1"

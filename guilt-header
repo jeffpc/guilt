@@ -31,7 +31,7 @@ esac
 [ -z "$patch" ] && die "No patches applied."
 
 # check that patch exists in the series
-ret=`get_series | grep -e "^$patch\$" | wc -l`
+ret=`get_full_series | grep -e "^$patch\$" | wc -l`
 if [ $ret -eq 0 ]; then
 	die "Patch $patch is not in the series"
 fi
