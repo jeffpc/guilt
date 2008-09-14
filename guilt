@@ -732,6 +732,7 @@ fi
 # very useful files
 series="$GUILT_DIR/$branch/series"
 applied="$GUILT_DIR/$branch/status"
+guards_file="$GUILT_DIR/$branch/guards"
 
 # determine an editor to use for anything interactive (fall back to vi)
 editor="vi"

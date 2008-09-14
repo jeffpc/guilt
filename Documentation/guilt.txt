@@ -33,7 +33,10 @@ PATCHES DIRECTORY
 In Guilt, all the patches are stored in .git/patches/$branch/, where $branch
 is the name of the branch being worked on. This means that one can have a
 independent series of patches for each branch present in the repository.
-Each of these per-branch directories contains 2 special files:
+Each of these per-branch directories contains 3 special files:
+
+guards: This file contains any guards that should be applied to the
+series when pushing. It is only present when guards are selected.
 
 series: This file contains a list of all the patch filenames relative to the
 per-branch patch directory. Empty and commented out lines are ignored.
