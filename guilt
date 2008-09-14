@@ -190,6 +190,79 @@ get_series()
 		" $series
 }
 
+get_guarded_series()
+{
+	get_series | while read p; do
+		check_guards "$p" && echo "$p"
+	done
+}
+
+# usage: check_guards <patch>
+# Returns 0 if the patch should be pushed
+check_guards()
+{
+	get_guards "$1" | while read guard; do
+		case "$guard" in
+			+*)
+				# Push +guard *only if* guard selected
+				silent grep -e "^$guard\$" "$guards_file" || return 1
+				;;
+			-*)
+				# Push -guard *unless* guard selected
+				silent grep -e "^$guard\$" "$guards_file" && return 1
+				;;
+		esac
+	done
+
+	# propagate return from subshell
+	return $?
+}
+
+# usage: get_guards <patch>
+get_guards()
+{
+	sed -n -e "
+\,^$1[[:space:]]*#, {
+	s,^$1[[:space:]]*,,
+	s,#[^+-]*,,g
+
+	p
+}" "$series"
+}
+
+# usage: set_guards <patch> <guards...>
+set_guards()
+{
+	(
+		p="$1"
+		shift
+		for x in "$@"; do
+			case "$x" in
+				[+-]*)
+					sed -e "s,^$p\([[:space:]].*\)\?\$,$p\1 #$x," "$series" > "$series.tmp"
+					mv "$series.tmp" "$series"
+					;;
+				*)
+					echo "'$x' is not a valid guard name" >&2
+					;;
+			esac
+		done
+	)
+}
+
+# usage: unset_guards <patch> <guards...>
+unset_guards()
+{
+	(
+		p="$1"
+		shift
+		for x in "$@"; do
+			sed -e "\,^$p[[:space:]], { s/ #$x\([[:space:]].*\)\?$/\1/ }" "$series" > "$series.tmp"
+			mv "$series.tmp" "$series"
+		done
+	)
+}
+
 # usage: do_make_header <hash>
 do_make_header()
 {
