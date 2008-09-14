@@ -181,7 +181,13 @@ get_series()
 	#	- whitespace only
 	#	- optional whitespace followed by '#' followed by more
 	#	  optional whitespace
-	grep -ve '^[[:space:]]*\(#.*\)*$' "$series"
+	# also remove comments from end of lines
+	sed -n -e "/^[[:space:]]*\(#.*\)*\$/ ! {
+		s/[[:space:]]*#.*\$//
+
+		p
+		}
+		" $series
 }
 
 # usage: do_make_header <hash>
@@ -300,16 +306,21 @@ series_insert_patch()
 # usage: series_remove_patch <patchname>
 series_remove_patch()
 {
-	grep -v "^$1\$" < "$series" > "$series.tmp"
+	grep -v "^$1\([[:space:]].*\)\?$" < "$series" > "$series.tmp"
 	mv "$series.tmp" "$series"
 }
 
 # usage: series_rename_patch <oldname> <newname>
 series_rename_patch()
 {
-	awk -v old="$1" -v new="$2" \
-		'{ if ($0 == old) print new; else print $0 }' \
-		"$series" > "$series.tmp"
+	# Rename the patch, but preserve comments on the line
+	awk -v old="$1" -v new="$2" '
+{
+	if (index($0, old) == 1)
+		print new substr($0, length(old) + 1);
+	else
+		print $0;
+}' "$series" > "$series.tmp"
 
 	mv "$series.tmp" "$series"
 }
