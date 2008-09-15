@@ -581,6 +581,42 @@ fold_patch()
 
 	push_patch "$1"
 
+	# merge the patch headers
+	(
+		pcur="$GUILT_DIR/$branch/$2"
+		pnext="$GUILT_DIR/$branch/$1"
+		TMP_CUR=`get_tmp_file diff-cur`
+		TMP_NEXT=`get_tmp_file diff-next`
+		TMP_DIFF=`get_tmp_file diff`
+		do_get_full_header "$pcur" > "$TMP_CUR"
+		do_get_full_header "$pnext" > "$TMP_NEXT"
+		do_get_patch "$pcur" > "$TMP_DIFF"
+
+		case "`stat -c %s \"$TMP_CUR\"`,`stat -c %s \"$TMP_NEXT\"`" in
+			*,0)
+				# since the new patch header is empty, we
+				# don't have to do anything
+				;;
+			0,*)
+				# current is empty; new is not
+				mv "$pcur" "$pcur~"
+				cat "$TMP_NEXT" > "$pcur"
+				cat "$TMP_DIFF" >> "$pcur"
+				;;
+			*,*)
+				mv "$pcur" "$pcur~"
+				cat "$TMP_CUR" > "$pcur"
+				echo >> "$pcur"
+				echo "Header from folded patch '$1':" >> "$pcur"
+				echo >> "$pcur"
+				cat "$TMP_NEXT" >> "$pcur"
+				cat "$TMP_DIFF" >> "$pcur"
+				;;
+		esac
+
+		rm -f "$TMP_CUR" "$TMP_NEXT" "$TMP_DIFF"
+	)
+
 	__refresh_patch "$2" HEAD^^ 2 "" ""
 
 	series_remove_patch "$1"
