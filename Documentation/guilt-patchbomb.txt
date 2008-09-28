@@ -23,6 +23,10 @@ OPTIONS
 	Set the In-reply-to header to the specified message id. This allows
 	the patches to be sent as replies to an arbitrary message.
 
+--git::
+	Generate a patch which uses all the features offered by the git diff
+	format (e.g., rename and copy detection).
+
 include::hash-range.txt[]
 
 Author
