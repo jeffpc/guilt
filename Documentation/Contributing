@@ -16,7 +16,11 @@ If you generated a patch using diff, make sure you include a description of
 your changes at the begining of the patch. If you used git, make sure the
 git commit message contains a good description of the changes.
 
-4) Send the patches to: Josef "Jeff" Sipek <jsipek@cs.sunysb.edu>, CC'ing
+Prefix the email's subject with "[GUILT]" so it will not be confused with
+other git changes. For example:
+  Subject: [GUILT] fix important bug
+
+4) Send the patches to: Jeff Sipek <jeffpc@josefsipek.net>, CC'ing
 the Git mailing list (git@vger.kernel.org).
 
 5) Sign your work:
