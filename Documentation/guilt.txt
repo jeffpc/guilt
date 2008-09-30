@@ -43,7 +43,7 @@ status: This file contains the state of the stack. What patches are applied.
 HOOKS
 -----
 Any guilt operation may execute zero or more hook scripts which can be used
-to run any houskeeping commands or even abort the execution of the command.
+to run any housekeeping commands or even abort the execution of the command.
 
 include::hooks.txt[]
 

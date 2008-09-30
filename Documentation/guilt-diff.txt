@@ -12,7 +12,7 @@ include::usage-guilt-diff.txt[]
 DESCRIPTION
 -----------
 Outputs top-most applied diff and any additional changes in the working
-directory to stdout.
+directory to standard output.
 
 OPTIONS
 -------

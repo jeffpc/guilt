@@ -13,7 +13,7 @@ to develop guilt. ;)
 3) Describe the changes:
 
 If you generated a patch using diff, make sure you include a description of
-your changes at the begining of the patch. If you used git, make sure the
+your changes at the beginning of the patch. If you used git, make sure the
 git commit message contains a good description of the changes.
 
 Prefix the email's subject with "[GUILT]" so it will not be confused with

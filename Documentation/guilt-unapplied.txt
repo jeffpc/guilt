@@ -1,4 +1,4 @@
-guilt-upapplied(1)
+guilt-unapplied(1)
 ==================
 
 NAME
