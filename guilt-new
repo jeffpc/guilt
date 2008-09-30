@@ -83,7 +83,6 @@ if [ ! -z "$force" ]; then
 	(
 		cd "$TOP_DIR"
 		git diff HEAD >> "$GUILT_DIR/$branch/$patch"
-		git reset --hard HEAD > /dev/null
 	)
 fi
 
@@ -91,4 +90,8 @@ fi
 series_insert_patch "$patch"
 
 # apply the patch
-push_patch "$patch"
+echo "$patch" >> $applied
+commit "$patch" HEAD
+
+# update references to top, bottom, and base of the stack
+update_stack_tags
