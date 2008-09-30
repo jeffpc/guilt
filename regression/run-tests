@@ -2,6 +2,7 @@
 
 export REG_DIR="$PWD"
 export PATH="$PWD/bin:$PATH"
+export LC_ALL=C
 
 source scaffold
 
