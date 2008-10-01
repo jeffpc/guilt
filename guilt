@@ -217,7 +217,7 @@ do_get_patch()
 {
 	cat "$1" | awk '
 BEGIN{}
-/^(diff |---)/,/END{}/
+/^(diff |---$|--- )/,/END{}/
 '
 }
 
@@ -235,7 +235,7 @@ BEGIN{skip=0}
 /^Subject:/ && (NR==1){print substr($0, 10); next}
 /^From:/{skip=1; next}
 /^[ \t\f\n\r\v]*$/ && (skip==1){skip=0; next}
-/^(diff |---)/{exit}
+/^(diff |---$|--- )/{exit}
 {print $0}
 END{}
 '
@@ -248,7 +248,7 @@ do_get_full_header()
 	# 3rd line outputs the line if it didn't get pruned by the above rules
 	cat "$1" | awk '
 BEGIN{}
-/^(diff |---)/{exit}
+/^(diff |---$|--- )/{exit}
 {print $0}
 END{}
 '
@@ -459,7 +459,7 @@ push_patch()
 
 		# extract a From line from the patch header, and set
 		# GIT_AUTHOR_{NAME,EMAIL}
-		author_str=`sed -n -e '/^From:/ { s/^From: //; p; q; }; /^(diff |---)/ q' "$p"`
+		author_str=`sed -n -e '/^From:/ { s/^From: //; p; q; }; /^(diff |---$|--- )/ q' "$p"`
 		if [ ! -z "$author_str" ]; then
 			GIT_AUTHOR_NAME=`echo $author_str | sed -e 's/ *<.*$//'`
 			export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-" "}"
