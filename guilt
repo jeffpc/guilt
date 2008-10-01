@@ -674,10 +674,6 @@ fi
 series="$GUILT_DIR/$branch/series"
 applied="$GUILT_DIR/$branch/status"
 
-# determine an editor to use for anything interactive (fall back to vi)
-editor="vi"
-[ ! -z "$EDITOR" ] && editor="$EDITOR"
-
 # determine a pager to use for anything interactive (fall back to more)
 pager="more"
 [ ! -z "$PAGER" ] && pager="$PAGER"

@@ -77,7 +77,7 @@ mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
 ) >> "$GUILT_DIR/$branch/$patch"
 
 # edit -e ?
-[ "$edit" = "t" ] && $editor "$GUILT_DIR/$branch/$patch"
+[ "$edit" = "t" ] && git_editor "$GUILT_DIR/$branch/$patch"
 
 if [ ! -z "$force" ]; then
 	(

@@ -46,7 +46,7 @@ if [ -z "$edit" ]; then
 else
 	do_get_full_header "$GUILT_DIR/$branch/$patch" > "$TMP_MSG"
 	do_get_patch "$GUILT_DIR/$branch/$patch" > "$TMP_DIFF"
-	$editor "$TMP_MSG"
+	git_editor "$TMP_MSG"
 	mv "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$patch~"
 
 	(

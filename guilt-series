@@ -22,7 +22,7 @@ do
 done
 
 if [ ! -z "$edit" ]; then 
-	$editor "$series"
+	git_editor "$series"
 elif [ ! -z "$gui" ]; then
 	[ -z "`get_top`" ] && die "No patches applied."
 	bottom=`git rev-parse refs/patches/$branch/$(head -1 $applied)`
