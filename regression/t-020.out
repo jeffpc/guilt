@@ -786,8 +786,7 @@ index 0000000..8baef1b
 % guilt-pop --all
 No patches applied.
 % guilt-push -n 0
-Applying patch..modify
-Patch applied.
+Patch is already applied.
 % list_files
 d .git/patches
 d .git/patches/master
@@ -795,26 +794,11 @@ d .git/refs/patches
 d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
-f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
 f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
-r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 % git-log -p
-commit 33633e7a1aa31972f125878baf7807be57b1672d
-Author: Author Name <author@email>
-Date:   Mon Jan 1 00:00:00 2007 +0000
-
-    patch modify
-
-diff --git a/def b/def
-index 8baef1b..7d69c2f 100644
---- a/def
-+++ b/def
-@@ -1 +1,2 @@
- abc
-+asjhfksad
-
 commit d4850419ccc1146c7169f500725ce504b9774ed0
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -831,7 +815,7 @@ index 0000000..8baef1b
 @@ -0,0 +1 @@
 +abc
 % guilt-pop --all
-All patches popped.
+No patches applied.
 % guilt-push -n 1
 Applying patch..modify
 Patch applied.

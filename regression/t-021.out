@@ -822,6 +822,7 @@ index 0000000..8baef1b
 @@ -0,0 +1 @@
 +abc
 % guilt-push --all
+File series fully applied, ends at patch mode
 % guilt-pop -n -1
 Invalid number of patches to pop.
 % list_files
@@ -908,6 +909,7 @@ index 0000000..8baef1b
 @@ -0,0 +1 @@
 +abc
 % guilt-push --all
+File series fully applied, ends at patch mode
 % guilt-pop -n 0
 No patches requested to be removed.
 % list_files
@@ -994,6 +996,7 @@ index 0000000..8baef1b
 @@ -0,0 +1 @@
 +abc
 % guilt-push --all
+File series fully applied, ends at patch mode
 % guilt-pop -n 1
 Now at remove.
 % list_files

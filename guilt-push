@@ -97,6 +97,16 @@ fi
 sidx=`wc -l < $applied`
 sidx=`expr $sidx + 1`
 
+# do we actually have to push anything?
+if [ "$sidx" -gt "$eidx" ]; then
+	if [ "$sidx" -le "`get_series | wc -l`" ]; then
+		disp "Patch is already applied."
+	else
+		disp "File series fully applied, ends at patch `get_series | tail -1`"
+	fi
+	exit 0
+fi
+
 get_series | sed -n -e "${sidx},${eidx}p" | while read p
 do
 	disp "Applying patch..$p"
