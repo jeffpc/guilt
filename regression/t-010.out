@@ -19,12 +19,14 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 Already on "master"
 HEAD is now at d485041 initial
 % guilt-init -a
+Autotagging is no longer supported
 % list_files
 d .git/patches
 d .git/patches/master
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 % guilt-init -a
+Autotagging is no longer supported
 Branch master appears to be already initialized (GIT_DIR=PATH/.git)
 % list_files
 d .git/patches
@@ -35,12 +37,14 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 Already on "master"
 HEAD is now at d485041 initial
 % guilt-init -n
+Autotagging is no longer supported
 % list_files
 d .git/patches
 d .git/patches/master
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 % guilt-init -n
+Autotagging is no longer supported
 Branch master appears to be already initialized (GIT_DIR=PATH/.git)
 % list_files
 d .git/patches

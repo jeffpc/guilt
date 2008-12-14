@@ -37,6 +37,3 @@ done
 # update $applied to include only the patches we're keeping
 sed -n -e "${pat_keep}" "$applied" > "$applied.tmp"
 mv "$applied.tmp" "$applied"
-
-# update references to top, bottom, and base
-update_stack_tags

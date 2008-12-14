@@ -174,14 +174,93 @@ get_prev()
 	fi
 }
 
-get_series()
+get_full_series()
 {
 	# ignore all lines matching:
 	#	- empty lines
 	#	- whitespace only
 	#	- optional whitespace followed by '#' followed by more
 	#	  optional whitespace
-	grep -ve '^[[:space:]]*\(#.*\)*$' "$series"
+	# also remove comments from end of lines
+	sed -n -e "/^[[:space:]]*\(#.*\)*\$/ ! {
+		s/[[:space:]]*#.*\$//
+
+		p
+		}
+		" $series
+}
+
+get_series()
+{
+	get_full_series | while read p; do
+		check_guards "$p" && echo "$p"
+	done
+}
+
+# usage: check_guards <patch>
+# Returns 0 if the patch should be pushed
+check_guards()
+{
+	get_guards "$1" | while read guard; do
+		case "$guard" in
+			+*)
+				# Push +guard *only if* guard selected
+				silent grep -e "^$guard\$" "$guards_file" || return 1
+				;;
+			-*)
+				# Push -guard *unless* guard selected
+				silent grep -e "^$guard\$" "$guards_file" && return 1
+				;;
+		esac
+	done
+
+	# propagate return from subshell
+	return $?
+}
+
+# usage: get_guards <patch>
+get_guards()
+{
+	sed -n -e "
+\,^$1[[:space:]]*#, {
+	s,^$1[[:space:]]*,,
+	s,#[^+-]*,,g
+
+	p
+}" "$series"
+}
+
+# usage: set_guards <patch> <guards...>
+set_guards()
+{
+	(
+		p="$1"
+		shift
+		for x in "$@"; do
+			case "$x" in
+				[+-]*)
+					sed -e "s,^$p\([[:space:]].*\)\?\$,$p\1 #$x," "$series" > "$series.tmp"
+					mv "$series.tmp" "$series"
+					;;
+				*)
+					echo "'$x' is not a valid guard name" >&2
+					;;
+			esac
+		done
+	)
+}
+
+# usage: unset_guards <patch> <guards...>
+unset_guards()
+{
+	(
+		p="$1"
+		shift
+		for x in "$@"; do
+			sed -e "\,^$p[[:space:]], { s/ #$x\([[:space:]].*\)\?$/\1/ }" "$series" > "$series.tmp"
+			mv "$series.tmp" "$series"
+		done
+	)
 }
 
 # usage: do_make_header <hash>
@@ -300,16 +379,21 @@ series_insert_patch()
 # usage: series_remove_patch <patchname>
 series_remove_patch()
 {
-	grep -v "^$1\$" < "$series" > "$series.tmp"
+	grep -v "^$1\([[:space:]].*\)\?$" < "$series" > "$series.tmp"
 	mv "$series.tmp" "$series"
 }
 
 # usage: series_rename_patch <oldname> <newname>
 series_rename_patch()
 {
-	awk -v old="$1" -v new="$2" \
-		'{ if ($0 == old) print new; else print $0 }' \
-		"$series" > "$series.tmp"
+	# Rename the patch, but preserve comments on the line
+	awk -v old="$1" -v new="$2" '
+{
+	if (index($0, old) == 1)
+		print new substr($0, length(old) + 1);
+	else
+		print $0;
+}' "$series" > "$series.tmp"
 
 	mv "$series.tmp" "$series"
 }
@@ -362,9 +446,6 @@ pop_many_patches()
 		head -n "-$2" < "$applied" > "$applied.tmp"
 		mv "$applied.tmp" "$applied"
 	)
-
-	# update references to top, bottom, and base
-	update_stack_tags
 }
 
 # usage: pop_all_patches
@@ -388,68 +469,17 @@ remove_ref()
 	)
 }
 
-# usage: update_stack_tags [force]
-#
-# if [force] is non-empty, then do not check for autotagging being enabled,
-# just assume it is
-update_stack_tags()
+# usage: commit patchname parent
+commit()
 {
-	# bail if autotagging is not enabled
-	if [ -z "$1" -a $autotag -eq 0 ]; then
-		return 0
-	fi
-
-	if [ -s "$applied" ]; then
-		# there are patches applied, therefore we must get the top,
-		# bottom and base hashes, and update the tags
-
-		git update-ref "refs/tags/${branch}_top" `git rev-parse HEAD`
-		git update-ref "refs/tags/${branch}_bottom" `git rev-parse refs/patches/$branch/$(head -1 < $applied)`
-		git update-ref "refs/tags/${branch}_base" `git rev-parse refs/patches/$branch/$(head -1 < $applied)^`
-	else
-		# there are no patches applied, therefore we must remove the
-		# tags to old top, bottom, and base
-
-		remove_ref "refs/tags/${branch}_top" 
-		remove_ref "refs/tags/${branch}_bottom"
-		remove_ref "refs/tags/${branch}_base"
-	fi
-}
-
-# usage: push_patch patchname [bail_action]
-push_patch()
-{
-	__push_patch_bail=0
-
 	(
-		TMP_LOG=`get_tmp_file log`
 		TMP_MSG=`get_tmp_file msg`
 
 		p="$GUILT_DIR/$branch/$1"
 		pname="$1"
-		bail_action="$2"
-		reject="--reject"
+		cd_to_toplevel
 
-		assert_head_check
-		cd "$TOP_DIR"
-
-		# apply the patch if and only if there is something to apply
-		if [ `git apply --numstat "$p" | wc -l` -gt 0 ]; then
-			if [ "$bail_action" = abort ]; then
-				reject=""
-			fi
-			git apply -C$guilt_push_diff_context --index \
-				$reject "$p" > /dev/null 2> "$TMP_LOG"
-			__push_patch_bail=$?
-
-			if [ $__push_patch_bail -ne 0 ]; then
-				cat "$TMP_LOG" >&2
-				if [ "$bail_action" = "abort" ]; then
-					rm -f "$TMP_LOG" "$TMP_MSG"
-					return $__push_patch_bail
-				fi
-			fi
-		fi
+		git diff-files --name-only | (while read n; do git update-index "$n" ; done)
 
 		# grab a commit message out of the patch
 		do_get_header "$p" > "$TMP_MSG"
@@ -476,22 +506,59 @@ s/^\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\) \([0-9]\{2\}\):\([0-9]\{2\}\):\(
 
 		# commit
 		treeish=`git write-tree`
-		commitish=`git commit-tree $treeish -p HEAD < "$TMP_MSG"`
+		commitish=`git commit-tree $treeish -p $2 < "$TMP_MSG"`
 		git update-ref HEAD $commitish
 
 		# mark patch as applied
-		git update-ref "refs/patches/$branch/$pname" $commitish ""
+		git update-ref "refs/patches/$branch/$pname" HEAD
+
+		rm -f "$TMP_MSG"
+	)
+}
+
+# usage: push_patch patchname [bail_action]
+push_patch()
+{
+	__push_patch_bail=0
+
+	(
+		TMP_LOG=`get_tmp_file log`
+
+		p="$GUILT_DIR/$branch/$1"
+		pname="$1"
+		bail_action="$2"
+		reject="--reject"
+
+		assert_head_check
+		cd_to_toplevel
+
+		# apply the patch if and only if there is something to apply
+		if [ `git apply --numstat "$p" | wc -l` -gt 0 ]; then
+			if [ "$bail_action" = abort ]; then
+				reject=""
+			fi
+			git apply -C$guilt_push_diff_context --index \
+				$reject "$p" > /dev/null 2> "$TMP_LOG"
+			__push_patch_bail=$?
+
+			if [ $__push_patch_bail -ne 0 ]; then
+				cat "$TMP_LOG" >&2
+				if [ "$bail_action" = "abort" ]; then
+					rm -f "$TMP_LOG" "$TMP_MSG"
+					return $__push_patch_bail
+				fi
+			fi
+		fi
+
+		commit "$pname" HEAD
 
 		echo "$pname" >> $applied
 
-		rm -f "$TMP_MSG" "$TMP_LOG"
+		rm -f "$TMP_LOG"
 	)
 
 	# sub-shell funky-ness
 	__push_patch_bail=$?
-
-	# update references to top, bottom, and base of the stack
-	update_stack_tags
 
 	return $__push_patch_bail
 }
@@ -513,6 +580,42 @@ fold_patch()
 	assert_head_check
 
 	push_patch "$1"
+
+	# merge the patch headers
+	(
+		pcur="$GUILT_DIR/$branch/$2"
+		pnext="$GUILT_DIR/$branch/$1"
+		TMP_CUR=`get_tmp_file diff-cur`
+		TMP_NEXT=`get_tmp_file diff-next`
+		TMP_DIFF=`get_tmp_file diff`
+		do_get_full_header "$pcur" > "$TMP_CUR"
+		do_get_full_header "$pnext" > "$TMP_NEXT"
+		do_get_patch "$pcur" > "$TMP_DIFF"
+
+		case "`stat -c %s \"$TMP_CUR\"`,`stat -c %s \"$TMP_NEXT\"`" in
+			*,0)
+				# since the new patch header is empty, we
+				# don't have to do anything
+				;;
+			0,*)
+				# current is empty; new is not
+				mv "$pcur" "$pcur~"
+				cat "$TMP_NEXT" > "$pcur"
+				cat "$TMP_DIFF" >> "$pcur"
+				;;
+			*,*)
+				mv "$pcur" "$pcur~"
+				cat "$TMP_CUR" > "$pcur"
+				echo >> "$pcur"
+				echo "Header from folded patch '$1':" >> "$pcur"
+				echo >> "$pcur"
+				cat "$TMP_NEXT" >> "$pcur"
+				cat "$TMP_DIFF" >> "$pcur"
+				;;
+		esac
+
+		rm -f "$TMP_CUR" "$TMP_NEXT" "$TMP_DIFF"
+	)
 
 	__refresh_patch "$2" HEAD^^ 2 "" ""
 
@@ -536,8 +639,7 @@ __refresh_patch()
 
 		cd "$TOP_DIR"
 		p="$GUILT_DIR/$branch/$1"
-
-		git diff-files --name-only | (while read n; do git update-index "$n" ; done)
+		pname="$1"
 
 		# get the patch header
 		do_get_full_header "$p" > "$TMP_DIFF"
@@ -558,14 +660,19 @@ __refresh_patch()
 		# move the new patch in
 		mv "$p" "$p~"
 		mv "$TMP_DIFF" $p
+
+		# commit
+		commit "$pname" "HEAD~$3"
+
+		# drop folded patches
+		N=`expr "$3" - 1`
+
+		# remove the patches refs
+		tail -$N < "$applied" | remove_patch_refs
+
+		head -n "-$N" < "$applied" > "$applied.tmp"
+		mv "$applied.tmp" "$applied"
 	)
-
-	# drop the currently applied patch, pop_many_patches does it's own
-	# cd $TOP_DIR
-	pop_many_patches "$2" "$3"
-
-	# push_patch does it's own cd $TOP_DIR
-	push_patch "$1"
 }
 
 # usage: munge_hash_range <hash range>
@@ -630,25 +737,13 @@ guilt_hook()
 # used for: git apply -C <val>
 guilt_push_diff_context=1
 
-# default autotag value
-AUTOTAG_DEFAULT=1
-
 #
 # Parse any part of .git/config that belongs to us
 #
 
-# autotag?
-autotag=`git config guilt.autotag`
-[ -z "$autotag" ] && autotag=$AUTOTAG_DEFAULT
-
 #
 # The following gets run every time this file is source'd
 #
-
-TOP_DIR=`git rev-parse --show-cdup`
-if [ -z "$TOP_DIR" ]; then
-	TOP_DIR="./"
-fi
 
 GUILT_DIR="$GIT_DIR/patches"
 
@@ -673,6 +768,7 @@ fi
 # very useful files
 series="$GUILT_DIR/$branch/series"
 applied="$GUILT_DIR/$branch/status"
+guards_file="$GUILT_DIR/$branch/guards"
 
 # determine a pager to use for anything interactive (fall back to more)
 pager="more"

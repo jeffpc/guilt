@@ -5,16 +5,13 @@
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
-USAGE="[-n | -a]"
+USAGE=""
 . `dirname $0`/guilt
 
 while case $# in 0) break ;; esac; do
 	case $1 in
-		-n)
-			req_autotag=0
-			;;
-		-a)
-			req_autotag=1
+		-a|-n)
+			echo "Autotagging is no longer supported" >&2
 			;;
 		*)
 			usage
@@ -39,11 +36,3 @@ cat > "$GIT_DIR/hooks/guilt/delete" <<EOF
 
 echo "Removing patch '\$1'..."
 EOF
-
-# if there's no guilt.autotag config, set it to default
-cur=`git config --int --get guilt.autotag`
-if [ -z "$cur" -o ! -z "$req_autotag" ]; then
-	[ -z "$req_autotag" ] && req_autotag=$AUTOTAG_DEFAULT
-
-	git config --int --replace-all guilt.autotag $req_autotag
-fi

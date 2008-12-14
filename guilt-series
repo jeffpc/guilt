@@ -36,12 +36,12 @@ elif [ ! -z "$gui" ]; then
 
 	gitk $range
 elif [ -z "$verbose" ]; then
-	get_series
+	get_full_series
 else
 	prefix="+"
 	top=`get_top`
 
-	get_series |
+	get_full_series |
 	while read patch; do
 		if [ -z "$top" ]; then
 			disp "  $patch"
@@ -49,6 +49,8 @@ else
 			if [ "$patch" = "$top" ]; then
 				disp "= $patch"
 				prefix=" "
+                        elif [ $(check_guards "$patch"; echo $?) -eq 1 ]; then
+				echo "  $patch"
 			else
 				disp "$prefix $patch"
 			fi

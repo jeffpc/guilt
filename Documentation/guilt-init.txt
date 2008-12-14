@@ -13,18 +13,6 @@ DESCRIPTION
 -----------
 Initialize a git repository for use with guilt
 
-OPTIONS
--------
--a::
-	Automatically create stack top, bottom, and base tags (sets
-	guilt.autotag config variable to 1). This is the default in most
-	cases. For more details about autotagging default option handling,
-	see guilt(7).
-
--n::
-	Do not automatically create stack top, bottom, and base tags (sets
-	guilt.autotag config variable to 0).
-
 EXAMPLES
 --------
 First, get a repository to work on. Here's one that we'll use as an example:
