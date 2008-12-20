@@ -18,11 +18,11 @@ EXAMPLES
 
 Open the guilt-status man page 
 
-$ guilt-help status
+	$ guilt-help status
 
 Open the guilt man page 
 
-$ guilt-help
+	$ guilt-help
 
 Author
 ------

@@ -23,8 +23,8 @@ EXAMPLES
 
 Create and add a new file example.c
 
-$ touch example.c
-$ guilt-add example.c
+	$ touch example.c
+	$ guilt-add example.c
 
 Author
 ------

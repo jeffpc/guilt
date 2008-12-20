@@ -18,7 +18,7 @@ OPTIONS
 -------
 -z::
 	Output a interdiff against the top-most applied patch. This should
-	produce the same diff as "guilt-new -f foo".
+	produce the same diff as "+guilt-new -f foo+".
 
 <path>...::
 	Restrict diff output to a given set of files.
