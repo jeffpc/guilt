@@ -646,7 +646,7 @@ __refresh_patch()
 
 		[ ! -z "$4" ] && diffopts="-C -M --find-copies-harder"
 		
-		if [ ! -z "$5" ]; then
+		if [ -n "$5" -o $diffstat = "true" ]; then
 			(
 				echo "---"
 				git diff --stat $diffopts "$2"
@@ -737,9 +737,16 @@ guilt_hook()
 # used for: git apply -C <val>
 guilt_push_diff_context=1
 
+# default diffstat value: true or false
+DIFFSTAT_DEFAULT="false"
+
 #
 # Parse any part of .git/config that belongs to us
 #
+
+# generate diffstat?
+diffstat=`git config --bool guilt.diffstat`
+[ -z "$diffstat" ] && diffstat=$DIFFSTAT_DEFAULT
 
 #
 # The following gets run every time this file is source'd
