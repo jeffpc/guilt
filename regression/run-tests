@@ -12,7 +12,7 @@ function empty_repo
 	rm -rf $REPODIR
 	mkdir $REPODIR
 	cd $REPODIR > /dev/null
-	git-init-db 2> /dev/null > /dev/null
+	git init 2> /dev/null > /dev/null
 	cd - > /dev/null
 }
 

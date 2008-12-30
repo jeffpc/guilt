@@ -14,7 +14,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% git-log -p
+% git log -p
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -60,7 +60,7 @@ f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
-% git-log -p
+% git log -p
 commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -121,7 +121,7 @@ f f322f08d907e3737a4321b0ec90bc545f71af7cf  .git/patches/master/status
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% git-log -p
+% git log -p
 commit e67345cf1e7e9594c73efad7381a994f1fe63b14
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -197,7 +197,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% git-log -p
+% git log -p
 commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -282,7 +282,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% git-log -p
+% git log -p
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -329,7 +329,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% git-log -p
+% git log -p
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -376,7 +376,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% git-log -p
+% git log -p
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -423,7 +423,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% git-log -p
+% git log -p
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -470,7 +470,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% git-log -p
+% git log -p
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -516,7 +516,7 @@ f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
-% git-log -p
+% git log -p
 commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -577,7 +577,7 @@ f f322f08d907e3737a4321b0ec90bc545f71af7cf  .git/patches/master/status
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% git-log -p
+% git log -p
 commit e67345cf1e7e9594c73efad7381a994f1fe63b14
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -653,7 +653,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% git-log -p
+% git log -p
 commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -736,7 +736,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% git-log -p
+% git log -p
 commit d4850419ccc1146c7169f500725ce504b9774ed0
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -767,7 +767,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% git-log -p
+% git log -p
 commit d4850419ccc1146c7169f500725ce504b9774ed0
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -798,7 +798,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% git-log -p
+% git log -p
 commit d4850419ccc1146c7169f500725ce504b9774ed0
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -831,7 +831,7 @@ f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% git-log -p
+% git log -p
 commit 33633e7a1aa31972f125878baf7807be57b1672d
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -881,7 +881,7 @@ f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
-% git-log -p
+% git log -p
 commit 68f33a015dcfd09c3896f15d152378b54eaa4eb6
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -948,7 +948,7 @@ f f322f08d907e3737a4321b0ec90bc545f71af7cf  .git/patches/master/status
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% git-log -p
+% git log -p
 commit e67345cf1e7e9594c73efad7381a994f1fe63b14
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
@@ -1032,7 +1032,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
 r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
 r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
-% git-log -p
+% git log -p
 commit 632ca0f5ec27a961990b45673dfc751f1da830f3
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000

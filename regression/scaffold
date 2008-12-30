@@ -69,8 +69,8 @@ function setup_git_repo
 {
 	# set up the repo so we have something interesting to run guilt on
 	echo "abc" > def
-	git-add def
-	git-commit -s -m "initial" 2> /dev/null > /dev/null
+	git add def
+	git commit -s -m "initial" 2> /dev/null > /dev/null
 	# the commit should be d4850419ccc1146c7169f500725ce504b9774ed0
 }
 
@@ -107,9 +107,9 @@ function setup_guilt_repo
 
 function reset_git_repo
 {
-	git-checkout master
+	git checkout master
 
-	git-reset --hard d4850419ccc1146c7169f500725ce504b9774ed0
+	git reset --hard d4850419ccc1146c7169f500725ce504b9774ed0
 
 	rm -rf .git/patches/
 }

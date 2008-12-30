@@ -51,8 +51,8 @@ d .git/patches
 d .git/patches/master
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% git-branch other
-% git-checkout other
+% git branch other
+% git checkout other
 Switched to branch "other"
 % guilt-init
 % list_files

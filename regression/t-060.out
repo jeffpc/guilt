@@ -91,7 +91,7 @@ mode
 [add] abd
 [remove] abd
 [mode] def
-% git-add file.bin
+% git add file.bin
 % guilt-files
 def
 file.bin
@@ -137,7 +137,7 @@ mode
 [remove] abd
 [mode] def
 [mode] file.bin
-% git-rm def
+% git rm def
 rm 'def'
 % guilt-files
 def

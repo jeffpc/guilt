@@ -15,7 +15,7 @@ guilt-series | while read n ; do
 
 	cmd list_files
 
-	cmd git-log -p
+	cmd git log -p
 done
 
 #
@@ -31,7 +31,7 @@ guilt-series | while read n ; do
 
 	cmd list_files
 
-	cmd git-log -p
+	cmd git log -p
 
 	cmd guilt-pop --all
 done
@@ -44,7 +44,7 @@ guilt-series | while read n ; do
 
 	cmd list_files
 
-	cmd git-log -p
+	cmd git log -p
 done
 
 #
@@ -62,7 +62,7 @@ for n in `seq -2 $npatches`; do
 
 	cmd list_files
 
-	cmd git-log -p
+	cmd git log -p
 
 	cmd guilt-pop --all
 done

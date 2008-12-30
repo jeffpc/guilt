@@ -17,7 +17,7 @@ shouldfail guilt-refresh
 
 cmd list_files
 
-cmd git-reset --hard HEAD
+cmd git reset --hard HEAD
 
 cmd guilt-push modify
 

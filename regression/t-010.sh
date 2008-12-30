@@ -25,8 +25,8 @@ opts | while read opt ; do
 	cmd list_files
 done
 
-cmd git-branch other
-cmd git-checkout other
+cmd git branch other
+cmd git checkout other
 
 cmd guilt-init
 cmd list_files

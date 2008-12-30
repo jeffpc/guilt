@@ -53,13 +53,13 @@ guiltfiles_args | while read args; do
 	cmd guilt-files $args
 done
 
-cmd git-add file.bin
+cmd git add file.bin
 
 guiltfiles_args | while read args; do
 	cmd guilt-files $args
 done
 
-cmd git-rm def
+cmd git rm def
 
 guiltfiles_args | while read args; do
 	cmd guilt-files $args
