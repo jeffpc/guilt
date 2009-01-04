@@ -437,7 +437,7 @@ pop_many_patches()
 	assert_head_check
 
 	(
-		cd "$TOP_DIR"
+		cd_to_toplevel
 
 		# remove the patches refs
 		tail -$2 < "$applied" | remove_patch_refs
@@ -637,7 +637,7 @@ __refresh_patch()
 	(
 		TMP_DIFF=`get_tmp_file diff`
 
-		cd "$TOP_DIR"
+		cd_to_toplevel
 		p="$GUILT_DIR/$branch/$1"
 		pname="$1"
 

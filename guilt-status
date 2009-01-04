@@ -82,7 +82,7 @@ print_status()
 }
 
 (
-	cd "$TOP_DIR"
+	cd_to_toplevel
 	# untracked; FIXME: there's got to be a better way
 	if [ ! -z "$untracked" ]; then
 		if [ -f "$GIT_DIR/info/exclude" ]; then

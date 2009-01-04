@@ -81,7 +81,7 @@ mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
 
 if [ ! -z "$force" ]; then
 	(
-		cd "$TOP_DIR"
+		cd_to_toplevel
 		git diff HEAD >> "$GUILT_DIR/$branch/$patch"
 	)
 fi
