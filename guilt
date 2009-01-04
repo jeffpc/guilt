@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006-2008
+# Copyright (c) Josef "Jeff" Sipek, 2006-2009
 #
 
 GUILT_VERSION="0.32-rc1"
@@ -221,13 +221,22 @@ check_guards()
 # usage: get_guards <patch>
 get_guards()
 {
-	sed -n -e "
-\,^$1[[:space:]]*#, {
-	s,^$1[[:space:]]*,,
-	s,#[^+-]*,,g
+	awk -v pname="$1" '
+($1 == pname) {
+	guards = "";
 
-	p
-}" "$series"
+	for(i=2; i<=NF; i++) {
+		sub(/#[^+-]*/, "", $i);
+		if (length($i)) {
+			if (length(guards))
+				guards = guards " " $i;
+			else
+				guards = $i;
+		}
+	}
+
+	print guards;
+}' < "$series"
 }
 
 # usage: set_guards <patch> <guards...>
@@ -239,7 +248,12 @@ set_guards()
 		for x in "$@"; do
 			case "$x" in
 				[+-]*)
-					sed -e "s,^$p\([[:space:]].*\)\?\$,$p\1 #$x," "$series" > "$series.tmp"
+					awk -v pname="$p" -v newguard="$x" '{
+if ($1 == pname)
+	print $0 " #" newguard;
+else
+	print $0;
+}' < "$series" > "$series.tmp"
 					mv "$series.tmp" "$series"
 					;;
 				*)
@@ -257,7 +271,27 @@ unset_guards()
 		p="$1"
 		shift
 		for x in "$@"; do
-			sed -e "\,^$p[[:space:]], { s/ #$x\([[:space:]].*\)\?$/\1/ }" "$series" > "$series.tmp"
+			awk -v pname="$p" -v oldguard="$x" '{
+if ($1 == pname) {
+	guards = "";
+
+	for(i=2; i<=NF; i++) {
+		if ($i == "#" oldguard)
+			continue;
+
+		if (length(guards))
+			guards = guards " " $i;
+		else
+			guards = $i;
+	}
+
+	if (length(guards))
+		print $1 " " guards;
+	else
+		print $1;
+} else
+	print $0;
+}' < "$series" > "$series.tmp"
 			mv "$series.tmp" "$series"
 		done
 	)
