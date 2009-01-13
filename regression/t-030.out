@@ -1,6 +1,6 @@
 % setup_repo
 % guilt-commit
-Usage: REGDIR/../guilt-commit -n <num> | -a | --all
+Usage: guilt-commit -n <num> | -a | --all
 % list_files
 d .git/patches
 d .git/patches/master
@@ -60,7 +60,7 @@ Patch applied.
 Applying patch..mode
 Patch applied.
 % guilt-commit
-Usage: REGDIR/../guilt-commit -n <num> | -a | --all
+Usage: guilt-commit -n <num> | -a | --all
 % list_files
 d .git/patches
 d .git/patches/master
