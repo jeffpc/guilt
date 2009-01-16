@@ -3,8 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006-2009
 #
 
-GUILT_VERSION="0.32-rc2"
-GUILT_NAME="Ciuleandra"
+GUILT_VERSION="0.32"
+GUILT_NAME="Refugee"
 
 # If the first argument is one of the below, display the man page instead of
 # the rather silly and mostly useless usage string
