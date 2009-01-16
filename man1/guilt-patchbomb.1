@@ -1,11 +1,11 @@
 .\"     Title: guilt-patchbomb
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 09/05/2008
+.\"      Date: 01/16/2009
 .\"    Manual: Guilt Manual
-.\"    Source: Guilt v0.31
+.\"    Source: Guilt v0.32
 .\"
-.TH "GUILT\-PATCHBOMB" "1" "09/05/2008" "Guilt v0\&.31" "Guilt Manual"
+.TH "GUILT\-PATCHBOMB" "1" "01/16/2009" "Guilt v0\&.32" "Guilt Manual"
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -13,7 +13,7 @@
 .SH "NAME"
 guilt-patchbomb \- Email a series of commits interactively
 .SH "SYNOPSIS"
-\fIguilt\-patchbomb\fR [\-n] [\-\-in\-reply\-to <msgid>] [<hash> | <since>\&.\&.[<until>] | \&.\&.<until>]
+\fIguilt\-patchbomb\fR [\-n] [\-\-in\-reply\-to <msgid>] [\-\-git] [<hash> | <since>\&.\&.[<until>] | \&.\&.<until>]
 .SH "DESCRIPTION"
 Send a series of commits via email asking for To, CC and other information interactively\&.
 .SH "OPTIONS"
@@ -26,6 +26,11 @@ Don\'t send
 \-\-in\-reply\-to <msgid>
 .RS 4
 Set the In\-reply\-to header to the specified message id\&. This allows the patches to be sent as replies to an arbitrary message\&.
+.RE
+.PP
+\-\-git
+.RS 4
+Generate a patch which uses all the features offered by the git diff format (e\&.g\&., rename and copy detection)\&.
 .RE
 .PP
 <hash>
@@ -47,7 +52,7 @@ Written by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "DOCUMENTATION"
 Documentation by Brandon Philips <\fIbrandon@ifup\&.org\fR\&[2]>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.31)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.32)
 .SH "NOTES"
 .IP " 1." 4
 jeffpc@josefsipek.net

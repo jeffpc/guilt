@@ -1,11 +1,11 @@
 .\"     Title: guilt-init
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 09/05/2008
+.\"      Date: 01/16/2009
 .\"    Manual: Guilt Manual
-.\"    Source: Guilt v0.31
+.\"    Source: Guilt v0.32
 .\"
-.TH "GUILT\-INIT" "1" "09/05/2008" "Guilt v0\&.31" "Guilt Manual"
+.TH "GUILT\-INIT" "1" "01/16/2009" "Guilt v0\&.32" "Guilt Manual"
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -13,36 +13,33 @@
 .SH "NAME"
 guilt-init \- Initialize guilt for use in a git repository
 .SH "SYNOPSIS"
-\fIguilt\-init\fR [\-n | \-a]
+\fIguilt\-init\fR
 .SH "DESCRIPTION"
 Initialize a git repository for use with guilt
-.SH "OPTIONS"
-.PP
-\-a
-.RS 4
-Automatically create stack top, bottom, and base tags (sets guilt\&.autotag config variable to 1)\&. This is the default in most cases\&. For more details about autotagging default option handling, see guilt(7)\&.
-.RE
-.PP
-\-n
-.RS 4
-Do not automatically create stack top, bottom, and base tags (sets guilt\&.autotag config variable to 0)\&.
-.RE
 .SH "EXAMPLES"
 First, get a repository to work on\&. Here\'s one that we\'ll use as an example:
 
+.sp
+.RS 4
+.nf
 $ git\-clone git://git\&.kernel\&.org/pub/scm/linux/kernel/jsipek/guilt\-hello\&.git
-
+.fi
+.RE
 Now, it initialize the patches directory using guilt\'s init command:
 
+.sp
+.RS 4
+.nf
 $ cd hello
-
 $ guilt\-init
+.fi
+.RE
 .SH "AUTHOR"
 Written by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "DOCUMENTATION"
 Documentation by Brandon Philips <\fIbrandon@ifup\&.org\fR\&[2]>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.31)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.32)
 .SH "NOTES"
 .IP " 1." 4
 jeffpc@josefsipek.net

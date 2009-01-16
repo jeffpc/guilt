@@ -1,11 +1,11 @@
 .\"     Title: guilt
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 09/05/2008
+.\"      Date: 01/16/2009
 .\"    Manual: Guilt Manual
-.\"    Source: Guilt v0.31
+.\"    Source: Guilt v0.32
 .\"
-.TH "GUILT" "7" "09/05/2008" "Guilt v0\&.31" "Guilt Manual"
+.TH "GUILT" "7" "01/16/2009" "Guilt v0\&.32" "Guilt Manual"
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -19,13 +19,15 @@ Andrew Morton originally developed a set of scripts for maintaining kernel patch
 
 Guilt allows one to use quilt functionality on top of a Git repository\&. Changes are maintained as patches which are committed into Git\&. Commits can be removed or reordered, and the underlying patch can be refreshed based on changes made in the working directory\&. The patch directory can also be placed under revision control, so you can have a separate history of changes made to your patches\&.
 .SH "PATCHES DIRECTORY"
-In Guilt, all the patches are stored in \&.git/patches/$branch/, where $branch is the name of the branch being worked on\&. This means that one can have a independent series of patches for each branch present in the repository\&. Each of these per\-branch directories contains 2 special files:
+In Guilt, all the patches are stored in \&.git/patches/$branch/, where $branch is the name of the branch being worked on\&. This means that one can have a independent series of patches for each branch present in the repository\&. Each of these per\-branch directories contains 3 special files:
+
+guards: This file contains any guards that should be applied to the series when pushing\&. It is only present when guards are selected\&.
 
 series: This file contains a list of all the patch filenames relative to the per\-branch patch directory\&. Empty and commented out lines are ignored\&.
 
 status: This file contains the state of the stack\&. What patches are applied\&.
 .SH "HOOKS"
-Any guilt operation may execute zero or more hook scripts which can be used to run any houskeeping commands or even abort the execution of the command\&.
+Any guilt operation may execute zero or more hook scripts which can be used to run any housekeeping commands or even abort the execution of the command\&.
 .SH "HOOKS DIRECTORY"
 Guilt follows the same basic design of hooks in Git itself\&. All Guilt hooks are executable files (generally shell scripts, but they can be anything the operating system can execute) in \&.git/hooks/guilt/\&.
 
@@ -34,58 +36,6 @@ The following hooks are supported:
 delete <patch name>
 .RS 4
 Executed when a patch is deleted from the patch series via \fBguilt-delete\fR(1)\&.
-.RE
-.SH "AUTOTAGGING"
-Autotagging is a feature that automatically creates unannotated tags for top, bottom, and base of the stack\&.
-
-On every push or pop operation (refresh is a pop followed by a push), Guilt
-.TS
-tab(:);
-lt lt
-lt lt
-lt lt.
-T{
-Top
-T}:T{
-Top\-most applied patch/commit
-T}
-T{
-Bottom
-T}:T{
-Bottom\-most applied patch/commit
-T}
-T{
-Base
-T}:T{
-Commit on top of which the bottom most patch is applied
-T}
-.TE
-.sp
-Having these three tags, one can easily get the log/diff/other information only for commits that are (or are not!) part of the patch stack\&.
-
-Since some users may not want to have Guilt autotag, a Git config setting guilt\&.autotag can be used to turn it on or off\&.
-
-.sp
-.RS 4
-\h'-04'\(bu\h'+03'If none of the config files (system, global, etc\&.) contain a guilt\&.autotag, the feature defaults to being on\&.
-.RE
-.sp
-.RS 4
-\h'-04'\(bu\h'+03'If one or more config file contains the value, regular git\-config(1) rules apply\&.
-.RE
-During \fBguilt-init\fR(1), the rules are:
-
-.sp
-.RS 4
-\h'-04'\(bu\h'+03'If none of the config files contain guilt\&.autotag, the repository config file\'s guilt\&.autotag is set to the default (on)\&.
-.RE
-.sp
-.RS 4
-\h'-04'\(bu\h'+03'If there already exists a setting in any of the config files, and neither of the autotagging related options is used, no local value is set\&.
-.RE
-.sp
-.RS 4
-\h'-04'\(bu\h'+03'If there already exists a setting in any of the config files, but an autotagging option is specified, the repository config file\'s guilt\&.autotag is set to the value specified on the command line\&.
 .RE
 .SH "GUILT COMMANDS"
 All commands can be called with or without a dash\&. e\&.g\&. \fIguilt add\fR or \fIguilt\-add\fR
@@ -143,6 +93,11 @@ guilt\-fork \- Fork the topmost applied patch\&.
 \fBguilt-graph\fR(1)
 .RS 4
 guilt\-graph \- Create a patch dependency graph\&.
+.RE
+.PP
+\fBguilt-guard\fR(1)
+.RS 4
+guilt\-guard \- Assign guards to patches\&.
 .RE
 .PP
 \fBguilt-header\fR(1)
@@ -220,6 +175,11 @@ guilt\-repair \- Repair the repository state\&.
 guilt\-rm \- Remove a file from the git tree and guilt\&.
 .RE
 .PP
+\fBguilt-select\fR(1)
+.RS 4
+guilt\-select \- Select guards to apply when pushing patches\&.
+.RE
+.PP
 \fBguilt-series\fR(1)
 .RS 4
 guilt\-series \- Print the stack of patches\&.
@@ -244,7 +204,7 @@ Written by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "DOCUMENTATION"
 Documentation by Brandon Philips <\fIbrandon@ifup\&.org\fR\&[2]> and Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.31)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.32)
 .SH "NOTES"
 .IP " 1." 4
 jeffpc@josefsipek.net

@@ -1,11 +1,11 @@
 .\"     Title: guilt-rebase
 .\"    Author: 
 .\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
-.\"      Date: 09/05/2008
+.\"      Date: 01/16/2009
 .\"    Manual: Guilt Manual
-.\"    Source: Guilt v0.31
+.\"    Source: Guilt v0.32
 .\"
-.TH "GUILT\-REBASE" "1" "09/05/2008" "Guilt v0\&.31" "Guilt Manual"
+.TH "GUILT\-REBASE" "1" "01/16/2009" "Guilt v0\&.32" "Guilt Manual"
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
@@ -25,15 +25,19 @@ Branch, tag, or a commit hash identifying upstream repository history\&.
 .SH "EXAMPLES"
 Rebase current tree against Linus\'s 2\&.6 tree
 
+.sp
+.RS 4
+.nf
 $ git\-fetch git://git\&.kernel\&.org/pub/scm/linux/kernel/git/tovalds/linux\-2\&.6\&.git
-
 $ guilt\-rebase FETCH_HEAD
+.fi
+.RE
 .SH "AUTHOR"
 Written by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "DOCUMENTATION"
 Documentation by Josef "Jeff" Sipek <\fIjeffpc@josefsipek\&.net\fR\&[1]>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.31)
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.32)
 .SH "NOTES"
 .IP " 1." 4
 jeffpc@josefsipek.net

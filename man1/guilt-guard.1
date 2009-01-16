@@ -1,0 +1,47 @@
+.\"     Title: guilt-guard
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 01/16/2009
+.\"    Manual: Guilt Manual
+.\"    Source: Guilt v0.32
+.\"
+.TH "GUILT\-GUARD" "1" "01/16/2009" "Guilt v0\&.32" "Guilt Manual"
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+guilt-guard \- Assign guards to patches
+.SH "SYNOPSIS"
+\fIguilt\-guard\fR [\-l | \-\-list | \-n | \-\-none | [<patchname>] [(+|\-)<guard>\&...]]
+.SH "DESCRIPTION"
+Assign guards to the specified patch, or to the patch on top of the stack if no patch is given on the command line\&.
+
+An unguarded patch is always pushed\&.
+
+A positive guard begins with a +\&. A patch with a positive guard is pushed \fBonly if\fR the guard is selected\&.
+
+A negative guard begins with a \-\&. A patch with a negative guard is always pushed, \fBunless\fR the guard is selected\&.
+.SH "OPTIONS"
+.PP
+\-l|\-\-list
+.RS 4
+List all patches and their guards
+.RE
+.PP
+\-n|\-\-none
+.RS 4
+Remove all guards from a patch
+.RE
+.SH "AUTHOR"
+Written by Eric Lesh <\fIeclesh@ucla\&.edu\fR\&[1]>
+.SH "DOCUMENTATION"
+Documentation by Eric Lesh <\fIeclesh@ucla\&.edu\fR\&[1]>
+.SH "GUILT"
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.32)
+.SH "NOTES"
+.IP " 1." 4
+eclesh@ucla.edu
+.RS 4
+\%mailto:eclesh@ucla.edu
+.RE

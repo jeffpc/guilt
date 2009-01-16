@@ -1,0 +1,66 @@
+.\"     Title: guilt-select
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 01/16/2009
+.\"    Manual: Guilt Manual
+.\"    Source: Guilt v0.32
+.\"
+.TH "GUILT\-SELECT" "1" "01/16/2009" "Guilt v0\&.32" "Guilt Manual"
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+guilt-select \- Select guards to apply when pushing patches
+.SH "SYNOPSIS"
+\fIguilt\-select\fR [ \-n | \-\-none | \-s | \-\-series | [\-\-pop|\-\-reapply] <guards\&...> ]
+.SH "DESCRIPTION"
+Select guards to apply when pushing patches\&.
+
+Guards are selected without the + or \- prefix\&. Patches are applied in the following way:
+
+.sp
+.RS 4
+\h'-04'\(bu\h'+03'An unguarded patch is always applied\&.
+.RE
+.sp
+.RS 4
+\h'-04'\(bu\h'+03'A patch with a positive guard is applied \fBonly\fR if the guard is selected with guilt\-select\&.
+.RE
+.sp
+.RS 4
+\h'-04'\(bu\h'+03'A patch with a negative guard is applied \fBunless\fR the guard is selected with guilt\-select\&.
+.RE
+.SH "OPTIONS"
+.PP
+\-n|\-\-none
+.RS 4
+Remove all selected guards
+.RE
+.PP
+\-\-pop
+.RS 4
+Pop back to the first guarded patch
+.RE
+.PP
+\-\-reapply
+.RS 4
+Pop back to first guarded patch, select a new guard, and push
+.RE
+.PP
+\-s|\-\-series
+.RS 4
+List all guards listed in the series file
+.RE
+.SH "AUTHOR"
+Written by Eric Lesh <\fIeclesh@ucla\&.edu\fR\&[1]>
+.SH "DOCUMENTATION"
+Documentation by Eric Lesh <\fIeclesh@ucla\&.edu\fR\&[1]>
+.SH "GUILT"
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.32)
+.SH "NOTES"
+.IP " 1." 4
+eclesh@ucla.edu
+.RS 4
+\%mailto:eclesh@ucla.edu
+.RE
