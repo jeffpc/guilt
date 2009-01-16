@@ -27,6 +27,7 @@ function replace_path
 {
 	sed -e "s,$PWD,PATH,g" \
 	    -e "s,$REG_DIR/\.\./,,g" \
+	    -e "s,^Usage: guilt-,Usage: guilt ,g" \
 	    -e "s,\.\.\. initial, initial,g" \
 	    -e "s,^Already on branch,Already on,g"
 }
