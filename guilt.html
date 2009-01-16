@@ -396,7 +396,9 @@ made to your patches.</p></div>
 <div class="para"><p>In Guilt, all the patches are stored in .git/patches/$branch/, where $branch
 is the name of the branch being worked on. This means that one can have a
 independent series of patches for each branch present in the repository.
-Each of these per-branch directories contains 2 special files:</p></div>
+Each of these per-branch directories contains 3 special files:</p></div>
+<div class="para"><p>guards: This file contains any guards that should be applied to the
+series when pushing. It is only present when guards are selected.</p></div>
 <div class="para"><p>series: This file contains a list of all the patch filenames relative to the
 per-branch patch directory. Empty and commented out lines are ignored.</p></div>
 <div class="para"><p>status: This file contains the state of the stack. What patches are applied.</p></div>
@@ -404,7 +406,7 @@ per-branch patch directory. Empty and commented out lines are ignored.</p></div>
 <h2 id="_hooks">HOOKS</h2>
 <div class="sectionbody">
 <div class="para"><p>Any guilt operation may execute zero or more hook scripts which can be used
-to run any houskeeping commands or even abort the execution of the command.</p></div>
+to run any housekeeping commands or even abort the execution of the command.</p></div>
 </div>
 <h2 id="_hooks_directory">HOOKS DIRECTORY</h2>
 <div class="sectionbody">
@@ -423,78 +425,6 @@ delete &lt;patch name&gt;
 </p>
 </dd>
 </dl></div>
-</div>
-<h2 id="_autotagging">AUTOTAGGING</h2>
-<div class="sectionbody">
-<div class="para"><p>Autotagging is a feature that automatically creates unannotated tags for
-top, bottom, and base of the stack.</p></div>
-<div class="para"><p>On every push or pop operation (refresh is a pop followed by a push), Guilt</p></div>
-<div class="hlist"><table>
-<tr>
-<td class="hlist1">
-Top
-</td>
-<td class="hlist2">
-Top-most applied patch/commit
-</td>
-</tr>
-<tr>
-<td class="hlist1">
-Bottom
-</td>
-<td class="hlist2">
-Bottom-most applied patch/commit
-</td>
-</tr>
-<tr>
-<td class="hlist1">
-Base
-</td>
-<td class="hlist2">
-Commit on top of which the bottom most patch is applied
-</td>
-</tr>
-</table></div>
-<div class="para"><p>Having these three tags, one can easily get the log/diff/other information
-only for commits that are (or are not!) part of the patch stack.</p></div>
-<div class="para"><p>Since some users may not want to have Guilt autotag, a Git config setting
-guilt.autotag can be used to turn it on or off.</p></div>
-<div class="ilist"><ul>
-<li>
-<p>
-If none of the config files (system, global, etc.) contain a guilt.autotag,
-   the feature defaults to being on.
-</p>
-</li>
-<li>
-<p>
-If one or more config file contains the value, regular git-config(1) rules
-   apply.
-</p>
-</li>
-</ul></div>
-<div class="para"><p>During <a href="guilt-init.html">guilt-init(1)</a>, the rules are:</p></div>
-<div class="ilist"><ul>
-<li>
-<p>
-If none of the config files contain guilt.autotag, the repository config
-   file's guilt.autotag is set to the default (on).
-</p>
-</li>
-<li>
-<p>
-If there already exists a setting in any of the config files, and neither
-   of the autotagging related options is used, no local value is set.
-</p>
-</li>
-<li>
-<p>
-If there already exists a setting in any of the config files, but an
-   autotagging option is specified, the repository config file's guilt.autotag
-   is set to the value specified on the command line.
-</p>
-</li>
-</ul></div>
 </div>
 <h2 id="_guilt_commands">GUILT COMMANDS</h2>
 <div class="sectionbody">
@@ -587,6 +517,14 @@ If there already exists a setting in any of the config files, but an
 <dd>
 <p>
         guilt-graph - Create a patch dependency graph.
+</p>
+</dd>
+<dt>
+<a href="guilt-guard.html">guilt-guard(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-guard - Assign guards to patches.
 </p>
 </dd>
 <dt>
@@ -710,6 +648,14 @@ If there already exists a setting in any of the config files, but an
 </p>
 </dd>
 <dt>
+<a href="guilt-select.html">guilt-select(1)</a>
+</dt>
+<dd>
+<p>
+        guilt-select - Select guards to apply when pushing patches.
+</p>
+</dd>
+<dt>
 <a href="guilt-series.html">guilt-series(1)</a>
 </dt>
 <dd>
@@ -755,11 +701,11 @@ If there already exists a setting in any of the config files, but an
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
 <div class="para"><p>Part of the <a href="guilt.html">guilt(7)</a> suite
-(Generated for Guilt v0.31)</p></div>
+(Generated for Guilt v0.32)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-09-05 18:34:58 EDT
+Last updated 2009-01-16 14:45:08 EDT
 </div>
 </div>
 </body>

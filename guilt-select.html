@@ -357,147 +357,94 @@ div.olist2 div.olist ol {
   list-style-type: decimal;
 }
 </style>
-<title>guilt-status(1)</title>
+<title>guilt-select(1)</title>
 </head>
 <body>
 <div id="header">
 <h1>
-guilt-status(1) Manual Page
+guilt-select(1) Manual Page
 </h1>
 <h2>NAME</h2>
 <div class="sectionbody">
-<p>guilt-status -
-   Print the status of files since the last refresh
+<p>guilt-select -
+   Select guards to apply when pushing patches
 </p>
 </div>
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="para"><p><em>guilt-status</em> [-a|-A] [-c|-C] [-d|-D] [-m|-M] [-r|-R] [-t|-T] [-u|-U] [-x|-X] [-n]</p></div>
+<div class="para"><p><em>guilt-select</em> [ -n | --none | -s | --series | [--pop|--reapply] &lt;guards&#8230;&gt; ]</p></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
-<div class="para"><p>Each file is printed with a prefix that describes it's status.</p></div>
-<div class="literalblock">
-<div class="content">
-<pre><tt>A   added
-C   copied
-D   deleted
-M   modified
-R   renamed
-T   type change (e.g., mode)
-U   unmerged
-?   untracked</tt></pre>
-</div></div>
+<div class="para"><p>Select guards to apply when pushing patches.</p></div>
+<div class="para"><p>Guards are selected without the + or - prefix.  Patches are applied in
+the following way:</p></div>
+<div class="ilist"><ul>
+<li>
+<p>
+An unguarded patch is always applied.
+</p>
+</li>
+<li>
+<p>
+A patch with a positive guard is applied <strong>only</strong> if the guard is
+selected with guilt-select.
+</p>
+</li>
+<li>
+<p>
+A patch with a negative guard is applied <strong>unless</strong> the guard is
+selected with guilt-select.
+</p>
+</li>
+</ul></div>
 </div>
 <h2 id="_options">OPTIONS</h2>
 <div class="sectionbody">
 <div class="vlist"><dl>
 <dt>
--n
+-n|--none
 </dt>
 <dd>
 <p>
-        Hide status prefix in the output
+        Remove all selected guards
 </p>
 </dd>
 <dt>
--a
-</dt>
-<dt>
--A
+--pop
 </dt>
 <dd>
 <p>
-        Display only added files
+        Pop back to the first guarded patch
 </p>
 </dd>
 <dt>
--c
-</dt>
-<dt>
--C
+--reapply
 </dt>
 <dd>
 <p>
-        Display only copied files
+        Pop back to first guarded patch, select a new guard, and
+        push
 </p>
 </dd>
 <dt>
--d
-</dt>
-<dt>
--D
+-s|--series
 </dt>
 <dd>
 <p>
-        Display only deleted files
-</p>
-</dd>
-<dt>
--m
-</dt>
-<dt>
--M
-</dt>
-<dd>
-<p>
-        Display only modified files
-</p>
-</dd>
-<dt>
--r
-</dt>
-<dt>
--R
-</dt>
-<dd>
-<p>
-        Display only renamed files
-</p>
-</dd>
-<dt>
--t
-</dt>
-<dt>
--T
-</dt>
-<dd>
-<p>
-        Display only files with a status change (e.g., mode)
-</p>
-</dd>
-<dt>
--u
-</dt>
-<dt>
--U
-</dt>
-<dd>
-<p>
-        Display only unmerged files
-</p>
-</dd>
-<dt>
--x
-</dt>
-<dt>
--X
-</dt>
-<dd>
-<p>
-        Display only unknown files
+        List all guards listed in the series file
 </p>
 </dd>
 </dl></div>
 </div>
 <h2 id="_author">Author</h2>
 <div class="sectionbody">
-<div class="para"><p>Written by Josef "Jeff" Sipek &lt;<a href="mailto:jeffpc@josefsipek.net">jeffpc@josefsipek.net</a>&gt;</p></div>
+<div class="para"><p>Written by Eric Lesh &lt;<a href="mailto:eclesh@ucla.edu">eclesh@ucla.edu</a>&gt;</p></div>
 </div>
 <h2 id="_documentation">Documentation</h2>
 <div class="sectionbody">
-<div class="para"><p>Documentation by Brandon Philips &lt;<a href="mailto:brandon@ifup.org">brandon@ifup.org</a>&gt;</p></div>
+<div class="para"><p>Documentation by Eric Lesh &lt;<a href="mailto:eclesh@ucla.edu">eclesh@ucla.edu</a>&gt;</p></div>
 </div>
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
@@ -506,7 +453,7 @@ U   unmerged
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-01-16 14:45:04 EDT
+Last updated 2009-01-16 14:45:02 EDT
 </div>
 </div>
 </body>

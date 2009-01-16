@@ -396,9 +396,16 @@ guilt-refresh(1) Manual Page
 </dt>
 <dd>
 <p>
-        Include a diffstat output in the patch file. Useful for cases where
-        patches will be submitted with other tools.
+Include a diffstat output in the patch file. Useful for cases where
+patches will be submitted with other tools.
 </p>
+<div class="para"><p>If the command line option is omitted, the corresponding git-config
+option "guilt.diffstat" will be queried. So this would enable diffstat
+output by default:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>git config --global guilt.diffstat true</tt></pre>
+</div></div>
 </dd>
 </dl></div>
 </div>
@@ -413,11 +420,11 @@ guilt-refresh(1) Manual Page
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
 <div class="para"><p>Part of the <a href="guilt.html">guilt(7)</a> suite
-(Generated for Guilt v0.31)</p></div>
+(Generated for Guilt v0.32)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-09-05 18:34:52 EDT
+Last updated 2009-01-16 14:44:59 EDT
 </div>
 </div>
 </body>

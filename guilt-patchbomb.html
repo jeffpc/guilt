@@ -373,7 +373,7 @@ guilt-patchbomb(1) Manual Page
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="para"><p><em>guilt-patchbomb</em> [-n] [--in-reply-to &lt;msgid&gt;] [&lt;hash&gt; | &lt;since&gt;..[&lt;until&gt;] | ..&lt;until&gt;]</p></div>
+<div class="para"><p><em>guilt-patchbomb</em> [-n] [--in-reply-to &lt;msgid&gt;] [--git] [&lt;hash&gt; | &lt;since&gt;..[&lt;until&gt;] | ..&lt;until&gt;]</p></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
@@ -398,6 +398,15 @@ interactively.</p></div>
 <p>
         Set the In-reply-to header to the specified message id. This allows
         the patches to be sent as replies to an arbitrary message.
+</p>
+</dd>
+<dt>
+--git
+</dt>
+<dd>
+<p>
+        Generate a patch which uses all the features offered by the git diff
+        format (e.g., rename and copy detection).
 </p>
 </dd>
 <dt>
@@ -439,11 +448,11 @@ interactively.</p></div>
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
 <div class="para"><p>Part of the <a href="guilt.html">guilt(7)</a> suite
-(Generated for Guilt v0.31)</p></div>
+(Generated for Guilt v0.32)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-09-05 18:34:49 EDT
+Last updated 2009-01-16 14:44:52 EDT
 </div>
 </div>
 </body>

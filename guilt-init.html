@@ -373,44 +373,25 @@ guilt-init(1) Manual Page
 </div>
 <h2>SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="para"><p><em>guilt-init</em> [-n | -a]</p></div>
+<div class="para"><p><em>guilt-init</em></p></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
 <div class="para"><p>Initialize a git repository for use with guilt</p></div>
 </div>
-<h2 id="_options">OPTIONS</h2>
-<div class="sectionbody">
-<div class="vlist"><dl>
-<dt>
--a
-</dt>
-<dd>
-<p>
-        Automatically create stack top, bottom, and base tags (sets
-        guilt.autotag config variable to 1). This is the default in most
-        cases. For more details about autotagging default option handling,
-        see guilt(7).
-</p>
-</dd>
-<dt>
--n
-</dt>
-<dd>
-<p>
-        Do not automatically create stack top, bottom, and base tags (sets
-        guilt.autotag config variable to 0).
-</p>
-</dd>
-</dl></div>
-</div>
 <h2 id="_examples">EXAMPLES</h2>
 <div class="sectionbody">
 <div class="para"><p>First, get a repository to work on. Here's one that we'll use as an example:</p></div>
-<div class="para"><p>$ git-clone git://git.kernel.org/pub/scm/linux/kernel/jsipek/guilt-hello.git</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>$ git-clone git://git.kernel.org/pub/scm/linux/kernel/jsipek/guilt-hello.git</tt></pre>
+</div></div>
 <div class="para"><p>Now, it initialize the patches directory using guilt's init command:</p></div>
-<div class="para"><p>$ cd hello</p></div>
-<div class="para"><p>$ guilt-init</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>$ cd hello
+$ guilt-init</tt></pre>
+</div></div>
 </div>
 <h2 id="_author">Author</h2>
 <div class="sectionbody">
@@ -423,11 +404,11 @@ guilt-init(1) Manual Page
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
 <div class="para"><p>Part of the <a href="guilt.html">guilt(7)</a> suite
-(Generated for Guilt v0.31)</p></div>
+(Generated for Guilt v0.32)</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2008-09-05 18:34:47 EDT
+Last updated 2009-01-16 14:44:49 EDT
 </div>
 </div>
 </body>
