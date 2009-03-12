@@ -689,7 +689,7 @@ __refresh_patch()
 		fi
 
 		# get the new patch
-		git diff $diffopts "$2" >> "$TMP_DIFF"
+		git diff --binary $diffopts "$2" >> "$TMP_DIFF"
 
 		# move the new patch in
 		mv "$p" "$p~"
