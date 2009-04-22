@@ -29,7 +29,8 @@ function replace_path
 	    -e "s,$REG_DIR/\.\./,,g" \
 	    -e "s,^Usage: guilt-,Usage: guilt ,g" \
 	    -e "s,\.\.\. initial, initial,g" \
-	    -e "s,^Already on branch,Already on,g"
+	    -e "s,^Already on\( branch\)\? [\"']\([^\"']*\)[\"']$,Already on \"\2\",g" \
+	    -e "s,^Switched to branch [\"']\([^\"']*\)[\"'],Switched to branch \"\1\",g"
 }
 
 function filter_dd
