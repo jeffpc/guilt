@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006-2009
 #
 
-GUILT_VERSION="0.32"
+GUILT_VERSION="0.32.1"
 GUILT_NAME="Refugee"
 
 # If the first argument is one of the below, display the man page instead of
