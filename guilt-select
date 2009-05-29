@@ -16,7 +16,7 @@ select_guards()
 	echo "$@" | sed -e 's/ /\n/g' | sort | uniq > "$guards_file"
 }
 
-if [ $# == 0 ]; then
+if [ $# -eq 0 ]; then
 	if [ -s "$guards_file" ]; then
 		cat "$guards_file"
 	else

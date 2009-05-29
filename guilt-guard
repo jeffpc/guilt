@@ -12,12 +12,12 @@ print_guards()
 	echo "$1: $guards"
 }
 
-if [ "$1" == "-l" ] || [ "$1" == "--list" ]; then
+if [ "$1" = "-l" -o "$1" = "--list" ]; then
 	get_full_series | while read patch; do
 		print_guards "$patch"
 	done
 	exit 0
-elif [ "$1" == "-n" ] || [ "$1" == "--none" ]; then
+elif [ "$1" = "-n" -o "$1" = "--none" ]; then
 	patch="$2"
 	if [ -z "$patch" ]; then
 		patch=`get_top`
