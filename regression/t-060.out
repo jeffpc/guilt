@@ -4,6 +4,7 @@
 % touch blah/sub
 % guilt-add blah/sub
 % guilt-refresh
+Patch subdir refreshed
 % guilt-push -a
 Applying patch..modify
 Patch applied.

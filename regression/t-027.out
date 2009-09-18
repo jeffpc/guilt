@@ -16,6 +16,7 @@ HEAD is now at d485041 initial
 Applying patch..modify
 Patch applied.
 % guilt-refresh
+Patch modify refreshed
 % guilt-pop
 All patches popped.
 % guilt-push modify

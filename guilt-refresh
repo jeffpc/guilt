@@ -25,4 +25,4 @@ if [ -z "$TOP" ]; then
 fi
 
 refresh_patch "$TOP" "$gdiff" "$dstat"
-
+echo "Patch $TOP refreshed"
