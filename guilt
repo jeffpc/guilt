@@ -135,6 +135,8 @@ valid_patchname()
 	case "$1" in
 		/*|./*|../*|*/./*|*/../*|*/.|*/..|*/|*\ *|*\	*)
 			return 1;;
+		*:*)
+			return 1;;
 		*)
 			return 0;;
 	esac

@@ -31,6 +31,10 @@ else
 	newpatch="${base%-$num}-$(($num+1))${patch#$base}"
 fi
 
+if ! valid_patchname "$newpatch"; then
+	die "The specified patch name contains invalid characters (:)."
+fi
+
 if [ -e "$GUILT_DIR/$branch/$newpatch" ]; then
 	die "Patch \"$newpatch\" already exists. Choose another name."
 fi
