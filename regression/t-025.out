@@ -12,9 +12,9 @@ d .git/refs/patches
 d .git/refs/patches/master
 f 046c168df2244d3a13985f042a50e479fe56455e  .git/patches/master/status
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e65775e6ed741dc0219e6008f7e0b06add0b395  .git/patches/master/series
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 r f14ef0cd369e82820fbb0785c45614aee25c922c  .git/refs/patches/master/file
@@ -33,8 +33,8 @@ d .git/refs/patches/master
 d .git/refs/patches/master/dir
 f 0b488d592b2a401d638ca87dacaf60a061f84c3c  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
@@ -58,9 +58,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 00f4d968227f29edd1d6dc985c1650f21a343486  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 41e60b99955872feef46698aceb03797b9c3862c  .git/patches/master/status
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
@@ -94,22 +94,22 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 13562c49abffa4e38345b9bcea8682999462daa8  .git/patches/master/status
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 578dd8fc3317db2c8fdab355ce5828d00218990d  .git/patches/master/series
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 r 04b6a3533f9570be11faa4aa88ae1461ded2ce83  .git/refs/patches/master/modify
-r 0e99c45432949fa47566b818fd1ea2c55dd153cb  .git/refs/patches/master/mode
-r 444830baa82d8d2e11e4bbe74afde638080af932  .git/refs/patches/master/remove
-r 9180d267bd0d4042f216cd70a22a2ee4fcb2d8e8  .git/refs/patches/master/add
+r 370875314da47f048ad9daa9f7c71004c81be91f  .git/refs/patches/master/append
+r 4a164dc7680eb902978c8cb395ddd703c04700f1  .git/refs/patches/master/add
+r 6b20e4fe0d7660696d9a4dc9c557e4bd7a5c2ce5  .git/refs/patches/master/remove
 r adc76eb117d58d48b5d0de7f81ab45849f538a5b  .git/refs/patches/master/dir/subdir/file
 r bead5908ff96e4b5719fe714c3e50c183152ae57  .git/refs/patches/master/dir/file
-r d3843e2682d667e5e42a64e1e5028a1d5d03e973  .git/refs/patches/master/append
 r f14ef0cd369e82820fbb0785c45614aee25c922c  .git/refs/patches/master/file
+r f8cf938e4d5c1936cf570eb2d7edd6dd18d3335f  .git/refs/patches/master/mode
 % guilt-pop --all
 All patches popped.
 % guilt-new prepend
@@ -129,9 +129,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -153,9 +153,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -176,9 +176,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -199,9 +199,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -223,9 +223,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -247,9 +247,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -271,9 +271,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -295,9 +295,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -319,9 +319,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -343,9 +343,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -367,9 +367,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -391,9 +391,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -432,9 +432,9 @@ d .git/refs/patches/master/dir
 d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -461,9 +461,9 @@ d .git/refs/patches/master/dir/subdir
 f 06d2f9f2f2c01d41544a0eab8040959c318e8c3b  .git/patches/master/uncommitted-changes
 f 0d14139c7f15f095b9a3dae9802f20072a4c1859  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 85b7bb43b9e991c005b96ebde8ccf53122ff7342  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -511,9 +511,9 @@ d .git/refs/patches/master/dir/subdir
 f 06d2f9f2f2c01d41544a0eab8040959c318e8c3b  .git/patches/master/uncommitted-changes
 f 0d14139c7f15f095b9a3dae9802f20072a4c1859  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 85b7bb43b9e991c005b96ebde8ccf53122ff7342  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
@@ -542,9 +542,9 @@ d .git/refs/patches/master/dir/subdir
 f 06d2f9f2f2c01d41544a0eab8040959c318e8c3b  .git/patches/master/uncommitted-changes
 f 0fe110e08d3278d1c5757ee600c0a6c043f0cc07  .git/patches/master/status
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 912890c403fed99c86dbaffc3e3575a585842ac5  .git/patches/master/uncommitted-changes2
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f ac69907359d4fb6f74172052b00d3e76d2f038ed  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
