@@ -3,8 +3,8 @@
 d .git/patches
 d .git/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
@@ -16,10 +16,10 @@ d .git/patches/br-
 d .git/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/br-/modify
@@ -34,10 +34,10 @@ d .git/patches/br-
 d .git/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/br-/modify
@@ -59,14 +59,14 @@ d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-modify/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-modify/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/br-modify/status
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-modify/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-modify/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-modify/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
@@ -89,14 +89,14 @@ d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-modify/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-modify/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/br-modify/status
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-modify/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-modify/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-modify/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
@@ -124,17 +124,17 @@ f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-add/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-add/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-modify/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-add/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-modify/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/br-add/status
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/br-modify/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-add/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-modify/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-add/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-modify/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-add/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-modify/series
@@ -147,8 +147,8 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/br-/status
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-add/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-modify/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/br-add/add
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-add/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 % git checkout master
 Switched to branch "master"
 % list_files
@@ -165,17 +165,17 @@ f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-add/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-add/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-modify/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-add/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-modify/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/br-add/status
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/br-modify/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-add/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-modify/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-add/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-modify/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-add/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-modify/series
@@ -188,8 +188,8 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/br-/status
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-add/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-modify/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/br-add/add
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-add/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 Applying patch..remove
 Patch applied.
 % guilt branch br-remove
@@ -211,18 +211,18 @@ f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-add/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-remove/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-add/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-modify/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-remove/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-add/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-modify/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-remove/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/br-add/status
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/br-modify/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-add/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-modify/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-remove/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-add/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-modify/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-remove/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-add/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-modify/series
@@ -240,11 +240,11 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-add/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-modify/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-remove/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/br-add/add
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/br-remove/add
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
-r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/br-remove/remove
-r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-add/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-remove/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
+r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/br-remove/remove
+r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
 % git checkout master
 Switched to branch "master"
 % list_files
@@ -264,18 +264,18 @@ f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-add/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-remove/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-add/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-modify/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-remove/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-add/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-modify/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-remove/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/br-add/status
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/br-modify/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-add/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-modify/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-remove/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-add/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-modify/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-remove/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-add/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-modify/series
@@ -293,11 +293,11 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-add/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-modify/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-remove/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/br-add/add
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/br-remove/add
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
-r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/br-remove/remove
-r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-add/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-remove/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
+r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/br-remove/remove
+r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
 Applying patch..mode
 Patch applied.
 % guilt branch br-mode
@@ -322,22 +322,22 @@ f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-mode/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-remove/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-add/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-mode/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-modify/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/br-remove/add
-f 5d8322e2edfca0589cc24df9c09985a544591a2c  .git/patches/master/add
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-add/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-mode/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-modify/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/br-remove/remove
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/br-add/status
 f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/br-mode/status
 f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/br-modify/status
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-add/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-mode/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-modify/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/br-remove/remove
-f 8bdf2abdb045e63bb877890db12afcd5a2f023eb  .git/patches/master/remove
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-add/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-mode/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-modify/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/br-remove/add
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-add/series
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/br-mode/series
@@ -357,14 +357,14 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-mode/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-modify/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-remove/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/br-mode/mode
-r 632ca0f5ec27a961990b45673dfc751f1da830f3  .git/refs/patches/master/mode
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/br-add/add
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/br-mode/add
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/br-remove/add
-r 68f33a015dcfd09c3896f15d152378b54eaa4eb6  .git/refs/patches/master/add
-r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/br-mode/remove
-r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/br-remove/remove
-r e67345cf1e7e9594c73efad7381a994f1fe63b14  .git/refs/patches/master/remove
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-add/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-mode/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-remove/add
+r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
+r ccd56089d1b5305a9d35617cb7f6f4b06ffa68ba  .git/refs/patches/br-mode/mode
+r ccd56089d1b5305a9d35617cb7f6f4b06ffa68ba  .git/refs/patches/master/mode
+r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/br-mode/remove
+r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/br-remove/remove
+r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
 % git checkout master
 Switched to branch "master"
