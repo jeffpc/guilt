@@ -204,14 +204,16 @@ get_series()
 check_guards()
 {
 	get_guards "$1" | while read guard; do
+		g=`echo $guard | sed "s/^[+-]//"`
 		case "$guard" in
 			+*)
 				# Push +guard *only if* guard selected
-				silent grep -e "^$guard\$" "$guards_file" || return 1
+				silent grep -F "$g" "$guards_file" || return 1
 				;;
 			-*)
 				# Push -guard *unless* guard selected
-				silent grep -e "^$guard\$" "$guards_file" && return 1
+				silent grep -F "$g" "$guards_file" && return 1
+				true
 				;;
 		esac
 	done
