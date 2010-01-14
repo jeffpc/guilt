@@ -21,6 +21,10 @@ mkdir -p "$target_dir"
 get_full_series | tee "$target_dir/series" | while read p; do
 	silent mkdir -p "`dirname $target_dir/$p`" || true
 	cp "$GUILT_DIR/$branch/$p" "$target_dir/$p"
+	get_guards "$p" | while read g ; do
+		[ "$g" != "" ] && echo -n "$g " >> "$target_dir/series.guards"
+	done
+	echo "$p" >> "$target_dir/series.guards"
 done
 
 trap - 0
