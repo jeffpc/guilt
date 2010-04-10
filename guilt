@@ -32,6 +32,7 @@ gitver=`git --version | cut -d' ' -f3 | sed -e 's/^debian\.//'`
 case "$gitver" in
 	1.5.*)	;; # git config
 	1.6.*)	;; # git config
+	1.7.*)	;; # git config
 	*)	die "Unsupported version of git ($gitver)" ;;
 esac
 
