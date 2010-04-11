@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2006-2010
 #
 
 USAGE="[-eE] [<patchname>]"
@@ -55,7 +55,7 @@ if [ -z "$edit" ]; then
 else
     	if [ -n "$full" ]; then
 	    git_editor "$GUILT_DIR/$branch/$patch"
-	    return $?
+	    exit $?
 	fi
 	do_get_full_header "$GUILT_DIR/$branch/$patch" > "$TMP_MSG"
 	do_get_patch "$GUILT_DIR/$branch/$patch" > "$TMP_DIFF"
