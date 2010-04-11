@@ -3,7 +3,7 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006, 2007
 #
 
-USAGE="[-e] [<patchname>]"
+USAGE="[-eE] [<patchname>]"
 . `dirname $0`/guilt
 
 case $# in
@@ -14,16 +14,25 @@ case $# in
 		if [ "$1" = "-e" ]; then
 			edit=t
 			patch=`get_top`
+		elif [ "$1" = "-E" ]; then
+		    	edit=t
+		    	full=t
+			patch=`get_top`
 		else
 			patch="$1"
 		fi
 		;;
 	2)
-		[ "$1" != "-e" ] && usage
-
-		edit=t
-		patch="$2"
-
+		if [ "$1" = "-e" ]; then
+		    edit=t
+		    patch="$2"
+		elif [ "$1" = "-E" ]; then
+		    edit=t
+		    full=t
+		    patch="$2"
+ 		else
+		    usage
+		fi
 		;;
 esac
 
@@ -44,6 +53,10 @@ TMP_DIFF=`get_tmp_file diff`
 if [ -z "$edit" ]; then
 	do_get_header "$GUILT_DIR/$branch/$patch"
 else
+    	if [ -n "$full" ]; then
+	    git_editor "$GUILT_DIR/$branch/$patch"
+	    return $?
+	fi
 	do_get_full_header "$GUILT_DIR/$branch/$patch" > "$TMP_MSG"
 	do_get_patch "$GUILT_DIR/$branch/$patch" > "$TMP_DIFF"
 	git_editor "$TMP_MSG"
