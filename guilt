@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006-2009
+# Copyright (c) Josef "Jeff" Sipek, 2006-2010
 #
 
-GUILT_VERSION="0.32.1"
-GUILT_NAME="Refugee"
+GUILT_VERSION="0.33"
+GUILT_NAME="Lullaby"
 
 # If the first argument is one of the below, display the man page instead of
 # the rather silly and mostly useless usage string
