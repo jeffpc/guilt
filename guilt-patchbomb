@@ -5,7 +5,7 @@
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
-USAGE="[-n] [--in-reply-to <msgid>] [--git] [<hash> | <since>..[<until>] | ..<until>]"
+USAGE="[-n] [-s] [--in-reply-to <msgid>] [--git] [--subject-prefix <prefix>] [<hash> | <since>..[<until>] | ..<until>]"
 . `dirname $0`/guilt
 
 TMP_FILE=`get_tmp_file file`
@@ -14,6 +14,13 @@ while [ $# -gt 0 ]; do
 	case "$1" in
 		-n)
 			do_not_send=t
+			;;
+		-s)
+			no_sign_off=t
+			;;
+		--subject-prefix)
+			subject_prefix="$2"
+			shift
 			;;
 		--in-reply-to)
 			reply_to="$2"
@@ -53,8 +60,13 @@ if [ `git rev-list "$r" | wc -l` -gt 1 ]; then
 fi
 
 [ ! -z "$gitdiff" ] && format_opts="$format_opts -C -M --find-copies-harder"
+[ -z "$no_sign_off" ] && format_opts="$format_opts -s"
 
-git format-patch $format_opts -o $dir -s "$r"
+if [ -z "$subject_prefix" ]; then
+	git format-patch $format_opts -o $dir "$r"
+else
+	git format-patch $format_opts --subject-prefix="$subject_prefix" -o $dir "$r"
+fi
 
 # get the to/cc addresses
 _disp "Enter all the To: email addresses (separated by space): "
