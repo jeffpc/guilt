@@ -39,6 +39,10 @@ fixup_time_info second
 fixup_time_info third
 fixup_time_info fourth
 fixup_time_info fifth
+fixup_time_info modify
+fixup_time_info add
+fixup_time_info remove
+fixup_time_info mode
 
 p=first
 
