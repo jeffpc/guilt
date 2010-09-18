@@ -582,7 +582,7 @@ guilt-patchbomb(1) Manual Page
 <div id="content">
 <h2 id="_synopsis">SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="paragraph"><p><em>guilt-patchbomb</em> [-n] [--in-reply-to &lt;msgid&gt;] [--git] [&lt;hash&gt; | &lt;since&gt;..[&lt;until&gt;] | ..&lt;until&gt;]</p></div>
+<div class="paragraph"><p><em>guilt-patchbomb</em> [-n] [-s] [--in-reply-to &lt;msgid&gt;] [--git] [--subject-prefix &lt;prefix&gt;] [&lt;hash&gt; | &lt;since&gt;..[&lt;until&gt;] | ..&lt;until&gt;]</p></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
@@ -601,6 +601,16 @@ interactively.</p></div>
 </p>
 </dd>
 <dt class="hdlist1">
+-s
+</dt>
+<dd>
+<p>
+        Don&#8217;t add additional repository committer sign-offs to the patch.
+        This allows the sign-off chain to be fully expressed in the commit
+        messages and not changed by the act of sending a patchbomb.
+</p>
+</dd>
+<dt class="hdlist1">
 --in-reply-to &lt;msgid&gt;
 </dt>
 <dd>
@@ -616,6 +626,15 @@ interactively.</p></div>
 <p>
         Generate a patch which uses all the features offered by the git diff
         format (e.g., rename and copy detection).
+</p>
+</dd>
+<dt class="hdlist1">
+--subject-prefix &lt;prefix&gt;
+</dt>
+<dd>
+<p>
+        Rather than using the standard [PATCH] prefix in the subject line,
+        use [&lt;prefix&gt;] instead.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -656,14 +675,14 @@ interactively.</p></div>
 </div>
 <h2 id="_guilt">GUILT</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Part of the linkguilt:guilt[7] suite
-(Generated for Guilt v0.33)</p></div>
+<div class="paragraph"><p>Part of the <a href="guilt.html">guilt(7)</a> suite
+(Generated for Guilt v0.34)</p></div>
 </div>
 </div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2010-04-15 22:51:05 EDT
+Last updated 2010-06-08 15:42:18 EDT
 </div>
 </div>
 </body>
