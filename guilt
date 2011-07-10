@@ -544,7 +544,10 @@ commit()
 			if [ $ct -gt `date +%s` ]; then
 				touch "$p"
 			else
-				touch -d @$ct "$p"
+				case $UNAME_S in
+					Darwin) touch -t `date -r $ct +%Y%m%d%H%M.%S` ;;
+					Linux) touch -d @$ct "$p" ;;
+				esac
 			fi
 		fi
 

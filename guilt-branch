@@ -39,7 +39,7 @@ mkdir -p "$GUILT_DIR/`dirname $newbranch`"
 case $UNAME_S in
 	# Darwin doesn't have the GNU equalient -d (--no-dereference --preserve=links),
 	# flags
-	Darwin) cp -p "$GUILT_DIR/$branch" "$GUILT_DIR/$newbranch" ;;
+	Darwin) cp -pR "$GUILT_DIR/$branch" "$GUILT_DIR/$newbranch" ;;
 	Linux) cp -a "$GUILT_DIR/$branch" "$GUILT_DIR/$newbranch" ;;
 	*) echo "Unsupported operating system: $UNAME_S" ;;
 esac
