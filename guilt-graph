@@ -12,7 +12,7 @@ fi
 
 patchname="$1"
 
-bottom=`git rev-parse refs/patches/$branch/$(head -1 < "$applied")`
+bottom=`git rev-parse refs/patches/$branch/$(head -n 1 < "$applied")`
 base=`git rev-parse $bottom^`
 
 if [ -z "$patchname" ]; then
@@ -55,7 +55,7 @@ while [ "$current" != "$base" ]; do
 
 	getfiles $current | while read f; do
 		# hash the filename
-		fh=`echo "$f" | sha1sum | cut -d' ' -f1`
+		fh=`echo "$f" | sha1 | cut -d' ' -f1`
 		if [ -e "$cache/$fh" ]; then
 			# ok, something already touched this file before us
 			cat "$cache/$fh" >> "$cache/dep"

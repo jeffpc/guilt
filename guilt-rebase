@@ -80,7 +80,7 @@ cat "$rebase_dir/status" | while read hash name; do
 		while read patchid commitid ; do
 			disp "Applying '$name'"
 			if [ -f "$rebase_dir/$patchid" ]; then
-				realcommit=`head -1 "$rebase_dir/$patchid"`
+				realcommit=`head -n 1 "$rebase_dir/$patchid"`
 				disp "Matches upstream commit $realcommit"
 				series_rename_patch "$name" "###rebased###$name"
 				disp "Patch removed from series."

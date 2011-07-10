@@ -102,7 +102,7 @@ if [ "$sidx" -gt "$eidx" ]; then
 	if [ "$sidx" -le "`get_series | wc -l`" ]; then
 		disp "Patch is already applied."
 	else
-		disp "File series fully applied, ends at patch `get_series | tail -1`"
+		disp "File series fully applied, ends at patch `get_series | tail -n 1`"
 	fi
 	exit 0
 fi

@@ -82,7 +82,7 @@ repair_pushed()
 {
 	if [ -s "$applied" ]; then
 		# there were some patches applied
-		newrev=`git rev-parse refs/patches/$branch/$(head -1 < "$applied")^`
+		newrev=`git rev-parse refs/patches/$branch/$(head -n 1 < "$applied")^`
 	else
 		# no patches were applied, but let's do all the work anyway
 		newrev="$oldrev"
