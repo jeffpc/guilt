@@ -29,4 +29,6 @@ case $# in
 		;;
 esac
 
-exec man "$page"
+MANDIR=`dirname $0`/../man
+MANDIR=`(cd "$MANDIR"; pwd)`
+exec man -M "$MANDIR" "$page"

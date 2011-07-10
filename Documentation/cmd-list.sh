@@ -11,12 +11,12 @@ BEGIN{state=0}
 {print $0; exit}
 '`
 
-	len=`expr length "$cmd"`
+	len=${#cmd}
 
 	if [ -z "$desc" ]; then
 		echo "No description found in $cmd.txt" >&2
 		exit 1
-	elif [ "`expr substr \"$desc\" 1 $len`" != "$cmd" ]; then
+	elif [ "${desc:0:$len}" != "$cmd" ]; then
 		echo "Description does not match $cmd: $desc" >&2
 		exit 1
 	fi
