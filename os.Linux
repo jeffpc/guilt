@@ -44,3 +44,9 @@ _tac()
 {
 	tac
 }
+
+_seq()
+{
+	seq "$@"
+	return $?
+}

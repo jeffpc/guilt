@@ -57,7 +57,7 @@ done
 cmd guilt-push --all
 
 npatches=`guilt-series | wc -l`
-for n in `seq -2 $npatches`; do
+for n in `_seq -2 $npatches`; do
 	if [ $n -gt 0 ]; then
 		cmd guilt-pop -n $n
 	else
