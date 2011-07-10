@@ -9,7 +9,7 @@ cmd setup_repo
 
 function fixup_time_info
 {
-	touch -d "$GIT_COMMITTER_DATE" ".git/patches/master/$1"
+	touch -a -m -t "$TOUCH_DATE" ".git/patches/master/$1"
 }
 
 for pname in file dir/file dir/subdir/file ; do

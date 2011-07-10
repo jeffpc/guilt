@@ -3,6 +3,14 @@
 # Test the pop code
 #
 
+function tac() {
+	case $UNAME_S in
+		Darwin) sed -e '1!G;h;$!d' ;;
+		Linux) `which tac` ;;
+		*) echo "Unsupported operating system: $UNAME_S" ;;
+	esac
+}
+
 source $REG_DIR/scaffold
 
 cmd setup_repo

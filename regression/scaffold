@@ -16,6 +16,8 @@ export GIT_AUTHOR_EMAIL="author@email"
 export GIT_COMMITTER_NAME="Commiter Name"
 export GIT_COMMITTER_EMAIL="commiter@email"
 
+UNAME_S=`uname -s`
+
 # usage: die <msg>
 function die
 {
@@ -122,3 +124,28 @@ function setup_repo
 	setup_guilt_repo
 }
 
+function seq() {
+	if [ $UNAME_S = "Linux" ]
+	then
+		`which seq` "$@"
+		return $?
+	fi
+	declare incr n1 n2 num1 num2
+	if [[ $# -eq 1 ]]
+	then
+		/usr/bin/jot $1
+	elif [[ $# -eq 2 ]]
+	then
+		n1=$((${2} - ${1} + 1))
+		n2=$1
+		/usr/bin/jot $n1 $n2
+	elif [[ $# -eq 3 ]]
+	then
+		num1=${1}
+		incr=${2}
+		num2=${3}
+		# /usr/bin/awk -v n1=${num1} -v n2=${num2} -v add=${incr} 'BEGIN{ for(i=n1; i<=n2; i+=add) print i;}' | /usr/bin/sed 's/.+e.+/0/'
+		/usr/bin/awk -v n1=${num1} -v n2=${num2} -v add=${incr} 'BEGIN{ for(i=n1; i<=n2; i+=add) print i;}' | /usr/bin/sed -E '/e/s/^.+e.+$/0/'
+	fi
+	return 0
+}

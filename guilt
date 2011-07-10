@@ -783,7 +783,7 @@ guilt_hook()
 last_modified()
 {
 	case $UNAME_S in
-		Darwin) stat -f "%a" "$1" ;;
+		Darwin) stat -f "%m" "$1" ;;
 		Linux) stat -c "%Y" "$1" ;;
 		*) echo "Unsupported operating system: $UNAME_S" ;;
 	esac
@@ -793,7 +793,7 @@ last_modified()
 format_last_modified()
 {
     case $UNAME_S in
-        Darwin) stat -f "%Sa" -t "%Y-%m-%d %H:%M:%S %z" "$1" ;;
+        Darwin) stat -f "%Sm" -t "%Y-%m-%d %H:%M:%S %z" "$1" ;;
         Linux)
 		    # must strip nano-second part otherwise git gets very
 		    # confused, and makes up strange timestamps from the past
