@@ -817,7 +817,7 @@ head() {
 # usage: sha1 [file]
 sha1() {
 	case $UNAME_S in
-		Darwin) openssl dgst -sha1 "$1" ;;
+		Darwin) openssl dgst -sha1 "$1" | sed "s,SHA1.\(.*\).= \(.*\),\2  \1," ;;
 		Linux) sha1sum "$1" ;;
 		*) echo "Unsupported operating system: $UNAME_S" ;;
 	esac
