@@ -1,17 +1,16 @@
 #!/bin/sh
 
-UNAME_S=`uname -s`
-sha1() {
-	case $UNAME_S in
-		Darwin) openssl dgst -sha1 "$1" | sed "s,SHA1.\(.*\).= \(.*\),\2  \1," ;;
-		Linux) sha1sum "$1" ;;
-		*) echo "Unsupported operating system: $UNAME_S" ;;
-	esac
-}
-
 if [ $# -ne 1 ]; then
 	echo "ERROR"
 	exit 1
+fi
+
+UNAME_S=`uname -s`
+
+if [ -r "$REG_DIR/../os.$UNAME_S" ]; then
+	. "$REG_DIR/../os.$UNAME_S"
+else
+	die "Unsupported operating system: $UNAME_S"
 fi
 
 if [ -d "$1" ]; then

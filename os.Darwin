@@ -36,3 +36,8 @@ cp_a()
 	cp -pR "$1" "$2"
 }
 
+# usage: _tac
+_tac()
+{
+	sed -e '1!G;h;$!d'
+}

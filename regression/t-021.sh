@@ -3,14 +3,6 @@
 # Test the pop code
 #
 
-function tac() {
-	case $UNAME_S in
-		Darwin) sed -e '1!G;h;$!d' ;;
-		Linux) `which tac` ;;
-		*) echo "Unsupported operating system: $UNAME_S" ;;
-	esac
-}
-
 source $REG_DIR/scaffold
 
 cmd setup_repo
@@ -22,7 +14,7 @@ cmd git log -p
 #
 # incremental pop by 1
 #
-guilt-series | tac | while read n ; do
+guilt-series | _tac | while read n ; do
 	cmd guilt-pop
 
 	cmd list_files
@@ -38,7 +30,7 @@ cmd guilt-push --all
 #
 # pop by name (initially all applied)
 #
-guilt-series | tac | while read n ; do
+guilt-series | _tac | while read n ; do
 	cmd guilt-pop $n
 
 	cmd list_files
@@ -51,7 +43,7 @@ done
 #
 # pop by name (incrementally)
 #
-guilt-series | tac | while read n ; do
+guilt-series | _tac | while read n ; do
 	cmd guilt-pop $t
 
 	cmd list_files

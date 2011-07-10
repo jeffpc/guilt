@@ -39,3 +39,8 @@ cp_a()
 	cp -a "$1" "$2"
 }
 
+# usage: _tac
+_tac()
+{
+	tac
+}
