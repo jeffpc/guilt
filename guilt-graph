@@ -12,7 +12,7 @@ fi
 
 patchname="$1"
 
-bottom=`git rev-parse refs/patches/$branch/$(head -n 1 < "$applied")`
+bottom=`git rev-parse refs/patches/$branch/$(head_n 1 < "$applied")`
 base=`git rev-parse $bottom^`
 
 if [ -z "$patchname" ]; then

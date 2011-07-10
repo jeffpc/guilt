@@ -173,7 +173,7 @@ get_top()
 get_prev()
 {
 	if [ `wc -l < "$GUILT_DIR/$branch/status"` -gt 1 ]; then
-		tail -n 2 "$GUILT_DIR/$branch/status" | head -n 1
+		tail -n 2 "$GUILT_DIR/$branch/status" | head_n 1
 	fi
 }
 
@@ -485,7 +485,7 @@ pop_many_patches()
 
 		n=`wc -l < "$applied"`
 		n=`expr $n - $2`
-		head -n "$n" < "$applied" > "$applied.tmp"
+		head_n "$n" < "$applied" > "$applied.tmp"
 		mv "$applied.tmp" "$applied"
 	)
 }
@@ -494,7 +494,7 @@ pop_many_patches()
 pop_all_patches()
 {
 	pop_many_patches \
-		`git rev-parse refs/patches/$branch/$(head -n 1 "$applied")^` \
+		`git rev-parse refs/patches/$branch/$(head_n 1 "$applied")^` \
 		`wc -l < "$applied"`
 }
 
@@ -544,10 +544,7 @@ commit()
 			if [ $ct -gt `date +%s` ]; then
 				touch "$p"
 			else
-				case $UNAME_S in
-					Darwin) touch -t `date -r $ct +%Y%m%d%H%M.%S` ;;
-					Linux) touch -d @$ct "$p" ;;
-				esac
+				touch_date $ct "$p"
 			fi
 		fi
 
@@ -722,7 +719,7 @@ __refresh_patch()
 
 		n=`wc -l < "$applied"`
 		n=`expr $n - $N`
-		head -n "$n" < "$applied" > "$applied.tmp"
+		head_n "$n" < "$applied" > "$applied.tmp"
 		mv "$applied.tmp" "$applied"
 	)
 }
@@ -782,50 +779,6 @@ guilt_hook()
 	return $?
 }
 
-# usage: last_modified <file>
-last_modified()
-{
-	case $UNAME_S in
-		Darwin) stat -f "%m" "$1" ;;
-		Linux) stat -c "%Y" "$1" ;;
-		*) echo "Unsupported operating system: $UNAME_S" ;;
-	esac
-}
-
-# usage: last_modified <file>
-format_last_modified()
-{
-    case $UNAME_S in
-        Darwin) stat -f "%Sm" -t "%Y-%m-%d %H:%M:%S %z" "$1" ;;
-        Linux)
-		    # must strip nano-second part otherwise git gets very
-		    # confused, and makes up strange timestamps from the past
-		    # (chances are it decides to interpret it as a unix
-		    # timestamp).
-            stat -c "%y" "$1" | sed -e '
-s/^\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\) \([0-9]\{2\}\):\([0-9]\{2\}\):\([0-9]\{2\}\)\.[0-9]* \(.*\)$/\1-\2-\3 \4:\5:\6 \7/';;
-        *) echo "Unsupported operating system: $UNAME_S" ;;
-    esac
-}
-
-# usage: head -n [count]
-head() {
-	case $UNAME_S in
-		Darwin) if [ "$2" -gt 0 ]; then "$HEAD" -n "$2"; fi ;;
-		Linux) "$HEAD" -n "$2" ;;
-		*) echo "Unsupported operating system: $UNAME_S" ;;
-	esac
-}
-
-# usage: sha1 [file]
-sha1() {
-	case $UNAME_S in
-		Darwin) openssl dgst -sha1 "$1" | sed "s,SHA1.\(.*\).= \(.*\),\2  \1," ;;
-		Linux) sha1sum "$1" ;;
-		*) echo "Unsupported operating system: $UNAME_S" ;;
-	esac
-}
-
 #
 # Some constants
 #
@@ -878,4 +831,9 @@ pager="more"
 [ ! -z "$PAGER" ] && pager="$PAGER"
 
 UNAME_S=`uname -s`
-HEAD=`which head`
+
+if [ -r "`dirname $0`/os.$UNAME_S" ]; then
+	. "`dirname $0`/os.$UNAME_S"
+else
+	die "Unsupported operating system: $UNAME_S"
+fi
