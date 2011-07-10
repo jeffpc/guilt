@@ -342,17 +342,24 @@ BEGIN{}
 # usage: do_get_header patchfile
 do_get_header()
 {
-	# The complexity arises from the fact that we want to ignore the
-	# From line and the empty line after it if it exists
+	# The complexity arises from the fact that we want to ignore all
+	# but the Subject line of the header, and any empty lines after it,
+	# if these exist, and inject only the Subject line as the first
+	# line of the commit message.
 
-	# 2nd line skips the From line
-	# 3rd line skips the empty line right after a From line
-	# 4th line terminates execution when we encounter the diff
+	# 1st line prints first encountered Subject line plus empty line.
+	# 2nd line skips standard email/git patch header lines.
+	# 3rd line skips tip's additional header lines.
+	# 4th line skips any empty lines thereafter.
+	# 5th line turns off empty line skip upon seeing a non-empty line.
+	# 6th line terminates execution when we encounter the diff
 	cat "$1" | awk '
-BEGIN{skip=0}
-/^Subject:/ && (NR==1){print substr($0, 10); next}
-/^From:/{skip=1; next}
-/^[ \t\f\n\r\v]*$/ && (skip==1){skip=0; next}
+BEGIN{body=0; subj=0}
+/^Subject:/ && (body == 0 && subj == 0){subj=1; print substr($0, 10) "\n"; next}
+/^(Subject:|From:|Author:|Date:|commit)/ && (body == 0){next}
+/^(Commit-ID:|Gitweb:|AuthorDate:|Committer:CommitDate:)/ && (body == 0){next}
+/^[ \t\f\n\r\v]*$/ && (body==0){next}
+/^.*$/ && (body==0){body=1}
 /^(diff |---$|--- )/{exit}
 {print $0}
 END{}
@@ -529,13 +536,26 @@ commit()
 		# make a default commit message if patch doesn't contain one
 		[ ! -s "$TMP_MSG" ] && echo "patch $pname" > "$TMP_MSG"
 
-		# extract a From line from the patch header, and set
-		# GIT_AUTHOR_{NAME,EMAIL}
-		author_str=`sed -n -e '/^From:/ { s/^From: //; p; q; }; /^(diff |---$|--- )/ q' "$p"`
+		# extract author and date lines from the patch header, and set
+		# GIT_AUTHOR_{NAME,EMAIL,DATE}
+		# prefering Author/AuthorDate lines if available.
+		author_str=`sed -n -e '/^Author:/ { s/^Author: //; p; q; }; /^(diff |---$|--- )/ q' "$p"`
+		if [ -z "$author_str" ]; then
+			author_str=`sed -n -e '/^From:/ { s/^From: //; p; q; }; /^(diff |---$|--- )/ q' "$p"`
+		fi
+
 		if [ ! -z "$author_str" ]; then
 			GIT_AUTHOR_NAME=`echo $author_str | sed -e 's/ *<.*$//'`
 			export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-" "}"
                         export GIT_AUTHOR_EMAIL="`echo $author_str | sed -e 's/[^<]*//'`"
+
+			author_date_str=`sed -n -e '/^AuthorDate:/ { s/^AuthorDate: //; p; q; }; /^(diff |---$|--- )/ q' "$p"`
+			if [ -z "$author_date_str" ]; then
+				author_date_str=`sed -n -e '/^Date:/ { s/^Date: //; p; q; }; /^(diff |---$|--- )/ q' "$p"`
+			fi
+			if [ ! -z "$author_date_str" ]; then
+				export GIT_AUTHOR_DATE=`echo $author_date_str`
+			fi
 		fi
 
 		# `git log -1 --pretty=%ct` doesn't work on Git 1.5.x
@@ -549,8 +569,12 @@ commit()
 			fi
 		fi
 
-		export GIT_AUTHOR_DATE="`format_last_modified "$p"`"
-		export GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"
+		export GIT_COMMITTER_DATE="`format_last_modified "$p"`"
+
+		# export GIT_AUTHOR_DATE only if a Date line was unavailable
+		if [ -z "$author_date_str" ]; then
+			export GIT_AUTHOR_DATE="$GIT_COMMITTER_DATE"
+		fi
 
 		# commit
 		treeish=`git write-tree`
