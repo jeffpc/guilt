@@ -538,7 +538,8 @@ commit()
                         export GIT_AUTHOR_EMAIL="`echo $author_str | sed -e 's/[^<]*//'`"
 		fi
 
-		ct=`git log -1 --pretty=%ct`
+		# `git log -1 --pretty=%ct` doesn't work on Git 1.5.x
+		ct=`git cat-file commit HEAD | awk '/^committer /{ print $(NF-1); exit; }'`
 		if [ $ct -gt `last_modified "$p"` ]; then
 			ct=`expr $ct + 60`
 			if [ $ct -gt `date +%s` ]; then
