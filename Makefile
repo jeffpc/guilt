@@ -1,5 +1,6 @@
-PREFIX=/usr/local
-DESTDIR=
+PREFIX?=/usr/local
+DESTDIR?=
+INSTALL?=install
 
 SCRIPTS = guilt \
 	  $(filter-out $(wildcard *~),$(wildcard guilt-*))
@@ -11,8 +12,8 @@ all: doc
 
 .PHONY: install
 install:
-	install -d $(DESTDIR)$(PREFIX)/bin/
-	install -m 755 $(SCRIPTS) $(DESTDIR)$(PREFIX)/bin/
+	$(INSTALL) -d $(DESTDIR)$(PREFIX)/bin/
+	$(INSTALL) -m 755 $(SCRIPTS) $(DESTDIR)$(PREFIX)/bin/
 
 .PHONY: uninstall
 uninstall:
@@ -24,7 +25,7 @@ doc:
 
 .PHONY: install-doc
 install-doc:
-	$(MAKE) -C Documentation install PREFIX=$(PREFIX) DESTDIR=$(DESTDIR)
+	$(MAKE) -C Documentation install PREFIX=$(PREFIX) DESTDIR=$(DESTDIR) INSTALL=$(INSTALL)
 
 .PHONY: test
 test:
