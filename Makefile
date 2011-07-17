@@ -6,7 +6,7 @@ OSFILES = $(filter-out $(wildcard *~),$(wildcard os.*))
 SCRIPTS = $(filter-out $(wildcard *~),$(wildcard guilt-*))
 
 .PHONY: all 
-all: doc
+all:
 	@echo "Nothing to build, it is all bash :)"
 	@echo "Try make install"
 
