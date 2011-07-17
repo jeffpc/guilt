@@ -1,12 +1,17 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2006-2011
 #
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
 USAGE=""
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 while case $# in 0) break ;; esac; do
 	case $1 in
@@ -36,3 +41,5 @@ cat > "$GIT_DIR/hooks/guilt/delete" <<EOF
 
 echo "Removing patch '\$1'..."
 EOF
+
+}

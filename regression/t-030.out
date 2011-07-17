@@ -1,5 +1,5 @@
 % setup_repo
-% guilt-commit
+% guilt commit
 Usage: guilt commit -n <num> | -a | --all
 % list_files
 d .git/patches
@@ -10,7 +10,7 @@ f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% guilt-commit -n 0
+% guilt commit -n 0
 % list_files
 d .git/patches
 d .git/patches/master
@@ -20,7 +20,7 @@ f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% guilt-commit -n 1
+% guilt commit -n 1
 % list_files
 d .git/patches
 d .git/patches/master
@@ -30,7 +30,7 @@ f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% guilt-commit -a
+% guilt commit -a
 % list_files
 d .git/patches
 d .git/patches/master
@@ -40,7 +40,7 @@ f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% guilt-commit --all
+% guilt commit --all
 % list_files
 d .git/patches
 d .git/patches/master
@@ -50,7 +50,7 @@ f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% guilt-push -a
+% guilt push -a
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -59,7 +59,7 @@ Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-commit
+% guilt commit
 Usage: guilt commit -n <num> | -a | --all
 % list_files
 d .git/patches
@@ -76,7 +76,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 r ccd56089d1b5305a9d35617cb7f6f4b06ffa68ba  .git/refs/patches/master/mode
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
-% guilt-commit -n 0
+% guilt commit -n 0
 % list_files
 d .git/patches
 d .git/patches/master
@@ -92,7 +92,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 r ccd56089d1b5305a9d35617cb7f6f4b06ffa68ba  .git/refs/patches/master/mode
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
-% guilt-commit -n 1
+% guilt commit -n 1
 % list_files
 d .git/patches
 d .git/patches/master
@@ -107,7 +107,7 @@ f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 r ccd56089d1b5305a9d35617cb7f6f4b06ffa68ba  .git/refs/patches/master/mode
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
-% guilt-commit -a
+% guilt commit -a
 % list_files
 d .git/patches
 d .git/patches/master
@@ -119,7 +119,7 @@ f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% guilt-commit --all
+% guilt commit --all
 % list_files
 d .git/patches
 d .git/patches/master

@@ -7,14 +7,14 @@ source $REG_DIR/scaffold
 
 cmd setup_repo
 
-cmd guilt-applied
+cmd guilt applied
 
-guilt-series | while read n; do
-	cmd guilt-push
+guilt series | while read n; do
+	cmd guilt push
 
-	cmd guilt-applied
+	cmd guilt applied
 
-	cmd guilt-applied -c
+	cmd guilt applied -c
 
 	cmd list_files
 done

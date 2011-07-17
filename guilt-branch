@@ -1,14 +1,19 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2007-2008
+# Copyright (c) Josef "Jeff" Sipek, 2007-2011
 #
 
 USAGE="[<new_name>]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
 
 if [ $# -gt 1 ]; then
 	usage
 fi
+
+_main() {
 
 # make sure that there are no unapplied changes
 if ! must_commit_first; then
@@ -40,4 +45,4 @@ cp_a "$GUILT_DIR/$branch" "$GUILT_DIR/$newbranch"
 
 # copy the refs
 
-
+}

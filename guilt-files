@@ -4,7 +4,12 @@
 #
 
 USAGE="[-v] [-a] [-l]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 opt_verbose=
 opt_all=
@@ -78,3 +83,4 @@ fi | while read patch; do
 	IFS=:
 done
 
+}

@@ -1,12 +1,17 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2007-2011
 #
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
 USAGE="[<command> | <topic>]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 case $# in
 	0)
@@ -32,3 +37,5 @@ esac
 MANDIR=`dirname $0`/../man
 MANDIR=`(cd "$MANDIR"; pwd)`
 exec man -M "$MANDIR" "$page"
+
+}

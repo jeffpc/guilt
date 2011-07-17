@@ -1,10 +1,15 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2006-2011
 #
 
 USAGE="[--git] [--diffstat]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 while [ $# -gt 0 ]; do
 	case "$1" in
@@ -21,8 +26,10 @@ done
 TOP=`get_top`
 
 if [ -z "$TOP" ]; then
-	die "No patches applied; try guilt-push first"
+	die "No patches applied; try guilt push first"
 fi
 
 refresh_patch "$TOP" "$gdiff" "$dstat"
 echo "Patch $TOP refreshed"
+
+}

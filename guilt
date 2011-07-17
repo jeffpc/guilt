@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006-2010
+# Copyright (c) Josef "Jeff" Sipek, 2006-2011
 #
 
 GUILT_VERSION="0.34"
@@ -11,7 +11,7 @@ GUILT_NAME="Runaway"
 case $1 in
 	-h|--h|--he|--hel|--help)
 	shift
-	exec "guilt-help" "`basename $0`"
+	exec "guilt help" "`basename $0`"
 	exit
 	;;
 	-V|--ver|--versi|--versio|--version)
@@ -39,6 +39,11 @@ esac
 #
 # Shell library
 #
+usage()
+{
+	echo "Usage: guilt $CMDNAME $USAGE" >&2
+	exit 1
+}
 
 # echo -n is a bashism, use printf instead
 _disp()
@@ -66,47 +71,50 @@ silent()
 
 guilt_commands()
 {
+	find "`dirname $0`/../lib/guilt" -maxdepth 1 -name "guilt-*" -type f -perm +111 2> /dev/null | sed -e "s/.*\\/`basename $0`-//"
 	find "`dirname $0`" -maxdepth 1 -name "guilt-*" -type f -perm +111 | sed -e "s/.*\\/`basename $0`-//"
 }
 
-if [ "`basename $0`" = "guilt" ]; then
-	# being run as standalone
+# by default, we shouldn't fail
+cmd=
 
-	# by default, we shouldn't fail
-	cmd=
+if [ $# -ne 0 ]; then
+	# take first arg, and try to execute it
 
-	if [ $# -ne 0 ]; then
-		# take first arg, and try to execute it
+	arg="$1"
+	dir=`dirname $0`
+	libdir="`dirname $0`/../lib/guilt"
 
-		arg="$1"
-		dir=`dirname $0`
-
-		if [ -x "$dir/guilt-$arg" ]; then
-			cmd=$arg
-		else
-			# might be a short handed
-			for command in $(guilt_commands); do
-				case $command in
-				$arg*)
-					if [ -x "$dir/guilt-$command" ]; then
-						cmd=$command
-					fi
-					;;
-				esac
-			done
-		fi
-		if [ -n "$cmd" ]; then
-			shift
-			exec "$dir/guilt-$cmd" "$@"
-
-			# this is not reached because of the exec
-			die "Exec failed! Something is terribly wrong!"
-		else
-			disp "Command $arg not found" >&2
-			disp "" >&2
-		fi
+	if [ -x "$dir/guilt-$arg" ]; then
+		cmd="$dir/guilt-$arg"
+		CMDNAME=$arg
+	elif [ -x "$libdir/guilt-$arg" ]; then
+		cmd="$libdir/guilt-$arg"
+		CMDNAME=$arg
+	else
+		# might be a short handed
+		for command in $(guilt_commands); do
+			case $command in
+			$arg*)
+				if [ -x "$dir/guilt-$command" ]; then
+					cmd="$dir/guilt-$command"
+					CMDNAME=$command
+				elif [ -x "$libdir/guilt-$command" ]; then
+					cmd="$libdir/guilt-$command"
+					CMDNAME=$command
+				fi
+				;;
+			esac
+		done
+	fi
+	if [ -z "$cmd" ]; then
+		disp "Command $arg not found" >&2
+		disp "" >&2
+		exit 1
 	fi
 
+	shift
+else
 	# no args passed or invalid command entered, just output help summary
 
 	disp "Guilt v$GUILT_VERSION"
@@ -116,8 +124,6 @@ if [ "`basename $0`" = "guilt" ]; then
 
 	disp ""
 	disp "Example:"
-	disp "\tguilt-push"
-	disp "or"
 	disp "\tguilt push"
 
 	# now, let's exit
@@ -154,9 +160,9 @@ get_branch()
 verify_branch()
 {
 	[ ! -d "$GIT_DIR/patches" ] &&
-		die "Patches directory doesn't exist, try guilt-init"
+		die "Patches directory doesn't exist, try guilt init"
 	[ ! -d "$GIT_DIR/patches/$branch" ] &&
-		die "Branch $branch is not initialized, try guilt-init"
+		die "Branch $branch is not initialized, try guilt init"
 	[ ! -f "$GIT_DIR/patches/$branch/series" ] &&
 		die "Branch $branch does not have a series file"
 	[ ! -f "$GIT_DIR/patches/$branch/status" ] &&
@@ -805,6 +811,11 @@ guilt_hook()
 }
 
 #
+# source the command
+#
+. "$cmd"
+
+#
 # Some constants
 #
 
@@ -831,18 +842,18 @@ GUILT_DIR="$GIT_DIR/patches"
 branch=`get_branch`
 
 # most of the time we want to verify that the repo's branch has been
-# initialized, but every once in a blue moon (e.g., we want to run guilt-init),
+# initialized, but every once in a blue moon (e.g., we want to run guilt init),
 # we must avoid the checks
 if [ -z "$DO_NOT_CHECK_BRANCH_EXISTENCE" ]; then
 	verify_branch
 
-	# do not check the status file format (guilt-repair needs this,
+	# do not check the status file format (guilt repair needs this,
 	# otherwise nothing can do what's necessary to bring the repo into a
 	# useable state)
 	if [ -z "$DO_NOT_CHECK_STATUS_FILE_FORMAT" ]; then
 		[ -s "$GIT_DIR/patches/$branch/status" ] &&
 			grep "^[0-9a-f]\{40\}:" "$GIT_DIR/patches/$branch/status" > /dev/null &&
-			die "Status file appears to use old format, try guilt-repair --status"
+			die "Status file appears to use old format, try guilt repair --status"
 	fi
 fi
 
@@ -859,6 +870,10 @@ UNAME_S=`uname -s`
 
 if [ -r "`dirname $0`/os.$UNAME_S" ]; then
 	. "`dirname $0`/os.$UNAME_S"
+elif [ -r "`dirname $0`/../lib/guilt/os.$UNAME_S" ]; then
+	. "`dirname $0`/../lib/guilt/os.$UNAME_S"
 else
 	die "Unsupported operating system: $UNAME_S"
 fi
+
+_main "$@"

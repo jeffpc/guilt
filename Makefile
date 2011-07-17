@@ -2,8 +2,8 @@ PREFIX?=/usr/local
 DESTDIR?=
 INSTALL?=install
 
-SCRIPTS = guilt \
-	  $(filter-out $(wildcard *~),$(wildcard guilt-*))
+OSFILES = $(filter-out $(wildcard *~),$(wildcard os.*))
+SCRIPTS = $(filter-out $(wildcard *~),$(wildcard guilt-*))
 
 .PHONY: all 
 all: doc
@@ -13,7 +13,10 @@ all: doc
 .PHONY: install
 install:
 	$(INSTALL) -d $(DESTDIR)$(PREFIX)/bin/
-	$(INSTALL) -m 755 $(SCRIPTS) $(DESTDIR)$(PREFIX)/bin/
+	$(INSTALL) -m 755 guilt $(DESTDIR)$(PREFIX)/bin/
+	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/guilt/
+	$(INSTALL) -m 755 $(SCRIPTS) $(DESTDIR)$(PREFIX)/lib/guilt/
+	$(INSTALL) -m 644 $(OSFILES) $(DESTDIR)$(PREFIX)/lib/guilt/
 
 .PHONY: uninstall
 uninstall:

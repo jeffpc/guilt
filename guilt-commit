@@ -1,10 +1,15 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2008
+# Copyright (c) Josef "Jeff" Sipek, 2008-2011
 #
 
 USAGE="-n <num> | -a | --all"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 case "$1" in
 	-a|--all)
@@ -37,3 +42,5 @@ done
 # update $applied to include only the patches we're keeping
 sed -n -e "${pat_keep}" "$applied" > "$applied.tmp"
 mv "$applied.tmp" "$applied"
+
+}

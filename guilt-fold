@@ -1,10 +1,15 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2006-2011
 #
 
 USAGE="[-k] <patchname>"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 if [ "$1" = "-k" ]; then
 	keep=t
@@ -40,3 +45,5 @@ fold_patch "$patch"
 
 # back it up just in case :)
 [ -z "$keep" ] && mv "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$patch~"
+
+}

@@ -1,36 +1,20 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2008
+# Copyright (c) Josef "Jeff" Sipek, 2008-2011
 #
 
 DO_NOT_CHECK_STATUS_FILE_FORMAT=1
 
 USAGE="--full | --status"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
 
 safety_abort()
 {
 	die "Please read the man page first. (you need to specify repair mode to proceed)."
 }
-
-[ $# -ne 1 ] && safety_abort
-
-case "$1" in
-	--full)
-		repair="full"
-		;;
-	--status)
-		repair="status"
-		;;
-	--autotag)
-		echo "Autotagging is no longer supported" >&2
-		;;
-	*)
-		usage
-		;;
-esac
-
-oldrev=`git show-ref -s "refs/heads/$branch"`
 
 #
 # Check whether status file needs fixing/upgrading. If not, just return,
@@ -109,6 +93,27 @@ repair_pushed()
 	return 0
 }
 
+_main() {
+
+[ $# -ne 1 ] && safety_abort
+
+case "$1" in
+	--full)
+		repair="full"
+		;;
+	--status)
+		repair="status"
+		;;
+	--autotag)
+		echo "Autotagging is no longer supported" >&2
+		;;
+	*)
+		usage
+		;;
+esac
+
+oldrev=`git show-ref -s "refs/heads/$branch"`
+
 case "$repair" in
 	full)
 		repair_status
@@ -124,3 +129,5 @@ esac
 
 disp "Repair complete."
 exit 0
+
+}

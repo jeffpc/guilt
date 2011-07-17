@@ -1,10 +1,15 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2006-2011
 #
 
 USAGE="[-p|--path]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 while [ $# -ne 0 ]; do
 	case "$1" in
@@ -21,3 +26,5 @@ p=`get_prev`
 if [ -n "$p" ]; then
 	disp $path$p
 fi
+
+}

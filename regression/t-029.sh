@@ -9,30 +9,30 @@ source $REG_DIR/scaffold
 
 cmd setup_repo
 
-cmd guilt-push -a
+cmd guilt push -a
 
 cmd list_files
 
-shouldfail guilt-repair
+shouldfail guilt repair
 
 cmd list_files
 
-echo | shouldfail guilt-repair --full
+echo | shouldfail guilt repair --full
 
 cmd list_files
 
-yes n | shouldfail guilt-repair --full
+yes n | shouldfail guilt repair --full
 
 cmd list_files
 
-yes y | cmd guilt-repair --full
+yes y | cmd guilt repair --full
 
 cmd list_files
 
-cmd guilt-push -a
+cmd guilt push -a
 
 cmd list_files
 
-yes Y | cmd guilt-repair --full
+yes Y | cmd guilt repair --full
 
 cmd list_files

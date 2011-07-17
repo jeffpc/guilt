@@ -1,7 +1,7 @@
 % setup_repo
-% guilt-header
+% guilt header
 No patches applied.
-% guilt-push -a
+% guilt push -a
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -10,10 +10,10 @@ Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-new -s -m blah blah blah patch-with-some-desc
-% guilt-pop
+% guilt new -s -m blah blah blah patch-with-some-desc
+% guilt pop
 Now at mode.
-% guilt-push
+% guilt push
 Applying patch..patch-with-some-desc
 Patch applied.
 % list_files
@@ -33,19 +33,19 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 r ccd56089d1b5305a9d35617cb7f6f4b06ffa68ba  .git/refs/patches/master/mode
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
-% guilt-header
+% guilt header
 blah blah blah
 
 Signed-off-by: Commiter Name <commiter@email>
 
-% guilt-header modify
-% guilt-header add
-% guilt-header remove
-% guilt-header mode
-% guilt-header patch-with-some-desc
+% guilt header modify
+% guilt header add
+% guilt header remove
+% guilt header mode
+% guilt header patch-with-some-desc
 blah blah blah
 
 Signed-off-by: Commiter Name <commiter@email>
 
-% guilt-header non-existant
+% guilt header non-existant
 Patch non-existant is not in the series

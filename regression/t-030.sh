@@ -17,25 +17,25 @@ function opts_to_try
 DONE
 }
 
-shouldfail guilt-commit
+shouldfail guilt commit
 
 cmd list_files
  
 opts_to_try | while read opt; do
-	cmd guilt-commit $opt
+	cmd guilt commit $opt
 
 	cmd list_files
 done 
 
 
-cmd guilt-push -a
+cmd guilt push -a
 
-shouldfail guilt-commit
+shouldfail guilt commit
 
 cmd list_files
  
 opts_to_try | while read opt; do
-	cmd guilt-commit $opt
+	cmd guilt commit $opt
 
 	cmd list_files
 done

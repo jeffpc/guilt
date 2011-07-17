@@ -7,16 +7,16 @@ source $REG_DIR/scaffold
 
 cmd setup_repo
 
-guilt-series | while read n ; do
-	cmd guilt-top
+guilt series | while read n ; do
+	cmd guilt top
 
 	cmd list_files
 
-	cmd guilt-push
+	cmd guilt push
 
 	cmd list_files
 done
 
-cmd guilt-top
+cmd guilt top
 
 cmd list_files

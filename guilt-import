@@ -1,10 +1,15 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2007-2011
 #
 
 USAGE="[-P <patch> ] <patch_file>"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 case "$1" in
 	-P)
@@ -46,3 +51,5 @@ cp "$oldname" "$GUILT_DIR/$branch/$newname"
 
 # insert the patch into the series file
 series_insert_patch "$newname"
+
+}

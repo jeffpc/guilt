@@ -1,10 +1,15 @@
 #!/bin/sh
 #
-# Copyright (C) 2007 Josef 'Jeff' Sipek <jeffpc@josefsipek.net>
+# Copyright (C) Josef 'Jeff' Sipek, 2007-2011
 #
 
 USAGE="[-z] [<path>...]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 while [ $# -ne 0 ]; do
 	case "$1" in
@@ -24,3 +29,5 @@ PREV=HEAD^
 [ ! -z "$working_tree" ] && PREV=
 
 git diff --binary $PREV -- "$@"
+
+}

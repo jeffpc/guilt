@@ -1,10 +1,15 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2007-2011
 #
 
 USAGE="[<hash> | <since>..[<until>] | ..<until>]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 if [ $# -ne 1 ] || [ -z "$1" ]; then
 	die "You must specify a range of commits"
@@ -65,3 +70,4 @@ done
 disp "Done." >&2
 disp "Current head: `cat $GIT_DIR/refs/heads/$branch`" >&2
 
+}

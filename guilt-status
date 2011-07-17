@@ -1,10 +1,43 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2006-2011
 #
 
 USAGE="[-a|-A] [-c|-C] [-d|-D] [-m|-M] [-r|-R] [-t|-T] [-u|-U] [-x|-X] [-n]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+print_status()
+{
+	if [ -z "$no_prefix" ] ; then
+		Apfx="A "
+		Cpfx="C "
+		Dpfx="D "
+		Mpfx="M "
+		Rpfx="R "
+		Tpfx="T "
+		Upfx="U "
+		Xpfx="? "
+	fi
+
+	while read status name newname
+	do
+		case "$status" in
+			A*) disp "$Apfx$name";;
+			C*) disp "$Cpfx$name -> $newname";;
+			D*) disp "$Dpfx$name";;
+			M ) disp "$Mpfx$name";;
+			R*) disp "$Rpfx$name -> $newname";;
+			T ) disp "$Tpfx$name";;
+			U ) disp "$Upfx$name";;
+			? ) disp "$Xpfx$name";;
+		esac
+	done
+}
+
+_main() {
 
 untracked=""
 DIFF_FILTER=""
@@ -53,34 +86,6 @@ fi
 
 git rev-parse --verify HEAD >/dev/null 2>&1 || IS_INITIAL=t
 
-print_status()
-{
-	if [ -z "$no_prefix" ] ; then
-		Apfx="A "
-		Cpfx="C "
-		Dpfx="D "
-		Mpfx="M "
-		Rpfx="R "
-		Tpfx="T "
-		Upfx="U "
-		Xpfx="? "
-	fi
-
-	while read status name newname
-	do
-		case "$status" in
-			A*) disp "$Apfx$name";;
-			C*) disp "$Cpfx$name -> $newname";;
-			D*) disp "$Dpfx$name";;
-			M ) disp "$Mpfx$name";;
-			R*) disp "$Rpfx$name -> $newname";;
-			T ) disp "$Tpfx$name";;
-			U ) disp "$Upfx$name";;
-			? ) disp "$Xpfx$name";;
-		esac
-	done
-}
-
 (
 	cd_to_toplevel
 	# untracked; FIXME: there's got to be a better way
@@ -110,3 +115,4 @@ print_status()
 	'
 ) | print_status
 
+}

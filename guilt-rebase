@@ -1,12 +1,17 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2007-2011
 #
 # Heavily based on the long removed sh version of git-cherry
 #
 
 USAGE="<upstream>"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 disp "Beware, rebase is currently EXPERIMENTAL."
 disp "In other words, it might eat your patches."
@@ -97,3 +102,5 @@ rm -rf "$rebase_dir"
 
 disp ""
 disp "Done."
+
+}

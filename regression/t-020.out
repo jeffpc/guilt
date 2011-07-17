@@ -1,5 +1,5 @@
 % setup_repo
-% guilt-push
+% guilt push
 Applying patch..modify
 Patch applied.
 % list_files
@@ -44,7 +44,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push
+% guilt push
 Applying patch..add
 Patch applied.
 % list_files
@@ -105,7 +105,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push
+% guilt push
 Applying patch..remove
 Patch applied.
 % list_files
@@ -182,7 +182,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push
+% guilt push
 Applying patch..mode
 Patch applied.
 % list_files
@@ -270,9 +270,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
-% guilt-push
+% guilt push
 Applying patch..modify
 Patch applied.
 % list_files
@@ -317,9 +317,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
-% guilt-push
+% guilt push
 Applying patch..modify
 Patch applied.
 % list_files
@@ -364,9 +364,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
-% guilt-push
+% guilt push
 Applying patch..modify
 Patch applied.
 % list_files
@@ -411,9 +411,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
-% guilt-push
+% guilt push
 Applying patch..modify
 Patch applied.
 % list_files
@@ -458,9 +458,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
-% guilt-push
+% guilt push
 Applying patch..modify
 Patch applied.
 % list_files
@@ -505,7 +505,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push
+% guilt push
 Applying patch..add
 Patch applied.
 % list_files
@@ -566,7 +566,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push
+% guilt push
 Applying patch..remove
 Patch applied.
 % list_files
@@ -643,7 +643,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push
+% guilt push
 Applying patch..mode
 Patch applied.
 % list_files
@@ -731,9 +731,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
-% guilt-push -n -2
+% guilt push -n -2
 Invalid number of patches to push.
 % list_files
 d .git/patches
@@ -762,9 +762,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 No patches applied.
-% guilt-push -n -1
+% guilt push -n -1
 Invalid number of patches to push.
 % list_files
 d .git/patches
@@ -793,9 +793,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 No patches applied.
-% guilt-push -n 0
+% guilt push -n 0
 Patch is already applied.
 % list_files
 d .git/patches
@@ -824,9 +824,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 No patches applied.
-% guilt-push -n 1
+% guilt push -n 1
 Applying patch..modify
 Patch applied.
 % list_files
@@ -871,9 +871,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
-% guilt-push -n 2
+% guilt push -n 2
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -936,9 +936,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
-% guilt-push -n 3
+% guilt push -n 3
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -1019,9 +1019,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
-% guilt-push -n 4
+% guilt push -n 4
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -1115,7 +1115,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop --all
+% guilt pop --all
 All patches popped.
 % list_files
 d .git/patches

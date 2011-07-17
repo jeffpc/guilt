@@ -4,13 +4,18 @@
 #
 
 USAGE="[-l | --list | -n | --none | [<patchname>] [(+|-)<guard>...]]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
 
 print_guards()
 {
 	guards=`get_guards "$1"`
 	echo "$1: $guards"
 }
+
+_main() {
 
 if [ "$1" = "-l" -o "$1" = "--list" ]; then
 	get_full_series | while read patch; do
@@ -67,3 +72,5 @@ case $# in
 		set_guards "$patch" "$@"
 		;;
 esac
+
+}

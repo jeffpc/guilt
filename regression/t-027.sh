@@ -13,19 +13,19 @@ function fixup_time_info
 }
 
 echo abcdef >> def
-shouldfail guilt-refresh
+shouldfail guilt refresh
 
 cmd list_files
 
 cmd git reset --hard HEAD
 
-cmd guilt-push modify
+cmd guilt push modify
 
 echo abcdef >> def
-cmd guilt-refresh
-cmd guilt-pop
+cmd guilt refresh
+cmd guilt pop
 fixup_time_info modify
-cmd guilt-push modify
+cmd guilt push modify
 
 cmd list_files
 

@@ -1,11 +1,11 @@
 % setup_repo
-% guilt-new subdir
+% guilt new subdir
 % mkdir blah
 % touch blah/sub
-% guilt-add blah/sub
-% guilt-refresh
+% guilt add blah/sub
+% guilt refresh
 Patch subdir refreshed
-% guilt-push -a
+% guilt push -a
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -14,27 +14,27 @@ Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-files
+% guilt files
 def
-% guilt-files -v
+% guilt files -v
   def
-% guilt-files -l
+% guilt files -l
 mode def
-% guilt-files -v -l
+% guilt files -v -l
 [mode] def
-% guilt-files -a
+% guilt files -a
 blah/sub
 def
 abd
 abd
 def
-% guilt-files -l -a
+% guilt files -l -a
 subdir blah/sub
 modify def
 add abd
 remove abd
 mode def
-% guilt-files -v -a
+% guilt files -v -a
 subdir
 + blah/sub
 modify
@@ -45,7 +45,7 @@ remove
 - abd
 mode
   def
-% guilt-files -v -l -a
+% guilt files -v -l -a
 [subdir] blah/sub
 [modify] def
 [add] abd
@@ -55,27 +55,27 @@ mode
 1024+0 records in
 1024+0 records out
 1024 bytes (1.0 kB) copied
-% guilt-files
+% guilt files
 def
-% guilt-files -v
+% guilt files -v
   def
-% guilt-files -l
+% guilt files -l
 mode def
-% guilt-files -v -l
+% guilt files -v -l
 [mode] def
-% guilt-files -a
+% guilt files -a
 blah/sub
 def
 abd
 abd
 def
-% guilt-files -l -a
+% guilt files -l -a
 subdir blah/sub
 modify def
 add abd
 remove abd
 mode def
-% guilt-files -v -a
+% guilt files -v -a
 subdir
 + blah/sub
 modify
@@ -86,40 +86,40 @@ remove
 - abd
 mode
   def
-% guilt-files -v -l -a
+% guilt files -v -l -a
 [subdir] blah/sub
 [modify] def
 [add] abd
 [remove] abd
 [mode] def
 % git add file.bin
-% guilt-files
+% guilt files
 def
 file.bin
-% guilt-files -v
+% guilt files -v
   def
 + file.bin
-% guilt-files -l
+% guilt files -l
 mode def
 mode file.bin
-% guilt-files -v -l
+% guilt files -v -l
 [mode] def
 [mode] file.bin
-% guilt-files -a
+% guilt files -a
 blah/sub
 def
 abd
 abd
 def
 file.bin
-% guilt-files -l -a
+% guilt files -l -a
 subdir blah/sub
 modify def
 add abd
 remove abd
 mode def
 mode file.bin
-% guilt-files -v -a
+% guilt files -v -a
 subdir
 + blah/sub
 modify
@@ -131,7 +131,7 @@ remove
 mode
   def
 + file.bin
-% guilt-files -v -l -a
+% guilt files -v -l -a
 [subdir] blah/sub
 [modify] def
 [add] abd
@@ -140,33 +140,33 @@ mode
 [mode] file.bin
 % git rm def
 rm 'def'
-% guilt-files
+% guilt files
 def
 file.bin
-% guilt-files -v
+% guilt files -v
 - def
 + file.bin
-% guilt-files -l
+% guilt files -l
 mode def
 mode file.bin
-% guilt-files -v -l
+% guilt files -v -l
 [mode] def
 [mode] file.bin
-% guilt-files -a
+% guilt files -a
 blah/sub
 def
 abd
 abd
 def
 file.bin
-% guilt-files -l -a
+% guilt files -l -a
 subdir blah/sub
 modify def
 add abd
 remove abd
 mode def
 mode file.bin
-% guilt-files -v -a
+% guilt files -v -a
 subdir
 + blah/sub
 modify
@@ -178,7 +178,7 @@ remove
 mode
 - def
 + file.bin
-% guilt-files -v -l -a
+% guilt files -v -l -a
 [subdir] blah/sub
 [modify] def
 [add] abd

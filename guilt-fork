@@ -1,10 +1,15 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2007-2011
 #
 
 USAGE="[<new_name>]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 if [ $# -gt 1 ]; then
 	usage
@@ -46,3 +51,5 @@ cp "$GUILT_DIR/$branch/$patch" "$GUILT_DIR/$branch/$newpatch"
 series_rename_patch "$patch" "$newpatch"
 applied_rename_patch "$patch" "$newpatch"
 ref_rename_patch "$patch" "$newpatch"
+
+}

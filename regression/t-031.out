@@ -1,5 +1,5 @@
 % setup_repo
-% guilt-push -n 2
+% guilt push -n 2
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -17,7 +17,7 @@ f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
-% guilt-fork mode
+% guilt fork mode
 Patch "mode" already exists. Choose another name.
 % list_files
 d .git/patches
@@ -32,7 +32,7 @@ f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
-% guilt-fork foobar
+% guilt fork foobar
 % list_files
 d .git/patches
 d .git/patches/master

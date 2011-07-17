@@ -1,12 +1,17 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2007
+# Copyright (c) Josef "Jeff" Sipek, 2007-2011
 #
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
 USAGE="[-n] [-s] [--in-reply-to <msgid>] [--git] [--subject-prefix <prefix>] [<hash> | <since>..[<until>] | ..<until>]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
+
+_main() {
 
 TMP_FILE=`get_tmp_file file`
 
@@ -111,3 +116,5 @@ read n
 
 [ "$n" = "n" ] || [ "$n" = "N" ] && exit 0
 rm -rf $dir
+
+}

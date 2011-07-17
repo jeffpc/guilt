@@ -1,42 +1,42 @@
 % setup_repo
-% guilt-series
+% guilt series
 modify
 add
 remove
 mode
-% guilt-series -v
+% guilt series -v
   modify
   add
   remove
   mode
-% guilt-push
+% guilt push
 Applying patch..modify
 Patch applied.
-% guilt-series -v
+% guilt series -v
 = modify
   add
   remove
   mode
-% guilt-push
+% guilt push
 Applying patch..add
 Patch applied.
-% guilt-series -v
+% guilt series -v
 + modify
 = add
   remove
   mode
-% guilt-push
+% guilt push
 Applying patch..remove
 Patch applied.
-% guilt-series -v
+% guilt series -v
 + modify
 + add
 = remove
   mode
-% guilt-push
+% guilt push
 Applying patch..mode
 Patch applied.
-% guilt-series -v
+% guilt series -v
 + modify
 + add
 + remove

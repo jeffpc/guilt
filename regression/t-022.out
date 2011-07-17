@@ -1,11 +1,11 @@
 % setup_repo
-% guilt-applied
-% guilt-push
+% guilt applied
+% guilt push
 Applying patch..modify
 Patch applied.
-% guilt-applied
+% guilt applied
 modify
-% guilt-applied -c
+% guilt applied -c
 33633e7a1aa31972f125878baf7807be57b1672d modify
 % list_files
 d .git/patches
@@ -19,13 +19,13 @@ f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
 f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% guilt-push
+% guilt push
 Applying patch..add
 Patch applied.
-% guilt-applied
+% guilt applied
 modify
 add
-% guilt-applied -c
+% guilt applied -c
 33633e7a1aa31972f125878baf7807be57b1672d modify
 37d588cc39848368810e88332bd03b083f2ce3ac add
 % list_files
@@ -41,14 +41,14 @@ f bacb4aad8a55fe4e7aa58a9ae169990bb764069f  .git/patches/master/series
 f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
-% guilt-push
+% guilt push
 Applying patch..remove
 Patch applied.
-% guilt-applied
+% guilt applied
 modify
 add
 remove
-% guilt-applied -c
+% guilt applied -c
 33633e7a1aa31972f125878baf7807be57b1672d modify
 37d588cc39848368810e88332bd03b083f2ce3ac add
 ffb7faa126a6d91bcdd44a494f76b96dd860b8b9 remove
@@ -66,15 +66,15 @@ f f322f08d907e3737a4321b0ec90bc545f71af7cf  .git/patches/master/status
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
-% guilt-push
+% guilt push
 Applying patch..mode
 Patch applied.
-% guilt-applied
+% guilt applied
 modify
 add
 remove
 mode
-% guilt-applied -c
+% guilt applied -c
 33633e7a1aa31972f125878baf7807be57b1672d modify
 37d588cc39848368810e88332bd03b083f2ce3ac add
 ffb7faa126a6d91bcdd44a494f76b96dd860b8b9 remove

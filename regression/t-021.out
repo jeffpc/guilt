@@ -1,5 +1,5 @@
 % setup_repo
-% guilt-push --all
+% guilt push --all
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -78,7 +78,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop
+% guilt pop
 Now at remove.
 % list_files
 d .git/patches
@@ -154,7 +154,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop
+% guilt pop
 Now at add.
 % list_files
 d .git/patches
@@ -214,7 +214,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop
+% guilt pop
 Now at modify.
 % list_files
 d .git/patches
@@ -258,7 +258,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop
+% guilt pop
 All patches popped.
 % list_files
 d .git/patches
@@ -287,7 +287,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -296,7 +296,7 @@ Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-pop mode
+% guilt pop mode
 Now at remove.
 % list_files
 d .git/patches
@@ -372,10 +372,10 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..mode
 Patch applied.
-% guilt-pop remove
+% guilt pop remove
 Now at add.
 % list_files
 d .git/patches
@@ -435,12 +435,12 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-pop add
+% guilt pop add
 Now at modify.
 % list_files
 d .git/patches
@@ -484,14 +484,14 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..add
 Patch applied.
 Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-pop modify
+% guilt pop modify
 All patches popped.
 % list_files
 d .git/patches
@@ -520,7 +520,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -529,7 +529,7 @@ Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-pop
+% guilt pop
 Now at remove.
 % list_files
 d .git/patches
@@ -605,7 +605,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop
+% guilt pop
 Now at add.
 % list_files
 d .git/patches
@@ -665,7 +665,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop
+% guilt pop
 Now at modify.
 % list_files
 d .git/patches
@@ -709,7 +709,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-pop
+% guilt pop
 All patches popped.
 % list_files
 d .git/patches
@@ -738,7 +738,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..modify
 Patch applied.
 Applying patch..add
@@ -747,7 +747,7 @@ Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-pop -n -2
+% guilt pop -n -2
 Invalid number of patches to pop.
 % list_files
 d .git/patches
@@ -834,9 +834,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 File series fully applied, ends at patch mode
-% guilt-pop -n -1
+% guilt pop -n -1
 Invalid number of patches to pop.
 % list_files
 d .git/patches
@@ -923,9 +923,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 File series fully applied, ends at patch mode
-% guilt-pop -n 0
+% guilt pop -n 0
 No patches requested to be removed.
 % list_files
 d .git/patches
@@ -1012,9 +1012,9 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 File series fully applied, ends at patch mode
-% guilt-pop -n 1
+% guilt pop -n 1
 Now at remove.
 % list_files
 d .git/patches
@@ -1090,10 +1090,10 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..mode
 Patch applied.
-% guilt-pop -n 2
+% guilt pop -n 2
 Now at add.
 % list_files
 d .git/patches
@@ -1153,12 +1153,12 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-pop -n 3
+% guilt pop -n 3
 Now at modify.
 % list_files
 d .git/patches
@@ -1202,14 +1202,14 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..add
 Patch applied.
 Applying patch..remove
 Patch applied.
 Applying patch..mode
 Patch applied.
-% guilt-pop -n 4
+% guilt pop -n 4
 All patches popped.
 % list_files
 d .git/patches
@@ -1238,7 +1238,7 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
-% guilt-push --all
+% guilt push --all
 Applying patch..modify
 Patch applied.
 Applying patch..add

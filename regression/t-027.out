@@ -1,6 +1,6 @@
 % setup_repo
-% guilt-refresh
-No patches applied; try guilt-push first
+% guilt refresh
+No patches applied; try guilt push first
 % list_files
 d .git/patches
 d .git/patches/master
@@ -12,14 +12,14 @@ f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 % git reset --hard HEAD
 HEAD is now at d485041 initial
-% guilt-push modify
+% guilt push modify
 Applying patch..modify
 Patch applied.
-% guilt-refresh
+% guilt refresh
 Patch modify refreshed
-% guilt-pop
+% guilt pop
 All patches popped.
-% guilt-push modify
+% guilt push modify
 Applying patch..modify
 Patch applied.
 % list_files

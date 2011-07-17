@@ -2,13 +2,13 @@
 % reset_git_repo
 Already on "master"
 HEAD is now at d485041 initial
-% guilt-init
+% guilt init
 % list_files
 d .git/patches
 d .git/patches/master
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% guilt-init
+% guilt init
 Branch master appears to be already initialized (GIT_DIR=PATH/.git)
 % list_files
 d .git/patches
@@ -18,14 +18,14 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 % reset_git_repo
 Already on "master"
 HEAD is now at d485041 initial
-% guilt-init -a
+% guilt init -a
 Autotagging is no longer supported
 % list_files
 d .git/patches
 d .git/patches/master
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% guilt-init -a
+% guilt init -a
 Autotagging is no longer supported
 Branch master appears to be already initialized (GIT_DIR=PATH/.git)
 % list_files
@@ -36,14 +36,14 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 % reset_git_repo
 Already on "master"
 HEAD is now at d485041 initial
-% guilt-init -n
+% guilt init -n
 Autotagging is no longer supported
 % list_files
 d .git/patches
 d .git/patches/master
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
-% guilt-init -n
+% guilt init -n
 Autotagging is no longer supported
 Branch master appears to be already initialized (GIT_DIR=PATH/.git)
 % list_files
@@ -54,7 +54,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 % git branch other
 % git checkout other
 Switched to branch "other"
-% guilt-init
+% guilt init
 % list_files
 d .git/patches
 d .git/patches/master
@@ -63,7 +63,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/other/series
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/other/status
-% guilt-init
+% guilt init
 Branch other appears to be already initialized (GIT_DIR=PATH/.git)
 % list_files
 d .git/patches

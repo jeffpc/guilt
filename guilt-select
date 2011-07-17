@@ -4,7 +4,10 @@
 #
 
 USAGE="[ -n | --none | -s | --series | [--pop|--reapply] <guards...> ]"
-. `dirname $0`/guilt
+if [ -z "$GUILT_VERSION" ]; then
+	echo "Invoking `basename $0` directly is no longer supported." >&2
+	exit 1
+fi
 
 select_guards()
 {
@@ -15,6 +18,8 @@ select_guards()
 	done
 	echo "$@" | sed -e 's/ /\n/g' | sort | uniq > "$guards_file"
 }
+
+_main() {
 
 if [ $# -eq 0 ]; then
 	if [ -s "$guards_file" ]; then
@@ -50,3 +55,5 @@ case $1 in
 		select_guards "$@"
 		;;
 esac
+
+}
