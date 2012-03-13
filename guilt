@@ -6,12 +6,14 @@
 GUILT_VERSION="0.35"
 GUILT_NAME="Gloria"
 
+GUILT="$(basename "$0")"
+
 # If the first argument is one of the below, display the man page instead of
 # the rather silly and mostly useless usage string
 case $1 in
 	-h|--h|--he|--hel|--help)
 	shift
-	exec "guilt help" "`basename $0`"
+	exec "guilt help" "$GUILT"
 	exit
 	;;
 	-V|--ver|--versi|--versio|--version)
@@ -69,10 +71,12 @@ silent()
 
 ########
 
+GUILT_PATH="$(dirname "$0")"
+
 guilt_commands()
 {
-	find "`dirname $0`/../lib/guilt" -maxdepth 1 -name "guilt-*" -type f -perm +111 2> /dev/null | sed -e "s/.*\\/`basename $0`-//"
-	find "`dirname $0`" -maxdepth 1 -name "guilt-*" -type f -perm +111 | sed -e "s/.*\\/`basename $0`-//"
+	find "$GUILT_PATH/../lib/guilt" -maxdepth 1 -name "guilt-*" -type f -perm +111 2> /dev/null | sed -e "s/.*\\/$GUILT-//"
+	find "$GUILT_PATH" -maxdepth 1 -name "guilt-*" -type f -perm +111 | sed -e "s/.*\\/$GUILT-//"
 }
 
 # by default, we shouldn't fail
@@ -82,8 +86,8 @@ if [ $# -ne 0 ]; then
 	# take first arg, and try to execute it
 
 	arg="$1"
-	dir=`dirname $0`
-	libdir="`dirname $0`/../lib/guilt"
+	dir="$GUILT_PATH"
+	libdir="$GUILT_PATH/../lib/guilt"
 
 	if [ -x "$dir/guilt-$arg" ]; then
 		cmd="$dir/guilt-$arg"
@@ -878,10 +882,10 @@ pager="more"
 
 UNAME_S=`uname -s`
 
-if [ -r "`dirname $0`/os.$UNAME_S" ]; then
-	. "`dirname $0`/os.$UNAME_S"
-elif [ -r "`dirname $0`/../lib/guilt/os.$UNAME_S" ]; then
-	. "`dirname $0`/../lib/guilt/os.$UNAME_S"
+if [ -r "$GUILT_PATH/os.$UNAME_S" ]; then
+	. "$GUILT_PATH/os.$UNAME_S"
+elif [ -r "$GUILT_PATH/../lib/guilt/os.$UNAME_S" ]; then
+	. "$GUILT_PATH/../lib/guilt/os.$UNAME_S"
 else
 	die "Unsupported operating system: $UNAME_S"
 fi

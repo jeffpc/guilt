@@ -5,7 +5,7 @@
 
 USAGE="[-a|-A] [-c|-C] [-d|-D] [-m|-M] [-r|-R] [-t|-T] [-u|-U] [-x|-X] [-n]"
 if [ -z "$GUILT_VERSION" ]; then
-	echo "Invoking `basename $0` directly is no longer supported." >&2
+	echo "Invoking $GUILT directly is no longer supported." >&2
 	exit 1
 fi
 

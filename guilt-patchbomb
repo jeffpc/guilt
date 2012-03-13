@@ -7,7 +7,7 @@ DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
 USAGE="[-n] [-s] [--in-reply-to <msgid>] [--git] [--subject-prefix <prefix>] [<hash> | <since>..[<until>] | ..<until>]"
 if [ -z "$GUILT_VERSION" ]; then
-	echo "Invoking `basename $0` directly is no longer supported." >&2
+	echo "Invoking $GUILT directly is no longer supported." >&2
 	exit 1
 fi
 

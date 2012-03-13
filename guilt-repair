@@ -7,7 +7,7 @@ DO_NOT_CHECK_STATUS_FILE_FORMAT=1
 
 USAGE="--full | --status"
 if [ -z "$GUILT_VERSION" ]; then
-	echo "Invoking `basename $0` directly is no longer supported." >&2
+	echo "Invoking $GUILT directly is no longer supported." >&2
 	exit 1
 fi
 
