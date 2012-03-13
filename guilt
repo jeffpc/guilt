@@ -196,7 +196,7 @@ get_full_series()
 
 		p
 		}
-		" $series
+		" "$series"
 }
 
 get_series()
@@ -640,7 +640,7 @@ push_patch()
 
 		commit "$pname" HEAD
 
-		echo "$pname" >> $applied
+		echo "$pname" >> "$applied"
 
 		rm -f "$TMP_LOG"
 	)
@@ -747,7 +747,7 @@ __refresh_patch()
 
 		# move the new patch in
 		mv "$p" "$p~"
-		mv "$TMP_DIFF" $p
+		mv "$TMP_DIFF" "$p"
 
 		# commit
 		commit "$pname" "HEAD~$3"

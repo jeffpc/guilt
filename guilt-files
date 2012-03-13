@@ -34,9 +34,9 @@ top_patch=`get_top`
 
 IFS=:
 if [ -n "$opt_all" ]; then
-	cat $applied
+	cat "$applied"
 else
-	tail -n 1 $applied
+	tail -n 1 "$applied"
 fi | while read patch; do
 	obj=`git rev-parse refs/patches/$branch/$patch`
 

@@ -15,7 +15,7 @@ if [ $# -ne 0 ]; then
 	usage
 fi
 
-n=`wc -l < $applied`
+n=`wc -l < "$applied"`
 n=`expr $n + 1`
 
 get_series | sed -n -e "$n,\$p"

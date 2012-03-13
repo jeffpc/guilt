@@ -72,7 +72,7 @@ elif [ ! -z "$num" ]; then
 	eidx=`get_series | wc -l`
 
 	# calculate end index from current
-	tidx=`wc -l < $applied`
+	tidx=`wc -l < "$applied"`
 	tidx=`expr $tidx + $patch`
 
 	# clamp to minimum
@@ -81,7 +81,7 @@ elif [ ! -z "$num" ]; then
 elif [ -z "$patch" ]; then
 	# we are supposed to push only the next patch onto the stack
 
-	eidx=`wc -l < $applied`
+	eidx=`wc -l < "$applied"`
 	eidx=`expr $eidx + 1`
 else
 	# we're supposed to push only up to a patch, make sure the patch is
@@ -99,7 +99,7 @@ if ! must_commit_first; then
 fi
 
 # now, find the starting patch
-sidx=`wc -l < $applied`
+sidx=`wc -l < "$applied"`
 sidx=`expr $sidx + 1`
 
 # do we actually have to push anything?

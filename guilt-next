@@ -21,7 +21,7 @@ while [ $# -ne 0 ]; do
 	shift
 done
 
-n=`wc -l < $applied`
+n=`wc -l < "$applied"`
 n=$(($n + 1))
 
 p=`get_series | awk "{ if (NR == $n) print \\$0}"`
