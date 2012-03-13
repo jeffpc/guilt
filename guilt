@@ -341,7 +341,9 @@ do_get_patch()
 {
 	cat "$1" | awk '
 BEGIN{}
-/^(diff |---$|--- )/,/END{}/
+/^(diff |---$|--- )/ {patch = 1}
+patch == 1 {print $0}
+END{}
 '
 }
 
