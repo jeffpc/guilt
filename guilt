@@ -348,21 +348,29 @@ BEGIN{}
 # usage: do_get_header patchfile
 do_get_header()
 {
-	# The complexity arises from the fact that we want to ignore all
-	# but the Subject line of the header, and any empty lines after it,
-	# if these exist, and inject only the Subject line as the first
-	# line of the commit message.
+	# The complexity arises from the fact that we want to ignore all but the
+	# Subject line of the header, and any empty lines after it, if these
+	# exist, and inject only the Subject line as the first line of the
+	# commit message.
+	#
+	# We also need to strip "from:" lines from the body of the patch
+	# description as these are used by people to manually set the author of
+	# the patch to be different to their local email address and failing to
+	# strip them results in duplicate from: lines in output from guilt
+	# patchbomb.
 
 	# 1st line prints first encountered Subject line plus empty line.
 	# 2nd line skips standard email/git patch header lines.
-	# 3rd line skips tip's additional header lines.
-	# 4th line skips any empty lines thereafter.
-	# 5th line turns off empty line skip upon seeing a non-empty line.
-	# 6th line terminates execution when we encounter the diff
+	# 3th line skips "from:" lines throughout the patch description
+	# 4rd line skips tip's additional header lines.
+	# 5th line skips any empty lines thereafter.
+	# 6th line turns off empty line skip upon seeing a non-empty line.
+	# 7th line terminates execution when we encounter the diff
 	cat "$1" | awk '
 BEGIN{body=0; subj=0}
 /^Subject:/ && (body == 0 && subj == 0){subj=1; print substr($0, 10) "\n"; next}
-/^(Subject:|From:|Author:|Date:|commit)/ && (body == 0){next}
+/^(Subject:|Author:|Date:|commit)/ && (body == 0){next}
+/^From:/ {next}
 /^(Commit-ID:|Gitweb:|AuthorDate:|Committer:CommitDate:)/ && (body == 0){next}
 /^[ \t\f\n\r\v]*$/ && (body==0){next}
 /^.*$/ && (body==0){body=1}
