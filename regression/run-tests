@@ -9,9 +9,9 @@ source scaffold
 # usage: empty_repo
 function empty_repo
 {
-	rm -rf $REPODIR
-	mkdir $REPODIR
-	cd $REPODIR > /dev/null
+	rm -rf "$REPODIR"
+	mkdir "$REPODIR"
+	cd "$REPODIR" > /dev/null
 	git init 2> /dev/null > /dev/null
 	cd - > /dev/null
 }
@@ -22,8 +22,9 @@ function test_failed
 Test failed!
 
 Test:		$TESTNAME
-Repo dir:	$REPODIR
 Log file:	$LOGFILE
+Repo dir:	"$REPODIR"
+
 DONE
 	exit 1
 }
@@ -42,7 +43,9 @@ function check_test
 # usage: run_test <test number>
 function run_test
 {
-	export REPODIR="/tmp/guilt.reg.$RANDOM"
+	# We make sure we can handle space characters
+	# by including one in REPODIR.
+	export REPODIR="/tmp/guilt reg.$RANDOM"
 	export LOGFILE="/tmp/guilt.log.$RANDOM"
 	export TESTNAME="$1"
 
@@ -51,7 +54,7 @@ function run_test
 	empty_repo
 
 	# run the test
-	cd $REPODIR > /dev/null
+	cd "$REPODIR" > /dev/null
 	"$REG_DIR/t-$1.sh" 2>&1 > "$LOGFILE"
 	ERR=$?
 	cd - > /dev/null
@@ -61,7 +64,7 @@ function run_test
 
 	echo "done."
 
-	rm -rf $REPODIR $LOGFILE
+	rm -rf "$REPODIR" "$LOGFILE"
 }
 
 case "$1" in
