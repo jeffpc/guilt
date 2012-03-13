@@ -42,9 +42,10 @@ disp "digraph G {"
 
 current="$top"
 
+safebranch=`echo "$branch"|sed 's%/%\\\\/%g'`
 while [ "$current" != "$base" ]; do
 	pname=`git show-ref | sed -n -e "
-/^$current refs\/patches\/$branch/ {
+/^$current refs\/patches\/$safebranch/ {
 	s,^$current refs/patches/$branch/,,
 	p
 	q
