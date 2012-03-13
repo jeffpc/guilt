@@ -4,7 +4,7 @@
 # not guilt init'ed
 #
 
-source $REG_DIR/scaffold
+source "$REG_DIR/scaffold"
 
 cmd setup_git_repo
 

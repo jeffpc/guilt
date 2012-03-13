@@ -3,7 +3,7 @@
 # Test the commands that use get_*_series, while applying guards
 #
 
-source $REG_DIR/scaffold
+source "$REG_DIR/scaffold"
 
 cmd setup_repo
 

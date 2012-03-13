@@ -3,7 +3,7 @@
 # Test the init code
 #
 
-source $REG_DIR/scaffold
+source "$REG_DIR/scaffold"
 
 function opts
 {

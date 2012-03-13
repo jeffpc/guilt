@@ -3,7 +3,7 @@
 # Test the header code
 #
 
-source $REG_DIR/scaffold
+source "$REG_DIR/scaffold"
 
 cmd setup_repo
 
