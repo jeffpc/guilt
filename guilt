@@ -359,7 +359,7 @@ do_get_header()
 	# 4th line skips any empty lines thereafter.
 	# 5th line turns off empty line skip upon seeing a non-empty line.
 	# 6th line terminates execution when we encounter the diff
-	cat "$1" | awk '
+	awk '
 BEGIN{body=0; subj=0}
 /^Subject:/ && (body == 0 && subj == 0){subj=1; print substr($0, 10) "\n"; next}
 /^(Subject:|From:|Author:|Date:|commit)/ && (body == 0){next}
@@ -369,7 +369,7 @@ BEGIN{body=0; subj=0}
 /^(diff |---$|--- )/{exit}
 {print $0}
 END{}
-'
+' < "$1"
 }
 
 # usage: do_get_full_header patchfile
@@ -377,12 +377,12 @@ do_get_full_header()
 {
 	# 2nd line checks for the begining of a patch
 	# 3rd line outputs the line if it didn't get pruned by the above rules
-	cat "$1" | awk '
+	awk '
 BEGIN{}
 /^(diff |---$|--- )/{exit}
 {print $0}
 END{}
-'
+' < "$1"
 }
 
 # usage: assert_head_check
