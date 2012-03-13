@@ -619,7 +619,7 @@ push_patch()
 		cd_to_toplevel
 
 		# apply the patch if and only if there is something to apply
-		if [ `git apply --numstat "$p" | wc -l` -gt 0 ]; then
+		if [ `do_get_patch "$p" | wc -l` -gt 0 ]; then
 			if [ "$bail_action" = abort ]; then
 				reject=""
 			fi
