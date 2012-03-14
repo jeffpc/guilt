@@ -343,12 +343,12 @@ do_make_header()
 # usage: do_get_patch patchfile
 do_get_patch()
 {
-	cat "$1" | awk '
+	awk '
 BEGIN{}
 /^(diff |---$|--- )/ {patch = 1}
 patch == 1 {print $0}
 END{}
-'
+' < "$1"
 }
 
 # usage: do_get_header patchfile
