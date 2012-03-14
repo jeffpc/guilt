@@ -27,7 +27,12 @@ head_n()
 # usage: sha1 [file]
 sha1()
 {
-	openssl dgst -sha1 "$1" | sed "s,SHA1.\(.*\).= \(.*\),\2  \1,"
+	if [ $# = 1 ]
+	then
+		openssl dgst -sha1 "$1" | sed "s,SHA1.\(.*\).= \(.*\),\2  \1,"
+	else
+		openssl dgst -sha1 | sed 's,\(.*= \)*\(.*\),\2  -,'
+	fi
 }
 
 # usage: cp_a <src> <dst>
