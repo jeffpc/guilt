@@ -82,6 +82,10 @@ function setup_git_repo
 	git add def
 	git commit -s -m "initial" 2> /dev/null > /dev/null
 	# the commit should be d4850419ccc1146c7169f500725ce504b9774ed0
+
+	# Explicitly set config that the tests rely on.
+	git config log.date default
+	git config log.decorate no
 }
 
 function setup_guilt_repo
