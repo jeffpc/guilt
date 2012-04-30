@@ -21,11 +21,11 @@ echo | shouldfail guilt repair --full
 
 cmd list_files
 
-yes n | shouldfail guilt repair --full
+yes n 2>/dev/null | shouldfail guilt repair --full
 
 cmd list_files
 
-yes y | cmd guilt repair --full
+yes y 2>/dev/null | cmd guilt repair --full
 
 cmd list_files
 
@@ -33,6 +33,6 @@ cmd guilt push -a
 
 cmd list_files
 
-yes Y | cmd guilt repair --full
+yes Y 2>/dev/null | cmd guilt repair --full
 
 cmd list_files
