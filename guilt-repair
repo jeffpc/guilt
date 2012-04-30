@@ -84,6 +84,11 @@ repair_pushed()
 
 	# blow away any commits
 	git reset --hard "$newrev" > /dev/null
+	if [ "`git symbolic-ref HEAD`" = "refs/heads/$GUILT_PREFIX$branch" ] && ! $old_style_prefix
+	then
+		git symbolic-ref HEAD refs/heads/$branch
+		git update-ref -d refs/heads/$GUILT_PREFIX$branch
+	fi
 
 	# blow away the applied stack
 	remove_patch_refs < "$applied"
@@ -112,7 +117,7 @@ case "$1" in
 		;;
 esac
 
-oldrev=`git show-ref -s "refs/heads/$branch"`
+oldrev=`git show-ref -s "refs/heads/\`git_branch\`"`
 
 case "$repair" in
 	full)

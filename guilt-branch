@@ -35,8 +35,16 @@ cat "$applied" | while read n; do
 		`git rev-parse "refs/patches/$branch/$n"` ""
 done
 
-git branch "$newbranch"
-git checkout "$newbranch"
+if $old_style_prefix || [ -z "`get_top 2>/dev/null`" ]
+then
+	newgitbranch="$newbranch"
+else
+	git update-ref "refs/heads/$newbranch" "refs/heads/$branch" ""
+	newgitbranch="$GUILT_PREFIX$newbranch"
+fi
+
+git branch "$newgitbranch"
+git checkout "$newgitbranch"
 
 mkdir -p "$GUILT_DIR/`dirname $newbranch`"
 

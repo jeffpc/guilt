@@ -43,6 +43,10 @@ guards: This file contains any guards that should be applied to the series when 
 series: This file contains a list of all the patch filenames relative to the per\-branch patch directory\&. Empty and commented out lines are ignored\&.
 
 status: This file contains the state of the stack\&. What patches are applied\&.
+.SH "BRANCH USAGE"
+When you have pushed a patch, Guilt automatically changes to a freshly created Git branch\&. The name of the new branch is formed by prepending \fBguilt/\fR to the name of the original branch\&. This is done so that you do not accidentally push a set of Guilt patches to a remote Git repository\&. Once you pop all patches Guilt automatically changes back to the original branch\&.
+
+This is mostly transparent\&. The only thing you need to remember is that if you use \fBgit checkout\fR to switch to a branch while you have Guilt patches applied, you should use \fBgit checkout guilt/BRANCH\fR instead of \fBgit checkout BRANCH\fR when you want to change back later.
 .SH "HOOKS"
 Any guilt operation may execute zero or more hook scripts which can be used to run any housekeeping commands or even abort the execution of the command\&.
 .SH "HOOKS DIRECTORY"

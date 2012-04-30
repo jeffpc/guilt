@@ -47,7 +47,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 Applying patch..modify
 Patch applied.
 % guilt branch br-modify
-Switched to branch "br-modify"
+Switched to branch "guilt/br-modify"
 % list_files
 d .git/patches
 d .git/patches/br-
@@ -76,8 +76,8 @@ f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/br-/status
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-modify/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
-% git checkout master
-Switched to branch "master"
+% git checkout guilt/master
+Switched to branch "guilt/master"
 % list_files
 d .git/patches
 d .git/patches/br-
@@ -109,7 +109,7 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 Applying patch..add
 Patch applied.
 % guilt branch br-add
-Switched to branch "br-add"
+Switched to branch "guilt/br-add"
 % list_files
 d .git/patches
 d .git/patches/br-
@@ -149,8 +149,8 @@ r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/br-modify/modify
 r 33633e7a1aa31972f125878baf7807be57b1672d  .git/refs/patches/master/modify
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-add/add
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
-% git checkout master
-Switched to branch "master"
+% git checkout guilt/master
+Switched to branch "guilt/master"
 % list_files
 d .git/patches
 d .git/patches/br-
@@ -193,7 +193,7 @@ r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 Applying patch..remove
 Patch applied.
 % guilt branch br-remove
-Switched to branch "br-remove"
+Switched to branch "guilt/br-remove"
 % list_files
 d .git/patches
 d .git/patches/br-
@@ -245,8 +245,8 @@ r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/br-remove/add
 r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/br-remove/remove
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
-% git checkout master
-Switched to branch "master"
+% git checkout guilt/master
+Switched to branch "guilt/master"
 % list_files
 d .git/patches
 d .git/patches/br-
@@ -301,7 +301,7 @@ r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
 Applying patch..mode
 Patch applied.
 % guilt branch br-mode
-Switched to branch "br-mode"
+Switched to branch "guilt/br-mode"
 % list_files
 d .git/patches
 d .git/patches/br-
@@ -366,5 +366,5 @@ r ccd56089d1b5305a9d35617cb7f6f4b06ffa68ba  .git/refs/patches/master/mode
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/br-mode/remove
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/br-remove/remove
 r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
-% git checkout master
-Switched to branch "master"
+% git checkout guilt/master
+Switched to branch "guilt/master"

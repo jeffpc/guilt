@@ -43,4 +43,11 @@ done
 sed -n -e "${pat_keep}" "$applied" > "$applied.tmp"
 mv "$applied.tmp" "$applied"
 
+# if we removed the last patch, switch back to the base branch
+if [ `wc -l < "$applied"` -eq 0 ] && [ "`git symbolic-ref HEAD`" = "refs/heads/$GUILT_PREFIX$branch" ] && ! $old_style_prefix
+then
+	git update-ref refs/heads/$branch refs/heads/$GUILT_PREFIX$branch
+	git symbolic-ref HEAD refs/heads/$branch
+	git update-ref -d refs/heads/$GUILT_PREFIX$branch
+fi
 }
