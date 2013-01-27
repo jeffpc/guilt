@@ -12,5 +12,10 @@ for x in "" modify add remove mode ; do
 	[ "$x" != "" ] && guilt push "$x"
 	cmd guilt branch br-$x
 	cmd list_files
-	cmd git checkout master
+	if [ "$x" != "" ]
+	then
+	    cmd git checkout guilt/master
+	else
+	    cmd git checkout master
+	fi
 done

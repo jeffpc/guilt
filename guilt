@@ -28,17 +28,6 @@ SUBDIRECTORY_OK=1
 . "$(git --exec-path)/git-sh-setup"
 
 #
-# Git version check
-#
-gitver=`git --version | cut -d' ' -f3 | sed -e 's/^debian\.//'`
-case "$gitver" in
-	1.5.*)	;; # git config
-	1.6.*)	;; # git config
-	1.7.*)	;; # git config
-	*)	die "Unsupported version of git ($gitver)" ;;
-esac
-
-#
 # Shell library
 #
 usage()
@@ -422,9 +411,9 @@ head_check()
 			return 0 ;;
 	esac
 
-	if [ "`git rev-parse refs/heads/$branch`" != "`git rev-parse $1`" ]; then
+	if [ "`git rev-parse refs/heads/\`git_branch\``" != "`git rev-parse $1`" ]; then
 		disp "Expected HEAD commit $1" >&2
-		disp "                 got `git rev-parse refs/heads/$branch`" >&2
+		disp "                 got `git rev-parse refs/heads/\`git_branch\``" >&2
 		return 1
 	fi
 	return 0
@@ -514,6 +503,11 @@ pop_many_patches()
 		n=`expr $n - $2`
 		head_n "$n" < "$applied" > "$applied.tmp"
 		mv "$applied.tmp" "$applied"
+		if [ -z "`get_top 2>/dev/null`" ] && [ "`git symbolic-ref HEAD`" = "refs/heads/$GUILT_PREFIX$branch" ] && ! $old_style_prefix
+		then
+			git symbolic-ref HEAD refs/heads/$branch
+			git update-ref -d refs/heads/$GUILT_PREFIX$branch
+		fi
 	)
 }
 
@@ -599,7 +593,13 @@ commit()
 		# commit
 		treeish=`git write-tree`
 		commitish=`git commit-tree $treeish -p $2 < "$TMP_MSG"`
-		git update-ref HEAD $commitish
+		if $old_style_prefix || git rev-parse --verify --quiet refs/heads/$GUILT_PREFIX$branch >/dev/null
+		then
+			git update-ref HEAD $commitish
+		else
+			git branch $GUILT_PREFIX$branch $commitish
+			git symbolic-ref HEAD refs/heads/$GUILT_PREFIX$branch
+		fi
 
 		# mark patch as applied
 		git update-ref "refs/patches/$branch/$pname" HEAD
@@ -839,6 +839,9 @@ guilt_push_diff_context=1
 # default diffstat value: true or false
 DIFFSTAT_DEFAULT="false"
 
+# Prefix for guilt branches.
+GUILT_PREFIX=guilt/
+
 #
 # Parse any part of .git/config that belongs to us
 #
@@ -853,7 +856,28 @@ diffstat=`git config --bool guilt.diffstat`
 
 GUILT_DIR="$GIT_DIR/patches"
 
-branch=`get_branch`
+# To make it harder to accidentally do "git push" with a guilt patch
+# applied, "guilt push" changes branch from e.g. "master" to
+# "guilt/master".  Set $git_branch to the full branch name, and
+# $branch to the abbreviated name that the user sees most of the time.
+# Note: old versions of guilt did not add the "guilt/" prefix.  This
+# code handles that case as well.  The prefix will be added when you
+# have no patches applied and do a "guilt push".
+raw_git_branch=`get_branch`
+branch=`echo "$raw_git_branch" | sed -e 's,^'$GUILT_PREFIX',,'`
+
+git_branch()
+{
+	if $old_style_prefix
+	then
+		echo $branch
+	elif [ -z "`get_top 2>/dev/null`" ]
+	then
+		echo $branch
+	else
+		echo $GUILT_PREFIX$branch
+	fi
+}
 
 # most of the time we want to verify that the repo's branch has been
 # initialized, but every once in a blue moon (e.g., we want to run guilt init),
@@ -888,6 +912,15 @@ elif [ -r "$GUILT_PATH/../lib/guilt/os.$UNAME_S" ]; then
 	. "$GUILT_PATH/../lib/guilt/os.$UNAME_S"
 else
 	die "Unsupported operating system: $UNAME_S"
+fi
+
+if [ "$branch" = "$raw_git_branch" ] && [ -n "`get_top 2>/dev/null`" ]
+then
+    # This is for compat with old repositories that still have a
+    # pushed patch without the new-style branch prefix.
+    old_style_prefix=true
+else
+    old_style_prefix=false
 fi
 
 _main "$@"

@@ -30,7 +30,12 @@ head_n()
 # usage: sha1 [file]
 sha1()
 {
-	sha1sum "$1"
+	if [ $# = 1 ]
+	then
+		sha1sum "$1"
+	else
+		sha1sum
+	fi
 }
 
 # usage: cp_a <src> <dst>
