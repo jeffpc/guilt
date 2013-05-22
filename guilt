@@ -568,7 +568,7 @@ commit()
 				author_date_str=`sed -n -e '/^Date:/ { s/^Date: //; p; q; }; /^(diff |---$|--- )/ q' "$p"`
 			fi
 			if [ ! -z "$author_date_str" ]; then
-				export GIT_AUTHOR_DATE=`echo $author_date_str`
+				export GIT_AUTHOR_DATE="$author_date_str"
 			fi
 		fi
 
