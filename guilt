@@ -13,7 +13,7 @@ GUILT="$(basename "$0")"
 case $1 in
 	-h|--h|--he|--hel|--help)
 	shift
-	exec "guilt help" "$GUILT"
+	exec guilt help "$@"
 	exit
 	;;
 	-V|--ver|--versi|--versio|--version)
