@@ -1,13 +1,13 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006-2011
+# Copyright (c) Josef "Jeff" Sipek, 2006-2013
 #
 
 DO_NOT_CHECK_BRANCH_EXISTENCE=1
 
 USAGE=""
 if [ -z "$GUILT_VERSION" ]; then
-	echo "Invoking $GUILT directly is no longer supported." >&2
+	echo "Invoking `basename "$0"` directly is no longer supported." >&2
 	exit 1
 fi
 

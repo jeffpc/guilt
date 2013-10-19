@@ -1,11 +1,11 @@
 #!/bin/sh
 #
-# Copyright (C) Josef 'Jeff' Sipek, 2007-2011
+# Copyright (C) Josef 'Jeff' Sipek, 2007-2013
 #
 
 USAGE="[-z] [<path>...]"
 if [ -z "$GUILT_VERSION" ]; then
-	echo "Invoking $GUILT directly is no longer supported." >&2
+	echo "Invoking `basename "$0"` directly is no longer supported." >&2
 	exit 1
 fi
 

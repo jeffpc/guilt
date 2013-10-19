@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006-2011
+# Copyright (c) Josef "Jeff" Sipek, 2006-2013
 #
 
 GUILT_VERSION="0.35"
