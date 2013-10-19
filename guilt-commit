@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2008-2011
+# Copyright (c) Josef "Jeff" Sipek, 2008-2013
 #
 
 USAGE="-n <num> | -a | --all"
@@ -35,6 +35,10 @@ esac
 
 # remove patch refs for what's being committed, and update series
 sed -n -e "${pat_commit}" "$applied" | while read pname; do
+	# update the base branch to the last committed patch
+	$old_style_prefix || git update-ref refs/heads/$branch \
+				refs/patches/$branch/$pname
+
 	series_remove_patch "$pname"
 	echo "$pname" | remove_patch_refs
 done

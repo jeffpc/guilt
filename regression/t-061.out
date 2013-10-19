@@ -454,7 +454,7 @@ fefbdcef61022d473838926619f31e030dd04fdc commit	refs/patches/master/mode
 % guilt commit -n 2
 % git for-each-ref
 fefbdcef61022d473838926619f31e030dd04fdc commit	refs/heads/guilt/master
-25465dc1687f3833ecbd4e8bca437e522d7026db commit	refs/heads/master
+5effcbeb303e8433935151d8c69f3bf63db1e8ef commit	refs/heads/master
 fefbdcef61022d473838926619f31e030dd04fdc commit	refs/patches/master/mode
 9cbe2fc643b1a9e2179a8738f80424a1c2aa202d commit	refs/patches/master/remove
 % git branch
