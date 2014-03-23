@@ -24,8 +24,8 @@ EXAMPLES
 
 Rebase current tree against Linus's 2.6 tree
 
-	$ git-fetch git://git.kernel.org/pub/scm/linux/kernel/git/tovalds/linux-2.6.git
-	$ guilt-rebase FETCH_HEAD
+	$ git fetch git://git.kernel.org/pub/scm/linux/kernel/git/tovalds/linux-2.6.git
+	$ guilt rebase FETCH_HEAD
 
 Author
 ------
