@@ -20,8 +20,9 @@ man7dir=$(mandir)/man7
 ASCIIDOC=asciidoc
 ASCIIDOC_EXTRA =
 INSTALL?=install
-DOC_REF = origin/man
+XMLTO=xmlto
 XMLTO_EXTRA = --skip-validation
+PERL=perl
 
 all: html man
 
@@ -46,7 +47,7 @@ install-html: html
 #
 doc.dep : $(wildcard *.txt) build-docdep.perl
 	rm -f $@+ $@
-	perl ./build-docdep.perl >$@+
+	$(PERL) ./build-docdep.perl >$@+
 	mv $@+ $@
 
 -include doc.dep
@@ -72,7 +73,7 @@ usage-%.txt: $(MAN1_TXT) usage.sh
 	$(ASCIIDOC) -b xhtml11 -d manpage -f asciidoc.conf $(ASCIIDOC_EXTRA) $<
 
 %.1 %.7 : %.xml
-	xmlto -m callouts.xsl $(XMLTO_EXTRA) man $<
+	$(XMLTO) -m callouts.xsl $(XMLTO_EXTRA) man $<
 
 %.xml : %.txt footer.txt version.txt
 	$(ASCIIDOC) -b docbook -a version=$(VERSION) -d manpage -f asciidoc.conf $<
