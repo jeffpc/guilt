@@ -82,7 +82,13 @@ function setup_git_repo
 	echo "abc" > def
 	git add def
 	git commit -s -m "initial" 2> /dev/null > /dev/null
-	# the commit should be d4850419ccc1146c7169f500725ce504b9774ed0
+
+	# The HEAD should be a specific hash.  Abort the test if it is not.
+	# If we kept on executing, the test would just fail in mysterious
+	# ways.
+	rev=`git rev-parse HEAD`
+	[ "d4850419ccc1146c7169f500725ce504b9774ed0" != "$rev" ] && \
+		die "setup_git_repo HEAD check failed (HEAD: $rev)"
 
 	# Explicitly set config that the tests rely on.
 	git config log.date default
