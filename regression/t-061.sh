@@ -15,8 +15,7 @@ old_style_branch() {
 
 remove_topic() {
 	cmd guilt pop -a
-	if git rev-parse --verify --quiet guilt/master >/dev/null
-	then
+	if git rev-parse --verify --quiet guilt/master >/dev/null; then
 		cmd git checkout guilt/master
 	else
 		cmd git checkout master
@@ -46,8 +45,7 @@ cmd git for-each-ref
 
 cmd list_files
 
-for i in `seq 5`
-do
+for i in `seq 5`; do
 	if [ $i -ge 5 ]; then
 		shouldfail guilt pop
 	else
