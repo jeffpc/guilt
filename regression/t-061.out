@@ -381,7 +381,6 @@ ccd56089d1b5305a9d35617cb7f6f4b06ffa68ba commit	refs/patches/master/mode
 ffb7faa126a6d91bcdd44a494f76b96dd860b8b9 commit	refs/patches/master/remove
 % guilt pop -a
 No patches applied.
-ccd56089d1b5305a9d35617cb7f6f4b06ffa68ba
 % git checkout guilt/master
 Switched to branch "guilt/master"
 % guilt pop -a

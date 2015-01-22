@@ -15,7 +15,7 @@ old_style_branch() {
 
 remove_topic() {
 	cmd guilt pop -a
-	if git rev-parse --verify --quiet guilt/master
+	if git rev-parse --verify --quiet guilt/master >/dev/null
 	then
 		cmd git checkout guilt/master
 	else
