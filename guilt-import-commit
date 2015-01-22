@@ -28,19 +28,35 @@ disp "Current head: `git rev-parse \`git_branch\``" >&2
 for rev in `git rev-list $rhash`; do
 	s=`git log --pretty=oneline -1 $rev | cut -c 42-`
 
+	# Try to convert the first line of the commit message to a
+	# valid patch name.
 	fname=`echo $s | sed -e "s/&/and/g" -e "s/[ :]/_/g" -e "s,[/\\],-,g" \
 			-e "s/['\\[{}]//g" -e 's/]//g' -e 's/\*/-/g' \
-			-e 's/\?/-/g' | tr A-Z a-z`
+			-e 's/\?/-/g' -e 's/\.\.\.*/./g' -e 's/^\.//' \
+			-e 's/\.patch$//' -e 's/\.$//' | tr A-Z a-z`
+
+	if ! valid_patchname "$fname"; then
+		# Try harder to make it a legal commit name by
+		# removing all but a few safe characters.
+		fname=`echo $fname|tr -d -c _a-zA-Z0-9---/\\n`
+	fi
+	if ! valid_patchname "$fname"; then
+		# If we failed to derive a legal patch name, use the
+		# name "x".  (If this happens, we likely have to
+		# append a suffix to make the name unique.)
+		fname=x
+	fi
 
 	disp "Converting `echo $rev | cut -c 1-8` as $fname"
 
 	mangle_prefix=1
 	fname_base=$fname
-	while [ -f "$GUILT_DIR/$branch/$fname" ]; do
+	while [ -f "$GUILT_DIR/$branch/$fname.patch" ]; do
 		fname="$fname_base-$mangle_prefix"
 	        mangle_prefix=`expr $mangle_prefix + 1`
 		disp "Patch under that name exists...trying '$fname'"
 	done
+	fname="$fname".patch
 
 	(
 		do_make_header $rev
