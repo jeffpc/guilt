@@ -103,6 +103,7 @@ function setup_git_repo
 	git config log.date default
 	git config log.decorate no
 	git config guilt.diffstat false
+	git config guilt.reusebranch false
 }
 
 function setup_guilt_repo

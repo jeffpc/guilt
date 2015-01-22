@@ -884,6 +884,9 @@ guilt_push_diff_context=1
 # default diffstat value: true or false
 DIFFSTAT_DEFAULT="false"
 
+# default guilt.reusebranch value: true or false
+REUSE_BRANCH_DEFAULT="false"
+
 # Prefix for guilt branches.
 GUILT_PREFIX=guilt/
 
@@ -894,6 +897,10 @@ GUILT_PREFIX=guilt/
 # generate diffstat?
 diffstat=`git config --bool guilt.diffstat`
 [ -z "$diffstat" ] && diffstat=$DIFFSTAT_DEFAULT
+
+# reuse Git branch?
+reuse_branch=`git config --bool guilt.reusebranch`
+[ -z "$reuse_branch" ] && reuse_branch=$REUSE_BRANCH_DEFAULT
 
 #
 # The following gets run every time this file is source'd
@@ -959,13 +966,18 @@ else
 	die "Unsupported operating system: $UNAME_S"
 fi
 
-if [ "$branch" = "$raw_git_branch" ] && [ -n "`get_top 2>/dev/null`" ]
-then
-    # This is for compat with old repositories that still have a
-    # pushed patch without the new-style branch prefix.
-    old_style_prefix=true
+if [ -n "`get_top 2>/dev/null`" ]; then
+	# If there is at least one pushed patch, we set
+	# old_style_prefix according to how it was pushed.  It is only
+	# possible to change the prefix style while no patches are
+	# applied.
+	if [ "$branch" = "$raw_git_branch" ]; then
+		old_style_prefix=true
+	else
+		old_style_prefix=false
+	fi
 else
-    old_style_prefix=false
+	old_style_prefix="$reuse_branch"
 fi
 
 _main "$@"
