@@ -49,3 +49,10 @@ Signed-off-by: Commiter Name <commiter@email>
 
 % guilt header non-existant
 Patch non-existant is not in the series
+% guilt header .*
+.* does not uniquely identify a patch. Did you mean any of these?
+  modify
+  add
+  remove
+  mode
+  patch-with-some-desc

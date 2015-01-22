@@ -31,4 +31,8 @@ done
 
 shouldfail guilt header non-existant
 
+# This is an evil variant of a non-existant patch.  However, this
+# patch name is a regexp that just happens to match an existing patch.
+shouldfail guilt header '.*'
+
 # FIXME: how do we check that -e works?
