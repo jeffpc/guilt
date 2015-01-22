@@ -4,6 +4,21 @@ Documentation/SubmittingPatches file. :)
 
 1) Hack on the code a bit
 
+Please follow this style guide:
+
+ - Use tabs for indentation.
+
+ - Put "then" on the same line as "if".
+
+ - Follow the style of the existing code, except if it breaks the
+   above guidlines.
+
+ - If you change the code to conform to the style guide, please do so
+   in a separate commit that does not change anything else.
+
+Please check that you change does not break "make test".  Please add
+new testcases for any new functionality, and if you fix a bug.
+
 2) Make a patch:
 
 Use "diff -up" or "diff -uprN" to create patches. Or simply use git to
