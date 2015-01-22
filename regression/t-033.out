@@ -1,3 +1,68 @@
 % setup_repo
 % guilt graph
 No patch applied.
+%% Testing branch a,graph
+% git checkout -b a,graph master
+Switched to a new branch 'a,graph'
+% guilt init
+% guilt new a.patch
+% guilt pop
+All patches popped.
+% guilt push
+Applying patch..a.patch
+Patch applied.
+% guilt graph
+digraph G {
+# checking rev 95275d7c05c6a6176d3941374115b91272877f6c
+	"95275d7c05c6a6176d3941374115b91272877f6c" [label="a.patch"]
+}
+% git add file.txt
+% guilt refresh
+Patch a.patch refreshed
+% guilt pop
+All patches popped.
+% guilt push
+Applying patch..a.patch
+Patch applied.
+% guilt graph
+digraph G {
+# checking rev ff2775f8d1dc753f635830adcc3a067e0b681e2d
+	"ff2775f8d1dc753f635830adcc3a067e0b681e2d" [label="a.patch"]
+}
+%% Adding an unrelated file in a new patch. No deps.
+% guilt new b.patch
+% git add file2.txt
+% guilt refresh
+Patch b.patch refreshed
+% guilt pop
+Now at a.patch.
+% guilt push
+Applying patch..b.patch
+Patch applied.
+% guilt graph
+digraph G {
+# checking rev c7014443c33d2b0237293687ceb9cbd38313df65
+	"c7014443c33d2b0237293687ceb9cbd38313df65" [label="b.patch"]
+# checking rev ff2775f8d1dc753f635830adcc3a067e0b681e2d
+	"ff2775f8d1dc753f635830adcc3a067e0b681e2d" [label="a.patch"]
+}
+%% Changing a file already changed in the first patch adds a dependency.
+% guilt new c.patch
+% git add file.txt
+% guilt refresh
+Patch c.patch refreshed
+% guilt pop
+Now at b.patch.
+% guilt push
+Applying patch..c.patch
+Patch applied.
+% guilt graph
+digraph G {
+# checking rev 891bc14b5603474c9743fd04f3da888644413dc5
+	"891bc14b5603474c9743fd04f3da888644413dc5" [label="c.patch"]
+# checking rev c7014443c33d2b0237293687ceb9cbd38313df65
+	"c7014443c33d2b0237293687ceb9cbd38313df65" [label="b.patch"]
+# checking rev ff2775f8d1dc753f635830adcc3a067e0b681e2d
+	"ff2775f8d1dc753f635830adcc3a067e0b681e2d" [label="a.patch"]
+	"891bc14b5603474c9743fd04f3da888644413dc5" -> "ff2775f8d1dc753f635830adcc3a067e0b681e2d"; // ?
+}
