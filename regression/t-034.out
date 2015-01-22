@@ -232,6 +232,7 @@ Date:   Mon Jan 1 00:00:00 2007 +0000
     
     Signed-off-by: Commiter Name <commiter@email>
 % guilt init
+% git config log.decorate short
 % guilt import-commit base..HEAD
 About to begin conversion...
 Current head: 2a8b1889aa5066193bac978e6bf5073ffcfa6541
@@ -259,6 +260,7 @@ Converting 45e81b51 as the_sequence_.lock-_is_forbidden
 Converting eebb76e9 as the_sequence_-._is_forbidden
 Done.
 Current head: d4850419ccc1146c7169f500725ce504b9774ed0
+% git config log.decorate no
 % guilt push -a
 Applying patch..the_sequence_-._is_forbidden.patch
 Patch applied.

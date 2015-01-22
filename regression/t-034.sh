@@ -57,7 +57,9 @@ cmd git log
 
 # Import all the commits to guilt.
 cmd guilt init
+cmd git config log.decorate short
 cmd guilt import-commit base..HEAD
+cmd git config log.decorate no
 
 for patch in .git/patches/master/*.patch; do
 	touch -a -m -t "$TOUCH_DATE" "$patch"
