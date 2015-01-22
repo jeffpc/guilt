@@ -48,7 +48,11 @@ cmd list_files
 
 for i in `seq 5`
 do
-	cmd guilt pop
+	if [ $i -ge 5 ]; then
+		shouldfail guilt pop
+	else
+		cmd guilt pop
+	fi
 	cmd git for-each-ref
 	cmd guilt push
 	cmd git for-each-ref

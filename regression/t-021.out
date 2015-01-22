@@ -287,6 +287,8 @@ index 0000000..8baef1b
 +++ b/def
 @@ -0,0 +1 @@
 +abc
+% guilt pop
+No patches applied.
 % guilt push --all
 Applying patch..modify
 Patch applied.

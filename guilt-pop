@@ -49,9 +49,19 @@ fi
 patch="$1"
 [ ! -z "$all" ] && patch="-a"
 
+# Treat "guilt pop" as "guilt pop -n 1".
+if [ -z "$patch" ]; then
+	patch=1
+	num=t
+fi
+
 if [ ! -s "$applied" ]; then
 	disp "No patches applied."
-	exit 0
+	if [ "$patch" = "-a" ]; then
+		exit 0
+	else
+		exit 1
+	fi
 elif [ "$patch" = "-a" ]; then
 	# we are supposed to pop all patches
 
@@ -68,11 +78,6 @@ elif [ ! -z "$num" ]; then
 	# catch underflow
 	[ $eidx -lt 0 ] && eidx=0
 	[ $eidx -eq $sidx ] && die "No patches requested to be removed."
-elif [ -z "$patch" ]; then
-	# we are supposed to pop only the current patch on the stack
-
-	sidx=`wc -l < "$applied"`
-	eidx=`expr $sidx - 1`
 else
 	# we're supposed to pop only up to a patch, make sure the patch is
 	# in the series

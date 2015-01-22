@@ -23,6 +23,12 @@ guilt series | _tac | while read n ; do
 done
 
 #
+# pop when there is nothing to pop
+#
+
+shouldfail guilt pop
+
+#
 # push all
 #
 cmd guilt push --all
