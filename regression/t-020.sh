@@ -26,6 +26,17 @@ guilt series | while read n ; do
 done
 
 #
+# pushing when there is nothing to push
+#
+
+shouldfail guilt push
+cmd guilt push -a
+
+cmd list_files
+
+cmd git log -p
+
+#
 # pop all
 #
 cmd guilt pop --all
@@ -61,7 +72,7 @@ cmd guilt pop --all
 
 npatches=`guilt series | wc -l`
 for n in `_seq -2 $npatches`; do
-	if [ $n -ge 0 ]; then
+	if [ $n -gt 0 ]; then
 		cmd guilt push -n $n
 	else
 		shouldfail guilt push -n $n

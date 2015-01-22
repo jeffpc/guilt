@@ -56,6 +56,12 @@ fi
 patch="$1"
 [ ! -z "$all" ] && patch="-a"
 
+# Treat "guilt push" as "guilt push -n 1".
+if [ -z "$patch" ]; then
+	patch=1
+	num=t
+fi
+
 if [ "$patch" = "-a" ]; then
 	# we are supposed to push all patches, get the last one out of
 	# series
@@ -65,7 +71,7 @@ if [ "$patch" = "-a" ]; then
 		die "There are no patches to push."
 	fi
 elif [ ! -z "$num" ]; then
-	# we are supposed to pop a set number of patches
+	# we are supposed to push a set number of patches
 
 	[ "$patch" -lt 0 ] && die "Invalid number of patches to push."
 
@@ -78,11 +84,6 @@ elif [ ! -z "$num" ]; then
 	# clamp to minimum
 	[ $tidx -lt $eidx ] && eidx=$tidx
 
-elif [ -z "$patch" ]; then
-	# we are supposed to push only the next patch onto the stack
-
-	eidx=`wc -l < "$applied"`
-	eidx=`expr $eidx + 1`
 else
 	# we're supposed to push only up to a patch, make sure the patch is
 	# in the series
@@ -109,7 +110,11 @@ if [ "$sidx" -gt "$eidx" ]; then
 	else
 		disp "File series fully applied, ends at patch `get_series | tail -n 1`"
 	fi
-	exit 0
+	if [ -n "$all" ]; then
+		exit 0
+	else
+		exit 1
+	fi
 fi
 
 get_series | sed -n -e "${sidx},${eidx}p" | while read p
