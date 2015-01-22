@@ -50,3 +50,12 @@ cmd git add file.txt
 cmd guilt refresh
 fixup_time_info c.patch
 cmd guilt graph
+
+# A patch name that contains funky characters, including unbalanced
+# quotes.
+cmd guilt new "a-\"better&quicker'-patch.patch"
+cmd echo d >> file.txt
+cmd git add file.txt
+cmd guilt refresh
+fixup_time_info "a-\"better&quicker'-patch.patch"
+cmd guilt graph

@@ -66,3 +66,25 @@ digraph G {
 	"ff2775f8d1dc753f635830adcc3a067e0b681e2d" [label="a.patch"]
 	"891bc14b5603474c9743fd04f3da888644413dc5" -> "ff2775f8d1dc753f635830adcc3a067e0b681e2d"; // ?
 }
+% guilt new a-"better&quicker'-patch.patch
+% git add file.txt
+% guilt refresh
+Patch a-"better&quicker'-patch.patch refreshed
+% guilt pop
+Now at c.patch.
+% guilt push
+Applying patch..a-"better&quicker'-patch.patch
+Patch applied.
+% guilt graph
+digraph G {
+# checking rev bc7df666a646739eaf559af23cab72f2bfd01f0e
+	"bc7df666a646739eaf559af23cab72f2bfd01f0e" [label="a-\"better&quicker'-patch.patch"]
+# checking rev 891bc14b5603474c9743fd04f3da888644413dc5
+	"891bc14b5603474c9743fd04f3da888644413dc5" [label="c.patch"]
+	"bc7df666a646739eaf559af23cab72f2bfd01f0e" -> "891bc14b5603474c9743fd04f3da888644413dc5"; // ?
+# checking rev c7014443c33d2b0237293687ceb9cbd38313df65
+	"c7014443c33d2b0237293687ceb9cbd38313df65" [label="b.patch"]
+# checking rev ff2775f8d1dc753f635830adcc3a067e0b681e2d
+	"ff2775f8d1dc753f635830adcc3a067e0b681e2d" [label="a.patch"]
+	"891bc14b5603474c9743fd04f3da888644413dc5" -> "ff2775f8d1dc753f635830adcc3a067e0b681e2d"; // ?
+}
