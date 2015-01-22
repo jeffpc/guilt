@@ -30,7 +30,7 @@ for rev in `git rev-list $rhash`; do
 
 	# Try to convert the first line of the commit message to a
 	# valid patch name.
-	fname=`echo $s | sed -e "s/&/and/g" -e "s/[ :]/_/g" -e "s,[/\\],-,g" \
+	fname=`printf %s "$s" | sed -e "s/&/and/g" -e "s/[ :]/_/g" -e "s,[/\\],-,g" \
 			-e "s/['\\[{}]//g" -e 's/]//g' -e 's/\*/-/g' \
 			-e 's/\?/-/g' -e 's/\.\.\.*/./g' -e 's/^\.//' \
 			-e 's/\.patch$//' -e 's/\.$//' | tr A-Z a-z`
