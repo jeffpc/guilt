@@ -29,6 +29,6 @@ guilt series | while read n; do
 	cmd guilt header $n
 done
 
-shouldfail guilt header non-existant 2>&1
+shouldfail guilt header non-existant
 
 # FIXME: how do we check that -e works?

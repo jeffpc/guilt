@@ -61,7 +61,7 @@ for n in `_seq -2 $npatches`; do
 	if [ $n -gt 0 ]; then
 		cmd guilt pop -n $n
 	else
-		shouldfail guilt pop -n $n 2>&1
+		shouldfail guilt pop -n $n
 	fi
 
 	cmd list_files

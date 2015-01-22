@@ -44,7 +44,7 @@ shouldfail guilt new "white space"
 cmd list_files
 
 for pname in prepend mode /abc ./blah ../blah abc/./blah abc/../blah abc/. abc/.. abc/ ; do
-	shouldfail guilt new "$pname" 2>&1
+	shouldfail guilt new "$pname"
 
 	cmd list_files
 done
