@@ -40,7 +40,7 @@ if [ -e "$GUILT_DIR/$branch/$newname" ]; then
 fi
 
 if ! valid_patchname "$newname"; then
-	die "The specified patch name contains invalid characters (:)."
+	die "The specified patch name is invalid according to git-check-ref-format(1)."
 fi
 
 # create any directories as needed

@@ -132,14 +132,50 @@ fi
 # usage: valid_patchname <patchname>
 valid_patchname()
 {
+	# Once we only support Git 1.7.8 and newer, the command below
+	# could be replaced with:
+	#
+	#     git check-ref-format --allow-onelevel "$1"
+	#
+	# Instead, we arbitrarily prepend one level.  The result
+	# should be the same, and this is portable to all existing
+	# versions of Git.
+	git check-ref-format a/"$1"
+	if [ $? -ne 0 ]; then
+		return 1
+	fi
+
+	# We want to reject all names that Git 2.0.0 rejects.  In case
+	# we are running an older version, we explicitly check some
+	# cases that were added to Git after version 1.5.0.  This code
+	# aims to support Git version 1.5.0 and newer.
+
+	# Git 1.7.6.4 and newer rejects the DEL character.
+	if [ `echo "$1"|tr -d '\177'` != "$1" ]; then
+		return 1
+	fi
+
+	# Git 1.7.8 and newer rejects refs that start or end with
+	# slash or contain multiple adjacent slashes.
 	case "$1" in
-		/*|./*|../*|*/./*|*/../*|*/.|*/..|*/|*\ *|*\	*)
+		/*|*/|*//*)
 			return 1;;
-		*:*)
-			return 1;;
-		*)
-			return 0;;
 	esac
+
+	# Git 1.7.8 and newer rejects refname components that end in
+	# .lock.
+	case "$1" in
+		*.lock/*|*.lock)
+			return 1;;
+	esac
+
+	# Git 1.8.5 and newer rejects refnames that are made up of the
+	# single character "@".
+	if [ "$1" = "@" ]; then
+		return 1
+	fi
+
+	return 0
 }
 
 get_branch()

@@ -64,7 +64,7 @@ fi
 
 if ! valid_patchname "$patch"; then
 	disp "Patchname is invalid." >&2
-	die "it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace"
+	die "It must follow the rules in git-check-ref-format(1)."
 fi
 
 # create any directories as needed

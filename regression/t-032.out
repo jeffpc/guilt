@@ -1,7 +1,7 @@
 % setup_repo
 % touch foo foo:baz
 % guilt import -P foo:bar foo
-The specified patch name contains invalid characters (:).
+The specified patch name is invalid according to git-check-ref-format(1).
 % guilt import -P foo:bar foo2
 Specified file does not exist.
 % guilt import -P foo foo2
@@ -15,4 +15,4 @@ Already tracking a patch under that name.
 Already tracking a patch under that name.
 % guilt import -P foo,bar foo
 % guilt import foo:baz
-The specified patch name contains invalid characters (:).
+The specified patch name is invalid according to git-check-ref-format(1).

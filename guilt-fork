@@ -37,7 +37,7 @@ else
 fi
 
 if ! valid_patchname "$newpatch"; then
-	die "The specified patch name contains invalid characters (:)."
+	die "The specified patch name is invalid according to git-check-ref-format(1)."
 fi
 
 if [ -e "$GUILT_DIR/$branch/$newpatch" ]; then

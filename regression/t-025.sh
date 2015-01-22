@@ -43,7 +43,17 @@ shouldfail guilt new "white space"
 
 cmd list_files
 
-for pname in prepend mode /abc ./blah ../blah abc/./blah abc/../blah abc/. abc/.. abc/ ; do
+b()
+{
+    printf "%b" "$1"
+}
+
+for pname in prepend mode /abc ./blah ../blah abc/./blah abc/../blah abc/. \
+	abc/.. abc/ abc.lock a/b.lock/c `b 'cr\r'` `b 'ctrl-a\001'` \
+	`b 'formfeed\f'` `b 'del\177'` "tilde~" "caret^" "colon:" \
+	"questionmark?" "asterisk*" "open[bracket" "consecutive//slashes" \
+	"trailing-dot." "bad@{seq" "@" "backslash\\"
+do
 	shouldfail guilt new "$pname"
 
 	cmd list_files

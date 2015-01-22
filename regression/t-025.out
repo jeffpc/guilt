@@ -141,7 +141,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new white space
 Patchname is invalid.
-it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
+It must follow the rules in git-check-ref-format(1).
 % list_files
 d .git/patches
 d .git/patches/master
@@ -211,7 +211,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new /abc
 Patchname is invalid.
-it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
+It must follow the rules in git-check-ref-format(1).
 % list_files
 d .git/patches
 d .git/patches/master
@@ -235,7 +235,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new ./blah
 Patchname is invalid.
-it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
+It must follow the rules in git-check-ref-format(1).
 % list_files
 d .git/patches
 d .git/patches/master
@@ -259,7 +259,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new ../blah
 Patchname is invalid.
-it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
+It must follow the rules in git-check-ref-format(1).
 % list_files
 d .git/patches
 d .git/patches/master
@@ -283,7 +283,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new abc/./blah
 Patchname is invalid.
-it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
+It must follow the rules in git-check-ref-format(1).
 % list_files
 d .git/patches
 d .git/patches/master
@@ -307,7 +307,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new abc/../blah
 Patchname is invalid.
-it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
+It must follow the rules in git-check-ref-format(1).
 % list_files
 d .git/patches
 d .git/patches/master
@@ -331,7 +331,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new abc/.
 Patchname is invalid.
-it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
+It must follow the rules in git-check-ref-format(1).
 % list_files
 d .git/patches
 d .git/patches/master
@@ -355,7 +355,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new abc/..
 Patchname is invalid.
-it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
+It must follow the rules in git-check-ref-format(1).
 % list_files
 d .git/patches
 d .git/patches/master
@@ -379,7 +379,415 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new abc/
 Patchname is invalid.
-it cannot begin with '/', './' or '../', or contain /./, /../, or whitespace
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new abc.lock
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new a/b.lock/c
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new cr
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new ctrl-a
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new formfeed
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new del
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new tilde~
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new caret^
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new colon:
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new questionmark?
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new asterisk*
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new open[bracket
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new consecutive//slashes
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new trailing-dot.
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new bad@{seq
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new @
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
+% list_files
+d .git/patches
+d .git/patches/master
+d .git/patches/master/dir
+d .git/patches/master/dir/subdir
+d .git/refs/patches
+d .git/refs/patches/master
+d .git/refs/patches/master/dir
+d .git/refs/patches/master/dir/subdir
+f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
+f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
+f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
+f 7ce0ecd062afe46bf743d0d63dbe79e18774fe03  .git/patches/master/status
+f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
+f bc9ab2e0f5db99d483961e956e814d963f0309f8  .git/patches/master/modify
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/append
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
+f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
+r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
+% guilt new backslash\
+Patchname is invalid.
+It must follow the rules in git-check-ref-format(1).
 % list_files
 d .git/patches
 d .git/patches/master
