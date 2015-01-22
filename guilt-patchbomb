@@ -47,7 +47,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # display the list of commits to be sent as patches
-git log --pretty=oneline "$r" | cut -c 1-8,41- | $pager
+git log --no-decorate --pretty=oneline "$r" | cut -c 1-8,41- | $pager
 
 _disp "Are these what you want to send? [Y/n] "
 read n
