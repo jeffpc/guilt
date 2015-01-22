@@ -35,4 +35,7 @@ shouldfail guilt header non-existant
 # patch name is a regexp that just happens to match an existing patch.
 shouldfail guilt header '.*'
 
+shouldfail guilt header de
+cmd guilt header des
+
 # FIXME: how do we check that -e works?

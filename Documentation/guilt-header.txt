@@ -18,7 +18,10 @@ Prints either the topmost patch's header or the header of a specified patch.
 -E::
 	Open the raw patch in an editor, instead of printing it.
 <patchname>::
-	Name of the patch.
+	Name of the patch. If a patch with exactly this name exists,
+	use it. Otherwise, treat the name as a regexp; if the regexp
+	matches a single patch, use it. Otherwise, list all matching
+	patch names to stderr and fail.
 
 Author
 ------

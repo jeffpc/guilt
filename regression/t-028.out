@@ -56,3 +56,12 @@ Patch non-existant is not in the series
   remove
   mode
   patch-with-some-desc
+% guilt header de
+de does not uniquely identify a patch. Did you mean any of these?
+  mode
+  patch-with-some-desc
+% guilt header des
+blah blah blah
+
+Signed-off-by: Commiter Name <commiter@email>
+
