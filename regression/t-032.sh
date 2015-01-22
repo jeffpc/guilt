@@ -28,7 +28,7 @@ shouldfail guilt import -P foo3 foo
 cmd guilt import -P foo2 foo
 
 # ok
-shouldfail guilt import foo
+cmd guilt import foo
 
 # duplicate patch name (implicit)
 shouldfail guilt import foo

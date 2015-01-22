@@ -51,19 +51,28 @@ function filter_dd
 function cmd
 {
 	echo "% $@"
-	"$@" 2>&1 | replace_path && return 0
-	return 1
+	if ! (
+		exec 3>&1
+		rv=`(("$@" 2>&1; echo $? >&4) | replace_path >&3 ) 4>&1`
+		exit $rv
+	) ; then
+		echo "% FAIL: The above command should succeed but failed."
+		exit 1
+	fi
 }
 
 # usage: shouldfail <cmd>..
 function shouldfail
 {
 	echo "% $@"
-	(
-		"$@" 2>&1 || return 0
-		return 1
-	) | replace_path
-	return $?
+	if (
+		exec 3>&1
+		rv=`(("$@" 2>&1; echo $? >&4) | replace_path >&3 ) 4>&1`
+		exit $rv
+	) ; then
+		echo "% FAIL: The above command should fail but succeeded."
+		exit 1
+	fi
 }
 
 # usage: list_files
