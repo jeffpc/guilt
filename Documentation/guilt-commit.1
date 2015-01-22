@@ -1,58 +1,32 @@
-'\" t
-.\"     Title: guilt-commit
-.\"    Author: [see the "Author" section]
-.\" Generator: DocBook XSL Stylesheets v1.75.2 <http://docbook.sf.net/>
-.\"      Date: 07/17/2011
-.\"    Manual: Guilt Manual
-.\"    Source: Guilt v0.35
-.\"  Language: English
-.\"
-.TH "GUILT\-COMMIT" "1" "07/17/2011" "Guilt v0\&.35" "Guilt Manual"
-.\" -----------------------------------------------------------------
-.\" * Define some portability stuff
-.\" -----------------------------------------------------------------
-.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.\" http://bugs.debian.org/507673
-.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
-.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.ie \n(.g .ds Aq \(aq
-.el       .ds Aq '
-.\" -----------------------------------------------------------------
-.\" * set default formatting
-.\" -----------------------------------------------------------------
+.\" ** You probably do not want to edit this file directly **
+.\" It was generated using the DocBook XSL Stylesheets (version 1.69.1).
+.\" Instead of manually editing it, you probably should edit the DocBook XML
+.\" source for it and then use the DocBook XSL Stylesheets to regenerate it.
+.TH "GUILT\-COMMIT" "1" "01/22/2015" "Guilt v0.36\-rc1" "Guilt Manual"
 .\" disable hyphenation
 .nh
 .\" disable justification (adjust text to left margin only)
 .ad l
-.\" -----------------------------------------------------------------
-.\" * MAIN CONTENT STARTS HERE *
-.\" -----------------------------------------------------------------
 .SH "NAME"
-guilt-commit \- Commit specified number of patches
+guilt\-commit \- Commit specified number of patches
 .SH "SYNOPSIS"
 \fIguilt\-commit\fR \-n <num> | \-a | \-\-all
 
-Turn specified number of bottom most patches into Git commits\&. This removes the the patches from the series, and status file\&.
+Turn specified number of bottom most patches into Git commits. This removes the the patches from the series, and status file.
 .SH "OPTIONS"
-.PP
-\-\-all, \-a
-.RS 4
+.TP
+\-\-all , \-a
 Commit all applied patches
-.RE
-.PP
+.TP
 \-n <num>
-.RS 4
 Commit <num> bottom most patches
-.RE
 .SH "AUTHOR"
-Written by Josef "Jeff" Sipek <\m[blue]\fBjeffpc@josefsipek\&.net\fR\m[]\&\s-2\u[1]\d\s+2>
+Written by Josef "Jeff" Sipek <[1]\&\fIjeffpc@josefsipek.net\fR>
 .SH "DOCUMENTATION"
-Documentation by Josef "Jeff" Sipek <\m[blue]\fBjeffpc@josefsipek\&.net\fR\m[]\&\s-2\u[1]\d\s+2>
+Documentation by Josef "Jeff" Sipek <[1]\&\fIjeffpc@josefsipek.net\fR>
 .SH "GUILT"
-Part of the \fBguilt\fR(7) suite (Generated for Guilt v0\&.35)
-.SH "NOTES"
-.IP " 1." 4
-jeffpc@josefsipek.net
-.RS 4
+Part of the \fBguilt\fR(7) suite (Generated for Guilt v0.36\-rc1)
+.SH "REFERENCES"
+.TP 3
+1.\ jeffpc@josefsipek.net
 \%mailto:jeffpc@josefsipek.net
-.RE

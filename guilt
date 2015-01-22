@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006-2013
+# Copyright (c) Josef "Jeff" Sipek, 2006-2015
 #
 
-GUILT_VERSION="0.35"
+GUILT_VERSION="0.36-rc1"
 GUILT_NAME="Gloria"
 
 GUILT="$(basename "$0")"
