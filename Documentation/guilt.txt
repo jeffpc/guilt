@@ -52,8 +52,7 @@ include::hooks.txt[]
 
 GUILT COMMANDS
 --------------
-All commands can be called with or without a dash. e.g. 'guilt add' or
-'guilt-add'
+All commands must be called without a dash. e.g. 'guilt add'
 
 include::cmds.txt[]
 
