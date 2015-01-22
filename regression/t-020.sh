@@ -21,8 +21,6 @@ guilt series | while read n ; do
 	cmd guilt push
 
 	cmd list_files
-
-	cmd git log -p
 done
 
 #
@@ -33,8 +31,6 @@ shouldfail guilt push
 cmd guilt push -a
 
 cmd list_files
-
-cmd git log -p
 
 #
 # pop all
@@ -49,8 +45,6 @@ guilt series | while read n ; do
 
 	cmd list_files
 
-	cmd git log -p
-
 	cmd guilt pop --all
 done
 
@@ -61,8 +55,6 @@ guilt series | while read n ; do
 	cmd guilt push $t
 
 	cmd list_files
-
-	cmd git log -p
 done
 
 #
@@ -80,8 +72,6 @@ for n in `_seq -2 $npatches`; do
 
 	cmd list_files
 
-	cmd git log -p
-
 	cmd guilt pop --all
 done
 
@@ -91,14 +81,12 @@ cmd list_files
 cmd guilt new empty.patch
 fixup_time_info empty.patch
 cmd list_files
-cmd git log -p
 
 # Ensure we can push the empty patch even when guilt.diffstat is true.
 cmd git config guilt.diffstat true
 cmd guilt refresh
 fixup_time_info empty.patch
 cmd list_files
-cmd git log -p
 cmd git config guilt.diffstat false
 
 # Let the patch have a commit message, but no data.
@@ -117,7 +105,6 @@ EOF
 
 fixup_time_info empty.patch
 cmd list_files
-cmd git log -p
 
 # And once more, with an empty diffstat.
 
@@ -125,20 +112,17 @@ cmd git config guilt.diffstat true
 cmd guilt refresh
 fixup_time_info empty.patch
 cmd list_files
-cmd git log -p
 
 # Restore the diffstat setting and remove the empty patch.
 cmd git config guilt.diffstat false
 cmd guilt refresh
 fixup_time_info empty.patch
 cmd list_files
-cmd git log -p
 # (Cannot delete an applied patch)
 shouldfail guilt delete empty.patch
 cmd guilt pop -a
 cmd guilt delete -f empty.patch
 cmd list_files
-cmd git log -p
 
 # FIXME:
 #   --all

@@ -9,7 +9,7 @@ cmd setup_repo
 
 cmd guilt push --all
 
-cmd git log -p
+cmd list_files
 
 #
 # incremental pop by 1
@@ -18,8 +18,6 @@ guilt series | _tac | while read n ; do
 	cmd guilt pop
 
 	cmd list_files
-
-	cmd git log -p
 done
 
 #
@@ -41,8 +39,6 @@ guilt series | _tac | while read n ; do
 
 	cmd list_files
 
-	cmd git log -p
-
 	cmd guilt push --all
 done
 
@@ -53,8 +49,6 @@ guilt series | _tac | while read n ; do
 	cmd guilt pop $t
 
 	cmd list_files
-
-	cmd git log -p
 done
 
 #
@@ -71,8 +65,6 @@ for n in `_seq -2 $npatches`; do
 	fi
 
 	cmd list_files
-
-	cmd git log -p
 
 	cmd guilt push --all
 done
