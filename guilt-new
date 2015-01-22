@@ -11,10 +11,6 @@ fi
 
 _main() {
 
-if [ $# -lt 1 ] || [ $# -gt 4 ]; then
-	usage
-fi
-
 while [ $# -gt 0 ] ; do
 	case "$1" in
 		-f)
@@ -31,6 +27,9 @@ while [ $# -gt 0 ] ; do
 			fi
 			;;
 		-m)
+			if [ $# -eq 1 ]; then
+				usage
+			fi
 			msg="$2"
 			shift
 
