@@ -36,14 +36,23 @@ usage()
 	exit 1
 }
 
-# echo -n is a bashism, use printf instead
+# Print arguments, but no trailing newline.
+# (echo -n is a bashism, use printf instead)
 _disp()
 {
-	printf "%b" "$*"
+	printf "%s" "$*"
 }
 
-# echo -e is a bashism, use printf instead
+# Print arguments.
+# (echo -E is a bashism, use printf instead)
 disp()
+{
+	printf "%s\n" "$*"
+}
+
+# Print arguments, processing backslash sequences.
+# (echo -e is a bashism, use printf instead)
+disp_e()
 {
 	printf "%b\n" "$*"
 }
@@ -117,7 +126,7 @@ else
 
 	disp ""
 	disp "Example:"
-	disp "\tguilt push"
+	disp_e "\tguilt push"
 
 	# now, let's exit
 	exit 1
