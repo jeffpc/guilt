@@ -55,11 +55,15 @@ function run_test
 
 	# run the test
 	cd "$REPODIR" > /dev/null
-	"$REG_DIR/t-$1.sh" 2>&1 > "$LOGFILE"
-	ERR=$?
+	if "$REG_DIR/t-$1.sh" 2>&1 > "$LOGFILE"; then
+		ERR=false
+	else
+		ERR=true
+	fi
+
 	cd - > /dev/null
 
-	[ $? -ne 0 ] && test_failed
+	$ERR && test_failed
 	diff -u "t-$1.out" "$LOGFILE" || test_failed
 
 	echo "done."
