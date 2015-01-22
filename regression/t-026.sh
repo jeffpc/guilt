@@ -20,4 +20,7 @@ cmd guilt delete add
 
 cmd list_files
 
-# FIXME: test delete -f
+cmd guilt new delete-me
+cmd guilt pop
+cmd guilt delete -f delete-me
+cmd list_files
