@@ -334,7 +334,7 @@ do_get_patch()
 {
 	awk '
 BEGIN{}
-/^(diff |---$|--- )/ {patch = 1}
+/^(diff |--- )/ {patch = 1}
 patch == 1 {print $0}
 END{}
 ' < "$1"
