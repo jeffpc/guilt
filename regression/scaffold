@@ -93,6 +93,7 @@ function setup_git_repo
 	# Explicitly set config that the tests rely on.
 	git config log.date default
 	git config log.decorate no
+	git config guilt.diffstat false
 }
 
 function setup_guilt_repo
