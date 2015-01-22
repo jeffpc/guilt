@@ -26,6 +26,9 @@ OPTIONS
 
 If no patchname is given, push the next patch in the series onto the tree.
 
+Exit with a non-zero exit status if requested to push more patches
+than there are in the series.
+
 Author
 ------
 Written by Josef "Jeff" Sipek <jeffpc@josefsipek.net>

@@ -26,6 +26,9 @@ OPTIONS
 
 If no patchname is given, pop the top-most patch.
 
+Exit with a non-zero exit status if requested to pop more patches
+than there are on the stack.
+
 Author
 ------
 Written by Josef "Jeff" Sipek <jeffpc@josefsipek.net>
