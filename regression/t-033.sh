@@ -59,3 +59,6 @@ cmd git add file.txt
 cmd guilt refresh
 fixup_time_info "a-\"better&quicker'-patch.patch"
 cmd guilt graph
+
+echo "%% The same graph, but excluding deps introduced by file.txt."
+cmd guilt graph -x file.txt

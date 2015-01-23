@@ -16,6 +16,11 @@ patches.
 
 OPTIONS
 -------
+-x <pattern>::
+	Ignore files that matches the given grep pattern. Can be
+	repeated to ignore several files. This can be useful to ignore
+	for instance ChangeLog files that every commit modifies.
+
 <patchname>::
 	Instead of starting with the topmost applied patch, start with
 	<patchname>.

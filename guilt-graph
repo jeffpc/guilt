@@ -3,13 +3,29 @@
 # Copyright (c) Josef "Jeff" Sipek, 2007-2013
 #
 
-USAGE="[<patchname>]"
+USAGE="[-x exclude-pattern]... [<patchname>]"
 if [ -z "$GUILT_VERSION" ]; then
 	echo "Invoking `basename "$0"` directly is no longer supported." >&2
 	exit 1
 fi
 
 _main() {
+
+cache="$GUILT_DIR/$branch/.graphcache.$$"
+xclude="$GUILT_DIR/$branch/.graphexclude.$$"
+trap "rm -rf \"$cache\" \"$xclude\"" 0
+mkdir "$cache"
+>"$xclude"
+
+while [ $# -gt 0 ]; do
+	if [ "$1" = "-x" ] && [ $# -ge 2 ]; then
+		echo "$2" >> "$xclude"
+		shift
+		shift
+	else
+		break
+	fi
+done
 
 if [ $# -gt 1 ]; then
 	usage
@@ -39,10 +55,6 @@ getfiles()
 	git diff-tree -r "$1^" "$1" | cut -f2
 }
 
-cache="$GUILT_DIR/$branch/.graphcache.$$"
-mkdir "$cache"
-trap "rm -rf \"$cache\"" 0
-
 disp "digraph G {"
 
 current="$top"
@@ -66,7 +78,7 @@ while [ "$current" != "$base" ]; do
 	rm -f "$cache/dep"
 	touch "$cache/dep"
 
-	getfiles $current | while read f; do
+	getfiles $current | grep -v -f "$xclude" | while read f; do
 		# hash the filename
 		fh=`echo "$f" | sha1 | cut -d' ' -f1`
 		if [ -e "$cache/$fh" ]; then
