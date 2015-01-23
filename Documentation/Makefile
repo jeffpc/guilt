@@ -66,8 +66,8 @@ clean:
 	rm -f usage-*.txt
 	rm -f version.txt
 
-usage-%.txt: $(MAN1_TXT) usage.sh
-	sh ./usage.sh
+usage-guilt-%.txt: ../guilt-% usage.sh
+	sh ./usage.sh $<
 
 %.html : %.txt footer.txt version.txt
 	$(ASCIIDOC) -b xhtml11 -d manpage -f asciidoc.conf $(ASCIIDOC_EXTRA) $<
