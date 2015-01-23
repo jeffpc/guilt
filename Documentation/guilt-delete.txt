@@ -25,7 +25,7 @@ EXAMPLES
 --------
 Delete a patch called 'foobar':
 
-	$ guilt-delete foobar
+	$ guilt delete foobar
 
 Author
 ------

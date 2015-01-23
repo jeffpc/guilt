@@ -19,10 +19,10 @@ the following way:
 * An unguarded patch is always applied.
 
 * A patch with a positive guard is applied *only* if the guard is
-selected with guilt-select.
+selected with "+guilt select+".
 
 * A patch with a negative guard is applied *unless* the guard is
-selected with guilt-select.
+selected with "+guilt select+".
 
 OPTIONS
 -------

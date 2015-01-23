@@ -22,7 +22,7 @@ Perform various repository repairs. You must specify one mode of repair:
 	WARNING: Running this command may result in commits and working
 	directory changes being lost. You may want to create a new reference
 	(e.g., branch, or reflog) to the original HEAD before using
-	guilt-repair.
+	"guilt repair".
 
 --status::
 	Upgrade the status file from old format to new.
