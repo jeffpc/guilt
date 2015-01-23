@@ -11,3 +11,6 @@ version.txt
 
 # Generated file dependency list
 doc.dep
+
+# Intermediate generated files
+*.xml
