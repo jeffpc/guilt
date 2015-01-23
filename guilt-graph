@@ -36,7 +36,7 @@ fi
 
 getfiles()
 {
-	git diff-tree -r "$1^" "$1" | tr '\t' ' ' | cut -d' ' -f6
+	git diff-tree -r "$1^" "$1" | cut -f2
 }
 
 cache="$GUILT_DIR/$branch/.graphcache.$$"
