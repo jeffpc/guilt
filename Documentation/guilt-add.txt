@@ -11,7 +11,7 @@ include::usage-guilt-add.txt[]
 
 DESCRIPTION
 -----------
-Adds the files specified to git using git-add making it available to guilt.
+Adds the files specified to git using git-add(1) making it available to guilt.
 
 OPTIONS
 -------

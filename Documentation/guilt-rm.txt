@@ -11,7 +11,7 @@ include::usage-guilt-rm.txt[]
 
 DESCRIPTION
 -----------
-Removes the files specified from git using git-rm
+Removes the files specified from git using git-rm(1).
 
 OPTIONS
 -------
