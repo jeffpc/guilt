@@ -370,6 +370,7 @@ do_make_header()
 		BEGIN{headers=1; firstline=1}
 		/^author / && headers {
 			sub(/^author +/, "");
+			authordate=strftime("%c", $(NF -1)) " " $NF;
 			sub(/ [0-9]* [+-]*[0-9][0-9]*$/, "");
 			author=$0
 		}
@@ -378,6 +379,7 @@ do_make_header()
 			if (firstline) {
 				firstline = 0;
 				print "\nFrom: " author;
+				print "Date: " authordate;
 			}
 		}
 		/^$/ && headers { headers = 0 }
