@@ -3,8 +3,8 @@
 # Copyright (c) Josef "Jeff" Sipek, 2006-2015
 #
 
-GUILT_VERSION="0.36-rc1"
-GUILT_NAME="Gloria"
+GUILT_VERSION="0.36"
+GUILT_NAME="Irgendwann"
 
 GUILT="$(basename "$0")"
 
