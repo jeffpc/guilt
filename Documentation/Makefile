@@ -40,6 +40,7 @@ install: man
 	$(INSTALL) -m644 $(DOC_MAN7) $(DESTDIR)$(man7dir)
 
 install-html: html
+	$(INSTALL) -d -m755 $(DESTDIR)$(htmldir)
 	$(INSTALL) -m644 $(DOC_HTML) $(DESTDIR)$(htmldir)
 
 #
