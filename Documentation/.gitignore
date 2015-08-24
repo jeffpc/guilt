@@ -14,3 +14,8 @@ doc.dep
 
 # Intermediate generated files
 *.xml
+
+# Generated manpages (troff & html)
+*.1
+*.7
+*.html
