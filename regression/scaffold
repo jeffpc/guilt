@@ -42,9 +42,11 @@ function replace_path
 	    -e "\\,^Deleted branch guilt/.* (was .*).$,d"
 }
 
+# Newer dd does
+#   (1.0 kB, 1.0 kiB) copied, ...
 function filter_dd
 {
-	sed -e 's:^\([0-9]*\) bytes (\([0-9]*\.[0-9]* .B\)) copied.*$:\1 bytes (\2) copied:'
+	sed -e 's:^\([0-9]*\) bytes (\([0-9]*\.[0-9]* .B\).*) copied.*$:\1 bytes (\2) copied:'
 }
 
 # usage: cmd <cmd>..
