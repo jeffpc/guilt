@@ -4,12 +4,21 @@
 #
 
 USAGE="[--git] [--diffstat]"
+COLOR=`git config --get color.ui`
+
 if [ -z "$GUILT_VERSION" ]; then
 	echo "Invoking `basename "$0"` directly is no longer supported." >&2
 	exit 1
 fi
 
 _main() {
+
+if [ "$COLOR" = "always" ]; then
+	echo "git color.ui=always is unsupported because"
+	echo "escape characters will be redirected"
+	echo "please set it to color.ui=auto"
+	exit 1
+fi
 
 while [ $# -gt 0 ]; do
 	case "$1" in
