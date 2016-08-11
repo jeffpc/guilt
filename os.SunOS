@@ -41,7 +41,7 @@ sha1()
 # usage: cp_a <src> <dst>
 cp_a()
 {
-	cp -a "$1" "$2"
+	/usr/bin/cp -a "$1" "$2"
 }
 
 # usage: _tac
