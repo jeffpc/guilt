@@ -73,8 +73,17 @@ GUILT_PATH="$(dirname "$0")"
 
 guilt_commands()
 {
-	find "$GUILT_PATH/../lib/guilt" -maxdepth 1 -name "guilt-*" -type f -perm +111 2> /dev/null | sed -e "s/.*\\/$GUILT-//"
-	find "$GUILT_PATH" -maxdepth 1 -name "guilt-*" -type f -perm +111 | sed -e "s/.*\\/$GUILT-//"
+	# GNU Find no longer accepts -perm +111, even though the rest
+	# world (MacOS, Solaris, BSD, etc.) does.  Sigh.  Using -executable
+	# is arugably better, but it is a GNU extension.  Since this isn't
+	# a fast path and guilt doesn't use autoconf, test for it as needed.
+	if find . -maxdepth 0 -executable > /dev/null 2>&1 ; then
+		exe_test="-executable"
+	else
+		exe_test="-perm +111"
+	fi
+	find "$GUILT_PATH/../lib/guilt" -maxdepth 1 -name "guilt-*" -type f $exe_test 2> /dev/null | sed -e "s/.*\\/$GUILT-//"
+	find "$GUILT_PATH" -maxdepth 1 -name "guilt-*" -type f $exe_test | sed -e "s/.*\\/$GUILT-//"
 }
 
 # by default, we shouldn't fail
