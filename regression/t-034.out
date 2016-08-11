@@ -254,7 +254,7 @@ Converting ee6ef2cc as caretisforbidden
 Converting 70a83b70 as tildeisforbidden
 Converting 10dea838 as space_is_forbidden
 Converting 48eb60cd as check-multiple-.-dots-.-foo
-Converting 1535e677 as two_consecutive_dots_(.)_is_forbidden
+Converting 1535e677 as two_consecutive_dots_._is_forbidden
 Converting bbf3f592 as a-component-may-not-end-in-foolock
 Converting 45e81b51 as the_sequence_.lock-_is_forbidden
 Converting eebb76e9 as the_sequence_-._is_forbidden
@@ -268,7 +268,7 @@ Applying patch..the_sequence_.lock-_is_forbidden.patch
 Patch applied.
 Applying patch..a-component-may-not-end-in-foolock.patch
 Patch applied.
-Applying patch..two_consecutive_dots_(.)_is_forbidden.patch
+Applying patch..two_consecutive_dots_._is_forbidden.patch
 Patch applied.
 Applying patch..check-multiple-.-dots-.-foo.patch
 Patch applied.
@@ -520,7 +520,7 @@ d .git/patches/master
 d .git/refs/patches
 d .git/refs/patches/master
 f 06beca7069b9e576bd431f65d13862ed5d3e2a0f  .git/patches/master/ctrlisforbidden.patch
-f 09b7e9be44ae5ec3a4bb30f5ee9d4ebc2c042f64  .git/patches/master/two_consecutive_dots_(.)_is_forbidden.patch
+f 09b7e9be44ae5ec3a4bb30f5ee9d4ebc2c042f64  .git/patches/master/two_consecutive_dots_._is_forbidden.patch
 f 0b971c9a17aeca2319c93d700ffd98acc2a93451  .git/patches/master/question-mark-is-forbidden.patch
 f 2b8392f63d61efc12add554555adae30883993cc  .git/patches/master/cannot-end-in-slash-.patch
 f 2cd7c9ad392e071be03c051c6793e9b1e31d33c4  .git/patches/master/can-have-embedded-single-slashes.patch
@@ -528,6 +528,8 @@ f 3136e448a4c820f6d2642f9d894c4087d3d109ab  .git/patches/master/cannot_end_in_.p
 f 34e07c584032df137f19bdb66d93f316f00a5ac8  .git/patches/master/tildeisforbidden.patch
 f 49bab499826b63deb2bd704629d60c7268c57aee  .git/patches/master/the_sequence_-._is_forbidden.patch
 f 5bcddb8ccb6e6e5e8a61e9e56cb2e0f70cbab2f5  .git/patches/master/cannot@have@the@sequence@at-brace.patch
+f 5d17b6d10ca389f7be4246c20d6da8a91ce39606  .git/patches/master/series
+f 5d17b6d10ca389f7be4246c20d6da8a91ce39606  .git/patches/master/status
 f 637b982fe14a240de181ae63226b27e0c406b3dc  .git/patches/master/asterisk-is-forbidden.patch
 f 698f8a7d41a64e3b6be1a3eba86574078b22a5f3  .git/patches/master/backslash-is-forbidden.patch
 f 7b103c3c7ae298cd2334f6f49da48bae1424f77b  .git/patches/master/crisalsoforbidden.patch
@@ -537,8 +539,6 @@ f ab325bf5a432937fc6f231d3e8a773a62d53952b  .git/patches/master/multiple-slashes
 f cb9cffbd4465bddee266c20ccebd14eb687eaa89  .git/patches/master/delisforbidden.patch
 f d0885a1a1fdee0fd1e4fedce3f7acd3100540bc4  .git/patches/master/openbracketisforbidden.patch
 f d2903523fb66a346596eabbdd1bda4e52b266440  .git/patches/master/check-multiple-.-dots-.-foo.patch
-f da90de1c84138194524994e0bc3bc4ca8189c999  .git/patches/master/series
-f da90de1c84138194524994e0bc3bc4ca8189c999  .git/patches/master/status
 f dfc11f76394059909671af036598c5fbe33001ba  .git/patches/master/space_is_forbidden.patch
 f e47474c52d6c893f36d0457f885a6dd1267742bb  .git/patches/master/colon_is_forbidden.patch
 f e7a5f8912592d9891e6159f5827c8b4f372cc406  .git/patches/master/the_sequence_.lock-_is_forbidden.patch
@@ -564,6 +564,6 @@ r f091fee39457e64ebd35410c1cf95e6613816a54  .git/refs/patches/master/cannot_end_
 r f13e243c7c56f39422567a431bccceec8b789596  .git/refs/patches/master/multiple-slashes--are--forbidden.patch
 r fb1edb753c97ec865ceea316420b1df586caaa2b  .git/refs/patches/master/caretisforbidden.patch
 r fdcb23c3072209bea3d9e0a2594132b936c5347e  .git/refs/patches/master/the_sequence_-._is_forbidden.patch
-r fe07105cd62660f4440ad24b9fc7dfdd9e71d764  .git/refs/patches/master/two_consecutive_dots_(.)_is_forbidden.patch
+r fe07105cd62660f4440ad24b9fc7dfdd9e71d764  .git/refs/patches/master/two_consecutive_dots_._is_forbidden.patch
 % guilt pop -a
 All patches popped.
