@@ -67,7 +67,7 @@ done
 
 # If push and pop works, the names we created are good.
 cmd guilt push -a
-cmd git log --decorate
-cmd git log --decorate some-branch
+cmd git log 
+cmd git log some-branch
 cmd list_files
 cmd guilt pop -a

@@ -306,148 +306,148 @@ Applying patch..backslash-is-forbidden.patch
 Patch applied.
 Applying patch..can-have-embedded-single-slashes.patch
 Patch applied.
-% git log --decorate
-commit 434e07cacdd8e7eb4723e67cb2d100b3a4121a3a (HEAD, refs/patches/master/can-have-embedded-single-slashes.patch, guilt/master)
+% git log
+commit 434e07cacdd8e7eb4723e67cb2d100b3a4121a3a
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Can/have/embedded/single/slashes
 
-commit 7c3ffa4f940c862e9f11f5d4a5ae421f7a8d3141 (refs/patches/master/backslash-is-forbidden.patch)
+commit 7c3ffa4f940c862e9f11f5d4a5ae421f7a8d3141
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Backslash\is\forbidden.
 
-commit ea46f435d4d8f3c5349dce1aabc1a39fbf7ef803 (refs/patches/master/x.patch)
+commit ea46f435d4d8f3c5349dce1aabc1a39fbf7ef803
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     @
 
-commit a275ed5d7f10ea88c986852ee95a7d5a61663b5f (refs/patches/master/cannot@have@the@sequence@at-brace.patch)
+commit a275ed5d7f10ea88c986852ee95a7d5a61663b5f
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Cannot@{have@{the@{sequence@{at-brace.
 
-commit f091fee39457e64ebd35410c1cf95e6613816a54 (refs/patches/master/cannot_end_in_.patch)
+commit f091fee39457e64ebd35410c1cf95e6613816a54
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Cannot end in ..
 
-commit 025672497aff5c910c8ff86aaedc662f14c2f4ad (refs/patches/master/cannot-end-in-slash-.patch)
+commit 025672497aff5c910c8ff86aaedc662f14c2f4ad
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Cannot/end/in/slash/
 
-commit f13e243c7c56f39422567a431bccceec8b789596 (refs/patches/master/multiple-slashes--are--forbidden.patch)
+commit f13e243c7c56f39422567a431bccceec8b789596
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Multiple/slashes//are//forbidden.
 
-commit edef5e925083d445f71c170d3293fac9619bc7a2 (refs/patches/master/openbracketisforbidden.patch)
+commit edef5e925083d445f71c170d3293fac9619bc7a2
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Open[bracket[is[forbidden.
 
-commit 1626a11d979a1e9e775c766484172212277153df (refs/patches/master/asterisk-is-forbidden.patch)
+commit 1626a11d979a1e9e775c766484172212277153df
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Asterisk*is*forbidden.
 
-commit 74df14ab3a0ec9a0382998fbf167ebb1b0a36c6a (refs/patches/master/question-mark-is-forbidden.patch)
+commit 74df14ab3a0ec9a0382998fbf167ebb1b0a36c6a
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Question-mark?is?forbidden.
 
-commit ec46429125abdb0c5ac2b46cc399bdcd7cfc73fd (refs/patches/master/crisalsoforbidden.patch)
+commit ec46429125abdb0c5ac2b46cc399bdcd7cfc73fd
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     CRisalsoforbidden.
 
-commit 01524f9921af2a041cc88c068f76baa39e436cb2 (refs/patches/master/ctrlisforbidden.patch)
+commit 01524f9921af2a041cc88c068f76baa39e436cb2
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Ctrlisforbidden.
 
-commit 9fc9677b61880f9159838e89f714893e0a2fcafb (refs/patches/master/delisforbidden.patch)
+commit 9fc9677b61880f9159838e89f714893e0a2fcafb
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Delisforbidden.
 
-commit 10433fd7206b7f79aabb4da514710d93c8deed4a (refs/patches/master/colon_is_forbidden.patch)
+commit 10433fd7206b7f79aabb4da514710d93c8deed4a
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Colon:is:forbidden.
 
-commit fb1edb753c97ec865ceea316420b1df586caaa2b (refs/patches/master/caretisforbidden.patch)
+commit fb1edb753c97ec865ceea316420b1df586caaa2b
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Caret^is^forbidden.
 
-commit 3a0d5ccef0359004fcaa9cee98fbd6a2c4432e74 (refs/patches/master/tildeisforbidden.patch)
+commit 3a0d5ccef0359004fcaa9cee98fbd6a2c4432e74
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Tilde~is~forbidden.
 
-commit ea22c3b49c448dba8d7eaa6b805f9f1bc83fbedc (refs/patches/master/space_is_forbidden.patch)
+commit ea22c3b49c448dba8d7eaa6b805f9f1bc83fbedc
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Space is forbidden.
 
-commit db6ea8252440b04811344336f510a5469b2ddab0 (refs/patches/master/check-multiple-.-dots-.-foo.patch)
+commit db6ea8252440b04811344336f510a5469b2ddab0
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Check/multiple/../dots/...../foo..patch
 
-commit fe07105cd62660f4440ad24b9fc7dfdd9e71d764 (refs/patches/master/two_consecutive_dots_(.)_is_forbidden.patch)
+commit fe07105cd62660f4440ad24b9fc7dfdd9e71d764
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     Two consecutive dots (..) is forbidden.
 
-commit 96a3e92c4df85f52362ce4f6d31983c462db9ae9 (refs/patches/master/a-component-may-not-end-in-foolock.patch)
+commit 96a3e92c4df85f52362ce4f6d31983c462db9ae9
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     A/component/may/not/end/in/foo.lock
 
-commit ee4f0f96dfc9c94f5410c1e6414f9004325a37fc (refs/patches/master/the_sequence_.lock-_is_forbidden.patch)
+commit ee4f0f96dfc9c94f5410c1e6414f9004325a37fc
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     The sequence .lock/ is forbidden.
 
-commit fdcb23c3072209bea3d9e0a2594132b936c5347e (refs/patches/master/the_sequence_-._is_forbidden.patch)
+commit fdcb23c3072209bea3d9e0a2594132b936c5347e
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     The sequence /. is forbidden.
 
-commit d4850419ccc1146c7169f500725ce504b9774ed0 (tag: base, master)
+commit d4850419ccc1146c7169f500725ce504b9774ed0
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
     initial
     
     Signed-off-by: Commiter Name <commiter@email>
-% git log --decorate some-branch
-commit 589ee305a82aacf155529e75cbc84e661c37c83d (tag: some-tag, some-branch)
+% git log some-branch
+commit 589ee305a82aacf155529e75cbc84e661c37c83d
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
@@ -507,7 +507,7 @@ Date:   Mon Jan 1 00:00:00 2007 +0000
 
     The sequence /. is forbidden.
 
-commit d4850419ccc1146c7169f500725ce504b9774ed0 (tag: base, master)
+commit d4850419ccc1146c7169f500725ce504b9774ed0
 Author: Author Name <author@email>
 Date:   Mon Jan 1 00:00:00 2007 +0000
 
