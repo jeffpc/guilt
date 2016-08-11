@@ -123,6 +123,7 @@ if [ $# -ne 0 ]; then
 		disp "" >&2
 		exit 1
 	fi
+	set_reflog_action "guilt-$CMDNAME"
 
 	shift
 else
@@ -649,7 +650,7 @@ commit()
 		commitish=`git commit-tree $treeish -p $2 < "$TMP_MSG"`
 		if $old_style_prefix || git rev-parse --verify --quiet refs/heads/$GUILT_PREFIX$branch >/dev/null
 		then
-			git update-ref HEAD $commitish
+			git update-ref -m "$GIT_REFLOG_ACTION" HEAD $commitish
 		else
 			git branch $GUILT_PREFIX$branch $commitish
 			git symbolic-ref HEAD refs/heads/$GUILT_PREFIX$branch
@@ -696,7 +697,8 @@ push_patch()
 			fi
 		fi
 
-		commit "$pname" HEAD
+		GIT_REFLOG_ACTION="$GIT_REFLOG_ACTION: $pname" \
+			commit "$pname" HEAD
 
 		echo "$pname" >> "$applied"
 
