@@ -684,7 +684,7 @@ push_patch()
 			if [ "$bail_action" = abort ]; then
 				reject=""
 			fi
-			git apply -C$guilt_push_diff_context --index \
+			git apply $guilt_push_diff_context --index \
 				$reject "$p" > /dev/null 2> "$TMP_LOG"
 			__push_patch_bail=$?
 
@@ -890,7 +890,7 @@ guilt_hook()
 #
 
 # used for: git apply -C <val>
-guilt_push_diff_context=1
+PUSH_DIFF_CONTEXT=1
 
 # default diffstat value: true or false
 DIFFSTAT_DEFAULT="false"
@@ -904,6 +904,18 @@ GUILT_PREFIX=guilt/
 #
 # Parse any part of .git/config that belongs to us
 #
+
+# amount of context
+diffcontext=`git config --bool-or-int guilt.diffcontext`
+[ -z "$diffcontext" ] && diffcontext=$PUSH_DIFF_CONTEXT
+case "$diffcontext" in
+	false)
+		guilt_push_diff_context="-C0";;
+	true)
+		;;
+	*)
+		guilt_push_diff_context="-C$diffcontext";;
+esac
 
 # generate diffstat?
 diffstat=`git config --bool guilt.diffstat`
