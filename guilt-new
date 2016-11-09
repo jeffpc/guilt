@@ -86,7 +86,7 @@ mkdir_dir=`dirname "$GUILT_DIR/$branch/$patch"`
 if [ ! -z "$force" ]; then
 	(
 		cd_to_toplevel
-		git diff --binary HEAD >> "$GUILT_DIR/$branch/$patch"
+		git diff --no-ext-diff --binary HEAD >> "$GUILT_DIR/$branch/$patch"
 	)
 fi
 

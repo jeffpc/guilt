@@ -52,7 +52,7 @@ fi
 
 getfiles()
 {
-	git diff-tree -r "$1^" "$1" | cut -f2
+	git diff-tree --no-ext-diff -r "$1^" "$1" | cut -f2
 }
 
 disp "digraph G {"

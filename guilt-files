@@ -51,9 +51,9 @@ fi | while read patch; do
 	IFS=' '
 	(
 		if [ "$top_patch" != "$patch" ]; then
-			git diff-tree -r $obj^ $obj
+			git diff-tree --no-ext-diff -r $obj^ $obj
 		else
-			git diff-index HEAD^
+			git diff-index --no-ext-diff HEAD^
 		fi
 	) | tr '\t' ' '|
 	while read omode nmode osha1 nsha1 st file; do

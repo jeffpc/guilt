@@ -65,16 +65,16 @@ done
 
 # modify the working dir file
 cmd echo qwerty >> def
-cmd git diff
+cmd git diff --no-ext-diff
 
 # try to make a new patch, without -f
 shouldfail guilt new uncommitted-changes
-cmd git diff
+cmd git diff --no-ext-diff
 cmd list_files
 
 # give new -f, to force things
 cmd guilt new -f uncommitted-changes
-cmd git diff
+cmd git diff --no-ext-diff
 cmd guilt pop
 fixup_time_info uncommitted-changes
 cmd guilt push
@@ -83,19 +83,19 @@ cmd list_files
 # modify the working dir file (again)
 cmd echo dvorak >> def
 cmd git update-index def
-cmd git diff
-cmd git diff HEAD
+cmd git diff --no-ext-diff
+cmd git diff --no-ext-diff HEAD
 
 # try to make a new patch, without -f
 shouldfail guilt new uncommitted-changes2
-cmd git diff
-cmd git diff HEAD
+cmd git diff --no-ext-diff
+cmd git diff --no-ext-diff HEAD
 cmd list_files
 
 # give new -f, to force things
 cmd guilt new -f uncommitted-changes2
-cmd git diff
-cmd git diff HEAD
+cmd git diff --no-ext-diff
+cmd git diff --no-ext-diff HEAD
 cmd guilt pop
 fixup_time_info uncommitted-changes2
 cmd guilt push

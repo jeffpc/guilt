@@ -69,7 +69,7 @@ for rev in `git rev-list $rhash`; do
 	(
 		do_make_header $rev
 		echo ""
-		git diff --binary $rev^..$rev
+		git diff --no-ext-diff --binary $rev^..$rev
 	) > "$GUILT_DIR/$branch/$fname"
 
 	# FIXME: grab the GIT_AUTHOR_DATE from the commit object and set the
