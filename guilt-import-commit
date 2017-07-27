@@ -11,6 +11,17 @@ fi
 
 _main() {
 
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h|--help)
+			usage ;;
+		-*)
+			usage ;;
+		*)
+			break
+	esac
+done
+
 if [ $# -ne 1 ] || [ -z "$1" ]; then
 	die "You must specify a range of commits"
 fi
