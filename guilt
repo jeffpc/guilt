@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-# Copyright (c) Josef "Jeff" Sipek, 2006-2015
+# Copyright (c) Josef "Jeff" Sipek, 2006-2018
 #
 
-GUILT_VERSION="0.36"
+GUILT_VERSION="0.37-rc1"
 GUILT_NAME="Irgendwann"
 
 GUILT="$(basename "$0")"
