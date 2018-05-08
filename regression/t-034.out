@@ -517,8 +517,6 @@ Date:   Mon Jan 1 00:00:00 2007 +0000
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 07b24e1e6187f59424a8ca12f006e6b0fba45731  .git/patches/master/the_sequence_-._is_forbidden.patch
 f 0865142b73164c5ac04640eee70e77ba2aed6e78  .git/patches/master/openbracketisforbidden.patch
 f 17b96cbe0e501545ef88e74de6aff15076c02c6a  .git/patches/master/multiple-slashes--are--forbidden.patch

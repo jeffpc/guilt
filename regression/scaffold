@@ -82,7 +82,6 @@ function list_files
 {
 	(
 		find .git/refs/patches -type f -exec dump_ref {} \; 2> /dev/null || true
-		find .git/refs/patches -type d -exec dump_reg {} \; 2> /dev/null || true
 		find .git/patches -exec dump_reg {} \;
 	) | sort
 }

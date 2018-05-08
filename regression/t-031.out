@@ -7,8 +7,6 @@ Patch applied.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
@@ -22,8 +20,6 @@ Patch "mode" already exists. Choose another name.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
@@ -36,8 +32,6 @@ r 37d588cc39848368810e88332bd03b083f2ce3ac  .git/refs/patches/master/add
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 60bc97eb44b6e7424b22f6cf4ac09e71a1911447  .git/patches/master/status

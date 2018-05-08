@@ -11,8 +11,6 @@ Patch applied.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status
@@ -28,8 +26,6 @@ Now at remove.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
@@ -44,8 +40,6 @@ Now at add.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
@@ -59,8 +53,6 @@ Now at modify.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
@@ -73,7 +65,6 @@ All patches popped.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
@@ -96,8 +87,6 @@ Now at remove.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
@@ -115,8 +104,6 @@ Now at add.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
@@ -135,8 +122,6 @@ Now at modify.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
@@ -156,7 +141,6 @@ All patches popped.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
@@ -177,8 +161,6 @@ Now at remove.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
@@ -193,8 +175,6 @@ Now at add.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
@@ -208,8 +188,6 @@ Now at modify.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
@@ -222,7 +200,6 @@ All patches popped.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
@@ -243,8 +220,6 @@ Invalid number of patches to pop.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status
@@ -262,8 +237,6 @@ Invalid number of patches to pop.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status
@@ -281,8 +254,6 @@ No patches requested to be removed.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status
@@ -300,8 +271,6 @@ Now at remove.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
@@ -319,8 +288,6 @@ Now at add.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 6e9645b29c7233ecdf1494834e83c67a37464548  .git/patches/master/status
@@ -339,8 +306,6 @@ Now at modify.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 7b80669540a0ba5ec6098f50bb7923921278e85a  .git/patches/master/status
@@ -360,7 +325,6 @@ All patches popped.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
@@ -379,8 +343,6 @@ Patch applied.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 71596bf71b72c2717e1aee378aabefbfa19ab7c8  .git/patches/master/status

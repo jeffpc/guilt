@@ -53,9 +53,6 @@ d .git/patches
 d .git/patches/br-
 d .git/patches/br-modify
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/br-modify
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
@@ -83,9 +80,6 @@ d .git/patches
 d .git/patches/br-
 d .git/patches/br-modify
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/br-modify
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
@@ -116,10 +110,6 @@ d .git/patches/br-
 d .git/patches/br-add
 d .git/patches/br-modify
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/br-add
-d .git/refs/patches/br-modify
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-add/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
@@ -157,10 +147,6 @@ d .git/patches/br-
 d .git/patches/br-add
 d .git/patches/br-modify
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/br-add
-d .git/refs/patches/br-modify
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-add/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
@@ -201,11 +187,6 @@ d .git/patches/br-add
 d .git/patches/br-modify
 d .git/patches/br-remove
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/br-add
-d .git/refs/patches/br-modify
-d .git/refs/patches/br-remove
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-add/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
@@ -254,11 +235,6 @@ d .git/patches/br-add
 d .git/patches/br-modify
 d .git/patches/br-remove
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/br-add
-d .git/refs/patches/br-modify
-d .git/refs/patches/br-remove
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-add/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-modify/mode
@@ -310,12 +286,6 @@ d .git/patches/br-mode
 d .git/patches/br-modify
 d .git/patches/br-remove
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/br-add
-d .git/refs/patches/br-mode
-d .git/refs/patches/br-modify
-d .git/refs/patches/br-remove
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-add/mode
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/br-mode/mode

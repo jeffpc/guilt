@@ -25,8 +25,6 @@ Patch applied.
 % list_files
 d .git/patches
 d .git/patches/master
-d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 42d2613ecee1b642b2b8b7b7a9cef165bf456e48  .git/patches/master/modify
