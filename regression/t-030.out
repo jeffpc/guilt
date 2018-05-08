@@ -112,7 +112,6 @@ r ffb7faa126a6d91bcdd44a494f76b96dd860b8b9  .git/refs/patches/master/remove
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 3516b9a25ed0eb359d1920f62a59f093bb90f7dd  .git/patches/master/series
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -124,7 +123,6 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/status
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 3516b9a25ed0eb359d1920f62a59f093bb90f7dd  .git/patches/master/series
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove

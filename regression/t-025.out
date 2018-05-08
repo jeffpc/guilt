@@ -125,8 +125,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -149,8 +147,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -172,8 +168,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -195,8 +189,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -219,8 +211,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -243,8 +233,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -267,8 +255,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -291,8 +277,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -315,8 +299,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -339,8 +321,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -363,8 +343,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -387,8 +365,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -411,8 +387,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -435,8 +409,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -459,8 +431,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -483,8 +453,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -507,8 +475,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -531,8 +497,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -555,8 +519,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -579,8 +541,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -603,8 +563,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -627,8 +585,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -651,8 +607,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -675,8 +629,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -699,8 +651,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -723,8 +673,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -747,8 +695,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -771,8 +717,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -795,8 +739,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -836,8 +778,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 1ef04b4f4149870b3f06b5f99b9d9fc260cebc67  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
@@ -864,8 +804,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 06d2f9f2f2c01d41544a0eab8040959c318e8c3b  .git/patches/master/uncommitted-changes
 f 0d14139c7f15f095b9a3dae9802f20072a4c1859  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
@@ -914,8 +852,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 06d2f9f2f2c01d41544a0eab8040959c318e8c3b  .git/patches/master/uncommitted-changes
 f 0d14139c7f15f095b9a3dae9802f20072a4c1859  .git/patches/master/series
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
@@ -945,8 +881,6 @@ d .git/patches/master/dir
 d .git/patches/master/dir/subdir
 d .git/refs/patches
 d .git/refs/patches/master
-d .git/refs/patches/master/dir
-d .git/refs/patches/master/dir/subdir
 f 06d2f9f2f2c01d41544a0eab8040959c318e8c3b  .git/patches/master/uncommitted-changes
 f 0fe110e08d3278d1c5757ee600c0a6c043f0cc07  .git/patches/master/status
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode

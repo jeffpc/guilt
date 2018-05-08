@@ -43,7 +43,6 @@ All patches popped.
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 9c18cc7abe6b87f18503714a80a677b4094eb457  .git/patches/master/add
@@ -97,7 +96,6 @@ All patches popped.
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 51fcfcf16db2903f19ab4a4a3caacd297ea9f6cd  .git/patches/master/empty~
@@ -153,7 +151,6 @@ All patches popped.
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 51fcfcf16db2903f19ab4a4a3caacd297ea9f6cd  .git/patches/master/nonempty~
@@ -211,7 +208,6 @@ All patches popped.
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 51fcfcf16db2903f19ab4a4a3caacd297ea9f6cd  .git/patches/master/nonempty~
@@ -272,7 +268,6 @@ All patches popped.
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 51fcfcf16db2903f19ab4a4a3caacd297ea9f6cd  .git/patches/master/nonempty~
@@ -332,7 +327,6 @@ All patches popped.
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 51fcfcf16db2903f19ab4a4a3caacd297ea9f6cd  .git/patches/master/empty~
@@ -392,7 +386,6 @@ All patches popped.
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 51fcfcf16db2903f19ab4a4a3caacd297ea9f6cd  .git/patches/master/nonempty~
@@ -452,7 +445,6 @@ All patches popped.
 d .git/patches
 d .git/patches/master
 d .git/refs/patches
-d .git/refs/patches/master
 f 22930c6d1f1938f298a4fca51c57e4b47171db21  .git/patches/master/mode
 f 413390f3906f16f30b054a4fb86c1e014b964504  .git/patches/master/remove
 f 51fcfcf16db2903f19ab4a4a3caacd297ea9f6cd  .git/patches/master/nonempty~
