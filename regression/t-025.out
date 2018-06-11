@@ -680,7 +680,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/dir/subdir/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
-% git diff
+% git diff --no-ext-diff
 diff --git a/def b/def
 index 8baef1b..e0e56d9 100644
 --- a/def
@@ -691,7 +691,7 @@ index 8baef1b..e0e56d9 100644
 +qwerty
 % guilt new uncommitted-changes
 Uncommited changes detected. Refresh first.
-% git diff
+% git diff --no-ext-diff
 diff --git a/def b/def
 index 8baef1b..e0e56d9 100644
 --- a/def
@@ -718,7 +718,7 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/file
 f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 % guilt new -f uncommitted-changes
-% git diff
+% git diff --no-ext-diff
 % guilt pop
 Now at prepend.
 % guilt push
@@ -744,8 +744,8 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 r d82a031e1b47908b850c7a8312300ef5cf289271  .git/refs/patches/master/uncommitted-changes
 % git update-index def
-% git diff
-% git diff HEAD
+% git diff --no-ext-diff
+% git diff --no-ext-diff HEAD
 diff --git a/def b/def
 index e0e56d9..2f766df 100644
 --- a/def
@@ -758,8 +758,8 @@ index e0e56d9..2f766df 100644
 +dvorak
 % guilt new uncommitted-changes2
 Uncommited changes detected. Refresh first.
-% git diff
-% git diff HEAD
+% git diff --no-ext-diff
+% git diff --no-ext-diff HEAD
 diff --git a/def b/def
 index e0e56d9..2f766df 100644
 --- a/def
@@ -790,8 +790,8 @@ f da39a3ee5e6b4b0d3255bfef95601890afd80709  .git/patches/master/prepend
 r acdeef96ee30eb34bbbf65d11de5cf7da4b5fee8  .git/refs/patches/master/prepend
 r d82a031e1b47908b850c7a8312300ef5cf289271  .git/refs/patches/master/uncommitted-changes
 % guilt new -f uncommitted-changes2
-% git diff
-% git diff HEAD
+% git diff --no-ext-diff
+% git diff --no-ext-diff HEAD
 % guilt pop
 Now at uncommitted-changes.
 % guilt push

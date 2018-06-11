@@ -599,7 +599,7 @@ commit()
 		pname="$1"
 		cd_to_toplevel
 
-		git diff-files --name-only | (while read n; do git update-index "$n" ; done)
+		git diff-files --no-ext-diff --name-only | (while read n; do git update-index "$n" ; done)
 
 		# grab a commit message out of the patch
 		do_get_header "$p" > "$TMP_MSG"
@@ -717,8 +717,8 @@ push_patch()
 must_commit_first()
 {
 	git update-index --refresh --unmerged -q > /dev/null
-	[ `git diff-files | wc -l` -eq 0 ] || return $?
-	[ `git diff-index HEAD | wc -l` -eq 0 ]
+	[ `git diff-files --no-ext-diff | wc -l` -eq 0 ] || return $?
+	[ `git diff-index --no-ext-diff HEAD | wc -l` -eq 0 ]
 	return $?
 }
 
@@ -799,13 +799,13 @@ __refresh_patch()
 		if [ -n "$5" -o $diffstat = "true" ]; then
 			(
 				echo "---"
-				git diff --stat $diffopts "$2"
+				git diff --no-ext-diff --stat $diffopts "$2"
 				echo ""
 			) >> "$TMP_DIFF"
 		fi
 
 		# get the new patch
-		git diff --binary $diffopts "$2" >> "$TMP_DIFF"
+		git diff --no-ext-diff --binary $diffopts "$2" >> "$TMP_DIFF"
 
 		# move the new patch in
 		mv "$p" "$p~"

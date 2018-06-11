@@ -105,7 +105,7 @@ git rev-parse --verify HEAD >/dev/null 2>&1 || IS_INITIAL=t
 	# added
 	if [ -z "$IS_INITIAL" ]; then
 		# non-initial commit
-		git diff-index -M --name-status --diff-filter=$DIFF_FILTER HEAD
+		git diff-index --no-ext-diff -M --name-status --diff-filter=$DIFF_FILTER HEAD
 	else
 		# initial commit
 		git ls-files | sed -e "s/^/A\t/"

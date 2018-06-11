@@ -52,7 +52,7 @@ mkdir "$rebase_dir"
 # calculate the patch ids for all the commits in upstream
 #
 for c in $inup ; do
-	git diff-tree -p $c
+	git diff-tree --no-ext-diff -p $c
 done | git patch-id | while read id name ; do
 	echo "$name" >> "$rebase_dir/$id"
 done
