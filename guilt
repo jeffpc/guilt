@@ -722,6 +722,14 @@ must_commit_first()
 	return $?
 }
 
+stat_file_size()
+{
+    case `uname -s` in
+        Darwin) stat -f %z "$1";;
+        *) stat -c %s "$1";;
+    esac
+}
+
 # usage: fold_patch patchname
 fold_patch()
 {
@@ -742,7 +750,7 @@ fold_patch()
 		do_get_full_header "$pnext" > "$TMP_NEXT"
 		do_get_patch "$pcur" > "$TMP_DIFF"
 
-		case "`stat -c %s \"$TMP_CUR\"`,`stat -c %s \"$TMP_NEXT\"`" in
+		case "`stat_file_size \"$TMP_CUR\"`,`stat_file_size \"$TMP_NEXT\"`" in
 			*,0)
 				# since the new patch header is empty, we
 				# don't have to do anything
